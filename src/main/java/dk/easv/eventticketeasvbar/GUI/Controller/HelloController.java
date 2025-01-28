@@ -1,4 +1,4 @@
-package dk.easv.eventticketeasvbar;
+package dk.easv.eventticketeasvbar.GUI.Controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
