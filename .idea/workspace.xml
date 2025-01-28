@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="424db850-1039-4886-89b3-66312f48d918" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../FunWithException/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FunWithException/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FunWithException/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FunWithException/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FunWithException/FunWithException.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../FunWithException/data/myFile.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MyPlatformer.v1/src/inputs/KeyboardInputs.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MyPlatformer.v1/src/inputs/MouseInputs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MultipleWindows/src/main/java/dk/easv/multiplewindows/controller/MainWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MultipleWindows/src/main/java/dk/easv/multiplewindows/controller/MainWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyPlatformer.v1/src/bll/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MyPlatformer.v1/src/bll/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyPlatformer.v1/src/gui/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MyPlatformer.v1/src/gui/GamePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyPlatformer.v1/src/gui/GameWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MyPlatformer.v1/src/gui/GameWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WordSearch/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WordSearch/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../WordSearch/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WordSearch/search_history.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WordSearch/src/main/java/dk/easv/wordsearch/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WordSearch/src/main/java/dk/easv/wordsearch/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WordSearch/src/main/java/dk/easv/wordsearch/bll/WordLogic.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WordSearch/src/main/java/dk/easv/wordsearch/dal/SearchHistory" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WordSearch/src/main/java/dk/easv/wordsearch/dal/Word.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WordSearch/src/main/java/dk/easv/wordsearch/dal/WordData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WordSearch/src/main/java/dk/easv/wordsearch/gui/HelloController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WordSearch/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/../WordSearch/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../WordSearch/src/main/resources/dk/easv/wordsearch/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../WordSearch/src/main/resources/dk/easv/wordsearch/hello-view.fxml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 4
+}]]></component>
+  <component name="ProjectId" id="2sGdBBctr7hkOSL2FQsLdY7SuuG" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.20224.419" />
+        <option value="bundled-js-predefined-d6986cc7102b-410509235cf1-JavaScript-IU-242.20224.419" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="424db850-1039-4886-89b3-66312f48d918" name="Changes" comment="" />
+      <created>1738085710202</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1738085710202</updated>
+      <workItem from="1738085711380" duration="2000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
