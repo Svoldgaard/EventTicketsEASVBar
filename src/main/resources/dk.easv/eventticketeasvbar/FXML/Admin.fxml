@@ -7,35 +7,34 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="435.0" prefWidth="816.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.eventticketeasvbar.FXML.FXML.Admin">
-   <children>
-      <Button layoutX="747.0" layoutY="14.0" mnemonicParsing="false" text="Logout" />
-      <Label layoutX="556.0" layoutY="18.0" text="Name:" />
-      <Label layoutX="592.0" layoutY="18.0" text="NAMEINDPUT" />
-      <TextField layoutX="14.0" layoutY="54.0" promptText="Search Coordinators" />
-      <TextField layoutX="418.0" layoutY="67.0" promptText="Search Event:" />
-      <TableView layoutX="14.0" layoutY="100.0" prefHeight="237.0" prefWidth="336.0">
-        <columns>
-          <TableColumn prefWidth="75.0" text="Name" />
-          <TableColumn prefWidth="75.0" text="Email" />
-            <TableColumn prefWidth="75.0" text="Phone" />
-            <TableColumn prefWidth="111.0" text="Amount off events" />
-        </columns>
-      </TableView>
-      <TableView layoutX="418.0" layoutY="100.0" prefHeight="237.0" prefWidth="375.0">
-        <columns>
-          <TableColumn prefWidth="75.0" text="Event" />
-          <TableColumn prefWidth="75.0" text="Location" />
-            <TableColumn prefWidth="75.0" text="Date " />
-            <TableColumn prefWidth="75.0" text="Time" />
-            <TableColumn prefWidth="75.0" text="Coordinator" />
-        </columns>
-      </TableView>
-      <Button layoutX="698.0" layoutY="353.0" mnemonicParsing="false" text="Remove Event" />
-      <Button layoutX="563.0" layoutY="353.0" mnemonicParsing="false" text="Assign Coordinator" />
-      <Button layoutX="14.0" layoutY="353.0" mnemonicParsing="false" text="Create User" />
-      <Button layoutX="108.0" layoutY="353.0" mnemonicParsing="false" text="Edit User" />
-      <Button layoutX="182.0" layoutY="353.0" mnemonicParsing="false" text="Remove User" />
-   </children>
+<AnchorPane prefHeight="435.0" prefWidth="816.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="dk.easv.eventticketeasvbar.GUI.Controller.AdminController">
+    <Button layoutX="747.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnLogout" text="Logout"/>
+    <Label layoutX="556.0" layoutY="18.0" text="Name:"/>
+    <Label fx:id="lblUsername" layoutX="592.0" layoutY="18.0" text="NAMEINDPUT"/>
+    <TextField fx:id="SearchCoordinators" layoutX="14.0" layoutY="54.0" promptText="Search Coordinators"/>
+    <TextField fx:id="searchEvent" layoutX="418.0" layoutY="67.0" promptText="Search Event:"/>
+    <TableView fx:id="tblCoordinator" layoutX="14.0" layoutY="100.0" prefHeight="237.0" prefWidth="336.0">
+      <columns>
+          <TableColumn prefWidth="75.0" text="Name"/>
+          <TableColumn prefWidth="75.0" text="Email"/>
+          <TableColumn prefWidth="75.0" text="Phone"/>
+          <TableColumn prefWidth="111.0" text="Amount off events"/>
+      </columns>
+    </TableView>
+    <TableView fx:id="tblEvent" layoutX="418.0" layoutY="100.0" prefHeight="237.0" prefWidth="375.0">
+      <columns>
+          <TableColumn prefWidth="75.0" text="Event"/>
+          <TableColumn prefWidth="75.0" text="Location"/>
+          <TableColumn prefWidth="75.0" text="Date "/>
+          <TableColumn prefWidth="75.0" text="Time"/>
+          <TableColumn prefWidth="75.0" text="Coordinator"/>
+      </columns>
+    </TableView>
+    <Button layoutX="698.0" layoutY="353.0" mnemonicParsing="false" onAction="#btnRemoveEvent" text="Remove Event"/>
+    <Button layoutX="563.0" layoutY="353.0" mnemonicParsing="false" onAction="#btnAssignCoordinator"
+            text="Assign Coordinator"/>
+    <Button layoutX="14.0" layoutY="353.0" mnemonicParsing="false" onAction="#btnCreateUser" text="Create User"/>
+    <Button layoutX="108.0" layoutY="353.0" mnemonicParsing="false" onAction="#btnEditUser" text="Edit User"/>
+    <Button layoutX="182.0" layoutY="353.0" mnemonicParsing="false" onAction="#btnRemoveUser" text="Remove User"/>
 </AnchorPane>

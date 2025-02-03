@@ -5,29 +5,28 @@
 <?import javafx.scene.media.MediaView?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="332.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.eventticketeasvbar.FXML.FXML.Ticket">
+<AnchorPane prefHeight="332.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.eventticketeasvbar.GUI.Controller.TicketController">
    <children>
       <Label layoutX="38.0" layoutY="28.0" text="Event Code:" />
-      <Label layoutX="38.0" layoutY="45.0" text="Eventcode input" />
+      <Label fx:id="lblEventCode" layoutX="38.0" layoutY="45.0" text="Eventcode input" />
       <Label layoutX="159.0" layoutY="28.0" text="Section:" />
-      <Label layoutX="159.0" layoutY="45.0" text="Section input" />
+      <Label fx:id="lblSection" layoutX="159.0" layoutY="45.0" text="Section input" />
       <Label layoutX="267.0" layoutY="28.0" text="Row:" />
-      <Label layoutX="267.0" layoutY="45.0" text="Row input" />
+      <Label fx:id="lblRow" layoutX="267.0" layoutY="45.0" text="Row input" />
       <Label layoutX="339.0" layoutY="28.0" text="Seat:" />
-      <Label layoutX="339.0" layoutY="45.0" text="Sear input" />
+      <Label fx:id="lblSeat" layoutX="339.0" layoutY="45.0" text="Sear input" />
       <Label layoutX="38.0" layoutY="96.0" text="Price:" />
-      <Label layoutX="38.0" layoutY="113.0" text="Price input" />
-      <MediaView fitHeight="200.0" fitWidth="100.0" layoutX="445.0" layoutY="89.0" />
+      <Label fx:id="lblPrice" layoutX="38.0" layoutY="113.0" text="Price input" />
+      <MediaView fx:id="QRCode" fitHeight="200.0" fitWidth="100.0" layoutX="445.0" layoutY="89.0" />
       <Label layoutX="468.0" layoutY="72.0" text="QR CODE" />
-      <Label layoutX="130.0" layoutY="152.0" text="Event name ">
+      <Label fx:id="lblEventName" layoutX="130.0" layoutY="152.0" text="Event name ">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
       <Label layoutX="133.0" layoutY="289.0" text="Location: " />
-      <Label layoutX="189.0" layoutY="289.0" text="location input" />
+      <Label fx:id="lblLocation" layoutX="189.0" layoutY="289.0" text="location input" />
       <Label layoutX="133.0" layoutY="306.0" text="Date: " />
-      <Label layoutX="180.0" layoutY="306.0" text="date input " />
+      <Label fx:id="lblDate" layoutX="180.0" layoutY="306.0" text="date input " />
    </children>
 </AnchorPane>

@@ -3,18 +3,16 @@ package dk.easv.eventticketeasvbar.GUI.Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.ListView;
 
-public class LoginController {
+public class AssignEditController {
     @FXML
-    private Label lblForgotPassword;
+    private Label lblEventname;
     @FXML
-    private TextField txtUsername;
-    @FXML
-    private TextField txtPassword;
+    private ListView lstCoordinator;
 
     @FXML
-    private void btnLogin(ActionEvent actionEvent) {
+    private void btnSave(ActionEvent actionEvent) {
     }
 
     @FXML
