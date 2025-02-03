@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="424db850-1039-4886-89b3-66312f48d918" name="Changes" comment="ticket FXML">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/Add-Edit-Event.fxml" afterDir="false" />
+    <list default="true" id="424db850-1039-4886-89b3-66312f48d918" name="Changes" comment="Add-Edit-Event.fxml">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/Assign-edit Window.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/CreateUser.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/Admin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/Admin.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/EventCoordinator.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/EventCoordinator.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +99,7 @@
       <updated>1738085710202</updated>
       <workItem from="1738085711380" duration="223000" />
       <workItem from="1738085962581" duration="1666000" />
-      <workItem from="1738572846762" duration="2951000" />
+      <workItem from="1738572846762" duration="6685000" />
     </task>
     <task id="LOCAL-00001" summary="First">
       <option name="closed" value="true" />
@@ -138,7 +141,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738576362082</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Add-Edit-Event.fxml">
+      <option name="closed" value="true" />
+      <created>1738576875042</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1738576875042</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -153,6 +164,7 @@
     <MESSAGE value="Some classes to start with" />
     <MESSAGE value="login FXML" />
     <MESSAGE value="ticket FXML" />
-    <option name="LAST_COMMIT_MESSAGE" value="ticket FXML" />
+    <MESSAGE value="Add-Edit-Event.fxml" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add-Edit-Event.fxml" />
   </component>
 </project>
