@@ -1,14 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.media.MediaView?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="dk.easv.eventticketeasvbar.FXML.FXML.Ticket"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="332.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.eventticketeasvbar.FXML.FXML.Ticket">
+   <children>
+      <Label layoutX="38.0" layoutY="28.0" text="Event Code:" />
+      <Label layoutX="38.0" layoutY="45.0" text="Eventcode input" />
+      <Label layoutX="159.0" layoutY="28.0" text="Section:" />
+      <Label layoutX="159.0" layoutY="45.0" text="Section input" />
+      <Label layoutX="267.0" layoutY="28.0" text="Row:" />
+      <Label layoutX="267.0" layoutY="45.0" text="Row input" />
+      <Label layoutX="339.0" layoutY="28.0" text="Seat:" />
+      <Label layoutX="339.0" layoutY="45.0" text="Sear input" />
+      <Label layoutX="38.0" layoutY="96.0" text="Price:" />
+      <Label layoutX="38.0" layoutY="113.0" text="Price input" />
+      <MediaView fitHeight="200.0" fitWidth="100.0" layoutX="445.0" layoutY="89.0" />
+      <Label layoutX="468.0" layoutY="72.0" text="QR CODE" />
+      <Label layoutX="130.0" layoutY="152.0" text="Event name ">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="133.0" layoutY="289.0" text="Location: " />
+      <Label layoutX="189.0" layoutY="289.0" text="location input" />
+      <Label layoutX="133.0" layoutY="306.0" text="Date: " />
+      <Label layoutX="180.0" layoutY="306.0" text="date input " />
+   </children>
 </AnchorPane>
