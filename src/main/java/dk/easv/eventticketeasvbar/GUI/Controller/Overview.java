@@ -1,4 +1,4 @@
 package dk.easv.eventticketeasvbar.GUI.Controller;
 
-public class UserController {
+public class Overview {
 }
