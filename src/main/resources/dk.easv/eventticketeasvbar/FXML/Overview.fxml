@@ -10,34 +10,34 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.eventticketeasvbar.GUI.Controller.Overview">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@/dk.easv/eventticketeasvbar/FXML/css/demo2.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.eventticketeasvbar.GUI.Controller.OverviewController">
    <top>
       <HBox prefHeight="70.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <VBox prefHeight="100.0" prefWidth="200.0">
-            <TextField fx:id="txtSearch" prefHeight="25.0" prefWidth="100.0" promptText="Search">
+            <TextField fx:id="txtSearch" prefHeight="25.0" prefWidth="100.0" promptText="Search" styleClass="newC">
                <VBox.margin>
-                  <Insets left="15.0" top="20.0"/>
+                  <Insets left="15.0" top="20.0" />
                </VBox.margin>
             </TextField>
-            <Label text="Popular Events">
+            <Label styleClass="newC" text="Popular Events">
                <VBox.margin>
-                  <Insets left="50.0" top="10.0"/>
+                  <Insets left="50.0" top="10.0" />
                </VBox.margin>
             </Label>
          </VBox>
-         <VBox prefHeight="100.0" prefWidth="200.0"/>
+         <VBox prefHeight="100.0" prefWidth="200.0" />
          <VBox prefHeight="100.0" prefWidth="200.0">
-            <Button mnemonicParsing="false" onAction="#btnLogin" text="Login">
+            <Button mnemonicParsing="false" onAction="#handleLogin" text="Login">
                <VBox.margin>
-                  <Insets left="125.0" top="10.0"/>
+                  <Insets left="125.0" top="10.0" />
                </VBox.margin>
             </Button>
             <ChoiceBox fx:id="DropMenu" prefWidth="150.0">
                <opaqueInsets>
-                  <Insets left="50.0" top="15.0"/>
+                  <Insets left="50.0" top="15.0" />
                </opaqueInsets>
                <VBox.margin>
-                  <Insets left="25.0" top="10.0"/>
+                  <Insets left="25.0" top="10.0" />
                </VBox.margin>
             </ChoiceBox>
          </VBox>

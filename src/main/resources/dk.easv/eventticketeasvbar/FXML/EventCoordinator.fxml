@@ -8,34 +8,33 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="dk.easv.eventticketeasvbar.GUI.Controller.EventCoordinatorController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.eventticketeasvbar.GUI.Controller.EventCoordinatorController">
     <TableView fx:id="tblEvent" layoutX="37.0" layoutY="51.0" prefHeight="278.0" prefWidth="526.0">
       <columns>
-          <TableColumn prefWidth="75.0" text="Event"/>
-          <TableColumn prefWidth="75.0" text="Location"/>
-          <TableColumn prefWidth="75.0" text="Date"/>
-          <TableColumn prefWidth="75.0" text="Time"/>
-          <TableColumn prefWidth="75.0" text="Duration"/>
-          <TableColumn prefWidth="75.0" text="Price"/>
-          <TableColumn prefWidth="75.0" text="Coordinator"/>
+          <TableColumn prefWidth="75.0" text="Event" />
+          <TableColumn prefWidth="75.0" text="Location" />
+          <TableColumn prefWidth="75.0" text="Date" />
+          <TableColumn prefWidth="75.0" text="Time" />
+          <TableColumn prefWidth="75.0" text="Duration" />
+          <TableColumn prefWidth="75.0" text="Price" />
+          <TableColumn prefWidth="75.0" text="Coordinator" />
       </columns>
     </TableView>
-    <Label layoutX="358.0" layoutY="15.0" text="Name:"/>
-    <Label fx:id="lblUsername" layoutX="400.0" layoutY="15.0" text="Name??"/>
-    <Button layoutX="531.0" layoutY="11.0" mnemonicParsing="false" onAction="#btnLogout" text="Logout"/>
-    <TextField fx:id="txtSearch" layoutX="21.0" layoutY="20.0" promptText="Search:"/>
+    <Label layoutX="358.0" layoutY="15.0" text="Name:" />
+    <Label fx:id="lblUsername" layoutX="400.0" layoutY="15.0" text="Name??" />
+    <Button layoutX="531.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleLogoutCoordinator" text="Logout" />
+    <TextField fx:id="txtSearch" layoutX="21.0" layoutY="20.0" promptText="Search:" />
     <ButtonBar layoutX="21.0" layoutY="336.0" prefHeight="40.0" prefWidth="307.0">
       <buttons>
-          <Button mnemonicParsing="false" onAction="#btnCreateEvent" prefHeight="25.0" text="Create Event"/>
-          <Button mnemonicParsing="false" onAction="#btnEditEvent" text="Edit"/>
-          <Button mnemonicParsing="false" onAction="#btnDeleteEvent" text="Delete"/>
+          <Button mnemonicParsing="false" onAction="#btnCreateEvent" prefHeight="25.0" text="Create Event" />
+          <Button mnemonicParsing="false" onAction="#btnEditEvent" text="Edit" />
+          <Button mnemonicParsing="false" onAction="#btnDeleteEvent" text="Delete" />
       </buttons>
     </ButtonBar>
     <ButtonBar layoutX="363.0" layoutY="336.0" prefHeight="40.0" prefWidth="195.0">
       <buttons>
-          <Button mnemonicParsing="false" onAction="#btnAddTicket" text="Add Ticket"/>
-          <Button mnemonicParsing="false" onAction="#btnAssign" text="Assign"/>
+          <Button mnemonicParsing="false" onAction="#btnAddTicket" text="Add Ticket" />
+          <Button mnemonicParsing="false" onAction="#btnAssign" text="Assign" />
       </buttons>
     </ButtonBar>
 </AnchorPane>

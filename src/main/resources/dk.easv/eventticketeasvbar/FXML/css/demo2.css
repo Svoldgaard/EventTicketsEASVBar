@@ -1,0 +1,28 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+
+
+.newC{
+
+
+    -fx-background-color: "lightgreen";
+    -fx-text-fill: white;
+
+
+}
+
+BorderPane{
+    -fx-border-color: "violet";
+    -fx-font-family: "Anton", serif;
+    font-weight: 400;
+    font-style: normal;
+
+    -fx-background-image: url('https://i.pinimg.com/236x/9f/e6/d9/9fe6d902302658899851e1daa5c5da57.jpg');
+
+
+}
+
+Button{
+
+}

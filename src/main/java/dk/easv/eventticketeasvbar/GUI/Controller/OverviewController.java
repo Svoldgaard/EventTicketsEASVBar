@@ -8,11 +8,10 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.TilePane;
 
 import java.io.IOException;
 
-public class Overview {
+public class OverviewController {
     @FXML
     private TextField txtSearch;
     @FXML
@@ -22,7 +21,7 @@ public class Overview {
 
 
     @FXML
-    private void btnLogin(ActionEvent actionEvent) throws IOException {
+    private void handleLogin(ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/LoginScreen.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage();
