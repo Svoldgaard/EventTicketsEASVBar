@@ -26,7 +26,7 @@
     <TextField fx:id="txtSearch" layoutX="21.0" layoutY="20.0" promptText="Search:" />
     <ButtonBar layoutX="21.0" layoutY="336.0" prefHeight="40.0" prefWidth="307.0">
       <buttons>
-          <Button mnemonicParsing="false" onAction="#btnCreateEvent" prefHeight="25.0" text="Create Event" />
+          <Button fx:id="btnCreate" mnemonicParsing="false" onAction="#btnCreateEvent" prefHeight="25.0" text="Create Event" />
           <Button mnemonicParsing="false" onAction="#btnEditEvent" text="Edit" />
           <Button mnemonicParsing="false" onAction="#btnDeleteEvent" text="Delete" />
       </buttons>

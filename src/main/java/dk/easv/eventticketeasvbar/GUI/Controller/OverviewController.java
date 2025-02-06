@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
@@ -19,14 +20,25 @@ public class OverviewController {
     @FXML
     private javafx.scene.layout.TilePane TilePane;
 
+    public LoginController loginController;
+
+
+
 
     @FXML
     private void handleLogin(ActionEvent actionEvent) throws IOException {
+
+
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/LoginScreen.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage();
         stage.setTitle("Event Tickets EASV Bar");
         stage.setScene(scene);
+        loginController = fxmlLoader.getController();
+        loginController.setLoginStage(stage);
         stage.show();
+
+
+
     }
 }

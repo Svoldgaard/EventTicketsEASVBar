@@ -6,12 +6,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.io.IOException;
+import java.util.Objects;
 
 public class LoginController {
     @FXML
@@ -22,6 +24,15 @@ public class LoginController {
     private TextField txtPassword;
     @FXML
     private Label lblStatus;
+    @FXML
+    private Button handleCancel;
+
+    private Stage loginStage;
+
+
+
+
+
 
     @FXML
     private void handleLogin(ActionEvent actionEvent) throws Exception {
@@ -29,10 +40,10 @@ public class LoginController {
         String username = this.txtUsername.getText();
         String password = this.txtPassword.getText();
 
-        if (username.equals("username") && password.equals("password"))  {
+        if (username.equals("0") && password.equals("0"))  {
             loadAdminWindow(actionEvent);
 
-        }else if (username.equals("username1") && password.equals("password1")) {
+        }else if (username.equals("1") && password.equals("1")) {
             loadCoordinatorWindow(actionEvent);
 
         } else {
@@ -57,7 +68,25 @@ public class LoginController {
         stage.show();
     }
 
-    @FXML
-    private void btnCancel(ActionEvent actionEvent) {
+
+    public void setLoginStage(Stage loginStage) {
+        this.loginStage = loginStage;
     }
+    public void handleCancel(ActionEvent actionEvent) {
+        if (loginStage != null){
+            loginStage.close();
+        }
+
+    }
+
+    @FXML
+    private void handleForgotPassword(MouseEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/dk.easv/eventticketeasvbar/FXML/ForgotPassword.fxml")));
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Forgot Password");
+        stage.show();
+    }
+
+
 }
