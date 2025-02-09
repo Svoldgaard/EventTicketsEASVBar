@@ -1,20 +1,31 @@
 package dk.easv.eventticketeasvbar.GUI.Controller;
 
-import dk.easv.eventticketeasvbar.GUI.util.TicketException;
+
+import dk.easv.eventticketeasvbar.BE.Event;
+import dk.easv.eventticketeasvbar.BE.EventCoordinator;
+import dk.easv.eventticketeasvbar.GUI.Model.AdminModel;
+import dk.easv.eventticketeasvbar.GUI.Model.EventCoordinatorModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class AdminController {
+
+public class AdminController implements Initializable {
+
+
 
     @FXML
     private Label lblUsername;
@@ -23,9 +34,54 @@ public class AdminController {
     @FXML
     private TextField searchEvent;
     @FXML
-    private TableView tblCoordinator;
+    private TableView<EventCoordinator> tblCoordinator;
     @FXML
-    private TableView tblEvent;
+    private TableColumn<EventCoordinator,String> name;
+    @FXML
+    private TableColumn<EventCoordinator,String> email;
+    @FXML
+    private TableColumn<EventCoordinator,Integer> phoneNumber;
+    @FXML
+    private TableColumn<EventCoordinator,Integer> amountOffEvents;
+
+    @FXML
+    private TableView<Event> tblEvent;
+    @FXML
+    private TableColumn<Event,String> event;
+    @FXML
+    private TableColumn<Event,String> locationColumn;
+    @FXML
+    private TableColumn<Event,String> date;
+    @FXML
+    private TableColumn<Event,Double> time;
+    @FXML
+    private TableColumn<Event,String> coordinator;
+
+    private AdminModel adminModel;
+
+    public AdminController() {
+
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        adminModel = new AdminModel();
+
+        name.setCellValueFactory(new PropertyValueFactory<>("name"));
+        email.setCellValueFactory(new PropertyValueFactory<>("email"));
+        phoneNumber.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        amountOffEvents.setCellValueFactory(new PropertyValueFactory<>("amountOffEvents"));
+
+        event.setCellValueFactory(new PropertyValueFactory<>("event"));
+        locationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
+        date.setCellValueFactory(new PropertyValueFactory<>("date"));
+        time.setCellValueFactory(new PropertyValueFactory<>("time"));
+        coordinator.setCellValueFactory(new PropertyValueFactory<>("coordinator"));
+
+
+        tblCoordinator.setItems(adminModel.getCoordinators());
+        tblEvent.setItems(adminModel.getEvents());
+    }
 
     @FXML
     private void handleLogoutAdmin(ActionEvent actionEvent) throws Exception {
@@ -55,4 +111,6 @@ public class AdminController {
     @FXML
     private void btnRemoveUser(ActionEvent actionEvent) {
     }
+
+
 }

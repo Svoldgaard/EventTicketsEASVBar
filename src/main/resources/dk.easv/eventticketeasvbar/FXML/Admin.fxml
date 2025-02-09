@@ -7,7 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="435.0" prefWidth="816.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.eventticketeasvbar.GUI.Controller.AdminController">
+<AnchorPane prefHeight="435.0" prefWidth="816.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.eventticketeasvbar.GUI.Controller.AdminController">
     <Button layoutX="747.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleLogoutAdmin" text="Logout" />
     <Label layoutX="556.0" layoutY="18.0" text="Name:" />
     <Label fx:id="lblUsername" layoutX="592.0" layoutY="18.0" text="NAMEINDPUT" />
@@ -15,19 +15,19 @@
     <TextField fx:id="searchEvent" layoutX="418.0" layoutY="67.0" promptText="Search Event:" />
     <TableView fx:id="tblCoordinator" layoutX="14.0" layoutY="100.0" prefHeight="237.0" prefWidth="336.0">
       <columns>
-          <TableColumn prefWidth="75.0" text="Name" />
-          <TableColumn prefWidth="75.0" text="Email" />
-          <TableColumn prefWidth="75.0" text="Phone" />
-          <TableColumn prefWidth="111.0" text="Amount off events" />
+          <TableColumn fx:id="name" prefWidth="75.0" text="Name" />
+          <TableColumn fx:id="email" prefWidth="75.0" text="Email" />
+          <TableColumn fx:id="phoneNumber" prefWidth="75.0" text="Phone" />
+          <TableColumn fx:id="amountOffEvents" prefWidth="111.0" text="Amount off events" />
       </columns>
     </TableView>
     <TableView fx:id="tblEvent" layoutX="418.0" layoutY="100.0" prefHeight="237.0" prefWidth="375.0">
       <columns>
-          <TableColumn prefWidth="75.0" text="Event" />
-          <TableColumn prefWidth="75.0" text="Location" />
-          <TableColumn prefWidth="75.0" text="Date " />
-          <TableColumn prefWidth="75.0" text="Time" />
-          <TableColumn prefWidth="75.0" text="Coordinator" />
+          <TableColumn fx:id="event" prefWidth="75.0" text="Event" />
+          <TableColumn fx:id="locationColumn" prefWidth="75.0" text="Location" />
+          <TableColumn fx:id="date" prefWidth="75.0" text="Date " />
+          <TableColumn fx:id="time" prefWidth="75.0" text="Time" />
+          <TableColumn fx:id="coordinator" prefWidth="75.0" text="Coordinator" />
       </columns>
     </TableView>
     <Button layoutX="698.0" layoutY="353.0" mnemonicParsing="false" onAction="#btnRemoveEvent" text="Remove Event" />

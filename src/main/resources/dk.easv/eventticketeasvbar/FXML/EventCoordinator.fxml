@@ -11,13 +11,13 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.eventticketeasvbar.GUI.Controller.EventCoordinatorController">
     <TableView fx:id="tblEvent" layoutX="37.0" layoutY="51.0" prefHeight="278.0" prefWidth="526.0">
       <columns>
-          <TableColumn prefWidth="75.0" text="Event" />
-          <TableColumn prefWidth="75.0" text="Location" />
-          <TableColumn prefWidth="75.0" text="Date" />
-          <TableColumn prefWidth="75.0" text="Time" />
-          <TableColumn prefWidth="75.0" text="Duration" />
-          <TableColumn prefWidth="75.0" text="Price" />
-          <TableColumn prefWidth="75.0" text="Coordinator" />
+          <TableColumn fx:id="eventColumn" prefWidth="75.0" text="Event" />
+          <TableColumn fx:id="locationColumn" prefWidth="75.0" text="Location" />
+          <TableColumn fx:id="dateColumn" prefWidth="75.0" text="Date" />
+          <TableColumn fx:id="timeColumn" prefWidth="75.0" text="Time" />
+          <TableColumn fx:id="durationColumn" prefWidth="75.0" text="Duration" />
+          <TableColumn fx:id="priceColumn" prefWidth="75.0" text="Price" />
+          <TableColumn fx:id="coordinatorColumn" prefWidth="75.0" text="Coordinator" />
       </columns>
     </TableView>
     <Label layoutX="358.0" layoutY="15.0" text="Name:" />

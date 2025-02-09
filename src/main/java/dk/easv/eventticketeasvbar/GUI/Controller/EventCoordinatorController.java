@@ -1,27 +1,72 @@
 package dk.easv.eventticketeasvbar.GUI.Controller;
 
+import dk.easv.eventticketeasvbar.GUI.Model.EventCoordinatorModel;
 import dk.easv.eventticketeasvbar.Main;
+import dk.easv.eventticketeasvbar.BE.Event;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class EventCoordinatorController {
-    public TableView tblEvent;
+public class EventCoordinatorController implements Initializable {
+
+
     public Label lblUsername;
     public TextField txtSearch;
     private AddEditEventController addEditEventController;
 
+    @FXML
+    private TableView<Event> tblEvent;
+    @FXML
+    private TableColumn<Event, String> eventColumn;
+    @FXML
+    private TableColumn<Event, String> locationColumn;
+    @FXML
+    private TableColumn<Event, String> dateColumn;
+    @FXML
+    private TableColumn<Event, Double> timeColumn;
+    @FXML
+    private TableColumn<Event, Double> durationColumn;
+    @FXML
+    private TableColumn<Event, Double> priceColumn;
+    @FXML
+    private TableColumn<Event, String> coordinatorColumn;
+
+    private EventCoordinatorModel EventCoordinatorModel;
+
+
+    public EventCoordinatorController() {
+
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        EventCoordinatorModel = new EventCoordinatorModel();
+
+        // Set up TableView columns
+        eventColumn.setCellValueFactory(new PropertyValueFactory<>("event"));
+        locationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
+        dateColumn.setCellValueFactory(new PropertyValueFactory<>("date")); // LocalDate will be formatted automatically
+        timeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
+        durationColumn.setCellValueFactory(new PropertyValueFactory<>("duration"));
+        priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
+        coordinatorColumn.setCellValueFactory(new PropertyValueFactory<>("coordinator"));
+
+        // Bind data to TableView
+        tblEvent.setItems(EventCoordinatorModel.getEvents());
+    }
 
     @FXML
     private void handleLogoutCoordinator(ActionEvent actionEvent) throws Exception {
@@ -88,4 +133,6 @@ public class EventCoordinatorController {
     }
 
     public void alertMessage() {}
+
+
 }
