@@ -12,6 +12,6 @@
     <TextField fx:id="txtPhoneNumber" layoutX="124.0" layoutY="83.0" />
     <TextField fx:id="txtEmail" layoutX="124.0" layoutY="56.0" />
     <TextField fx:id="txtName" layoutX="124.0" layoutY="27.0" />
-   <MFXButton layoutX="173.0" layoutY="136.0" onAction="#handleSave" text="Save" />
-   <MFXButton layoutX="229.0" layoutY="136.0" onAction="#handleCancel" text="Cancel" />
+   <MFXButton fx:id="btnSave" layoutX="124.0" layoutY="136.0" onAction="#handleSave" text="Save" />
+   <MFXButton layoutX="219.0" layoutY="136.0" onAction="#handleCancel" text="Cancel" />
 </AnchorPane>

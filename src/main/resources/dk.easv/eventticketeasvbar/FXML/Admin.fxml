@@ -29,7 +29,7 @@
           <TableColumn fx:id="coordinator" prefWidth="75.0" text="Coordinator" />
       </columns>
     </TableView>
-   <MFXButton layoutX="14.0" layoutY="353.0" onAction="#handleRemoveEvent" text="Create User" />
+   <MFXButton layoutX="14.0" layoutY="353.0" onAction="#handleCreateUser" text="Create User" />
    <MFXButton layoutX="105.0" layoutY="353.0" onAction="#handleEditUser" text="Edit User" />
    <MFXButton layoutX="182.0" layoutY="353.0" onAction="#handleRemoveUser" text="Remove User" />
    <MFXButton layoutX="563.0" layoutY="353.0" onAction="#handleAssignCoordinator" text="Assign Coordinator" />
