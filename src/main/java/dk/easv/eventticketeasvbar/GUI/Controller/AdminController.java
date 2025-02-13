@@ -5,6 +5,7 @@ import dk.easv.eventticketeasvbar.BE.Event;
 import dk.easv.eventticketeasvbar.BE.EventCoordinator;
 import dk.easv.eventticketeasvbar.GUI.Model.AdminModel;
 import dk.easv.eventticketeasvbar.GUI.Model.EventCoordinatorModel;
+import dk.easv.eventticketeasvbar.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +20,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -59,6 +61,9 @@ public class AdminController implements Initializable {
 
     private AdminModel adminModel;
 
+    private AssignEditController assignEditController;
+    private CreateUserController createUserController;
+
     public AdminController() {
 
     }
@@ -93,23 +98,76 @@ public class AdminController implements Initializable {
     }
 
     @FXML
-    private void btnRemoveEvent(ActionEvent actionEvent) {
+    private void handleRemoveEvent(ActionEvent actionEvent) {
     }
 
     @FXML
-    private void btnAssignCoordinator(ActionEvent actionEvent) {
+    private void handleAssignCoordinator(ActionEvent actionEvent) throws IOException {
+
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/Assign-edit Window.fxml"));
+
+        // Load FXML and get the controller
+        Scene scene = new Scene(fxmlLoader.load());
+        assignEditController = fxmlLoader.getController();
+
+        // Open the assign Event stage
+        Stage stage = new Stage();
+        stage.setTitle("Assign Coordinator");
+        stage.setScene(scene);
+        //reference to cancel button
+        assignEditController = fxmlLoader.getController();
+        assignEditController.setStage(stage);
+
+        stage.show();
+
     }
 
     @FXML
-    private void btnCreateUser(ActionEvent actionEvent) {
+    private void handleCreateUser(ActionEvent actionEvent) throws IOException {
+
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/CreateUser.fxml"));
+
+        // Load FXML and get the controller
+        Scene scene = new Scene(fxmlLoader.load());
+        createUserController = fxmlLoader.getController();
+
+        // Open the assign Event stage
+        Stage stage = new Stage();
+        stage.setTitle("Create User");
+        stage.setScene(scene);
+        //reference to cancel button
+        createUserController = fxmlLoader.getController();
+        createUserController.setStage(stage);
+
+        stage.show();
+
     }
 
     @FXML
-    private void btnEditUser(ActionEvent actionEvent) {
+    private void handleEditUser(ActionEvent actionEvent) throws IOException {
+
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/CreateUser.fxml"));
+
+        // Load FXML and get the controller
+        Scene scene = new Scene(fxmlLoader.load());
+        createUserController = fxmlLoader.getController();
+
+        // Open the assign Event stage
+        Stage stage = new Stage();
+        stage.setTitle("Edit User");
+        stage.setScene(scene);
+        //changes buttons text
+        createUserController.setText("Save changes");
+        //reference to cancel button
+        createUserController = fxmlLoader.getController();
+        createUserController.setStage(stage);
+
+        stage.show();
+
     }
 
     @FXML
-    private void btnRemoveUser(ActionEvent actionEvent) {
+    private void handleRemoveUser(ActionEvent actionEvent) {
     }
 
 

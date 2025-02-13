@@ -4,6 +4,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class AssignEditController {
     @FXML
@@ -11,11 +14,24 @@ public class AssignEditController {
     @FXML
     private ListView lstCoordinator;
 
+    private Stage stage;
+
+    @FXML
+    public void btnCancel(ActionEvent actionEvent) throws IOException {
+        if(stage!=null){
+            stage.close();
+        }
+
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
+
     @FXML
     private void btnSave(ActionEvent actionEvent) {
     }
 
-    @FXML
-    private void btnCancel(ActionEvent actionEvent) {
-    }
+
 }

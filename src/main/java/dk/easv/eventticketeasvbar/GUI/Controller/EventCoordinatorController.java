@@ -26,6 +26,7 @@ public class EventCoordinatorController implements Initializable {
     public Label lblUsername;
     public TextField txtSearch;
     private AddEditEventController addEditEventController;
+    private AssignEditController assignEditController;
 
     @FXML
     private TableView<Event> tblEvent;
@@ -128,7 +129,23 @@ public class EventCoordinatorController implements Initializable {
     public void btnAddTicket(ActionEvent actionEvent) {
     }
 
-    public void btnAssign(ActionEvent actionEvent) {
+    public void handleAssign(ActionEvent actionEvent) throws IOException {
+
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/Assign-edit Window.fxml"));
+
+        // Load FXML and get the controller
+        Scene scene = new Scene(fxmlLoader.load());
+        assignEditController = fxmlLoader.getController();
+
+        // Open the assign Event stage
+        Stage stage = new Stage();
+        stage.setTitle("Assign Coordinator");
+        stage.setScene(scene);
+        //reference to cancel button
+        assignEditController = fxmlLoader.getController();
+        assignEditController.setStage(stage);
+
+        stage.show();
 
     }
 

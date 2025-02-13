@@ -34,7 +34,7 @@
     <ButtonBar layoutX="363.0" layoutY="336.0" prefHeight="40.0" prefWidth="195.0">
       <buttons>
           <Button mnemonicParsing="false" onAction="#btnAddTicket" text="Add Ticket" />
-          <Button mnemonicParsing="false" onAction="#btnAssign" text="Assign" />
+          <Button mnemonicParsing="false" onAction="#handleAssign" text="Assign" />
       </buttons>
     </ButtonBar>
 </AnchorPane>
