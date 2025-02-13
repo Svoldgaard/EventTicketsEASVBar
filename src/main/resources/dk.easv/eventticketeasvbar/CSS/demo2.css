@@ -2,14 +2,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 
 
-
 .newC{
-
-
     -fx-background-color: "lightgreen";
     -fx-text-fill: white;
-
-
 }
 
 BorderPane{
@@ -19,10 +14,8 @@ BorderPane{
     font-style: normal;
 
     -fx-background-image: url('https://i.pinimg.com/736x/d7/66/05/d76605aee7a603ef232891edc07aab30.jpg');
-
-
 }
 
-Button{
-
+MFXButton{
+    -fx-background-color: "red";
 }

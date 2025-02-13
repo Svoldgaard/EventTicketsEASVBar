@@ -1,11 +1,11 @@
 package dk.easv.eventticketeasvbar.GUI.Controller;
 
 import dk.easv.eventticketeasvbar.Main;
+import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
@@ -19,6 +19,8 @@ public class OverviewController {
     private ChoiceBox DropMenu;
     @FXML
     private javafx.scene.layout.TilePane TilePane;
+    @FXML
+    private MFXButton btnLogin;
 
     public LoginController loginController;
 

@@ -1,5 +1,6 @@
 package dk.easv.eventticketeasvbar.GUI.Controller;
 
+import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -13,6 +14,10 @@ public class AssignEditController {
     private Label lblEventname;
     @FXML
     private ListView lstCoordinator;
+    @FXML
+    private MFXButton btnSave;
+    @FXML
+    private MFXButton btnCancel;
 
     private Stage stage;
 

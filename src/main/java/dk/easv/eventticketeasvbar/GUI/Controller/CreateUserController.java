@@ -1,5 +1,6 @@
 package dk.easv.eventticketeasvbar.GUI.Controller;
 
+import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -14,7 +15,11 @@ public class CreateUserController {
     @FXML
     private TextField txtName;
     @FXML
-    private Button btnSave;
+    private MFXButton btnSave;
+    @FXML
+    private MFXButton btnCancel;
+
+
 
     private Stage stage;
 
