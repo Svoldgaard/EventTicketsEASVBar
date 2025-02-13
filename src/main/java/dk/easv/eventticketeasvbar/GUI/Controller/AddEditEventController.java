@@ -1,5 +1,6 @@
 package dk.easv.eventticketeasvbar.GUI.Controller;
 
+import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -35,7 +36,12 @@ public class AddEditEventController {
     @FXML
     private TextField txtTime;
     @FXML
-    private Button saveBtn;
+    private MFXButton btnAddPicture;
+    @FXML
+    private MFXButton btnSaveEvent;
+    @FXML
+    private MFXButton btnCancel;
+
 
     public Stage stage;
 
@@ -60,10 +66,9 @@ public class AddEditEventController {
     private void btnSaveEvent(ActionEvent actionEvent) {
     }
 
-
-
-    public void setText(String text) {
-       saveBtn.setText(text);
+    void setText(String saveChanges) {
+        if (btnSaveEvent != null) { // Prevents NullPointerException
+            btnSaveEvent.setText(saveChanges);
+        }
     }
-
 }

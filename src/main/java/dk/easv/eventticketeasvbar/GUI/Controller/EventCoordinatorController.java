@@ -4,6 +4,7 @@ import dk.easv.eventticketeasvbar.GUI.Model.EventCoordinatorModel;
 import dk.easv.eventticketeasvbar.Main;
 import dk.easv.eventticketeasvbar.BE.Event;
 
+import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -43,6 +44,19 @@ public class EventCoordinatorController implements Initializable {
     private TableColumn<Event, Double> priceColumn;
     @FXML
     private TableColumn<Event, String> coordinatorColumn;
+    @FXML
+    private MFXButton handleLogoutCoordinator;
+    @FXML
+    private MFXButton btnCreateEvent;
+    @FXML
+    private MFXButton btnEditEvent;
+    @FXML
+    private MFXButton btnDeleteEvent;
+    @FXML
+    private MFXButton btnAddTicket;
+    @FXML
+    private MFXButton btnAssign;
+
 
     private EventCoordinatorModel EventCoordinatorModel;
 
@@ -107,14 +121,16 @@ public class EventCoordinatorController implements Initializable {
         addEditEventController = fxmlLoader.getController();
 
         // Pass the new button name to the controller
-        addEditEventController.setText("Save Changes");
+        if (addEditEventController != null) {
+            addEditEventController.setText("Save Changes");
+        }
 
         // Open the Add/Edit Event stage
         Stage stage = new Stage();
         stage.setTitle("Edit");
         stage.setScene(scene);
         //reference to cancel button
-        addEditEventController = fxmlLoader.getController();
+        //addEditEventController = fxmlLoader.getController();
         addEditEventController.setStage(stage);
         // Make the new stage modal, blocking interaction with the previous window
         stage.initModality(Modality.APPLICATION_MODAL);

@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="178.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="dk.easv.eventticketeasvbar.GUI.Controller.CreateUserController">
-    <Label layoutX="26.0" layoutY="31.0" text="Name"/>
-    <Label layoutX="26.0" layoutY="60.0" text="Email"/>
-    <Label layoutX="26.0" layoutY="87.0" text="Phone Number"/>
-    <TextField fx:id="txtPhoneNumber" layoutX="124.0" layoutY="83.0"/>
-    <TextField fx:id="txtEmail" layoutX="124.0" layoutY="56.0"/>
-    <TextField fx:id="txtName" layoutX="124.0" layoutY="27.0"/>
-    <Button layoutX="173.0" layoutY="136.0" mnemonicParsing="false" onAction="#btnSave" text="Save"/>
-    <Button layoutX="229.0" layoutY="136.0" mnemonicParsing="false" onAction="#btnCancel" text="Cancel"/>
+<AnchorPane prefHeight="178.0" prefWidth="300.0" stylesheets="@/dk.easv/eventticketeasvbar/CSS/demo2.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.eventticketeasvbar.GUI.Controller.CreateUserController">
+    <Label layoutX="26.0" layoutY="31.0" text="Name" />
+    <Label layoutX="26.0" layoutY="60.0" text="Email" />
+    <Label layoutX="26.0" layoutY="87.0" text="Phone Number" />
+    <TextField fx:id="txtPhoneNumber" layoutX="124.0" layoutY="83.0" />
+    <TextField fx:id="txtEmail" layoutX="124.0" layoutY="56.0" />
+    <TextField fx:id="txtName" layoutX="124.0" layoutY="27.0" />
+   <MFXButton layoutX="173.0" layoutY="136.0" onAction="#btnSave" text="Save" />
+   <MFXButton layoutX="229.0" layoutY="136.0" onAction="#btnCancel" text="Cancel" />
 </AnchorPane>

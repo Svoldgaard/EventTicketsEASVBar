@@ -1,5 +1,6 @@
 package dk.easv.eventticketeasvbar.GUI.Controller;
 
+import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,13 +26,11 @@ public class LoginController {
     @FXML
     private Label lblStatus;
     @FXML
-    private Button handleCancel;
+    private MFXButton handleLogin;
+    @FXML
+    private MFXButton handleCancel;
 
     private Stage loginStage;
-
-
-
-
 
 
     @FXML

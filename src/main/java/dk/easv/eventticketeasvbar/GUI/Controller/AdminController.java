@@ -5,6 +5,7 @@ import dk.easv.eventticketeasvbar.BE.Event;
 import dk.easv.eventticketeasvbar.BE.EventCoordinator;
 import dk.easv.eventticketeasvbar.GUI.Model.AdminModel;
 import dk.easv.eventticketeasvbar.GUI.Model.EventCoordinatorModel;
+import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -56,6 +57,19 @@ public class AdminController implements Initializable {
     private TableColumn<Event,Double> time;
     @FXML
     private TableColumn<Event,String> coordinator;
+    @FXML
+    private MFXButton handleLogoutAdmin;
+    @FXML
+    private MFXButton btnCreateUser;
+    @FXML
+    private MFXButton btnEditUser;
+    @FXML
+    private MFXButton btnRemoveUser;
+    @FXML
+    private MFXButton btnAssignCoordinator;
+    @FXML
+    private MFXButton btnRemoveEvent;
+
 
     private AdminModel adminModel;
 
