@@ -112,11 +112,11 @@ public class AdminController implements Initializable {
     }
 
     @FXML
-    private void handleRemoveEvent(ActionEvent actionEvent) {
+    private void btnRemoveEvent(ActionEvent actionEvent) {
     }
 
     @FXML
-    private void handleAssignCoordinator(ActionEvent actionEvent) throws IOException {
+    private void btnAssignCoordinator(ActionEvent actionEvent) throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/Assign-edit Window.fxml"));
 
@@ -137,7 +137,7 @@ public class AdminController implements Initializable {
     }
 
     @FXML
-    private void handleCreateUser(ActionEvent actionEvent) throws IOException {
+    private void btnCreateUser(ActionEvent actionEvent) throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/CreateUser.fxml"));
 
@@ -158,7 +158,7 @@ public class AdminController implements Initializable {
     }
 
     @FXML
-    private void handleEditUser(ActionEvent actionEvent) throws IOException {
+    private void btnEditUser(ActionEvent actionEvent) throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/CreateUser.fxml"));
 
@@ -181,7 +181,7 @@ public class AdminController implements Initializable {
     }
 
     @FXML
-    private void handleRemoveUser(ActionEvent actionEvent) {
+    private void btnRemoveUser(ActionEvent actionEvent) {
     }
 
 
