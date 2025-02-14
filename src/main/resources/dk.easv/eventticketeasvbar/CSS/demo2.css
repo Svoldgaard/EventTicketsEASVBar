@@ -3,19 +3,37 @@
 
 
 .newC{
-    -fx-background-color: "lightgreen";
-    -fx-text-fill: white;
+
 }
 
 BorderPane{
-    -fx-border-color: "violet";
-    -fx-font-family: "Anton", serif;
-    font-weight: 400;
-    font-style: normal;
+    -fx-background-color: white;
+}
 
-    -fx-background-image: url('https://i.pinimg.com/736x/d7/66/05/d76605aee7a603ef232891edc07aab30.jpg');
+AnchorPane{
+    -fx-background-color: white;
+}
+
+StackPane{
+    -fx-background-color: red;
+}
+
+.redEdge {
+    -fx-background-color: red;
+    -fx-pref-height: 40px;
+    -fx-pref-width: 100%;
 }
 
 MFXButton{
     -fx-background-color: "red";
+}
+
+.whiteButton {
+    -fx-background-color: white !important;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+
+.table-view .column-header {
+    -fx-background-color: red;
 }

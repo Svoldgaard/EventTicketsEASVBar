@@ -36,6 +36,7 @@ public class LoginController {
     @FXML
     private void handleLogin(ActionEvent actionEvent) throws Exception {
 
+
         String username = this.txtUsername.getText();
         String password = this.txtPassword.getText();
 
@@ -43,6 +44,7 @@ public class LoginController {
             loadAdminWindow(actionEvent);
 
         }else if (username.equals("1") && password.equals("1")) {
+            System.out.println("Coordinator login successful!");
             loadCoordinatorWindow(actionEvent);
 
         } else {

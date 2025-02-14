@@ -7,43 +7,49 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@/dk.easv/eventticketeasvbar/CSS/demo2.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.eventticketeasvbar.GUI.Controller.OverviewController">
    <top>
-      <HBox prefHeight="70.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <StackPane>
+         <HBox styleClass="redEdge" />
+
+      <HBox prefHeight="45.0" prefWidth="600.0" spacing="20" BorderPane.alignment="CENTER">
          <VBox prefHeight="100.0" prefWidth="200.0">
             <TextField fx:id="txtSearch" prefHeight="25.0" prefWidth="100.0" promptText="Search" styleClass="newC">
                <VBox.margin>
-                  <Insets left="15.0" top="20.0" />
+                  <Insets left="15.0" top="10.0" />
                </VBox.margin>
             </TextField>
-            <Label styleClass="newC" text="Popular Events">
-               <VBox.margin>
-                  <Insets left="50.0" top="10.0" />
-               </VBox.margin>
-            </Label>
          </VBox>
          <VBox prefHeight="100.0" prefWidth="200.0" />
          <VBox prefHeight="100.0" prefWidth="200.0">
-            <MFXButton fx:id="btnLogin" onAction="#handleLogin" text="Login">
+            <MFXButton fx:id="btnLogin" onAction="#handleLogin" styleClass="whiteButton" text="Login">
                <VBox.margin>
                   <Insets left="125.0" top="10.0" />
                </VBox.margin>
             </MFXButton>
-            <ChoiceBox fx:id="DropMenu" prefWidth="150.0">
-               <opaqueInsets>
-                  <Insets left="50.0" top="15.0" />
-               </opaqueInsets>
-               <VBox.margin>
-                  <Insets left="25.0" top="10.0" />
-               </VBox.margin>
-            </ChoiceBox>
          </VBox>
       </HBox>
+      </StackPane>
    </top>
    <center>
-      <TilePane fx:id="TilePane" prefHeight="313.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
+      <TilePane fx:id="TilePane" prefHeight="313.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+         <Label styleClass="newC" text="Popular Events">
+               <TilePane.margin>
+                  <Insets right="160.0" top="10.0" />
+               </TilePane.margin></Label>
+         <ChoiceBox fx:id="DropMenu" prefWidth="150.0">
+            <opaqueInsets>
+               <Insets left="100.0" top="15.0" />
+            </opaqueInsets>
+               <TilePane.margin>
+                  <Insets left="145.0" top="10.0" />
+               </TilePane.margin>
+         </ChoiceBox>
+         </children></TilePane>
    </center>
 </BorderPane>

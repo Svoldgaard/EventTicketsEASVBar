@@ -91,6 +91,7 @@ public class EventCoordinatorController implements Initializable {
         stage.show();
     }
 
+
     public void btnCreateEvent(ActionEvent actionEvent) throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/Add-Edit-Event.fxml"));

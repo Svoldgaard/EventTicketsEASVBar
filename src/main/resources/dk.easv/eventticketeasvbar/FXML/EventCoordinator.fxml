@@ -1,15 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@/dk.easv/eventticketeasvbar/CSS/demo2.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.eventticketeasvbar.GUI.Controller.EventCoordinatorController">
-    <TableView fx:id="tblEvent" layoutX="37.0" layoutY="51.0" prefHeight="278.0" prefWidth="526.0">
+<AnchorPane prefHeight="450.0" prefWidth="625.0" stylesheets="@/dk.easv/eventticketeasvbar/CSS/demo2.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.eventticketeasvbar.GUI.Controller.EventCoordinatorController">
+   <VBox>
+      <children>
+         <HBox prefHeight="37.0" prefWidth="625.0" styleClass="redEdge">
+            <children>
+                <Label text="Name:">
+                  <HBox.margin>
+                     <Insets left="460.0" top="10.0" />
+                  </HBox.margin>
+               </Label>
+                <Label fx:id="lblUsername" text="Name??">
+                  <HBox.margin>
+                     <Insets left="5.0" right="15.0" top="10.0" />
+                  </HBox.margin>
+               </Label>
+                <MFXButton onAction="#handleLogoutCoordinator" styleClass="whiteButton" text="Logout">
+                  <HBox.margin>
+                     <Insets top="5.0" />
+                  </HBox.margin>
+               </MFXButton>
+            </children></HBox>
+         <HBox prefHeight="37.0" prefWidth="625.0" />
+      </children>
+   </VBox>
+    <TableView fx:id="tblEvent" layoutX="51.0" layoutY="97.0" prefHeight="278.0" prefWidth="526.0">
       <columns>
           <TableColumn fx:id="eventColumn" prefWidth="75.0" text="Event" />
           <TableColumn fx:id="locationColumn" prefWidth="75.0" text="Location" />
@@ -20,21 +46,19 @@
           <TableColumn fx:id="coordinatorColumn" prefWidth="75.0" text="Coordinator" />
       </columns>
     </TableView>
-    <Label layoutX="358.0" layoutY="15.0" text="Name:" />
-    <Label fx:id="lblUsername" layoutX="400.0" layoutY="15.0" text="Name??" />
-    <TextField fx:id="txtSearch" layoutX="21.0" layoutY="11.0" promptText="Search:" />
-    <ButtonBar layoutX="21.0" layoutY="336.0" prefHeight="40.0" prefWidth="307.0">
+
+                   <TextField fx:id="txtSearch" layoutX="51.0" layoutY="64.0" promptText="Search:" />
+    <ButtonBar layoutX="37.0" layoutY="376.0" prefHeight="40.0" prefWidth="307.0">
       <buttons>
          <MFXButton fx:id="btnCreate" onAction="#btnCreateEvent" text="Create Event" />
          <MFXButton onAction="#btnEditEvent" text="Edit" />
          <MFXButton onAction="#btnDeleteEvent" text="Delete" />
       </buttons>
     </ButtonBar>
-    <ButtonBar layoutX="363.0" layoutY="336.0" prefHeight="40.0" prefWidth="195.0">
+    <ButtonBar layoutX="367.0" layoutY="376.0" prefHeight="40.0" prefWidth="195.0">
       <buttons>
          <MFXButton onAction="#btnAddTicket" text="Add Ticket" />
          <MFXButton onAction="#btnAssign" text="Assign" />
       </buttons>
     </ButtonBar>
-   <MFXButton layoutX="531.0" layoutY="11.0" onAction="#handleLogoutCoordinator" text="Logout" />
 </AnchorPane>

@@ -1,17 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
 <AnchorPane prefHeight="435.0" prefWidth="816.0" stylesheets="@/dk.easv/eventticketeasvbar/CSS/demo2.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.eventticketeasvbar.GUI.Controller.AdminController">
-    <Label layoutX="556.0" layoutY="18.0" text="Name:" />
-    <Label fx:id="lblUsername" layoutX="592.0" layoutY="18.0" text="NAMEINDPUT" />
-    <TextField fx:id="SearchCoordinators" layoutX="14.0" layoutY="54.0" promptText="Search Coordinators" />
-    <TextField fx:id="searchEvent" layoutX="418.0" layoutY="67.0" promptText="Search Event:" />
+    <VBox>
+        <HBox prefHeight="37.0" prefWidth="816.0" styleClass="redEdge">
+         <children>
+               <Label text="Name:">
+               <HBox.margin>
+                  <Insets left="620.0" top="10.0" />
+               </HBox.margin>
+            </Label>
+               <Label fx:id="lblUsername" text="NAME INPUT">
+               <HBox.margin>
+                  <Insets left="5.0" top="10.0" />
+               </HBox.margin>
+            </Label>
+               <MFXButton onAction="#handleLogoutAdmin" styleClass="whiteButton" text="Logout">
+               <HBox.margin>
+                  <Insets left="10.0" top="7.0" />
+               </HBox.margin>
+            </MFXButton>
+         </children></HBox>
+        <HBox prefHeight="26.0" prefWidth="816.0" />
+    </VBox>
+
+    <TextField fx:id="SearchCoordinators" layoutX="14.0" layoutY="55.0" promptText="Search Coordinators" />
+    <TextField fx:id="searchEvent" layoutX="418.0" layoutY="55.0" promptText="Search Event:" />
     <TableView fx:id="tblCoordinator" layoutX="14.0" layoutY="100.0" prefHeight="237.0" prefWidth="336.0">
       <columns>
           <TableColumn fx:id="name" prefWidth="75.0" text="Name" />
@@ -34,5 +57,5 @@
    <MFXButton layoutX="182.0" layoutY="353.0" onAction="#btnRemoveUser" text="Remove User" />
    <MFXButton layoutX="563.0" layoutY="353.0" onAction="#btnAssignCoordinator" text="Assign Coordinator" />
    <MFXButton layoutX="698.0" layoutY="353.0" onAction="#btnRemoveEvent" text="Remove Event" />
-   <MFXButton layoutX="747.0" layoutY="14.0" onAction="#handleLogoutAdmin" text="Logout" />
+
 </AnchorPane>
