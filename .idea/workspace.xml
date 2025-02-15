@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="424db850-1039-4886-89b3-66312f48d918" name="Changes" comment="Overview.fxml">
+    <list default="true" id="424db850-1039-4886-89b3-66312f48d918" name="Changes" comment="Minor changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/CSS/demo2.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/CSS/demo2.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/EventCoordinator.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/EventCoordinator.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/Overview.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/Overview.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -215,7 +217,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739407402104</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Minor changes">
+      <option name="closed" value="true" />
+      <created>1739571078184</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1739571078184</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -246,6 +256,7 @@
     <MESSAGE value="Overview.fxml" />
     <MESSAGE value="New mfx buttons + color" />
     <MESSAGE value="Red top edge + red column headers" />
-    <option name="LAST_COMMIT_MESSAGE" value="Red top edge + red column headers" />
+    <MESSAGE value="Minor changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Minor changes" />
   </component>
 </project>

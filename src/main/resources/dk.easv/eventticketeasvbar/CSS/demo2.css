@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pridi:wght@200;300;400;500;600;700&display=swap');
 
 
 .newC{
@@ -8,6 +8,7 @@
 
 BorderPane{
     -fx-background-color: white;
+    -fx-font-family: "Pridi", serif;
 }
 
 AnchorPane{
@@ -25,13 +26,12 @@ StackPane{
 }
 
 MFXButton{
-    -fx-background-color: "red";
+    -fx-background-color: red;
 }
 
 .whiteButton {
     -fx-background-color: white !important;
-    -fx-border-width: 2px;
-    -fx-border-radius: 5px;
+
 }
 
 .table-view .column-header {
