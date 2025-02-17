@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class OverviewController  {
+public class OverviewController implements Initializable {
     @FXML
     private TextField txtSearch;
     @FXML
@@ -31,7 +31,7 @@ public class OverviewController  {
     public LoginController loginController;
     private int i;
 
-   /* @Override
+   @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         String[] imagePaths = {
@@ -53,22 +53,21 @@ public class OverviewController  {
         TilePane.setPrefColumns(3); // Number of images per row
 
         for (int i = 0; i < imagePaths.length; i++) {
-            ImageView imageview = new ImageView(imagePaths[i]);
-            imageview.setFitHeight(50);
-            imageview.setFitWidth(50);
-
+            ImageView imageview = new ImageView(new javafx.scene.image.Image(imagePaths[i]));
+            imageview.setFitHeight(200);
+            imageview.setFitWidth(150);
 
             Label lblDescription = new Label(descriptions[i]);
 
-            VBox vbox = new VBox();
-            int ImageView = 0;
-            vbox.getChildren().add(ImageView, lblDescription);
+            VBox vbox = new VBox(imageview, lblDescription);
             vbox.setAlignment(javafx.geometry.Pos.CENTER); // Centers image and text
             vbox.setSpacing(10); // Adds space between image and label
 
             TilePane.getChildren().add(vbox);
         }
-        Label lblDescription = new Label("Bar Fight");
+
+        // SHOWS ONLY ONE PHOTO (WORKS)
+        /*Label lblDescription = new Label("Bar Fight");
         ImageView imageview = new ImageView("Photos/BarFight.png");
         imageview.setFitHeight(200);
         imageview.setFitWidth(130);
@@ -84,9 +83,9 @@ public class OverviewController  {
 
         TilePane.getChildren().add(vbox);
 
-        VBox.setVgrow(imageview, Priority.ALWAYS);
+        VBox.setVgrow(imageview, Priority.ALWAYS);*/
 
-    }*/
+    }
 
 
     @FXML
