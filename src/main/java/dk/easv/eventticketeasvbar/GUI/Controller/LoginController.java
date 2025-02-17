@@ -1,6 +1,8 @@
 package dk.easv.eventticketeasvbar.GUI.Controller;
 
 import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXPasswordField;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,6 +33,12 @@ public class LoginController {
     private MFXButton handleCancel;
 
     private Stage loginStage;
+    @FXML
+    private MFXButton btnLogin;
+    @FXML
+    private MFXPasswordField lblPassword;
+    @FXML
+    private MFXTextField lblUsername;
 
 
     @FXML
@@ -90,4 +98,7 @@ public class LoginController {
     }
 
 
+    @FXML
+    private void btnSave(ActionEvent actionEvent) {
+    }
 }

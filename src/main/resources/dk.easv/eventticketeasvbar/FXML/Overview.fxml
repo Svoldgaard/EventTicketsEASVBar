@@ -16,40 +16,40 @@
       <StackPane>
          <HBox styleClass="redEdge" />
 
-      <HBox prefHeight="45.0" prefWidth="600.0" spacing="20" BorderPane.alignment="CENTER">
-         <VBox prefHeight="100.0" prefWidth="200.0">
-            <TextField fx:id="txtSearch" prefHeight="25.0" prefWidth="100.0" promptText="Search">
-               <VBox.margin>
-                  <Insets left="15.0" top="10.0" />
-               </VBox.margin>
-            </TextField>
-         </VBox>
-         <VBox prefHeight="100.0" prefWidth="200.0" />
-         <VBox prefHeight="100.0" prefWidth="200.0">
-            <MFXButton fx:id="btnLogin" onAction="#handleLogin" styleClass="whiteButton" text="Login">
-               <VBox.margin>
-                  <Insets left="125.0" top="10.0" />
-               </VBox.margin>
-            </MFXButton>
-         </VBox>
-      </HBox>
+         <HBox prefHeight="45.0" prefWidth="600.0" spacing="20" BorderPane.alignment="CENTER">
+            <VBox prefHeight="100.0" prefWidth="200.0">
+               <TextField fx:id="txtSearch" prefHeight="25.0" prefWidth="100.0" promptText="Search">
+                  <VBox.margin>
+                     <Insets left="15.0" top="10.0" />
+                  </VBox.margin>
+               </TextField>
+            </VBox>
+            <VBox prefHeight="100.0" prefWidth="200.0" />
+            <VBox prefHeight="100.0" prefWidth="200.0">
+               <MFXButton fx:id="btnLogin" onAction="#handleLogin" styleClass="whiteButton" text="Login">
+                  <VBox.margin>
+                     <Insets left="125.0" top="10.0" />
+                  </VBox.margin>
+               </MFXButton>
+            </VBox>
+         </HBox>
       </StackPane>
    </top>
    <center>
       <TilePane fx:id="TilePane" prefHeight="313.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-         <Label styleClass="newC" text="Popular Events">
+            <Label styleClass="newC" text="Popular Events">
                <TilePane.margin>
                   <Insets right="160.0" top="10.0" />
                </TilePane.margin></Label>
-         <ChoiceBox fx:id="DropMenu" prefWidth="150.0">
-            <opaqueInsets>
-               <Insets left="100.0" top="15.0" />
-            </opaqueInsets>
+            <ChoiceBox fx:id="DropMenu" prefWidth="150.0">
+               <opaqueInsets>
+                  <Insets left="100.0" top="15.0" />
+               </opaqueInsets>
                <TilePane.margin>
                   <Insets left="145.0" top="10.0" />
                </TilePane.margin>
-         </ChoiceBox>
+            </ChoiceBox>
          </children></TilePane>
    </center>
 </BorderPane>

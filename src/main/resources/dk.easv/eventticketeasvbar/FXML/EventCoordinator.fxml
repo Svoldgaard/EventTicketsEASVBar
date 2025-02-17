@@ -57,7 +57,7 @@
     </ButtonBar>
     <ButtonBar layoutX="367.0" layoutY="376.0" prefHeight="40.0" prefWidth="195.0">
       <buttons>
-         <MFXButton onAction="#btnAddTicket" text="Add Ticket" />
+         <MFXButton onAction="#btnAddTicket" text="Print Ticket" />
          <MFXButton onAction="#handleAssign" text="Assign" />
       </buttons>
     </ButtonBar>
