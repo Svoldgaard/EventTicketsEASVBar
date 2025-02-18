@@ -10,6 +10,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.OverrunStyle;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -43,7 +44,29 @@ public class OverviewController implements Initializable {
 
         ImageView img1 = new ImageView(new Image("Photos/BarFight.png"));
         ImageView img2 = new ImageView(new Image("Photos/Party.jpg"));
-        ImageView img3 = new ImageView(new Image("Photos/TechConference.jpg"));
+        ImageView img3 = new ImageView(new Image("Photos/TechConference.png"));
+        //ImageView img4 = new ImageView(new Image("Photos/Metal.png"));
+
+        // Description labels initially empty (or you can set them as not visible)
+        Label desc1 = new Label("");
+        Label desc2 = new Label("");
+        Label desc3 = new Label("");
+
+        // Set wrapping and maximum width for each description label
+        desc1.setWrapText(true);
+        desc2.setWrapText(true);
+        desc3.setWrapText(true);
+
+        // Optionally adjust max width to match image width or desired layout
+        desc1.setPrefWidth(250);
+        desc2.setPrefWidth(250);
+        desc3.setPrefWidth(250);
+
+
+        img1.setOnMouseClicked(event -> desc1.setText("Bar Fight it is an incredible event with gifts and some real men fights"));
+        img2.setOnMouseClicked(event -> desc2.setText("It is really cool event"));
+        img3.setOnMouseClicked(event -> desc3.setText("Just a Tech Conference, nothing much"));
+
 
         img1.setFitHeight(200);
         img1.setFitWidth(150);
@@ -51,22 +74,28 @@ public class OverviewController implements Initializable {
         img2.setFitWidth(150);
         img3.setFitHeight(200);
         img3.setFitWidth(150);
+        //img4.setFitHeight(200);
+        //img4.setFitWidth(150);
 
         Label lbl1 = new Label("Bar Fight");
         Label lbl2 = new Label("Music Night");
         Label lbl3 = new Label("Tech Conference");
+        Label lbl4 = new Label("Just a Metal concert");
 
-        VBox vbox1 = new VBox(img1, lbl1);
-        VBox vbox2 = new VBox(img2, lbl2);
-        VBox vbox3 = new VBox(img3, lbl3);
+        VBox vbox1 = new VBox(img1, lbl1, desc1);
+        VBox vbox2 = new VBox(img2, lbl2, desc2);
+        VBox vbox3 = new VBox(img3, lbl3, desc3);
+        //VBox vbox4 = new VBox(img4, lbl4);
 
-        vbox1.setAlignment(Pos.CENTER);
-        vbox2.setAlignment(Pos.CENTER);
-        vbox3.setAlignment(Pos.CENTER);
+        vbox1.setAlignment(Pos.TOP_CENTER);
+        vbox2.setAlignment(Pos.TOP_CENTER);
+        vbox3.setAlignment(Pos.TOP_CENTER);
+        //vbox4.setAlignment(Pos.TOP_CENTER);
 
-        vbox1.setSpacing(10);
-        vbox2.setSpacing(10);
-        vbox3.setSpacing(10);
+        vbox1.setSpacing(5);
+        vbox2.setSpacing(5);
+        vbox3.setSpacing(5);
+        //vbox4.setSpacing(5);
 
         // Add to HBox
         imageContainer.getChildren().addAll(vbox1, vbox2, vbox3);
