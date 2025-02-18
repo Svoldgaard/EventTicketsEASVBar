@@ -6,8 +6,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
@@ -16,6 +19,7 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 import java.net.URL;
+import java.security.cert.PolicyNode;
 import java.util.ResourceBundle;
 
 public class OverviewController implements Initializable {
@@ -28,16 +32,51 @@ public class OverviewController implements Initializable {
     @FXML
     private MFXButton btnLogin;
 
+    @FXML
+    private HBox imageContainer;
+
     public LoginController loginController;
     private int i;
 
-   @Override
+    @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        String[] imagePaths = {
+        ImageView img1 = new ImageView(new Image("Photos/BarFight.png"));
+        ImageView img2 = new ImageView(new Image("Photos/Party.jpg"));
+        ImageView img3 = new ImageView(new Image("Photos/TechConference.jpg"));
+
+        img1.setFitHeight(200);
+        img1.setFitWidth(150);
+        img2.setFitHeight(200);
+        img2.setFitWidth(150);
+        img3.setFitHeight(200);
+        img3.setFitWidth(150);
+
+        Label lbl1 = new Label("Bar Fight");
+        Label lbl2 = new Label("Music Night");
+        Label lbl3 = new Label("Tech Conference");
+
+        VBox vbox1 = new VBox(img1, lbl1);
+        VBox vbox2 = new VBox(img2, lbl2);
+        VBox vbox3 = new VBox(img3, lbl3);
+
+        vbox1.setAlignment(Pos.CENTER);
+        vbox2.setAlignment(Pos.CENTER);
+        vbox3.setAlignment(Pos.CENTER);
+
+        vbox1.setSpacing(10);
+        vbox2.setSpacing(10);
+        vbox3.setSpacing(10);
+
+        // Add to HBox
+        imageContainer.getChildren().addAll(vbox1, vbox2, vbox3);
+
+
+        // LOGIN DOESN'T WORK
+        /*String[] imagePaths = {
                 "Photos/BarFight.png",
                 "Photos/Party.jpg",
-                "Photos/TechConference.webp"
+                "Photos/TechConference.jpg"
         };
 
         String[] descriptions = {
@@ -64,7 +103,8 @@ public class OverviewController implements Initializable {
             vbox.setSpacing(10); // Adds space between image and label
 
             TilePane.getChildren().add(vbox);
-        }
+        }*/
+
 
         // SHOWS ONLY ONE PHOTO (WORKS)
         /*Label lblDescription = new Label("Bar Fight");
@@ -91,7 +131,6 @@ public class OverviewController implements Initializable {
     @FXML
     private void handleLogin(ActionEvent actionEvent) throws IOException {
 
-
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/LoginScreen.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage();
@@ -101,7 +140,6 @@ public class OverviewController implements Initializable {
         loginController.setLoginStage(stage);
         stage.show();
 
-
-
     }
+
 }

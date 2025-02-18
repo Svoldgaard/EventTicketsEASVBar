@@ -38,7 +38,7 @@
    <center>
       <TilePane fx:id="TilePane" prefHeight="313.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Label styleClass="newC" text="Popular Events">
+            <Label text="Popular Events">
                <TilePane.margin>
                   <Insets right="160.0" top="10.0" />
                </TilePane.margin></Label>
@@ -50,6 +50,7 @@
                   <Insets left="145.0" top="10.0" />
                </TilePane.margin>
             </ChoiceBox>
+            <HBox fx:id="imageContainer" spacing="20" alignment="CENTER"/>
          </children></TilePane>
    </center>
 </BorderPane>
