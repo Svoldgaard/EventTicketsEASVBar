@@ -1,5 +1,7 @@
 package dk.easv.eventticketeasvbar.BE;
 
+import javafx.scene.image.Image;
+
 import java.time.LocalDate;
 
 public class Event {
@@ -11,6 +13,10 @@ public class Event {
     private Double duration;
     private Double price;
     private String Coordinator;
+    private Image image;
+    private String description;
+
+
 
     public Event(String event, String location, LocalDate date, Double time, Double duration, Double price , String Coordinator) {
         this.event = event;
@@ -20,15 +26,35 @@ public class Event {
         this.duration = duration;
         this.price = price;
         this.Coordinator = Coordinator; // Use the provided Coordinator
+
     }
 
-    public Event(String event, String location,LocalDate date, Double time,String Coordinator ) {
+    public Event(String event, String location, LocalDate date, Double time, String Coordinator) {
         this.event = event;
         this.location = location;
         this.date = date;
         this.time = time;
         this.Coordinator = Coordinator;
+
     }
+
+    public Event(Image image, String event, String description) {
+        this.image = image;
+        this.event = event;
+        this.description = description;
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+
+
+    public String getDescription() {
+        return description;
+    }
+
+
 
 
     public LocalDate getDate() {

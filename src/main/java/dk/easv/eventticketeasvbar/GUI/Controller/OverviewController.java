@@ -1,5 +1,6 @@
 package dk.easv.eventticketeasvbar.GUI.Controller;
 
+import dk.easv.eventticketeasvbar.BE.Event;
 import dk.easv.eventticketeasvbar.Main;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;
@@ -7,10 +8,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.OverrunStyle;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -20,7 +19,6 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 import java.net.URL;
-import java.security.cert.PolicyNode;
 import java.util.ResourceBundle;
 
 public class OverviewController implements Initializable {
@@ -39,12 +37,22 @@ public class OverviewController implements Initializable {
     public LoginController loginController;
     private int i;
 
+    ImageView img1 = new ImageView(new Image("Photos/BarFight.png"));
+    ImageView img2 = new ImageView(new Image("Photos/Party.jpg"));
+    ImageView img3 = new ImageView(new Image("Photos/TechConference.png"));
+
+    private Stage infoStage;
+    private EventInfoController eventInfoController;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        ImageView img1 = new ImageView(new Image("Photos/BarFight.png"));
-        ImageView img2 = new ImageView(new Image("Photos/Party.jpg"));
-        ImageView img3 = new ImageView(new Image("Photos/TechConference.png"));
+        try {
+            openDescription();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
         //ImageView img4 = new ImageView(new Image("Photos/Metal.png"));
 
         // Description labels initially empty (or you can set them as not visible)
@@ -63,9 +71,9 @@ public class OverviewController implements Initializable {
         desc3.setPrefWidth(250);
 
 
-        img1.setOnMouseClicked(event -> desc1.setText("Bar Fight it is an incredible event with gifts and some real men fights"));
+        /*img1.setOnMouseClicked(event -> desc1.setText("Bar Fight it is an incredible event with gifts and some real men fights"));
         img2.setOnMouseClicked(event -> desc2.setText("It is really cool event"));
-        img3.setOnMouseClicked(event -> desc3.setText("Just a Tech Conference, nothing much"));
+        img3.setOnMouseClicked(event -> desc3.setText("Just a Tech Conference, nothing much"));*/
 
 
         img1.setFitHeight(200);
@@ -157,6 +165,30 @@ public class OverviewController implements Initializable {
     }
 
 
+
+    private void openDescription() throws IOException {
+        img1.setOnMouseClicked(event -> {
+
+            try {
+                // Create an EventDetails object for the clicked event
+                Event eventDetails = new Event(
+                        ((ImageView) event.getSource()).getImage(),
+                        "Bar Fight",
+                        "Bar Fight is an incredible event with gifts and some real man fights."
+                );
+
+                loadInfoWindow(eventDetails);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        });
+
+
+
+    }
+
+
     @FXML
     private void handleLogin(ActionEvent actionEvent) throws IOException {
 
@@ -169,6 +201,35 @@ public class OverviewController implements Initializable {
         loginController.setLoginStage(stage);
         stage.show();
 
+    }
+
+
+    private void loadInfoWindow(Event event) throws IOException {
+
+        //Check if the window already open
+        if(infoStage != null && infoStage.isShowing()) {
+            // bring it to the front if it's already open
+            infoStage.toFront();
+            return;
+        }
+
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/EventInfo.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+
+        infoStage = new Stage();
+        infoStage.setTitle("Event Information");
+        infoStage.setScene(scene);
+
+        eventInfoController = fxmlLoader.getController();
+        eventInfoController.setInfoStage(infoStage);
+
+        // Pass the clicked image to the EventInfoController
+        eventInfoController.setEventDetails(event);
+
+        // When the window is closed, set infoStage back to null so it can be reopened later
+        //infoStage.setOnCloseRequest(event -> infoStage = null);
+
+        infoStage.show();
     }
 
 }
