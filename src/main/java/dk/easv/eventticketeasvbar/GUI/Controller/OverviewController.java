@@ -177,6 +177,43 @@ public class OverviewController implements Initializable {
                         "Bar Fight is an incredible event with gifts and some real man fights."
                 );
 
+
+                loadInfoWindow(eventDetails);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        });
+
+        img2.setOnMouseClicked(event -> {
+
+            try {
+                // Create an EventDetails object for the clicked event
+                Event eventDetails = new Event(
+                        ((ImageView) event.getSource()).getImage(),
+                        "Music Night",
+                        "It is really cool event."
+                );
+
+
+                loadInfoWindow(eventDetails);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        });
+
+        img3.setOnMouseClicked(event -> {
+
+            try {
+                // Create an EventDetails object for the clicked event
+                Event eventDetails = new Event(
+                        ((ImageView) event.getSource()).getImage(),
+                        "Tech Conference",
+                        "Just a Tech Conference, nothing much."
+                );
+
+
                 loadInfoWindow(eventDetails);
             } catch (IOException e) {
                 e.printStackTrace();
