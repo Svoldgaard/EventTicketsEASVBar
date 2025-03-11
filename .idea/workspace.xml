@@ -4,10 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="424db850-1039-4886-89b3-66312f48d918" name="Changes" comment="Photo's show and login button works">
+    <list default="true" id="424db850-1039-4886-89b3-66312f48d918" name="Changes" comment="Login Classes">
+      <change afterPath="$PROJECT_DIR$/config/config.settings" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/config.settings.example" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/EventInfo.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/EventInfo.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/DLL/DBConnection/DBConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/DLL/DBConnection/DBConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/DLL/Database/LoginDAO_DB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/DLL/Database/LoginDAO_DB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/DLL/Interface/ILogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/DLL/Interface/ILogin.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +24,7 @@
       <list>
         <option value="CSS File" />
         <option value="FxmlFile" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>

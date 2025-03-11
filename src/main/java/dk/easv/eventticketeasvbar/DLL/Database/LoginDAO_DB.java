@@ -1,4 +1,99 @@
 package dk.easv.eventticketeasvbar.DLL.Database;
 
-public class LoginDAO_DB {
+import dk.easv.eventticketeasvbar.BE.Login;
+import dk.easv.eventticketeasvbar.DLL.Interface.ILogin;
+import org.mindrot.jbcrypt.BCrypt;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class LoginDAO_DB implements ILogin {
+    private final DBConnection dbConnection;
+
+    // Constructor to inject DBConnection
+    public LoginDAO_DB(DBConnection dbConnection) {
+        this.dbConnection = dbConnection;
+    }
+
+    // ✅ Get all logins (No password exposure)
+    @Override
+    public List<Login> getAllLogin() throws Exception {
+        List<Login> logins = new ArrayList<>();
+        String sql = "SELECT username FROM Login"; // Don't fetch passwords
+
+        try (Connection conn = dbConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                Login login = new Login(rs.getString("username"), null); // No password exposure
+                logins.add(login);
+            }
+        }
+        return logins;
+    }
+
+    // ✅ Create login (Hash password before storing)
+    @Override
+    public Login createLogin(Login login) throws Exception {
+        String sql = "INSERT INTO Login (username, password) VALUES (?, ?)";
+        String hashedPassword = BCrypt.hashpw(login.getPassword(), BCrypt.gensalt());
+
+        try (Connection conn = dbConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+
+            stmt.setString(1, login.getUsername());
+            stmt.setString(2, hashedPassword);
+            stmt.executeUpdate();
+        }
+        return login; // Don't return the password!
+    }
+
+    // ✅ Update login (Only hash if password is changed)
+    @Override
+    public Login updateLogin(Login login) throws Exception {
+        String sql = "UPDATE Login SET password = ? WHERE username = ?";
+        String hashedPassword = BCrypt.hashpw(login.getPassword(), BCrypt.gensalt());
+
+        try (Connection conn = dbConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, hashedPassword);
+            stmt.setString(2, login.getUsername());
+            stmt.executeUpdate();
+        }
+        return login; // Don't return the password!
+    }
+
+    // ✅ Delete login
+    @Override
+    public void deleteLogin(Login login) throws Exception {
+        String sql = "DELETE FROM Login WHERE username = ?";
+
+        try (Connection conn = dbConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, login.getUsername());
+            stmt.executeUpdate();
+        }
+    }
+
+    // ✅ Verify login (Check password match)
+    public boolean verifyLogin(String username, String password) throws Exception {
+        String sql = "SELECT password FROM Login WHERE username = ?";
+
+        try (Connection conn = dbConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, username);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                String storedHashedPassword = rs.getString("password");
+                return BCrypt.checkpw(password, storedHashedPassword); // Compare hashed passwords
+            }
+        }
+        return false; // No user found
+    }
 }
