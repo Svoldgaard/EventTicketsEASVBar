@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="424db850-1039-4886-89b3-66312f48d918" name="Changes" comment="Shows multiple photo's now, problems with spacing">
-      <change afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/BE/Login.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/BLL/LoginManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/DLL/DBConnection/DBConnection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/DLL/Database/LoginDAO_DB.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/DLL/Interface/ILogin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="424db850-1039-4886-89b3-66312f48d918" name="Changes" comment="Photo's show and login button works">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/EventInfo.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/EventInfo.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -272,7 +267,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739789943569</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Photo's show and login button works">
+      <option name="closed" value="true" />
+      <created>1739881418012</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1739881418012</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -308,6 +311,7 @@
     <MESSAGE value="Added PasswordField + minor changes" />
     <MESSAGE value="Photo's" />
     <MESSAGE value="Shows multiple photo's now, problems with spacing" />
-    <option name="LAST_COMMIT_MESSAGE" value="Shows multiple photo's now, problems with spacing" />
+    <MESSAGE value="Photo's show and login button works" />
+    <option name="LAST_COMMIT_MESSAGE" value="Photo's show and login button works" />
   </component>
 </project>
