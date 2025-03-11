@@ -1,6 +1,7 @@
 package dk.easv.eventticketeasvbar.DLL.Database;
 
 import dk.easv.eventticketeasvbar.BE.Login;
+import dk.easv.eventticketeasvbar.DLL.DBConnection.DBConnection;
 import dk.easv.eventticketeasvbar.DLL.Interface.ILogin;
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -11,30 +12,30 @@ import java.util.List;
 public class LoginDAO_DB implements ILogin {
     private final DBConnection dbConnection;
 
-    // Constructor to inject DBConnection
+
     public LoginDAO_DB(DBConnection dbConnection) {
         this.dbConnection = dbConnection;
     }
 
-    // ✅ Get all logins (No password exposure)
+
     @Override
     public List<Login> getAllLogin() throws Exception {
         List<Login> logins = new ArrayList<>();
-        String sql = "SELECT username FROM Login"; // Don't fetch passwords
+        String sql = "SELECT username FROM Login";
 
         try (Connection conn = dbConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
-                Login login = new Login(rs.getString("username"), null); // No password exposure
+                Login login = new Login(rs.getString("username"), null);
                 logins.add(login);
             }
         }
         return logins;
     }
 
-    // ✅ Create login (Hash password before storing)
+
     @Override
     public Login createLogin(Login login) throws Exception {
         String sql = "INSERT INTO Login (username, password) VALUES (?, ?)";
@@ -47,10 +48,10 @@ public class LoginDAO_DB implements ILogin {
             stmt.setString(2, hashedPassword);
             stmt.executeUpdate();
         }
-        return login; // Don't return the password!
+        return login;
     }
 
-    // ✅ Update login (Only hash if password is changed)
+
     @Override
     public Login updateLogin(Login login) throws Exception {
         String sql = "UPDATE Login SET password = ? WHERE username = ?";
@@ -63,10 +64,10 @@ public class LoginDAO_DB implements ILogin {
             stmt.setString(2, login.getUsername());
             stmt.executeUpdate();
         }
-        return login; // Don't return the password!
+        return login;
     }
 
-    // ✅ Delete login
+
     @Override
     public void deleteLogin(Login login) throws Exception {
         String sql = "DELETE FROM Login WHERE username = ?";
@@ -79,7 +80,7 @@ public class LoginDAO_DB implements ILogin {
         }
     }
 
-    // ✅ Verify login (Check password match)
+
     public boolean verifyLogin(String username, String password) throws Exception {
         String sql = "SELECT password FROM Login WHERE username = ?";
 
@@ -91,9 +92,9 @@ public class LoginDAO_DB implements ILogin {
 
             if (rs.next()) {
                 String storedHashedPassword = rs.getString("password");
-                return BCrypt.checkpw(password, storedHashedPassword); // Compare hashed passwords
+                return BCrypt.checkpw(password, storedHashedPassword);
             }
         }
-        return false; // No user found
+        return false;
     }
 }
