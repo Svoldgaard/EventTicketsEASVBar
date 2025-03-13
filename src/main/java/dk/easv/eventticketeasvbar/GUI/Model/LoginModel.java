@@ -1,7 +1,7 @@
 package dk.easv.eventticketeasvbar.GUI.Model;
 
 import dk.easv.eventticketeasvbar.BE.EventCoordinator;
-import dk.easv.eventticketeasvbar.BLL.LoginManager;
+import dk.easv.eventticketeasvbar.BLL.Manager.LoginManager;
 import dk.easv.eventticketeasvbar.BE.Login;
 
 import java.io.IOException;

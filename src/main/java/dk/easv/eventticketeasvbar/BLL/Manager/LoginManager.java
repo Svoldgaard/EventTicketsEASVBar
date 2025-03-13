@@ -1,4 +1,4 @@
-package dk.easv.eventticketeasvbar.BLL;
+package dk.easv.eventticketeasvbar.BLL.Manager;
 
 import dk.easv.eventticketeasvbar.BE.EventCoordinator;
 import dk.easv.eventticketeasvbar.BE.Login;
