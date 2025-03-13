@@ -35,7 +35,7 @@
 
     <TextField fx:id="SearchCoordinators" layoutX="14.0" layoutY="55.0" promptText="Search Coordinators" />
     <TextField fx:id="searchEvent" layoutX="418.0" layoutY="55.0" promptText="Search Event:" />
-    <TableView fx:id="tblCoordinator" layoutX="14.0" layoutY="100.0" prefHeight="237.0" prefWidth="336.0">
+    <TableView fx:id="tblCoordinator" layoutX="14.0" layoutY="100.0" prefHeight="238.0" prefWidth="353.0">
       <columns>
           <TableColumn fx:id="name" prefWidth="75.0" text="Name" />
           <TableColumn fx:id="email" prefWidth="75.0" text="Email" />
@@ -57,5 +57,6 @@
    <MFXButton layoutX="182.0" layoutY="353.0" onAction="#btnRemoveUser" text="Remove User" />
    <MFXButton layoutX="563.0" layoutY="353.0" onAction="#btnAssignCoordinator" text="Assign Coordinator" />
    <MFXButton layoutX="698.0" layoutY="353.0" onAction="#btnRemoveEvent" text="Remove Event" />
+   <MFXButton layoutX="282.0" layoutY="353.0" onAction="#btnCreateLogIn" text="Create Login" />
 
 </AnchorPane>
