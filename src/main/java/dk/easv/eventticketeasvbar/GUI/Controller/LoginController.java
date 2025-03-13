@@ -2,7 +2,7 @@ package dk.easv.eventticketeasvbar.GUI.Controller;
 
 import dk.easv.eventticketeasvbar.BE.Login;
 import dk.easv.eventticketeasvbar.GUI.Model.LoginModel;
-import io.github.palexdev.materialfx.controls.MFXButton;
+import dk.easv.eventticketeasvbar.Main;
 import io.github.palexdev.materialfx.controls.MFXPasswordField;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.event.ActionEvent;
@@ -12,22 +12,22 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Objects;
 
 public class LoginController {
+
+
     @FXML
     private MFXTextField txtUsername;
     @FXML
     private MFXPasswordField txtPassword;
     @FXML
     private Label lblStatus;
-    @FXML
-    private MFXButton btnLogin;
-    @FXML
-    private MFXButton btnCancel;
+
 
     private final LoginModel loginModel;
 
@@ -86,7 +86,15 @@ public class LoginController {
     }
 
     @FXML
-    private void handleForgotPassword(ActionEvent actionEvent) throws IOException {
-        loadScene(actionEvent, "/dk.easv/eventticketeasvbar/FXML/ForgotPassword.fxml", "Forgot Password");
+    private void handleForgotPassword(MouseEvent mouseEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/ForgotPassword.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 600, 500);
+        Stage stage = new Stage();
+        stage.setTitle("Forgot Password");
+        stage.setScene(scene);
+        stage.show();
+
     }
+
+
 }
