@@ -5,6 +5,7 @@ import dk.easv.eventticketeasvbar.BE.Event;
 import dk.easv.eventticketeasvbar.BE.EventCoordinator;
 import dk.easv.eventticketeasvbar.GUI.Model.AdminModel;
 import dk.easv.eventticketeasvbar.GUI.Model.EventCoordinatorModel;
+import dk.easv.eventticketeasvbar.GUI.Model.LoginModel;
 import dk.easv.eventticketeasvbar.Main;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;
@@ -186,5 +187,31 @@ public class AdminController implements Initializable {
 
     @FXML
     private void btnCreateLogIn(ActionEvent actionEvent) {
+        // Get selected coordinator from TableView
+        EventCoordinator selectedCoordinator = tblCoordinator.getSelectionModel().getSelectedItem();
+
+        if (selectedCoordinator == null) {
+            System.out.println("No coordinator selected!");
+            return;
+        }
+
+        // Get first 5 letters of the name
+        String fullName = selectedCoordinator.getName();
+        String cleanName = fullName.replaceAll("\\s", ""); // Remove spaces
+        String username = (cleanName.length() >= 5) ? cleanName.substring(0, 5) : cleanName;
+        username = username.toLowerCase(); // Convert to lowercase
+        String password = username;  // Same as username
+
+
+        try {
+            // Call the LoginModel to create a login
+            LoginModel loginModel = new LoginModel();
+            loginModel.createLogin(selectedCoordinator);
+
+            System.out.println("Login created for: " + username);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
 }

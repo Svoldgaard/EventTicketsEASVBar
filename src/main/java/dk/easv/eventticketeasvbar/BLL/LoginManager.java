@@ -1,5 +1,6 @@
 package dk.easv.eventticketeasvbar.BLL;
 
+import dk.easv.eventticketeasvbar.BE.EventCoordinator;
 import dk.easv.eventticketeasvbar.BE.Login;
 import dk.easv.eventticketeasvbar.DLL.Database.LoginDAO_DB;
 import dk.easv.eventticketeasvbar.DLL.DBConnection.DBConnection;
@@ -25,10 +26,16 @@ public class LoginManager {
     }
 
 
-    public void createLogin(String username, String password) throws Exception {
-        Login newLogin = new Login(username, password);
+    public void createLogin(EventCoordinator coordinator) throws Exception {
+        String fullName = coordinator.getName().replaceAll("\\s", "").toLowerCase();
+        String username = (fullName.length() >= 5) ? fullName.substring(0, 5) : fullName;
+        String password = username; // Default password same as username
+        String access = "Event";
+
+        Login newLogin = new Login(username, password, access);
         loginDAO.createLogin(newLogin);
     }
+
 
 
     public void updateLogin(String username, String newPassword) throws Exception {

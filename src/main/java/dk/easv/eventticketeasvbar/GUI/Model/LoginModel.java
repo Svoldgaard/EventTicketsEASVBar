@@ -1,5 +1,6 @@
 package dk.easv.eventticketeasvbar.GUI.Model;
 
+import dk.easv.eventticketeasvbar.BE.EventCoordinator;
 import dk.easv.eventticketeasvbar.BLL.LoginManager;
 import dk.easv.eventticketeasvbar.BE.Login;
 
@@ -24,9 +25,10 @@ public class LoginModel {
     }
 
 
-    public void createLogin(String username, String password) throws Exception {
-        loginManager.createLogin(username, password);
+    public void createLogin(EventCoordinator coordinator) throws Exception {
+        loginManager.createLogin(coordinator);
     }
+
 
 
     public void updateLogin(String username, String newPassword) throws Exception {
