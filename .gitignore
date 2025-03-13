@@ -38,3 +38,5 @@ build/
 .DS_Store
 
 config/config.settings
+
+idea/workspace.xml
