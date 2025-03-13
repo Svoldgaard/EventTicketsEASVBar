@@ -234,8 +234,8 @@ public class OverviewController implements Initializable {
         Stage stage = new Stage();
         stage.setTitle("Event Tickets EASV Bar");
         stage.setScene(scene);
-        loginController = fxmlLoader.getController();
-        loginController.setLoginStage(stage);
+        /*loginController = fxmlLoader.getController();
+        loginController.setLoginStage(stage);*/
         stage.show();
 
     }

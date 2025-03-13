@@ -1,5 +1,7 @@
 package dk.easv.eventticketeasvbar.GUI.Controller;
 
+import dk.easv.eventticketeasvbar.BE.Login;
+import dk.easv.eventticketeasvbar.GUI.Model.LoginModel;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXPasswordField;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -10,95 +12,81 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-import java.awt.*;
 import java.io.IOException;
 import java.util.Objects;
 
 public class LoginController {
     @FXML
-    private Label lblForgotPassword;
+    private MFXTextField txtUsername;
     @FXML
-    private TextField txtUsername;
-    @FXML
-    private TextField txtPassword;
+    private MFXPasswordField txtPassword;
     @FXML
     private Label lblStatus;
     @FXML
-    private MFXButton handleLogin;
-    @FXML
-    private MFXButton handleCancel;
-
-    private Stage loginStage;
-    @FXML
     private MFXButton btnLogin;
     @FXML
-    private MFXPasswordField lblPassword;
+    private MFXButton btnCancel;
+
+    private final LoginModel loginModel;
+
+    public LoginController() throws IOException {
+        this.loginModel = new LoginModel();
+    }
+
     @FXML
-    private MFXTextField lblUsername;
+    private void handleLogin(ActionEvent actionEvent) {
+        String username = txtUsername.getText();
+        String password = txtPassword.getText();
 
+        try {
+            Login login = loginModel.login(username, password);
 
-    @FXML
-    private void handleLogin(ActionEvent actionEvent) throws Exception {
-
-
-        String username = this.txtUsername.getText();
-        String password = this.txtPassword.getText();
-
-        if (username.equals("0") && password.equals("0"))  {
-            loadAdminWindow(actionEvent);
-
-        }else if (username.equals("1") && password.equals("1")) {
-            System.out.println("Coordinator login successful!");
-            loadCoordinatorWindow(actionEvent);
-
-        } else {
-            lblStatus.setText("Wrong username or password");
+            if (login != null) {
+                switch (login.getAccess()) {
+                    case "Admin":
+                        loadAdminWindow(actionEvent);
+                        break;
+                    case "Event":
+                        loadCoordinatorWindow(actionEvent);
+                        break;
+                    default:
+                        lblStatus.setText("Unknown access level");
+                }
+            } else {
+                lblStatus.setText("Wrong username or password");
+            }
+        } catch (Exception e) {
+            lblStatus.setText("Login failed. Please try again.");
+            e.printStackTrace();
         }
-
     }
 
     private void loadAdminWindow(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/dk.easv/eventticketeasvbar/FXML/Admin.fxml"));
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.setTitle("Admin Dashboard");
-        stage.show();
+        loadScene(actionEvent, "/dk.easv/eventticketeasvbar/FXML/Admin.fxml", "Admin Dashboard");
     }
 
     private void loadCoordinatorWindow(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/dk.easv/eventticketeasvbar/FXML/EventCoordinator.fxml"));
+        loadScene(actionEvent, "/dk.easv/eventticketeasvbar/FXML/EventCoordinator.fxml", "Coordinator Dashboard");
+    }
+
+    private void loadScene(ActionEvent actionEvent, String fxmlPath, String title) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlPath)));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
-        stage.setTitle("Coordinator Dashboard");
+        stage.setTitle(title);
         stage.show();
     }
 
-
-    public void setLoginStage(Stage loginStage) {
-        this.loginStage = loginStage;
-    }
-    public void handleCancel(ActionEvent actionEvent) {
-        if (loginStage != null){
-            loginStage.close();
-        }
-
-    }
-
     @FXML
-    private void handleForgotPassword(MouseEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/dk.easv/eventticketeasvbar/FXML/ForgotPassword.fxml")));
+    private void handleCancel(ActionEvent actionEvent) {
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.setTitle("Forgot Password");
-        stage.show();
+        stage.close();
     }
 
-
     @FXML
-    private void btnSave(ActionEvent actionEvent) {
+    private void handleForgotPassword(ActionEvent actionEvent) throws IOException {
+        loadScene(actionEvent, "/dk.easv/eventticketeasvbar/FXML/ForgotPassword.fxml", "Forgot Password");
     }
 }

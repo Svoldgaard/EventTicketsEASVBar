@@ -15,7 +15,7 @@ public class LoginManager {
     }
 
 
-    public boolean authenticate(String username, String password) throws Exception {
+    public Login authenticate(String username, String password) throws Exception {
         return loginDAO.verifyLogin(username, password);
     }
 

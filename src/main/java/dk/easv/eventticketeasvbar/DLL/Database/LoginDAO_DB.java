@@ -17,6 +17,8 @@ public class LoginDAO_DB implements ILogin {
         this.dbConnection = dbConnection;
     }
 
+    // table name Login
+    // colum names username, password, access
 
     @Override
     public List<Login> getAllLogin() throws Exception {
@@ -38,7 +40,7 @@ public class LoginDAO_DB implements ILogin {
 
     @Override
     public Login createLogin(Login login) throws Exception {
-        String sql = "INSERT INTO Login (username, password) VALUES (?, ?)";
+        String sql = "INSERT INTO Login (username, password, access) VALUES (?, ?, ?)";
         String hashedPassword = BCrypt.hashpw(login.getPassword(), BCrypt.gensalt());
 
         try (Connection conn = dbConnection.getConnection();
@@ -46,6 +48,7 @@ public class LoginDAO_DB implements ILogin {
 
             stmt.setString(1, login.getUsername());
             stmt.setString(2, hashedPassword);
+            stmt.setString(3, login.getAccess());
             stmt.executeUpdate();
         }
         return login;
@@ -81,8 +84,8 @@ public class LoginDAO_DB implements ILogin {
     }
 
 
-    public boolean verifyLogin(String username, String password) throws Exception {
-        String sql = "SELECT password FROM Login WHERE username = ?";
+    public Login verifyLogin(String username, String password) throws Exception {
+        String sql = "SELECT username, password, access FROM Login WHERE username = ?";
 
         try (Connection conn = dbConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -92,9 +95,11 @@ public class LoginDAO_DB implements ILogin {
 
             if (rs.next()) {
                 String storedHashedPassword = rs.getString("password");
-                return BCrypt.checkpw(password, storedHashedPassword);
+                if (BCrypt.checkpw(password, storedHashedPassword)) {
+                    return new Login(username, null, rs.getString("access")); // Password not stored in object for security
+                }
             }
         }
-        return false;
+        return null;
     }
 }

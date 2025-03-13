@@ -14,7 +14,7 @@ public class LoginModel {
     }
 
 
-    public boolean login(String username, String password) throws Exception {
+    public Login login(String username, String password) throws Exception {
         return loginManager.authenticate(username, password);
     }
 
