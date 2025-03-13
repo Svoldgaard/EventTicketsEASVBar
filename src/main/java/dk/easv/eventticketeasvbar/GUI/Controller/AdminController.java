@@ -184,5 +184,9 @@ public class AdminController implements Initializable {
     private void btnRemoveUser(ActionEvent actionEvent) {
     }
 
+    @FXML
+    private void btnCreateLogIn(ActionEvent actionEvent)  {
+
+    }
 
 }
