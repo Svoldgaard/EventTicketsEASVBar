@@ -1,10 +1,12 @@
 package dk.easv.eventticketeasvbar.GUI.Controller;
 
+import dk.easv.eventticketeasvbar.BE.EventCoordinator;
 import dk.easv.eventticketeasvbar.GUI.Model.EventCoordinatorModel;
 import dk.easv.eventticketeasvbar.Main;
 import dk.easv.eventticketeasvbar.BE.Event;
 
 import io.github.palexdev.materialfx.controls.MFXButton;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -140,7 +142,36 @@ public class EventCoordinatorController implements Initializable {
 
     }
 
-    public void btnDeleteEvent(ActionEvent actionEvent) {
+    public void btnDeleteEvent(ActionEvent actionEvent) throws Exception {
+        Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
+
+        if (selectedEvent != null) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Delete Event");
+            alert.setHeaderText("Are you sure you want to delete this event?");
+            alert.setContentText(null);
+
+            ButtonType result = alert.showAndWait().orElse(ButtonType.CANCEL);
+
+            if(result == ButtonType.OK) {
+                EventCoordinatorModel.deleteEvent(selectedEvent);
+                refreshEvent();
+
+            }
+        }
+    }
+
+    private void refreshEvent() {
+        Platform.runLater(() -> {
+            try{
+                EventCoordinatorModel.refreshEvent();
+                tblEvent.setItems(EventCoordinatorModel.getEvents());
+            }
+            catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
+
     }
 
     public void btnAddTicket(ActionEvent actionEvent) {

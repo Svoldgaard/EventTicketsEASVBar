@@ -25,4 +25,13 @@ public class EventCoordinatorModel {
     public ObservableList<Event> getEvents() {
         return tblEvent;
     }
+
+    public void deleteEvent(Event event) {
+        tblEvent.remove(event);
+    }
+
+    public void refreshEvent() {
+
+    }
+
 }
