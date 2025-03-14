@@ -113,7 +113,7 @@ public class OverviewController implements Initializable {
         /*String[] imagePaths = {
                 "Photos/BarFight.png",
                 "Photos/Party.jpg",
-                "Photos/TechConference.jpg"
+                "Photos/TechConference.png"
         };
 
         String[] descriptions = {

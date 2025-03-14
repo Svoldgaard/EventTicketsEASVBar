@@ -5,14 +5,14 @@ public class EventCoordinator {
     private String lastname;
     private String email;
     private int phoneNumber;
-    private int amountOffEvents;
+    private int amountOfEvents;
 
-    public EventCoordinator(String firstname,String lastname, String email, int phoneNumber, int amountOffEvents) {
+    public EventCoordinator(String firstname,String lastname, String email, int phoneNumber, int amountOfEvents) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.amountOffEvents = amountOffEvents;
+        this.amountOfEvents = amountOfEvents;
     }
 
     public String getFirstname() {
@@ -48,11 +48,11 @@ public class EventCoordinator {
     }
 
     public int getAmountOffEvents() {
-        return amountOffEvents;
+        return amountOfEvents;
     }
 
-    public void setAmountOffEvents(int amountOffEvents) {
-        this.amountOffEvents = amountOffEvents;
+    public void setAmountOffEvents(int amountOfEvents) {
+        this.amountOfEvents = amountOfEvents;
     }
 
     @Override
@@ -62,7 +62,7 @@ public class EventCoordinator {
                 ", lastname='" + lastname + '\'' +
                 ", email='" + email + '\'' +
                 ", phoneNumber=" + phoneNumber +
-                ", amountOffEvents=" + amountOffEvents +
+                ", amountOfEvents=" + amountOfEvents +
                 '}';
     }
 }

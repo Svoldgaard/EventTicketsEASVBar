@@ -3,6 +3,7 @@
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -10,13 +11,13 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="435.0" prefWidth="816.0" stylesheets="@/dk.easv/eventticketeasvbar/CSS/demo2.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.eventticketeasvbar.GUI.Controller.AdminController">
+<AnchorPane prefHeight="542.0" prefWidth="1016.0" stylesheets="@/dk.easv/eventticketeasvbar/CSS/demo2.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.eventticketeasvbar.GUI.Controller.AdminController">
     <VBox>
-        <HBox prefHeight="37.0" prefWidth="816.0" styleClass="redEdge">
+        <HBox prefHeight="38.0" prefWidth="1000.0" styleClass="redEdge">
          <children>
                <Label text="Name:">
                <HBox.margin>
-                  <Insets left="620.0" top="10.0" />
+                  <Insets left="820.0" top="10.0" />
                </HBox.margin>
             </Label>
                <Label fx:id="lblUsername" text="NAME INPUT">
@@ -24,7 +25,7 @@
                   <Insets left="5.0" top="10.0" />
                </HBox.margin>
             </Label>
-               <MFXButton onAction="#handleLogoutAdmin" styleClass="whiteButton" text="Logout">
+               <MFXButton onAction="#btnLogoutAdmin" styleClass="whiteButton" text="Logout">
                <HBox.margin>
                   <Insets left="10.0" top="7.0" />
                </HBox.margin>
@@ -34,29 +35,46 @@
     </VBox>
 
     <TextField fx:id="SearchCoordinators" layoutX="14.0" layoutY="55.0" promptText="Search Coordinators" />
-    <TextField fx:id="searchEvent" layoutX="418.0" layoutY="55.0" promptText="Search Event:" />
-    <TableView fx:id="tblCoordinator" layoutX="14.0" layoutY="100.0" prefHeight="238.0" prefWidth="353.0">
-      <columns>
-          <TableColumn fx:id="name" prefWidth="75.0" text="Name" />
-          <TableColumn fx:id="email" prefWidth="75.0" text="Email" />
-          <TableColumn fx:id="phoneNumber" prefWidth="75.0" text="Phone" />
-          <TableColumn fx:id="amountOffEvents" prefWidth="111.0" text="Amount off events" />
-      </columns>
-    </TableView>
-    <TableView fx:id="tblEvent" layoutX="418.0" layoutY="100.0" prefHeight="237.0" prefWidth="375.0">
-      <columns>
-          <TableColumn fx:id="event" prefWidth="75.0" text="Event" />
-          <TableColumn fx:id="locationColumn" prefWidth="75.0" text="Location" />
-          <TableColumn fx:id="date" prefWidth="75.0" text="Date " />
-          <TableColumn fx:id="time" prefWidth="75.0" text="Time" />
-          <TableColumn fx:id="coordinator" prefWidth="75.0" text="Coordinator" />
-      </columns>
-    </TableView>
-   <MFXButton layoutX="14.0" layoutY="353.0" onAction="#btnCreateUser" text="Create User" />
-   <MFXButton layoutX="105.0" layoutY="353.0" onAction="#btnEditUser" text="Edit User" />
-   <MFXButton layoutX="182.0" layoutY="353.0" onAction="#btnRemoveUser" text="Remove User" />
-   <MFXButton layoutX="563.0" layoutY="353.0" onAction="#btnAssignCoordinator" text="Assign Coordinator" />
-   <MFXButton layoutX="698.0" layoutY="353.0" onAction="#btnRemoveEvent" text="Remove Event" />
-   <MFXButton layoutX="282.0" layoutY="353.0" onAction="#btnCreateLogIn" text="Create Login" />
+    <TextField fx:id="searchEvent" layoutX="508.0" layoutY="55.0" promptText="Search Event:" />
+   <MFXButton layoutX="14.0" layoutY="497.0" onAction="#btnCreateUser" text="Create User" />
+   <MFXButton layoutX="105.0" layoutY="497.0" onAction="#btnEditUser" text="Edit User" />
+   <MFXButton layoutX="182.0" layoutY="497.0" onAction="#btnRemoveUser" text="Remove User" />
+   <MFXButton layoutX="771.0" layoutY="497.0" onAction="#btnAssignCoordinator" text="Assign Coordinator" />
+   <MFXButton layoutX="906.0" layoutY="497.0" onAction="#btnRemoveEvent" text="Remove Event" />
+   <MFXButton layoutX="282.0" layoutY="497.0" onAction="#btnCreateLogIn" text="Create Login" />
+   <ScrollPane layoutX="14.0" layoutY="94.0" prefHeight="382.0" prefWidth="471.0">
+     <content>
+       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="383.0" prefWidth="493.0">
+            <children>
+                <TableView fx:id="tblCoordinator" prefHeight="382.0" prefWidth="494.0">
+                  <columns>
+                      <TableColumn fx:id="colFName" prefWidth="75.0" text="First name" />
+                      <TableColumn fx:id="colLName" prefWidth="75.0" text="Last name" />
+                      <TableColumn fx:id="colEmail" prefWidth="75.0" text="Email" />
+                      <TableColumn fx:id="colPhoneNumber" prefWidth="111.0" text="Phone number" />
+                     <TableColumn fx:id="colAmountOfEvents" prefWidth="118.4000244140625" text="Amount of events" />
+                  </columns>
+                </TableView>
+            </children>
+         </AnchorPane>
+     </content>
+   </ScrollPane>
+   <ScrollPane layoutX="507.0" layoutY="94.0" prefHeight="382.0" prefWidth="494.0">
+      <content>
+         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="383.0" prefWidth="493.0">
+            <children>
+               <TableView fx:id="tblEvent" prefHeight="382.0" prefWidth="494.0">
+                  <columns>
+                     <TableColumn fx:id="colEvent" prefWidth="75.0" text="Event" />
+                     <TableColumn fx:id="colLocation" prefWidth="75.0" text="Location" />
+                     <TableColumn fx:id="colDate" prefWidth="75.0" text="Date" />
+                     <TableColumn fx:id="colTime" prefWidth="111.0" text="Time" />
+                     <TableColumn fx:id="colCoordinator" prefWidth="75.0" text="Coordinator" />
+                  </columns>
+               </TableView>
+            </children>
+         </AnchorPane>
+      </content>
+   </ScrollPane>
 
 </AnchorPane>
