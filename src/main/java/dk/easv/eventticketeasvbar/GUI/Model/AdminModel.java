@@ -21,9 +21,9 @@ public class AdminModel {
 
     private void loadMockDataCoordinator(){
         tblCoordinator.addAll(
-            new EventCoordinator("Steven Hansen","StvHa@easv.dk",29292929,1),
-            new EventCoordinator("Maria Larsen", "Maria@easv.dk",88888888,2),
-            new EventCoordinator("John Doe", "Johndoe@easv.dk",29432943,5)
+            new EventCoordinator("Steven","Hansen","StvHa@easv.dk",29292929,1),
+            new EventCoordinator("Maria","Larsen", "Maria@easv.dk",88888888,2),
+            new EventCoordinator("John","Doe", "Johndoe@easv.dk",29432943,5)
         );
     }
 

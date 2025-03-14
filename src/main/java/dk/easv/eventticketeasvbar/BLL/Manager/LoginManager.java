@@ -27,8 +27,8 @@ public class LoginManager {
 
 
     public void createLogin(EventCoordinator coordinator) throws Exception {
-        String fullName = coordinator.getName().replaceAll("\\s", "").toLowerCase();
-        String username = (fullName.length() >= 5) ? fullName.substring(0, 5) : fullName;
+        String firstname = coordinator.getFirstname().replaceAll("\\s", "").toLowerCase();
+        String username = (firstname.length() >= 5) ? firstname.substring(0, 5) : firstname;
         String password = username; // Default password same as username
         String access = "Event";
 

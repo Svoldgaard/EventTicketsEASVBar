@@ -195,12 +195,12 @@ public class AdminController implements Initializable {
             return;
         }
 
-        // Get first 5 letters of the name
-        String fullName = selectedCoordinator.getName();
-        String cleanName = fullName.replaceAll("\\s", ""); // Remove spaces
+        // Get first 5 letters of the firstname
+        String firstname = selectedCoordinator.getFirstname();
+        String cleanName = firstname.replaceAll("\\s", "");
         String username = (cleanName.length() >= 5) ? cleanName.substring(0, 5) : cleanName;
-        username = username.toLowerCase(); // Convert to lowercase
-        String password = username;  // Same as username
+        username = username.toLowerCase();
+        String password = username;
 
 
         try {
