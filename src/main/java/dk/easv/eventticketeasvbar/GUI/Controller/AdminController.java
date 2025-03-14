@@ -195,7 +195,7 @@ public class AdminController implements Initializable {
             return;
         }
 
-        System.out.println("config");
+
         // Get first 5 letters of the firstname
         String firstname = selectedCoordinator.getFirstname();
         String cleanName = firstname.replaceAll("\\s", "");
