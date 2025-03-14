@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="424db850-1039-4886-89b3-66312f48d918" name="Changes" comment="create Login for eventCoordinator now works">
-      <change afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/ForgotPasswordController.java" afterDir="false" />
+    <list default="true" id="424db850-1039-4886-89b3-66312f48d918" name="Changes" comment="Utility classes and package">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/ForgotPassword.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/ForgotPassword.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/DLL/Database/LoginDAO_DB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/DLL/Database/LoginDAO_DB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/ForgotPasswordController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/ForgotPasswordController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,7 +109,7 @@
       <module name="EventTicketEASVBar" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="dk.easv.eventticketeasvbar.BLL.*" />
+          <option name="PATTERN" value="dk.easv.eventticketeasvbar.BLL.Manager.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -172,7 +172,7 @@
       <workItem from="1740034541891" duration="24000" />
       <workItem from="1740034676247" duration="726000" />
       <workItem from="1741694068773" duration="748000" />
-      <workItem from="1741872036253" duration="5740000" />
+      <workItem from="1741872036253" duration="8019000" />
     </task>
     <task id="LOCAL-00001" summary="First">
       <option name="closed" value="true" />
@@ -310,7 +310,23 @@
       <option name="project" value="LOCAL" />
       <updated>1741878990194</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="ForgotPassword.fxml + ForgotPasswordController&#10;setup and working">
+      <option name="closed" value="true" />
+      <created>1741895961441</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1741895961441</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Utility classes and package">
+      <option name="closed" value="true" />
+      <created>1741896213131</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1741896213131</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -349,6 +365,8 @@
     <MESSAGE value="Photo's show and login button works" />
     <MESSAGE value="Password working with hash password" />
     <MESSAGE value="create Login for eventCoordinator now works" />
-    <option name="LAST_COMMIT_MESSAGE" value="create Login for eventCoordinator now works" />
+    <MESSAGE value="ForgotPassword.fxml + ForgotPasswordController&#10;setup and working" />
+    <MESSAGE value="Utility classes and package" />
+    <option name="LAST_COMMIT_MESSAGE" value="Utility classes and package" />
   </component>
 </project>

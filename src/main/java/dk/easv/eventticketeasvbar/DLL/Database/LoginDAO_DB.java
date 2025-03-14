@@ -97,7 +97,7 @@ public class LoginDAO_DB implements ILogin {
             if (rs.next()) {
                 String storedHashedPassword = rs.getString("password");
                 if (BCrypt.checkpw(password, storedHashedPassword)) {
-                    return new Login(username, null, rs.getString("access")); // Password not stored in object for security
+                    return new Login(username, null, rs.getString("access"));
                 }
             }
         }
