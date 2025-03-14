@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="424db850-1039-4886-89b3-66312f48d918" name="Changes" comment="forgot password fit better">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/BE/EventCoordinator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/BE/EventCoordinator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/BLL/Manager/LoginManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/BLL/Manager/LoginManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Model/AdminModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Model/AdminModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/BLL/HashExistingPasswords.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -180,7 +176,7 @@
       <workItem from="1740034676247" duration="726000" />
       <workItem from="1741694068773" duration="748000" />
       <workItem from="1741872036253" duration="8806000" />
-      <workItem from="1741946748904" duration="1484000" />
+      <workItem from="1741946748904" duration="3238000" />
     </task>
     <task id="LOCAL-00001" summary="First">
       <option name="closed" value="true" />
@@ -342,7 +338,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741939269080</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="forgot password fit better">
+      <option name="closed" value="true" />
+      <created>1741948719241</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1741948719241</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
