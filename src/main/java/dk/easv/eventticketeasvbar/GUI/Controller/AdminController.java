@@ -9,6 +9,7 @@ import dk.easv.eventticketeasvbar.Main;
 // Other Imports
 import io.github.palexdev.materialfx.controls.MFXButton;
 // Java Imports
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,14 +17,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.TransferMode;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 
@@ -59,7 +61,7 @@ public class AdminController implements Initializable {
     @FXML
     private TableColumn<Event,Double> colTime;
     @FXML
-    private TableColumn<Event,String> colCoordinator;
+    private TableColumn<Event, String> colCoordinator;
     @FXML
     private MFXButton btnLogoutAdmin;
     @FXML
@@ -96,12 +98,16 @@ public class AdminController implements Initializable {
         colLocation.setCellValueFactory(new PropertyValueFactory<>("location"));
         colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
         colTime.setCellValueFactory(new PropertyValueFactory<>("time"));
-        colCoordinator.setCellValueFactory(new PropertyValueFactory<>("coordinator"));
+        colCoordinator.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getCoordinatorsAsString()));
 
 
         tblCoordinator.setItems(adminModel.getCoordinators());
         tblEvent.setItems(adminModel.getEvents());
+
+        setupDragAndDrop();  // Call the drag-and-drop setup
     }
+
 
     @FXML
     private void btnLogoutAdmin(ActionEvent actionEvent) throws Exception {
@@ -214,5 +220,66 @@ public class AdminController implements Initializable {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    private void setupDragAndDrop() {
+        // Enable dragging from Coordinator Table
+        tblCoordinator.setRowFactory(tv -> {
+            TableRow<EventCoordinator> row = new TableRow<>();
+            row.setOnDragDetected(event -> {
+                if (!row.isEmpty()) {
+                    Dragboard db = row.startDragAndDrop(TransferMode.MOVE);
+                    ClipboardContent content = new ClipboardContent();
+                    content.putString(row.getItem().getEmail()); // Use email as unique identifier
+                    db.setContent(content);
+                    event.consume();
+                }
+            });
+            return row;
+        });
+
+        // Allow dropping on the Event Table
+        tblEvent.setOnDragOver(event -> {
+            if (event.getGestureSource() != tblEvent && event.getDragboard().hasString()) {
+                event.acceptTransferModes(TransferMode.MOVE);
+            }
+            event.consume();
+        });
+
+        // Handle drop event
+        tblEvent.setOnDragDropped(event -> {
+            Dragboard db = event.getDragboard();
+            boolean success = false;
+
+            if (db.hasString()) {
+                String coordinatorEmail = db.getString();
+                Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
+
+                if (selectedEvent != null) {
+                    EventCoordinator coordinator = findCoordinatorByEmail(coordinatorEmail);
+                    if (coordinator != null) {
+                        selectedEvent.addCoordinator(coordinator); // Use the method from Event class
+                        tblEvent.refresh();
+                        tblCoordinator.refresh();
+                        success = true;
+                    }
+                }
+            }
+            event.setDropCompleted(success);
+            event.consume();
+        });
+    }
+
+
+    private EventCoordinator findCoordinatorByEmail(String email) {
+        for (EventCoordinator ec : tblCoordinator.getItems()) {
+            if (ec.getEmail().equals(email)) {
+                return ec;
+            }
+        }
+        return null;
+    }
+
+
 
 }

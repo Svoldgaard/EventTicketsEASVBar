@@ -2,6 +2,8 @@ package dk.easv.eventticketeasvbar.BE;
 //Java Imports
 import javafx.scene.image.Image;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Event {
 
@@ -11,31 +13,12 @@ public class Event {
     private Double time;
     private Double duration;
     private Double price;
-    private String Coordinator;
+    private List<EventCoordinator> coordinators;
     private Image image;
     private String description;
 
 
 
-    public Event(String event, String location, LocalDate date, Double time, Double duration, Double price , String Coordinator) {
-        this.event = event;
-        this.location = location;
-        this.date = date; // Use the provided LocalDate object
-        this.time = time;
-        this.duration = duration;
-        this.price = price;
-        this.Coordinator = Coordinator; // Use the provided Coordinator
-
-    }
-
-    public Event(String event, String location, LocalDate date, Double time, String Coordinator) {
-        this.event = event;
-        this.location = location;
-        this.date = date;
-        this.time = time;
-        this.Coordinator = Coordinator;
-
-    }
 
     public Event(Image image, String event, String description) {
         this.image = image;
@@ -43,24 +26,42 @@ public class Event {
         this.description = description;
     }
 
-    public Image getImage() {
-        return image;
-    }
-
-
-
-    public String getDescription() {
-        return description;
-    }
-
-
-
-
-    public LocalDate getDate() {
-        return date;
-    }
-    public void setDate(LocalDate date) {
+    public Event(String event, String location, LocalDate date, Double time, Double duration, Double price, List<EventCoordinator> coordinators) {
+        this.event = event;
+        this.location = location;
         this.date = date;
+        this.time = time;
+        this.duration = duration;
+        this.price = price;
+        this.coordinators = new ArrayList<>();  // Initialize the list
+    }
+
+    public Event(String event, String location, LocalDate date, Double time, Double duration, Double price) {
+        this.event = event;
+        this.location = location;
+        this.date = date;
+        this.time = time;
+        this.duration = duration;
+        this.price = price;
+        this.coordinators = new ArrayList<>();  // ✅ Ensure coordinators list is initialized
+    }
+
+
+
+    public void addCoordinator(EventCoordinator coordinator) {
+        if (!coordinators.contains(coordinator)) {
+            coordinators.add(coordinator);
+            coordinator.setAmountOfEvents(coordinator.getAmountOfEvents() + 1);
+        }
+    }
+
+    public List<EventCoordinator> getCoordinators() {
+        return coordinators;
+    }
+
+    public String getCoordinatorsAsString() {
+        if (coordinators.isEmpty()) return "None";
+        return String.join(", ", coordinators.stream().map(EventCoordinator::getFirstname).toList());
     }
 
     public String getEvent() {
@@ -69,6 +70,22 @@ public class Event {
 
     public void setEvent(String event) {
         this.event = event;
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public String getLocation() {
@@ -103,13 +120,7 @@ public class Event {
         this.price = price;
     }
 
-    public String getCoordinator() {
-        return Coordinator;
-    }
 
-    public void setCoordinator(String coordinator) {
-        Coordinator = coordinator;
-    }
 
     @Override
     public String toString() {
@@ -120,7 +131,6 @@ public class Event {
                 ", time=" + time +
                 ", duration=" + duration +
                 ", price=" + price +
-                ", Coordinator='" + Coordinator + '\'' +
                 '}';
     }
 }
