@@ -11,9 +11,9 @@ import java.util.List;
 
 public class EventDAO_DB  implements IEvents {
 
-    private final DBConnection dbConnection;
+    private DBConnection dbConnection;
 
-    public EventDAO_DB (DBConnection dbConnection) {
+    public EventDAO_DB () {
         this.dbConnection = dbConnection;
     }
 
