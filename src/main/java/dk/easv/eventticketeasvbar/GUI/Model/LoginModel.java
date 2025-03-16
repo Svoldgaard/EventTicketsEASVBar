@@ -1,9 +1,9 @@
 package dk.easv.eventticketeasvbar.GUI.Model;
-
+// Project Imports
 import dk.easv.eventticketeasvbar.BE.EventCoordinator;
 import dk.easv.eventticketeasvbar.BLL.Manager.LoginManager;
 import dk.easv.eventticketeasvbar.BE.Login;
-
+// Java Imports
 import java.io.IOException;
 import java.util.List;
 

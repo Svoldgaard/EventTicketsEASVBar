@@ -1,10 +1,12 @@
 package dk.easv.eventticketeasvbar.GUI.Controller;
-
+// Project Imports
 import dk.easv.eventticketeasvbar.BE.Login;
 import dk.easv.eventticketeasvbar.GUI.Model.LoginModel;
 import dk.easv.eventticketeasvbar.Main;
+// Other Imports
 import io.github.palexdev.materialfx.controls.MFXPasswordField;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+// Java Imports
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,12 +16,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.util.Objects;
 
 public class LoginController {
-
 
     @FXML
     private MFXTextField txtUsername;
@@ -27,7 +27,6 @@ public class LoginController {
     private MFXPasswordField txtPassword;
     @FXML
     private Label lblStatus;
-
 
     private final LoginModel loginModel;
 

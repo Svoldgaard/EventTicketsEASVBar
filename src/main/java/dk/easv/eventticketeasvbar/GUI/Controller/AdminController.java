@@ -1,13 +1,14 @@
 package dk.easv.eventticketeasvbar.GUI.Controller;
-
-
+// Project Imports
 import dk.easv.eventticketeasvbar.BE.Event;
 import dk.easv.eventticketeasvbar.BE.EventCoordinator;
 import dk.easv.eventticketeasvbar.GUI.Model.AdminModel;
 import dk.easv.eventticketeasvbar.GUI.Model.EventCoordinatorModel;
 import dk.easv.eventticketeasvbar.GUI.Model.LoginModel;
 import dk.easv.eventticketeasvbar.Main;
+// Other Imports
 import io.github.palexdev.materialfx.controls.MFXButton;
+// Java Imports
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,15 +22,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 
 public class AdminController implements Initializable {
-
-
 
     @FXML
     private Label lblUsername;
@@ -40,28 +38,30 @@ public class AdminController implements Initializable {
     @FXML
     private TableView<EventCoordinator> tblCoordinator;
     @FXML
-    private TableColumn<EventCoordinator,String> name;
+    private TableColumn<EventCoordinator,String> colFName;
     @FXML
-    private TableColumn<EventCoordinator,String> email;
+    private TableColumn<EventCoordinator,String> colLName;
     @FXML
-    private TableColumn<EventCoordinator,Integer> phoneNumber;
+    private TableColumn<EventCoordinator,String> colEmail;
     @FXML
-    private TableColumn<EventCoordinator,Integer> amountOffEvents;
+    private TableColumn<EventCoordinator,Integer> colPhoneNumber;
+    @FXML
+    private TableColumn<EventCoordinator,Integer> colAmountOfEvents;
 
     @FXML
     private TableView<Event> tblEvent;
     @FXML
-    private TableColumn<Event,String> event;
+    private TableColumn<Event,String> colEvent;
     @FXML
-    private TableColumn<Event,String> locationColumn;
+    private TableColumn<Event,String> colLocation;
     @FXML
-    private TableColumn<Event,String> date;
+    private TableColumn<Event,String> colDate;
     @FXML
-    private TableColumn<Event,Double> time;
+    private TableColumn<Event,Double> colTime;
     @FXML
-    private TableColumn<Event,String> coordinator;
+    private TableColumn<Event,String> colCoordinator;
     @FXML
-    private MFXButton handleLogoutAdmin;
+    private MFXButton btnLogoutAdmin;
     @FXML
     private MFXButton btnCreateUser;
     @FXML
@@ -72,7 +72,6 @@ public class AdminController implements Initializable {
     private MFXButton btnAssignCoordinator;
     @FXML
     private MFXButton btnRemoveEvent;
-
 
     private AdminModel adminModel;
 
@@ -87,16 +86,17 @@ public class AdminController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         adminModel = new AdminModel();
 
-        name.setCellValueFactory(new PropertyValueFactory<>("name"));
-        email.setCellValueFactory(new PropertyValueFactory<>("email"));
-        phoneNumber.setCellValueFactory(new PropertyValueFactory<>("phone"));
-        amountOffEvents.setCellValueFactory(new PropertyValueFactory<>("amountOffEvents"));
+        colFName.setCellValueFactory(new PropertyValueFactory<>("firstname"));
+        colLName.setCellValueFactory(new PropertyValueFactory<>("lastname"));
+        colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        colPhoneNumber.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+        colAmountOfEvents.setCellValueFactory(new PropertyValueFactory<>("amountOfEvents"));
 
-        event.setCellValueFactory(new PropertyValueFactory<>("event"));
-        locationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
-        date.setCellValueFactory(new PropertyValueFactory<>("date"));
-        time.setCellValueFactory(new PropertyValueFactory<>("time"));
-        coordinator.setCellValueFactory(new PropertyValueFactory<>("coordinator"));
+        colEvent.setCellValueFactory(new PropertyValueFactory<>("event"));
+        colLocation.setCellValueFactory(new PropertyValueFactory<>("location"));
+        colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+        colTime.setCellValueFactory(new PropertyValueFactory<>("time"));
+        colCoordinator.setCellValueFactory(new PropertyValueFactory<>("coordinator"));
 
 
         tblCoordinator.setItems(adminModel.getCoordinators());
@@ -104,7 +104,7 @@ public class AdminController implements Initializable {
     }
 
     @FXML
-    private void handleLogoutAdmin(ActionEvent actionEvent) throws Exception {
+    private void btnLogoutAdmin(ActionEvent actionEvent) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/dk.easv/eventticketeasvbar/FXML/LoginScreen.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));

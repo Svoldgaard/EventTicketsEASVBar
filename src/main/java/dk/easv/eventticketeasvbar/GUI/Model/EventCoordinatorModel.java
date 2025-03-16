@@ -1,9 +1,9 @@
 package dk.easv.eventticketeasvbar.GUI.Model;
-
+// Project Imports
 import dk.easv.eventticketeasvbar.BE.Event;
+// Java Imports
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import java.time.LocalDate;
 
 public class EventCoordinatorModel {

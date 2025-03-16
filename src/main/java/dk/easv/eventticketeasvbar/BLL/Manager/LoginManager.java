@@ -1,10 +1,10 @@
 package dk.easv.eventticketeasvbar.BLL.Manager;
-
+// Project Imports
 import dk.easv.eventticketeasvbar.BE.EventCoordinator;
 import dk.easv.eventticketeasvbar.BE.Login;
 import dk.easv.eventticketeasvbar.DLL.Database.LoginDAO_DB;
 import dk.easv.eventticketeasvbar.DLL.DBConnection.DBConnection;
-
+//Java Imports
 import java.io.IOException;
 import java.util.List;
 

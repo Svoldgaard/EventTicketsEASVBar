@@ -1,11 +1,12 @@
 package dk.easv.eventticketeasvbar.GUI.Controller;
 
-import dk.easv.eventticketeasvbar.BE.EventCoordinator;
+// Project Imports
 import dk.easv.eventticketeasvbar.GUI.Model.EventCoordinatorModel;
 import dk.easv.eventticketeasvbar.Main;
 import dk.easv.eventticketeasvbar.BE.Event;
-
+// Other Imports
 import io.github.palexdev.materialfx.controls.MFXButton;
+//Java Imports
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,7 +19,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;

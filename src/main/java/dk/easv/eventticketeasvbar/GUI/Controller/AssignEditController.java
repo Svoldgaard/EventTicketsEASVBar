@@ -1,6 +1,7 @@
 package dk.easv.eventticketeasvbar.GUI.Controller;
-
+// Other Imports
 import io.github.palexdev.materialfx.controls.MFXButton;
+// Java Imports
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

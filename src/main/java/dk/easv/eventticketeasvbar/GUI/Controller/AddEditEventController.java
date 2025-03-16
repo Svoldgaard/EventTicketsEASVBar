@@ -1,22 +1,15 @@
 package dk.easv.eventticketeasvbar.GUI.Controller;
-
+// Other Imports
 import io.github.palexdev.materialfx.controls.MFXButton;
+// Java Imports
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
-
 import java.io.IOException;
-
-import static java.awt.SystemColor.text;
 
 public class AddEditEventController {
     @FXML

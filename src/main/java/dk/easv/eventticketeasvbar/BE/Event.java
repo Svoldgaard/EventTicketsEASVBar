@@ -1,7 +1,6 @@
 package dk.easv.eventticketeasvbar.BE;
-
+//Java Imports
 import javafx.scene.image.Image;
-
 import java.time.LocalDate;
 
 public class Event {

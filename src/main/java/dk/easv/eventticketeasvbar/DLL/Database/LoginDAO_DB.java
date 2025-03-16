@@ -1,10 +1,10 @@
 package dk.easv.eventticketeasvbar.DLL.Database;
-
+// Project Imports
 import dk.easv.eventticketeasvbar.BE.Login;
 import dk.easv.eventticketeasvbar.DLL.DBConnection.DBConnection;
 import dk.easv.eventticketeasvbar.DLL.Interface.ILogin;
 import org.mindrot.jbcrypt.BCrypt;
-
+// Java Imports
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

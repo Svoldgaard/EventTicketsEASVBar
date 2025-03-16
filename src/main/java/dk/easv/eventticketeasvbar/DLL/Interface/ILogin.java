@@ -7,7 +7,7 @@ import dk.easv.eventticketeasvbar.BE.Login;
 import java.util.List;
 
 
-public interface ILogin {
+public interface ILogin{
 
 
     List<Login> getAllLogin() throws Exception;

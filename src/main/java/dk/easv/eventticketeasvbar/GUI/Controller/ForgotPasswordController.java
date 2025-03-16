@@ -1,8 +1,10 @@
 package dk.easv.eventticketeasvbar.GUI.Controller;
-
+// Project Imports
 import dk.easv.eventticketeasvbar.GUI.Model.LoginModel;
+// Other Imports
 import io.github.palexdev.materialfx.controls.MFXPasswordField;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+// Java Imports
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;

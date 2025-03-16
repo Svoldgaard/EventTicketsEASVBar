@@ -1,5 +1,5 @@
 package dk.easv.eventticketeasvbar.GUI.Controller;
-
+// Java Imports
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.media.MediaView;
