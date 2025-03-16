@@ -47,11 +47,11 @@ public class EventCoordinator {
         this.phoneNumber = phoneNumber;
     }
 
-    public int getAmountOffEvents() {
+    public int getAmountOfEvents() {
         return amountOfEvents;
     }
 
-    public void setAmountOffEvents(int amountOfEvents) {
+    public void setAmountOfEvents(int amountOfEvents) {
         this.amountOfEvents = amountOfEvents;
     }
 
