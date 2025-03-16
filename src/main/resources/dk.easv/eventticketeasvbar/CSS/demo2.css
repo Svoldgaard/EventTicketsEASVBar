@@ -15,10 +15,6 @@ AnchorPane{
     -fx-background-color: white;
 }
 
-StackPane{
-    -fx-background-color: red;
-}
-
 .redEdge {
     -fx-background-color: red;
     -fx-pref-height: 40px;
@@ -36,4 +32,33 @@ MFXButton{
 
 .table-view .column-header {
     -fx-background-color: red;
+}
+
+.date-picker .cell:hover {
+    -fx-background-color: red;
+}
+
+.date-picker .cell:focused {
+    -fx-background-color: red;
+}
+
+.date-picker .selected {
+    -fx-background-color: red;
+    -fx-text-fill: white;
+}
+
+.date-picker-popup .month-year-pane {
+    -fx-background-color: red;
+}
+.date-picker-popup .month-year-pane .label {
+    -fx-text-fill: white;
+}
+
+.date-picker-popup .spinner .button .left-arrow,
+.date-picker-popup .spinner .button .right-arrow {
+    -fx-background-color: white;
+}
+
+.date-picker-popup .week-number-cell {
+    -fx-text-fill: red;
 }
