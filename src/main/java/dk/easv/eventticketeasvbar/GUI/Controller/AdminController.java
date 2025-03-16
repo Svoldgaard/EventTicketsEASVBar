@@ -105,7 +105,7 @@ public class AdminController implements Initializable {
         tblCoordinator.setItems(adminModel.getCoordinators());
         tblEvent.setItems(adminModel.getEvents());
 
-        setupDragAndDrop();  // Call the drag-and-drop setup
+        setupDragAndDrop();
     }
 
 
