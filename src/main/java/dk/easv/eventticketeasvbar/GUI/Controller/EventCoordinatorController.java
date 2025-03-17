@@ -77,11 +77,11 @@ public class EventCoordinatorController implements Initializable {
         // Set up TableView columns
         eventColumn.setCellValueFactory(new PropertyValueFactory<>("event"));
         locationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
-        dateColumn.setCellValueFactory(new PropertyValueFactory<>("date")); // LocalDate will be formatted automatically
+        dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
         timeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
         durationColumn.setCellValueFactory(new PropertyValueFactory<>("duration"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
-        coordinatorColumn.setCellValueFactory(new PropertyValueFactory<>("coordinator"));
+        coordinatorColumn.setCellValueFactory(new PropertyValueFactory<>("coordinators"));
 
         // Bind data to TableView
         tblEvent.setItems(eventModel.getTblEvent());
@@ -203,4 +203,7 @@ public class EventCoordinatorController implements Initializable {
     public void alertMessage() {}
 
 
+    public void setUsername(String username) {
+        lblUsername.setText(username);
+    }
 }
