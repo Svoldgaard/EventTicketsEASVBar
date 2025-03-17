@@ -3,6 +3,7 @@ package dk.easv.eventticketeasvbar.BE;
 import javafx.scene.image.Image;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Event {
@@ -10,9 +11,9 @@ public class Event {
     private String event;
     private String location;
     private LocalDate date;
-    private Double time;
-    private Double duration;
-    private Double price;
+    private Float time;
+    private Float duration;
+    private Float price;
     private List<EventCoordinator> coordinators;
     private Image image;
     private String description;
@@ -26,7 +27,7 @@ public class Event {
         this.description = description;
     }
 
-    public Event(String event, String location, LocalDate date, Double time, Double duration, Double price, List<EventCoordinator> coordinators) {
+    public Event(String event, String location, LocalDate date, Float time, Float duration, Float price, List<EventCoordinator> coordinators) {
         this.event = event;
         this.location = location;
         this.date = date;
@@ -36,17 +37,15 @@ public class Event {
         this.coordinators = new ArrayList<>();  // Initialize the list
     }
 
-    public Event(String event, String location, LocalDate date, Double time, Double duration, Double price) {
+    public Event(String event, String location, LocalDate date, Float time, Float duration, Float price) {
         this.event = event;
         this.location = location;
         this.date = date;
         this.time = time;
         this.duration = duration;
         this.price = price;
-        this.coordinators = new ArrayList<>();  // ✅ Ensure coordinators list is initialized
+        this.coordinators = new ArrayList<>();  // Ensure coordinators list is initialized
     }
-
-
 
     public void addCoordinator(EventCoordinator coordinator) {
         if (!coordinators.contains(coordinator)) {
@@ -96,27 +95,27 @@ public class Event {
         this.location = location;
     }
 
-    public Double getTime() {
+    public float getTime() {
         return time;
     }
 
-    public void setTime(Double time) {
+    public void setTime(Float time) {
         this.time = time;
     }
 
-    public Double getDuration() {
+    public Float getDuration() {
         return duration;
     }
 
-    public void setDuration(Double duration) {
+    public void setDuration(Float duration) {
         this.duration = duration;
     }
 
-    public Double getPrice() {
+    public Float getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(Float price) {
         this.price = price;
     }
 
