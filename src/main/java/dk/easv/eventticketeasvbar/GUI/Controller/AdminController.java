@@ -63,18 +63,7 @@ public class AdminController implements Initializable {
     private TableColumn<Event,Double> colTime;
     @FXML
     private TableColumn<Event, String> colCoordinator;
-    @FXML
-    private MFXButton btnLogoutAdmin;
-    @FXML
-    private MFXButton btnCreateUser;
-    @FXML
-    private MFXButton btnEditUser;
-    @FXML
-    private MFXButton btnRemoveUser;
-    @FXML
-    private MFXButton btnAssignCoordinator;
-    @FXML
-    private MFXButton btnRemoveEvent;
+
 
     private AdminModel adminModel;
     private EventModel eventModel;
@@ -283,6 +272,9 @@ public class AdminController implements Initializable {
         return null;
     }
 
+    public void setUsername(String username) {
+        lblUsername.setText(username);
+    }
 
 
 }
