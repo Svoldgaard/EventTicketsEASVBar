@@ -3,22 +3,39 @@ package dk.easv.eventticketeasvbar.GUI.Model;
 import dk.easv.eventticketeasvbar.BE.Event;
 import dk.easv.eventticketeasvbar.BE.EventCoordinator;
 // Java Imports
+import dk.easv.eventticketeasvbar.BLL.Manager.AdminManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
+import java.io.IOException;
 import java.time.LocalDate;
+import java.util.List;
 
 public class AdminModel {
     private final ObservableList<Event> tblEvent;
     private final ObservableList<EventCoordinator> tblCoordinator;
+    private AdminManager adminManager;
 
-    public AdminModel(){
+    public AdminModel() throws IOException {
+        adminManager = new AdminManager();
         tblCoordinator = FXCollections.observableArrayList();
         tblEvent = FXCollections.observableArrayList();
 
-        loadMockData();
+        //loadMockData();
     }
 
-    private void loadMockData() {
+    public void loadCoordinators() throws Exception {
+        List<EventCoordinator> allCoordinators = adminManager.getAllEventCoordinators();
+        tblCoordinator.clear();
+        tblCoordinator.addAll(allCoordinators);
+    }
+
+    public ObservableList<EventCoordinator> getCoordinators() {
+        return tblCoordinator;
+    }
+
+    /*private void loadMockData() {
+
         // Create mock coordinators
         EventCoordinator stevenHansen = new EventCoordinator("Steven", "Hansen", "steven.hansen@example.com", 12345678, 0);
         EventCoordinator mariaLarsen = new EventCoordinator("Maria", "Larsen", "maria.larsen@example.com", 87654321, 0);
@@ -37,13 +54,11 @@ public class AdminModel {
         // Add mock data to tables
         tblEvent.addAll(event1, event2, event3);
         tblCoordinator.addAll(stevenHansen, mariaLarsen, johnDoe);
-    }
+    }*/
 
     public ObservableList<Event> getEvents() {
         return tblEvent;
     }
 
-    public ObservableList<EventCoordinator> getCoordinators() {
-        return tblCoordinator;
-    }
+
 }

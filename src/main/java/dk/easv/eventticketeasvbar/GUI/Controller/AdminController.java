@@ -86,13 +86,24 @@ public class AdminController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        adminModel = new AdminModel();
+        try {
+            adminModel = new AdminModel();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         colFName.setCellValueFactory(new PropertyValueFactory<>("firstname"));
         colLName.setCellValueFactory(new PropertyValueFactory<>("lastname"));
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         colPhoneNumber.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
         colAmountOfEvents.setCellValueFactory(new PropertyValueFactory<>("amountOfEvents"));
+
+        tblCoordinator.setItems(adminModel.getCoordinators());
+        try {
+            adminModel.loadCoordinators();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
         colEvent.setCellValueFactory(new PropertyValueFactory<>("event"));
         colLocation.setCellValueFactory(new PropertyValueFactory<>("location"));
@@ -102,7 +113,7 @@ public class AdminController implements Initializable {
                 new SimpleStringProperty(cellData.getValue().getCoordinatorsAsString()));
 
 
-        tblCoordinator.setItems(adminModel.getCoordinators());
+
         tblEvent.setItems(adminModel.getEvents());
 
         setupDragAndDrop();
