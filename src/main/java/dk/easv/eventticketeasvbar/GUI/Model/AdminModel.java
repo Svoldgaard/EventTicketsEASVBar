@@ -15,10 +15,10 @@ public class AdminModel {
         tblCoordinator = FXCollections.observableArrayList();
         tblEvent = FXCollections.observableArrayList();
 
-        loadMockData();
+        //loadMockData();
     }
 
-    private void loadMockData() {
+    /*private void loadMockData() {
         // Create mock coordinators
         EventCoordinator stevenHansen = new EventCoordinator("Steven", "Hansen", "steven.hansen@example.com", 12345678, 0);
         EventCoordinator mariaLarsen = new EventCoordinator("Maria", "Larsen", "maria.larsen@example.com", 87654321, 0);
@@ -37,7 +37,7 @@ public class AdminModel {
         // Add mock data to tables
         tblEvent.addAll(event1, event2, event3);
         tblCoordinator.addAll(stevenHansen, mariaLarsen, johnDoe);
-    }
+    }*/
 
     public ObservableList<Event> getEvents() {
         return tblEvent;

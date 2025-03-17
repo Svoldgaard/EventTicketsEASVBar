@@ -2,6 +2,7 @@ package dk.easv.eventticketeasvbar.GUI.Controller;
 
 // Project Imports
 import dk.easv.eventticketeasvbar.GUI.Model.EventCoordinatorModel;
+import dk.easv.eventticketeasvbar.GUI.Model.EventModel;
 import dk.easv.eventticketeasvbar.Main;
 import dk.easv.eventticketeasvbar.BE.Event;
 // Other Imports
@@ -62,15 +63,16 @@ public class EventCoordinatorController implements Initializable {
 
 
     private EventCoordinatorModel EventCoordinatorModel;
+    private EventModel eventModel;
 
-
-    public EventCoordinatorController() {
-
+    public EventCoordinatorController() throws Exception {
+        eventModel = new EventModel();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         EventCoordinatorModel = new EventCoordinatorModel();
+
 
         // Set up TableView columns
         eventColumn.setCellValueFactory(new PropertyValueFactory<>("event"));
@@ -79,10 +81,11 @@ public class EventCoordinatorController implements Initializable {
         timeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
         durationColumn.setCellValueFactory(new PropertyValueFactory<>("duration"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
-        coordinatorColumn.setCellValueFactory(new PropertyValueFactory<>("coordinators"));
+        coordinatorColumn.setCellValueFactory(new PropertyValueFactory<>("coordinator"));
 
         // Bind data to TableView
-        tblEvent.setItems(EventCoordinatorModel.getEvents());
+        tblEvent.setItems(eventModel.getTblEvent());
+
     }
 
     @FXML
@@ -199,7 +202,5 @@ public class EventCoordinatorController implements Initializable {
 
     public void alertMessage() {}
 
-    public void setUsername(String username) {
-        lblUsername.setText(username);
-    }
+
 }

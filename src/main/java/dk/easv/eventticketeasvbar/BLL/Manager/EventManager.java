@@ -3,13 +3,14 @@ package dk.easv.eventticketeasvbar.BLL.Manager;
 import dk.easv.eventticketeasvbar.BE.Event;
 import dk.easv.eventticketeasvbar.DLL.Database.EventDAO_DB;
 
+import java.io.IOException;
 import java.util.List;
 
 public class EventManager {
 
     private EventDAO_DB eventDAO_DB;
 
-    public EventManager() {
+    public EventManager() throws IOException {
         eventDAO_DB = new EventDAO_DB();
     }
 
