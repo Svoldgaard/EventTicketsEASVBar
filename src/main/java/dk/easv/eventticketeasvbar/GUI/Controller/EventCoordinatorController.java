@@ -75,7 +75,7 @@ public class EventCoordinatorController implements Initializable {
         // Set up TableView columns
         eventColumn.setCellValueFactory(new PropertyValueFactory<>("event"));
         locationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
-        dateColumn.setCellValueFactory(new PropertyValueFactory<>("date")); // LocalDate will be formatted automatically
+        dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
         timeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
         durationColumn.setCellValueFactory(new PropertyValueFactory<>("duration"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));

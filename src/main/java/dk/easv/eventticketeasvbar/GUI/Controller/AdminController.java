@@ -152,7 +152,9 @@ public class AdminController implements Initializable {
         createUserController = fxmlLoader.getController();
         createUserController.setStage(stage);
 
-        stage.show();
+        stage.showAndWait();
+        tblCoordinator.refresh();
+        System.out.println("tblCoordinator has refreshed");
 
     }
 
