@@ -83,7 +83,7 @@ public class LoginController {
 
         // Get the AdminController instance
         EventCoordinatorController eventCoordinatorController = loader.getController();
-        //eventCoordinatorController.setUsername(txtUsername.getText()); // Send username to AdminController
+        eventCoordinatorController.setUsername(txtUsername.getText()); // Send username to AdminController
 
         // Set up the stage
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
