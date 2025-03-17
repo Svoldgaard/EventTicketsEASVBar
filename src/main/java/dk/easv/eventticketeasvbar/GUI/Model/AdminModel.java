@@ -33,11 +33,16 @@ public class AdminModel {
 
     public void updateCoordinator(EventCoordinator coordinator) throws Exception {
         EventCoordinator updatedCoordinator = adminManager.updateEventCoordinator(coordinator);
+
         int index = tblCoordinator.indexOf(coordinator);
         if (index != -1) {
             tblCoordinator.set(index, updatedCoordinator);
         }
+
+        // **Fix: Save the event assignments to DB**
+        adminManager.updateEventCoordinator(coordinator);
     }
+
 
     public void removeCoordinator(EventCoordinator coordinator) throws Exception {
         adminManager.deleteEventCoordinator(coordinator);

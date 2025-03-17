@@ -228,14 +228,13 @@ public class AdminController implements Initializable {
 
     @FXML
     private void setupDragAndDrop() {
-        // Enable dragging from Coordinator Table
         tblCoordinator.setRowFactory(tv -> {
             TableRow<EventCoordinator> row = new TableRow<>();
             row.setOnDragDetected(event -> {
                 if (!row.isEmpty()) {
                     Dragboard db = row.startDragAndDrop(TransferMode.MOVE);
                     ClipboardContent content = new ClipboardContent();
-                    content.putString(row.getItem().getEmail()); // Use email as unique identifier
+                    content.putString(row.getItem().getEmail()); // Unique identifier
                     db.setContent(content);
                     event.consume();
                 }
@@ -243,7 +242,6 @@ public class AdminController implements Initializable {
             return row;
         });
 
-        // Allow dropping on the Event Table
         tblEvent.setOnDragOver(event -> {
             if (event.getGestureSource() != tblEvent && event.getDragboard().hasString()) {
                 event.acceptTransferModes(TransferMode.MOVE);
@@ -251,7 +249,6 @@ public class AdminController implements Initializable {
             event.consume();
         });
 
-        // Handle drop event
         tblEvent.setOnDragDropped(event -> {
             Dragboard db = event.getDragboard();
             boolean success = false;
@@ -263,31 +260,30 @@ public class AdminController implements Initializable {
                 if (selectedEvent != null) {
                     EventCoordinator coordinator = findCoordinatorByEmail(coordinatorEmail);
                     if (coordinator != null) {
-                        // Assign the coordinator to the event
-                        selectedEvent.addCoordinator(coordinator);
 
-                        // Increment the number of events the coordinator is assigned to
-                        coordinator.setAmountOfEvents(coordinator.getAmountOfEvents() + 1);
+                        if (!selectedEvent.getCoordinators().contains(coordinator)) {
+                            selectedEvent.addCoordinator(coordinator);
 
-                        try {
-                            // Update the database with the new assignment
-                            adminModel.updateCoordinator(coordinator); // Save new event count
-                            eventModel.updateEvent(selectedEvent); // Save assigned coordinator
-                        } catch (Exception e) {
-                            e.printStackTrace();
+                            // 🛑 Only increase if the coordinator is not already working on this event
+                            coordinator.setAmountOfEvents(coordinator.getAmountOfEvents() + 1);
+
+                            try {
+                                adminModel.updateCoordinator(coordinator);
+                                eventModel.updateEvent(selectedEvent);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+
+                            tblEvent.refresh();
+                            tblCoordinator.refresh();
                         }
-
-                        // Refresh the tables
-                        tblEvent.refresh();
-                        tblCoordinator.refresh();
-
-                        success = true;
                     }
                 }
             }
             event.setDropCompleted(success);
             event.consume();
         });
+
     }
 
 

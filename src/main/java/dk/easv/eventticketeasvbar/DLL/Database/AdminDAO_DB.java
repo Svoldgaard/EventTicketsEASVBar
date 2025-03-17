@@ -88,6 +88,14 @@ public class AdminDAO_DB implements IAdmin {
         try (Connection conn = dbConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
+            // Fetch current amountOfEvents
+            int currentEvents = getCurrentAmountOfEvents(eventCoordinator.getEmail(), conn);
+
+            // Prevent unnecessary updates
+            if (currentEvents == eventCoordinator.getAmountOfEvents()) {
+                return eventCoordinator; // No update needed
+            }
+
             stmt.setString(1, eventCoordinator.getFirstname());
             stmt.setString(2, eventCoordinator.getLastname());
             stmt.setString(3, eventCoordinator.getEmail());
@@ -106,6 +114,21 @@ public class AdminDAO_DB implements IAdmin {
             throw new Exception("Error updating event coordinator in database.");
         }
     }
+
+    // Helper method to get the current amount of events
+    private int getCurrentAmountOfEvents(String email, Connection conn) throws SQLException {
+        String sql = "SELECT amountOfEvents FROM EventCoordinator WHERE email = ?";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, email);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("amountOfEvents");
+                }
+            }
+        }
+        return 0; // Default if not found
+    }
+
 
     @Override
     public void deleteEventCoordinator(EventCoordinator eventCoordinator) throws Exception {
