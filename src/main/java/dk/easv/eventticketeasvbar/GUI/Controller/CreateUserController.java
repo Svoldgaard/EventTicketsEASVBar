@@ -7,6 +7,7 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -24,7 +25,9 @@ public class CreateUserController {
     private TextField txtFirstName;
 
     @FXML
-    private MFXButton btnSave;
+    private MFXButton saveBtn;
+
+
 
     private AdminModel adminModel;
 
@@ -32,7 +35,7 @@ public class CreateUserController {
     private Stage stage;
 
     public CreateUserController() throws IOException {
-        adminModel = new AdminModel();
+        //adminModel = new AdminModel();
     }
 
     public void setStage(Stage stage) {
@@ -40,11 +43,12 @@ public class CreateUserController {
     }
 
     @FXML
-    private void btnSave(ActionEvent actionEvent) {
+    private void btnSave(ActionEvent actionEvent) throws Exception {
         String firstName = txtFirstName.getText().trim();
         String lastName = txtLastName.getText().trim();
-        String phoneNumberStr = txtPhoneNumber.getText().trim();
         String email = txtEmail.getText().trim();
+        String phoneNumberStr = txtPhoneNumber.getText().trim();
+
 
         if (firstName.isEmpty() || lastName.isEmpty() || phoneNumberStr.isEmpty() || email.isEmpty()) {
             showErrorAlert("Field is empty", "All fields must be filled.");
@@ -64,10 +68,16 @@ public class CreateUserController {
 
 
         adminModel.getCoordinators().add(newCoordinator);
+        adminModel.addCoordinator(newCoordinator);
+
+
 
         if (stage != null) {
             stage.close();
         }
+    }
+    public void setAdminModel(AdminModel adminModel) {
+        this.adminModel = adminModel;
     }
 
 
@@ -80,7 +90,7 @@ public class CreateUserController {
     }
 
     public void setText(String text) {
-        btnSave.setText(text);
+        saveBtn.setText(text);
     }
 
     private void showErrorAlert(String title, String message) {
@@ -90,6 +100,8 @@ public class CreateUserController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+
 
 
 }

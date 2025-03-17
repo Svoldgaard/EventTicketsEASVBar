@@ -72,7 +72,7 @@ public class AdminController implements Initializable {
     private CreateUserController createUserController;
 
     public AdminController() throws Exception {
-        adminModel = new AdminModel();
+        //adminModel = new AdminModel();
         eventModel = new EventModel();
     }
 
@@ -147,13 +147,15 @@ public class AdminController implements Initializable {
     }
 
     @FXML
-    private void btnCreateUser(ActionEvent actionEvent) throws IOException {
+    private void btnCreateUser(ActionEvent actionEvent) throws Exception {
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/CreateUser.fxml"));
 
         // Load FXML and get the controller
         Scene scene = new Scene(fxmlLoader.load());
         createUserController = fxmlLoader.getController();
+
+        createUserController.setAdminModel(this.adminModel);
 
         // Open the assign Event stage
         Stage stage = new Stage();
@@ -164,7 +166,8 @@ public class AdminController implements Initializable {
         createUserController.setStage(stage);
 
         stage.showAndWait();
-        tblCoordinator.refresh();
+
+        adminModel.loadCoordinators();
         System.out.println("tblCoordinator has refreshed");
 
     }
@@ -192,8 +195,17 @@ public class AdminController implements Initializable {
 
     }
 
+
     @FXML
-    private void btnRemoveUser(ActionEvent actionEvent) {
+    private void btnRemoveUser(ActionEvent actionEvent) throws Exception {
+        EventCoordinator selected = tblCoordinator.getSelectionModel().getSelectedItem();
+
+        if (selected != null) {
+             adminModel.removeCoordinator(selected);
+        }
+
+
+
     }
 
     @FXML
