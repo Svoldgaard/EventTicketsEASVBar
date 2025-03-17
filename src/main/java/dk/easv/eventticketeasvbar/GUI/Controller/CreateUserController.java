@@ -8,18 +8,21 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class CreateUserController {
+
+    @FXML
+    private TextField txtLastName;
     @FXML
     private TextField txtPhoneNumber;
     @FXML
     private TextField txtEmail;
     @FXML
-    private TextField txtName;
+    private TextField txtFirstName;
     @FXML
     private MFXButton btnSave;
     @FXML
     private MFXButton btnCancel;
 
-
+    
 
     private Stage stage;
 
@@ -28,11 +31,11 @@ public class CreateUserController {
     }
 
     @FXML
-    private void handleSave(ActionEvent actionEvent) {
+    private void btnSave(ActionEvent actionEvent) {
     }
 
     @FXML
-    private void handleCancel(ActionEvent actionEvent) {
+    private void btnCancel(ActionEvent actionEvent) {
         if(stage!=null){
             stage.close();
 
@@ -43,5 +46,6 @@ public class CreateUserController {
     public void setText(String text) {
         btnSave.setText(text);
     }
+
 
 }

@@ -4,6 +4,7 @@ import dk.easv.eventticketeasvbar.BE.Event;
 import dk.easv.eventticketeasvbar.BE.EventCoordinator;
 import dk.easv.eventticketeasvbar.GUI.Model.AdminModel;
 import dk.easv.eventticketeasvbar.GUI.Model.EventCoordinatorModel;
+import dk.easv.eventticketeasvbar.GUI.Model.EventModel;
 import dk.easv.eventticketeasvbar.GUI.Model.LoginModel;
 import dk.easv.eventticketeasvbar.Main;
 // Other Imports
@@ -76,17 +77,19 @@ public class AdminController implements Initializable {
     private MFXButton btnRemoveEvent;
 
     private AdminModel adminModel;
+    private EventModel eventModel;
 
     private AssignEditController assignEditController;
     private CreateUserController createUserController;
 
-    public AdminController() {
-
+    public AdminController() throws Exception {
+        adminModel = new AdminModel();
+        eventModel = new EventModel();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        adminModel = new AdminModel();
+
 
         colFName.setCellValueFactory(new PropertyValueFactory<>("firstname"));
         colLName.setCellValueFactory(new PropertyValueFactory<>("lastname"));
@@ -103,7 +106,7 @@ public class AdminController implements Initializable {
 
 
         tblCoordinator.setItems(adminModel.getCoordinators());
-        tblEvent.setItems(adminModel.getEvents());
+        tblEvent.setItems(eventModel.getTblEvent());
 
         setupDragAndDrop();
     }

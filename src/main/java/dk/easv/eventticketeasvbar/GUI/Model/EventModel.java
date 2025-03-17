@@ -2,6 +2,7 @@ package dk.easv.eventticketeasvbar.GUI.Model;
 
 import dk.easv.eventticketeasvbar.BE.Event;
 import dk.easv.eventticketeasvbar.BLL.Manager.EventManager;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class EventModel {
@@ -11,6 +12,7 @@ public class EventModel {
 
     public EventModel() throws Exception {
         eventManager = new EventManager();
+        tblEvent = FXCollections.observableArrayList();
 
     }
 
