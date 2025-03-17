@@ -63,11 +63,33 @@ public class LoginController {
     }
 
     private void loadAdminWindow(ActionEvent actionEvent) throws IOException {
-        loadScene(actionEvent, "/dk.easv/eventticketeasvbar/FXML/Admin.fxml", "Admin Dashboard");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/dk.easv/eventticketeasvbar/FXML/Admin.fxml"));
+        Parent root = loader.load();
+
+        // Get the AdminController instance
+        AdminController adminController = loader.getController();
+        adminController.setUsername(txtUsername.getText()); // Send username to AdminController
+
+        // Set up the stage
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Admin Dashboard");
+        stage.show();
     }
 
     private void loadCoordinatorWindow(ActionEvent actionEvent) throws IOException {
-        loadScene(actionEvent, "/dk.easv/eventticketeasvbar/FXML/EventCoordinator.fxml", "Coordinator Dashboard");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/dk.easv/eventticketeasvbar/FXML/EventCoordinator.fxml"));
+        Parent root = loader.load();
+
+        // Get the AdminController instance
+        EventCoordinatorController eventCoordinatorController = loader.getController();
+        //eventCoordinatorController.setUsername(txtUsername.getText()); // Send username to AdminController
+
+        // Set up the stage
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Coordinator Dashboard");
+        stage.show();
     }
 
     private void loadScene(ActionEvent actionEvent, String fxmlPath, String title) throws IOException {

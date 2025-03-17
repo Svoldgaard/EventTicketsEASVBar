@@ -4,6 +4,7 @@ import dk.easv.eventticketeasvbar.BE.Event;
 import dk.easv.eventticketeasvbar.BE.EventCoordinator;
 import dk.easv.eventticketeasvbar.GUI.Model.AdminModel;
 import dk.easv.eventticketeasvbar.GUI.Model.EventCoordinatorModel;
+import dk.easv.eventticketeasvbar.GUI.Model.EventModel;
 import dk.easv.eventticketeasvbar.GUI.Model.LoginModel;
 import dk.easv.eventticketeasvbar.Main;
 // Other Imports
@@ -62,26 +63,17 @@ public class AdminController implements Initializable {
     private TableColumn<Event,Double> colTime;
     @FXML
     private TableColumn<Event, String> colCoordinator;
-    @FXML
-    private MFXButton btnLogoutAdmin;
-    @FXML
-    private MFXButton btnCreateUser;
-    @FXML
-    private MFXButton btnEditUser;
-    @FXML
-    private MFXButton btnRemoveUser;
-    @FXML
-    private MFXButton btnAssignCoordinator;
-    @FXML
-    private MFXButton btnRemoveEvent;
+
 
     private AdminModel adminModel;
+    private EventModel eventModel;
 
     private AssignEditController assignEditController;
     private CreateUserController createUserController;
 
-    public AdminController() {
-
+    public AdminController() throws Exception {
+        adminModel = new AdminModel();
+        eventModel = new EventModel();
     }
 
     @Override
@@ -113,8 +105,8 @@ public class AdminController implements Initializable {
                 new SimpleStringProperty(cellData.getValue().getCoordinatorsAsString()));
 
 
-
-        tblEvent.setItems(adminModel.getEvents());
+        tblCoordinator.setItems(adminModel.getCoordinators());
+        tblEvent.setItems(eventModel.getTblEvent());
 
         setupDragAndDrop();
     }
@@ -291,6 +283,9 @@ public class AdminController implements Initializable {
         return null;
     }
 
+    public void setUsername(String username) {
+        lblUsername.setText(username);
+    }
 
 
 }

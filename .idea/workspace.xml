@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="424db850-1039-4886-89b3-66312f48d918" name="Changes" comment="CSS + Layout fixes">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="424db850-1039-4886-89b3-66312f48d918" name="Changes" comment="model and table works">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/BE/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/BE/Event.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/BLL/Manager/EventManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/BLL/Manager/EventManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/DLL/Database/EventDAO_DB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/DLL/Database/EventDAO_DB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/EventCoordinatorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/EventCoordinatorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Model/AdminModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Model/AdminModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Model/EventCoordinatorModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Model/EventCoordinatorModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Model/EventModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Model/EventModel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -391,7 +395,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742166217824</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="model and table works">
+      <option name="closed" value="true" />
+      <created>1742201238393</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1742201238393</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -412,7 +424,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="First" />
     <MESSAGE value="Package" />
     <MESSAGE value="Some classes to start with" />
     <MESSAGE value="login FXML" />
@@ -437,6 +448,7 @@
     <MESSAGE value="config" />
     <MESSAGE value="fixed miner type to get AmountOfEvents to work in admin view" />
     <MESSAGE value="CSS + Layout fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="CSS + Layout fixes" />
+    <MESSAGE value="model and table works" />
+    <option name="LAST_COMMIT_MESSAGE" value="model and table works" />
   </component>
 </project>
