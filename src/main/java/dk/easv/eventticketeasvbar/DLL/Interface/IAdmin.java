@@ -9,9 +9,9 @@ public interface IAdmin {
 
     List<EventCoordinator> getAllEventCoordinators() throws Exception;
 
-    Event createEventCoordinator(EventCoordinator eventCoordinator) throws Exception;
+    EventCoordinator createEventCoordinator(EventCoordinator eventCoordinator) throws Exception;
 
-    Event updateEventCoordinator(EventCoordinator eventCoordinator) throws Exception;
+    EventCoordinator updateEventCoordinator(EventCoordinator eventCoordinator) throws Exception;
 
     void deleteEventCoordinator(EventCoordinator eventCoordinator) throws Exception;
 

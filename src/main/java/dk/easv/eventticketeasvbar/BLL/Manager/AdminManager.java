@@ -1,6 +1,5 @@
 package dk.easv.eventticketeasvbar.BLL.Manager;
 
-import dk.easv.eventticketeasvbar.BE.Event;
 import dk.easv.eventticketeasvbar.BE.EventCoordinator;
 import dk.easv.eventticketeasvbar.DLL.Database.AdminDAO_DB;
 
@@ -19,5 +18,15 @@ public class AdminManager {
         return adminDAO_DB.getAllEventCoordinators();
     }
 
+    public EventCoordinator createEventCoordinator(EventCoordinator eventCoordinator) throws Exception {
+        return adminDAO_DB.createEventCoordinator(eventCoordinator);
+    }
 
+    public EventCoordinator updateEventCoordinator(EventCoordinator eventCoordinator) throws Exception {
+        return adminDAO_DB.updateEventCoordinator(eventCoordinator);
+    }
+
+    public void deleteEventCoordinator(EventCoordinator eventCoordinator) throws Exception {
+        adminDAO_DB.deleteEventCoordinator(eventCoordinator);
+    }
 }

@@ -263,9 +263,24 @@ public class AdminController implements Initializable {
                 if (selectedEvent != null) {
                     EventCoordinator coordinator = findCoordinatorByEmail(coordinatorEmail);
                     if (coordinator != null) {
-                        selectedEvent.addCoordinator(coordinator); // Use the method from Event class
+                        // Assign the coordinator to the event
+                        selectedEvent.addCoordinator(coordinator);
+
+                        // Increment the number of events the coordinator is assigned to
+                        coordinator.setAmountOfEvents(coordinator.getAmountOfEvents() + 1);
+
+                        try {
+                            // Update the database with the new assignment
+                            adminModel.updateCoordinator(coordinator); // Save new event count
+                            eventModel.updateEvent(selectedEvent); // Save assigned coordinator
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+                        // Refresh the tables
                         tblEvent.refresh();
                         tblCoordinator.refresh();
+
                         success = true;
                     }
                 }
@@ -274,6 +289,7 @@ public class AdminController implements Initializable {
             event.consume();
         });
     }
+
 
 
     private EventCoordinator findCoordinatorByEmail(String email) {
