@@ -11,6 +11,7 @@ import java.util.List;
 
 public class EventDAO_DB  implements IEvents {
 
+    
     @Override
     public List<Event> getAllEvents() throws Exception {
         DBConnection dbConnection = new DBConnection();
