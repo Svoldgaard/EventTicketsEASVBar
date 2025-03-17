@@ -10,6 +10,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class CreateUserController {
 
     @FXML
@@ -29,7 +31,7 @@ public class CreateUserController {
 
     private Stage stage;
 
-    public CreateUserController() {
+    public CreateUserController() throws IOException {
         adminModel = new AdminModel();
     }
 
