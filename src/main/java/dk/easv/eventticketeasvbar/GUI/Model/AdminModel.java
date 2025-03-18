@@ -45,7 +45,7 @@ public class AdminModel {
         }
 
         // **Fix: Save the event assignments to DB**
-        adminManager.updateEventCoordinator(coordinator);
+        //adminManager.updateEventCoordinator(coordinator);
     }
 
 

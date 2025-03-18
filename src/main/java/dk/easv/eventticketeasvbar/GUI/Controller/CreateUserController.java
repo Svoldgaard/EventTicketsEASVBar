@@ -34,6 +34,9 @@ public class CreateUserController {
 
     private Stage stage;
 
+    private boolean isUpdateMode;
+    private EventCoordinator coordinatorToUpdate;
+
     public CreateUserController() throws IOException {
         //adminModel = new AdminModel();
     }
@@ -44,6 +47,8 @@ public class CreateUserController {
 
     @FXML
     private void btnSave(ActionEvent actionEvent) throws Exception {
+
+        try{
         String firstName = txtFirstName.getText().trim();
         String lastName = txtLastName.getText().trim();
         String email = txtEmail.getText().trim();
@@ -63,19 +68,62 @@ public class CreateUserController {
             return;
         }
 
+        // Check if the user is updating
+        if (isUpdateMode) {
+            // Update existing
+            updateEventCoordinator(firstName, lastName, email, phoneNumber);
 
-        EventCoordinator newCoordinator = new EventCoordinator(firstName, lastName, email, phoneNumber, 0);
+        } else {
+
+            //Creates
+            EventCoordinator newCoordinator = new EventCoordinator(firstName, lastName, email, phoneNumber, 0);
 
 
-        adminModel.getCoordinators().add(newCoordinator);
-        adminModel.addCoordinator(newCoordinator);
+            adminModel.getCoordinators().add(newCoordinator);
+            adminModel.addCoordinator(newCoordinator);
 
 
 
-        if (stage != null) {
-            stage.close();
+        }
+            if (stage != null) {
+                stage.close();
+            }
+            
+        } catch (Exception e) {
+            throw new Exception("Save button issue!!", e);
         }
     }
+
+    public void setMode(boolean isUpdateMode, EventCoordinator coordinatorToUpdate) {
+        this.isUpdateMode = isUpdateMode;
+        this.coordinatorToUpdate = coordinatorToUpdate;
+
+        if (isUpdateMode) {
+
+            txtFirstName.setText(coordinatorToUpdate.getFirstname());
+            txtLastName.setText(coordinatorToUpdate.getLastname());
+            txtEmail.setText(coordinatorToUpdate.getEmail());
+            txtPhoneNumber.setText(String.valueOf(coordinatorToUpdate.getPhoneNumber()));
+        }
+
+    }
+
+    private void updateEventCoordinator(String firstName, String lastName, String email, int phoneNumber) throws Exception {
+
+        try {
+            // Update coordinator properties with the new values
+            coordinatorToUpdate.setFirstname(firstName);
+            coordinatorToUpdate.setLastname(lastName);
+            coordinatorToUpdate.setEmail(email);
+            coordinatorToUpdate.setPhoneNumber(phoneNumber);
+            //using method with param. from model
+            adminModel.updateCoordinator(coordinatorToUpdate);
+        } catch (Exception e) {
+            throw new Exception("Failed to update coordinator in update Event Coordinator method", e);
+        }
+    }
+
+
     public void setAdminModel(AdminModel adminModel) {
         this.adminModel = adminModel;
     }

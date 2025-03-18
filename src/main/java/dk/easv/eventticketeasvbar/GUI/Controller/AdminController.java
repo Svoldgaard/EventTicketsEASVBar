@@ -154,8 +154,8 @@ public class AdminController implements Initializable {
         // Load FXML and get the controller
         Scene scene = new Scene(fxmlLoader.load());
         createUserController = fxmlLoader.getController();
-
         createUserController.setAdminModel(this.adminModel);
+        createUserController.setMode(false, null); //set to create mode
 
         // Open the assign Event stage
         Stage stage = new Stage();
@@ -174,24 +174,32 @@ public class AdminController implements Initializable {
 
     @FXML
     private void btnEditUser(ActionEvent actionEvent) throws IOException {
+        EventCoordinator selectedCoordinator = tblCoordinator.getSelectionModel().getSelectedItem();
 
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/CreateUser.fxml"));
+        if (selectedCoordinator == null) {
+            showErrorAlert("Error", "No coordinator for editing selected!");
+        }else {
 
-        // Load FXML and get the controller
-        Scene scene = new Scene(fxmlLoader.load());
-        createUserController = fxmlLoader.getController();
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/CreateUser.fxml"));
 
-        // Open the assign Event stage
-        Stage stage = new Stage();
-        stage.setTitle("Edit User");
-        stage.setScene(scene);
-        //changes buttons text
-        createUserController.setText("Save changes");
-        //reference to cancel button
-        createUserController = fxmlLoader.getController();
-        createUserController.setStage(stage);
+            // Load FXML and get the controller
+            Scene scene = new Scene(fxmlLoader.load());
+            createUserController = fxmlLoader.getController();
+            createUserController.setAdminModel(this.adminModel);
+            createUserController.setMode(true, selectedCoordinator);
 
-        stage.show();
+            // Open the assign Event stage
+            Stage stage = new Stage();
+            stage.setTitle("Edit User");
+            stage.setScene(scene);
+            //changes buttons text
+            createUserController.setText("Save changes");
+            //reference to cancel button
+            createUserController = fxmlLoader.getController();
+            createUserController.setStage(stage);
+
+            stage.show();
+        }
 
     }
 
@@ -311,6 +319,14 @@ public class AdminController implements Initializable {
 
     public void setUsername(String username) {
         lblUsername.setText(username);
+    }
+
+    private void showErrorAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
 
