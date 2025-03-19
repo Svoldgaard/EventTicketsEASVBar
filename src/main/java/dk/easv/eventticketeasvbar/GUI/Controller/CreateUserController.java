@@ -60,7 +60,7 @@ public class CreateUserController {
             txtPhoneNumber.setText(String.valueOf(coordinator.getPhoneNumber()));
             txtEmail.setText(coordinator.getEmail());
 
-            btnSave.setText("Save Changes"); // Change button text
+
         }
     }
 
