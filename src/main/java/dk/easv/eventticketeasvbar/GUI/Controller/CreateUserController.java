@@ -127,5 +127,8 @@ public class CreateUserController {
         alert.showAndWait();
     }
 
+    public void setAdminModel(AdminModel adminModel) {
+        this.adminModel = adminModel;
+    }
 
 }

@@ -153,6 +153,8 @@ public class AdminController implements Initializable {
         // Load FXML and get the controller
         Scene scene = new Scene(fxmlLoader.load());
         createUserController = fxmlLoader.getController();
+        // Inject the AdminModel you already have
+        createUserController.setAdminModel(this.adminModel);
 
         // Open the Create User window
         Stage stage = new Stage();
