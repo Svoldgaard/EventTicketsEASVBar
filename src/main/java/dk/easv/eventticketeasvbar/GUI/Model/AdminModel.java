@@ -39,7 +39,6 @@ public class AdminModel {
             tblCoordinator.set(index, updatedCoordinator);
         }
 
-        // **Fix: Save the event assignments to DB**
         adminManager.updateEventCoordinator(coordinator);
     }
 

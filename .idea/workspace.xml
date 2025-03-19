@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="424db850-1039-4886-89b3-66312f48d918" name="Changes" comment="Drag and drop kinda working with save have to check database to be sure">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/DLL/Database/AdminDAO_DB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/DLL/Database/AdminDAO_DB.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/CreateUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/CreateUserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Model/AdminModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Model/AdminModel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -182,6 +182,7 @@
       <workItem from="1741694068773" duration="748000" />
       <workItem from="1741872036253" duration="8806000" />
       <workItem from="1741946748904" duration="3679000" />
+      <workItem from="1742378400030" duration="2083000" />
     </task>
     <task id="LOCAL-00001" summary="First">
       <option name="closed" value="true" />
@@ -431,7 +432,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742238136747</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Drag and drop kinda working with save have to check database to be sure">
+      <option name="closed" value="true" />
+      <created>1742238940001</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1742238940001</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

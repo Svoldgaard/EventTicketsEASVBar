@@ -1,4 +1,5 @@
 package dk.easv.eventticketeasvbar.GUI.Controller;
+
 // Other Imports
 import dk.easv.eventticketeasvbar.BE.EventCoordinator;
 import dk.easv.eventticketeasvbar.GUI.Model.AdminModel;
@@ -22,12 +23,12 @@ public class CreateUserController {
     private TextField txtEmail;
     @FXML
     private TextField txtFirstName;
-
     @FXML
     private MFXButton btnSave;
 
     private AdminModel adminModel;
-
+    private EventCoordinator editableCoordinator;
+    private boolean isEditMode = false;
 
     private Stage stage;
 
@@ -37,6 +38,24 @@ public class CreateUserController {
 
     public void setStage(Stage stage) {
         this.stage = stage;
+    }
+
+    /**
+     * Set coordinator for editing mode
+     */
+    public void setCoordinator(EventCoordinator coordinator) {
+        if (coordinator != null) {
+            this.editableCoordinator = coordinator;
+            this.isEditMode = true;
+
+            // Populate fields with existing coordinator data
+            txtFirstName.setText(coordinator.getFirstname());
+            txtLastName.setText(coordinator.getLastname());
+            txtPhoneNumber.setText(String.valueOf(coordinator.getPhoneNumber()));
+            txtEmail.setText(coordinator.getEmail());
+
+            btnSave.setText("Save Changes"); // Change button text
+        }
     }
 
     @FXML
@@ -59,28 +78,39 @@ public class CreateUserController {
             return;
         }
 
+        if (isEditMode) {
+            // Update existing coordinator
+            editableCoordinator.setFirstname(firstName);
+            editableCoordinator.setLastname(lastName);
+            editableCoordinator.setEmail(email);
+            editableCoordinator.setPhoneNumber(phoneNumber);
 
-        EventCoordinator newCoordinator = new EventCoordinator(firstName, lastName, email, phoneNumber, 0);
+            try {
+                adminModel.updateCoordinator(editableCoordinator);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
-
-        adminModel.getCoordinators().add(newCoordinator);
+        } else {
+            // Create new coordinator
+            EventCoordinator newCoordinator = new EventCoordinator(firstName, lastName, email, phoneNumber, 0);
+            try {
+                adminModel.addCoordinator(newCoordinator);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
 
         if (stage != null) {
             stage.close();
         }
     }
 
-
     @FXML
     private void btnCancel(ActionEvent actionEvent) {
-        if(stage!=null){
+        if (stage != null) {
             stage.close();
-
         }
-    }
-
-    public void setText(String text) {
-        btnSave.setText(text);
     }
 
     private void showErrorAlert(String title, String message) {

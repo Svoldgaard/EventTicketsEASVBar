@@ -148,29 +148,31 @@ public class AdminController implements Initializable {
 
     @FXML
     private void btnCreateUser(ActionEvent actionEvent) throws IOException {
-
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/CreateUser.fxml"));
 
         // Load FXML and get the controller
         Scene scene = new Scene(fxmlLoader.load());
         createUserController = fxmlLoader.getController();
 
-        // Open the assign Event stage
+        // Open the Create User window
         Stage stage = new Stage();
         stage.setTitle("Create User");
         stage.setScene(scene);
-        //reference to cancel button
-        createUserController = fxmlLoader.getController();
-        createUserController.setStage(stage);
+        createUserController.setStage(stage); // Set the stage for closing
 
         stage.showAndWait();
-        tblCoordinator.refresh();
-        System.out.println("tblCoordinator has refreshed");
-
+        tblCoordinator.refresh(); // Refresh table after creation
+        System.out.println("Coordinator created and table refreshed");
     }
 
     @FXML
     private void btnEditUser(ActionEvent actionEvent) throws IOException {
+        EventCoordinator selectedCoordinator = tblCoordinator.getSelectionModel().getSelectedItem();
+
+        if (selectedCoordinator == null) {
+            showAlert("No Selection", "Please select a coordinator to edit.");
+            return;
+        }
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/CreateUser.fxml"));
 
@@ -178,23 +180,42 @@ public class AdminController implements Initializable {
         Scene scene = new Scene(fxmlLoader.load());
         createUserController = fxmlLoader.getController();
 
-        // Open the assign Event stage
+        // Set coordinator for editing
+        createUserController.setCoordinator(selectedCoordinator);
+
+        // Open the Edit User window
         Stage stage = new Stage();
         stage.setTitle("Edit User");
         stage.setScene(scene);
-        //changes buttons text
-        createUserController.setText("Save changes");
-        //reference to cancel button
-        createUserController = fxmlLoader.getController();
         createUserController.setStage(stage);
 
-        stage.show();
-
+        stage.showAndWait();
+        tblCoordinator.refresh(); // Refresh table after editing
+        System.out.println("Coordinator edited and table refreshed");
     }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
 
     @FXML
     private void btnRemoveUser(ActionEvent actionEvent) {
+        EventCoordinator selectedCoordinator = tblCoordinator.getSelectionModel().getSelectedItem();
+        if (selectedCoordinator != null) {
+            try {
+                adminModel.removeCoordinator(selectedCoordinator);
+                tblCoordinator.getItems().remove(selectedCoordinator);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
+
 
     @FXML
     private void btnCreateLogIn(ActionEvent actionEvent) {
