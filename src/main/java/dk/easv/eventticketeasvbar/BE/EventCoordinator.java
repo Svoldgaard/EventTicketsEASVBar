@@ -75,12 +75,6 @@ public class EventCoordinator {
 
     @Override
     public String toString() {
-        return "EventCoordinator{" +
-                "firstname='" + firstname + '\'' +
-                ", lastname='" + lastname + '\'' +
-                ", email='" + email + '\'' +
-                ", phoneNumber=" + phoneNumber +
-                ", amountOfEvents=" + amountOfEvents +
-                '}';
+        return firstname;
     }
 }

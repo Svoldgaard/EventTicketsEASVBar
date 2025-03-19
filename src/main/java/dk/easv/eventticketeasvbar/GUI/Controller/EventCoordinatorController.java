@@ -185,25 +185,29 @@ public class EventCoordinatorController implements Initializable {
     public void btnAddTicket(ActionEvent actionEvent) {
     }
 
+    @FXML
     public void handleAssign(ActionEvent actionEvent) throws IOException {
+        Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
+        if (selectedEvent == null) {
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Please select an event first.", ButtonType.OK);
+            alert.showAndWait();
+            return;
+        }
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/Assign-edit Window.fxml"));
-
-        // Load FXML and get the controller
         Scene scene = new Scene(fxmlLoader.load());
-        assignEditController = fxmlLoader.getController();
 
-        // Open the assign Event stage
+        assignEditController = fxmlLoader.getController();
+        assignEditController.setStage(new Stage());
+        assignEditController.setEvent(selectedEvent); // Pass selected event
+
         Stage stage = new Stage();
         stage.setTitle("Assign Coordinator");
         stage.setScene(scene);
-        //reference to cancel button
-        assignEditController = fxmlLoader.getController();
         assignEditController.setStage(stage);
-
         stage.show();
-
     }
+
 
     public void alertMessage() {}
 
