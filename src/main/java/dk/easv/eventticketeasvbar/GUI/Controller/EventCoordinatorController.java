@@ -120,12 +120,15 @@ public class EventCoordinatorController implements Initializable {
 
     public void btnEditEvent(ActionEvent actionEvent) throws IOException {
 
+        Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/Add-Edit-Event.fxml"));
-
         // Load FXML and get the controller
         Scene scene = new Scene(fxmlLoader.load());
         addEditEventController = fxmlLoader.getController();
+
+        addEditEventController.setEvent(selectedEvent);
+        addEditEventController.setEventModel(eventModel);
 
         // Pass the new button name to the controller
         if (addEditEventController != null) {
@@ -141,7 +144,10 @@ public class EventCoordinatorController implements Initializable {
         addEditEventController.setStage(stage);
         // Make the new stage modal, blocking interaction with the previous window
         stage.initModality(Modality.APPLICATION_MODAL);
-        stage.show();
+        stage.showAndWait();
+        tblEvent.setItems(eventModel.getTblEvent());
+
+        tblEvent.refresh();
 
     }
 
@@ -157,9 +163,8 @@ public class EventCoordinatorController implements Initializable {
             ButtonType result = alert.showAndWait().orElse(ButtonType.CANCEL);
 
             if(result == ButtonType.OK) {
-                EventCoordinatorModel.deleteEvent(selectedEvent);
-                refreshEvent();
-
+                eventModel.deleteEvent(selectedEvent);
+                tblEvent.getItems().remove(selectedEvent);
             }
         }
     }

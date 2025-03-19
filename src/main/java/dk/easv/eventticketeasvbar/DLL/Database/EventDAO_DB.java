@@ -11,6 +11,7 @@ import java.util.List;
 
 public class EventDAO_DB  implements IEvents {
 
+    
     @Override
     public List<Event> getAllEvents() throws Exception {
         DBConnection dbConnection = new DBConnection();
@@ -73,7 +74,7 @@ public class EventDAO_DB  implements IEvents {
     public Event updateEvent(Event event) throws Exception {
         DBConnection dbConnection = new DBConnection();
         String sql = "UPDATE Events SET eventName = ?, location = ?, date = ?, time = ?, duration = ?, price = ? " +
-                "WHERE eventName = ?"; // Ensure eventName is set in WHERE clause
+                "WHERE eventName = ?";
 
         try (Connection conn = dbConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -84,7 +85,6 @@ public class EventDAO_DB  implements IEvents {
             stmt.setFloat(4, event.getTime());
             stmt.setFloat(5, event.getDuration());
             stmt.setFloat(6, event.getPrice());
-            stmt.setString(7, event.getEvent()); // Set WHERE clause parameter
 
             stmt.executeUpdate();
         } catch (Exception ex) {

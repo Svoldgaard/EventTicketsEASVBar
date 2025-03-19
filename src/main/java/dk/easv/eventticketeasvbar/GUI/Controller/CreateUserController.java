@@ -8,6 +8,7 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -24,13 +25,18 @@ public class CreateUserController {
     @FXML
     private TextField txtFirstName;
     @FXML
-    private MFXButton btnSave;
+    private MFXButton saveBtn;
+
+
 
     private AdminModel adminModel;
     private EventCoordinator editableCoordinator;
     private boolean isEditMode = false;
 
     private Stage stage;
+
+    private boolean isUpdateMode;
+    private EventCoordinator coordinatorToUpdate;
 
     public CreateUserController() throws IOException {
         adminModel = new AdminModel();

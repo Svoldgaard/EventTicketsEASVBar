@@ -14,6 +14,7 @@ public class AdminModel {
     private final ObservableList<EventCoordinator> tblCoordinator;
     private final AdminManager adminManager;
 
+
     public AdminModel() throws IOException {
         adminManager = new AdminManager();
         tblCoordinator = FXCollections.observableArrayList();
@@ -29,6 +30,10 @@ public class AdminModel {
     public void addCoordinator(EventCoordinator coordinator) throws Exception {
         EventCoordinator newCoordinator = adminManager.createEventCoordinator(coordinator);
         tblCoordinator.add(newCoordinator);
+
+
+
+
     }
 
     public void updateCoordinator(EventCoordinator coordinator) throws Exception {
