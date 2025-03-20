@@ -36,6 +36,10 @@ public class User {
         this.userTypeID = userTypeID;
     }
 
+    public User(String name) {
+        this.firstname = name;
+    }
+
     public int getUserTypeID() {
         return userTypeID;
     }
