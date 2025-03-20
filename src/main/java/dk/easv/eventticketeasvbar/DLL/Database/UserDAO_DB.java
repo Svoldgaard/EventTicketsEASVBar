@@ -95,8 +95,8 @@ public class UserDAO_DB implements IAdmin {
 
     @Override
     public User updateUser(User user) throws Exception {
-        String sql = "UPDATE [User] SET firstName = ?, lastName = ?, email = ?, phoneNumber = ?, amountOfEvents = ?, " +
-                "userTypeID = (SELECT id FROM userType WHERE userType = ?) WHERE id = ?";
+        String sql = "UPDATE [User] SET firstName = ?, lastName = ?, email = ?, phoneNumber = ?, amountOfEvents = ? " +
+                " WHERE id = ?";
 
 
 
@@ -116,8 +116,8 @@ public class UserDAO_DB implements IAdmin {
             stmt.setString(3, user.getEmail());
             stmt.setInt(4, user.getPhoneNumber());
             stmt.setInt(5, user.getAmountOfEvents());
-            stmt.setString(6, user.getUserType());
-            stmt.setInt(7, user.getId());
+            //stmt.setString(6, user.getUserType());
+            stmt.setInt(6, user.getId());
 
             System.out.println("Debug id: " + user.getId());
             int affectedRows = stmt.executeUpdate();
@@ -149,7 +149,7 @@ public class UserDAO_DB implements IAdmin {
 
     @Override
     public void deleteUser(User user) throws Exception {
-        String sql = "DELETE FROM User WHERE id = ?";
+        String sql = "DELETE FROM [User] WHERE id = ?";
 
         try (Connection conn = dbConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
