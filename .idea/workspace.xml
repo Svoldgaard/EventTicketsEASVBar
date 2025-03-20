@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="424db850-1039-4886-89b3-66312f48d918" name="Changes" comment="WhiteSpace">
+    <list default="true" id="424db850-1039-4886-89b3-66312f48d918" name="Changes" comment="Event and Admin event tables work!!!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/BE/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/BE/Event.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/DLL/Database/EventDAO_DB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/DLL/Database/EventDAO_DB.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -477,7 +476,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742477124573</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="Event and Admin event tables work!!!">
+      <option name="closed" value="true" />
+      <created>1742479700024</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1742479700024</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -498,8 +505,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="Add-Edit-Event.fxml" />
-    <MESSAGE value="All Fxml files done" />
     <MESSAGE value="Overview.fxml" />
     <MESSAGE value="New mfx buttons + color" />
     <MESSAGE value="Red top edge + red column headers" />
@@ -525,6 +530,7 @@
     <MESSAGE value="small change" />
     <MESSAGE value="Refactor" />
     <MESSAGE value="WhiteSpace" />
-    <option name="LAST_COMMIT_MESSAGE" value="WhiteSpace" />
+    <MESSAGE value="Event and Admin event tables work!!!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Event and Admin event tables work!!!" />
   </component>
 </project>

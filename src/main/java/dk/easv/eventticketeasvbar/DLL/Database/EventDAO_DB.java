@@ -17,7 +17,8 @@ public class EventDAO_DB  implements IEvents {
         DBConnection dbConnection = new DBConnection();
         ArrayList<Event> events = new ArrayList<>();
 
-        String sql = "SELECT * FROM Events, ParkingInfo";
+        String sql = "SELECT e.eventName, e.location, e.date, e.time, e.duration, e.price, p.address, p.postalCode, p.city " +
+                "FROM Events e JOIN ParkingInfo p ON e.id = p.id";
 
         try(Connection conn = dbConnection.getConnection();
             Statement stmt = conn.createStatement()){
