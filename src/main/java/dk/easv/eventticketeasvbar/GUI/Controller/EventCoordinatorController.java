@@ -39,7 +39,7 @@ public class EventCoordinatorController implements Initializable {
     @FXML
     private TableColumn<Event, String> eventColumn;
     @FXML
-    private TableColumn adressColumn;
+    private TableColumn addressColumn;
     @FXML
     private TableColumn postalCodeColumn;
     @FXML
@@ -76,7 +76,7 @@ public class EventCoordinatorController implements Initializable {
 
         // Set up TableView columns
         eventColumn.setCellValueFactory(new PropertyValueFactory<>("event"));
-        adressColumn.setCellValueFactory(new PropertyValueFactory<>("adress"));
+        addressColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
         postalCodeColumn.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
         cityColumn.setCellValueFactory(new PropertyValueFactory<>("city"));
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));

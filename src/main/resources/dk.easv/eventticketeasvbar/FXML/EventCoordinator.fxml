@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="566.0" prefWidth="726.0" stylesheets="@/dk.easv/eventticketeasvbar/CSS/demo2.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.eventticketeasvbar.GUI.Controller.EventCoordinatorController">
+<AnchorPane prefHeight="566.0" prefWidth="726.0" stylesheets="@/dk.easv/eventticketeasvbar/CSS/demo2.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.eventticketeasvbar.GUI.Controller.EventCoordinatorController">
    <VBox prefHeight="85.0" prefWidth="726.0">
       <children>
          <HBox prefHeight="37.0" prefWidth="625.0" styleClass="redEdge">
@@ -38,8 +38,8 @@
     <TableView fx:id="tblEvent" layoutX="32.0" layoutY="103.0" prefHeight="360.0" prefWidth="675.0">
       <columns>
           <TableColumn fx:id="eventColumn" prefWidth="75.0" text="Event" />
-          <TableColumn fx:id="adressColumn" prefWidth="75.0" text="Adress" />
-          <TableColumn fx:id="postalCodeColumn" prefWidth="75.0" text="Zipcode" />
+          <TableColumn fx:id="addressColumn" prefWidth="75.0" text="Address" />
+          <TableColumn fx:id="postalCodeColumn" prefWidth="75.0" text="Postal Code" />
           <TableColumn fx:id="cityColumn" prefWidth="75.0" text="City" />
           <TableColumn fx:id="dateColumn" prefWidth="75.0" text="Date" />
           <TableColumn fx:id="timeColumn" prefWidth="75.0" text="Time" />

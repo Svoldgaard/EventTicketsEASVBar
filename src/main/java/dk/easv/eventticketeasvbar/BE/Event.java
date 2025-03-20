@@ -7,8 +7,9 @@ import java.util.List;
 
 public class Event {
 
+    private int id;
     private String event;
-    private String adress;
+    private String address;
     private int postalCode;
     private String city;
     private LocalDate date;
@@ -20,9 +21,10 @@ public class Event {
     private String description;
 
 
-    public Event(String event, String adress, int postalCode, String city, LocalDate date, Float time, Float duration, Float price, List<User> coordinators) {
+    public Event(int id, String event, String address, int postalCode, String city, LocalDate date, Float time, Float duration, Float price, List<User> coordinators) {
+        this.id = id;
         this.event = event;
-        this.adress = adress;
+        this.address = address;
         this.postalCode = postalCode;
         this.city = city;
         this.date = date;
@@ -54,6 +56,18 @@ public class Event {
         this.duration = duration;
         this.price = price;
         this.coordinators = new ArrayList<>();  // Ensure coordinators list is initialized
+    }
+
+    public Event(String eventName, String address, int postalCode, String city, LocalDate date, float time,
+                 float duration, float price) {
+        this.event = eventName;
+        this.address = address;
+        this.postalCode = postalCode;
+        this.city = city;
+        this.date = date;
+        this.time = time;
+        this.duration = duration;
+        this.price = price;
     }
 
     public void addCoordinator(User coordinator) {
@@ -128,12 +142,12 @@ public class Event {
         this.coordinators = coordinators;
     }
 
-    public String getAdress() {
-        return adress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public int getPostalCode() {
@@ -175,5 +189,9 @@ public class Event {
     public String getTitle() {
         String Date = "";
         return Date;
+    }
+
+    public int getId() {
+        return id;
     }
 }
