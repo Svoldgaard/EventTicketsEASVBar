@@ -7,7 +7,10 @@ import java.util.List;
 
 public class Event {
 
+
+    private int id;
     private String event;
+    private String eventName;
     private String location;
     private LocalDate date;
     private Float time;
@@ -16,9 +19,11 @@ public class Event {
     private List<User> coordinators;
     private Image image;
     private String description;
-
-
-
+    private String coordinator;
+    private String picture;
+    private int parkingInfoID;
+    private int ticketID;
+    private String category;
 
     public Event(Image image, String event, String description) {
         this.image = image;
@@ -36,14 +41,31 @@ public class Event {
         this.coordinators = new ArrayList<>();  // Initialize the list
     }
 
-    public Event(String event, String location, LocalDate date, Float time, Float duration, Float price) {
-        this.event = event;
+    public Event(String eventName, String location, LocalDate date, Float time, Float duration, Float price) {
+        this.event = eventName;
         this.location = location;
         this.date = date;
         this.time = time;
         this.duration = duration;
         this.price = price;
         this.coordinators = new ArrayList<>();  // Ensure coordinators list is initialized
+    }
+
+    public Event(int id, String eventName, String location, LocalDate date, float time, float duration, float price,
+                 String coordinator, String picture, String description, int parkingInfoID, int ticketID, String category) {
+        this.id = id;
+        this.eventName = eventName;
+        this.location = location;
+        this.date = date;
+        this.time = time;
+        this.duration = duration;
+        this.price = price;
+        this.coordinator = coordinator;
+        this.picture = picture;
+        this.description = description;
+        this.parkingInfoID = parkingInfoID;
+        this.ticketID = ticketID;
+        this.category = category;
     }
 
     public void addCoordinator(User coordinator) {
@@ -134,6 +156,39 @@ public class Event {
         this.description = description;
     }
 
+    public int getId() {return id;}
+
+    public void setId(int id) { this.id = id;}
+
+    public String getEventName() {return eventName;}
+
+    public void setEventName(String eventName) {this.eventName = eventName;}
+
+    public String getCoordinator() {return coordinator;}
+
+    public void setCoordinator(String coordinator) {this.coordinator = coordinator;}
+
+    public String getPicture() {return picture;}
+
+    public void setPicture(String picture) {this.picture = picture;}
+
+    public int getParkingInfoID() {return parkingInfoID;}
+
+    public void setParkingInfoID(int parkingInfoID) {this.parkingInfoID = parkingInfoID;}
+
+    public int getTicketID() {return ticketID;}
+
+    public void setTicketID(int ticketID) {this.ticketID = ticketID;}
+
+    public String getCategory() {return category;}
+
+    public void setCategory(String category) {this.category = category;}
+
+    public String getTitle() {
+        String Date = "";
+        return Date;
+    }
+
     @Override
     public String toString() {
         return "Event{" +
@@ -146,9 +201,4 @@ public class Event {
                 '}';
     }
 
-
-    public String getTitle() {
-        String Date = "";
-        return Date;
-    }
 }
