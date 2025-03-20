@@ -1,34 +1,34 @@
 package dk.easv.eventticketeasvbar.GUI.Model;
 
 import dk.easv.eventticketeasvbar.BE.Event;
-import dk.easv.eventticketeasvbar.BE.EventCoordinator;
-import dk.easv.eventticketeasvbar.BLL.Manager.AdminManager;
+import dk.easv.eventticketeasvbar.BE.User;
+import dk.easv.eventticketeasvbar.BLL.Manager.UserManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.io.IOException;
 import java.util.List;
 
-public class AdminModel {
+public class UserModel {
     private final ObservableList<Event> tblEvent;
-    private final ObservableList<EventCoordinator> tblCoordinator;
-    private final AdminManager adminManager;
+    private final ObservableList<User> tblCoordinator;
+    private final UserManager adminManager;
 
 
-    public AdminModel() throws IOException {
-        adminManager = new AdminManager();
+    public UserModel() throws IOException {
+        adminManager = new UserManager();
         tblCoordinator = FXCollections.observableArrayList();
         tblEvent = FXCollections.observableArrayList();
     }
 
     public void loadCoordinators() throws Exception {
-        List<EventCoordinator> allCoordinators = adminManager.getAllEventCoordinators();
+        List<User> allCoordinators = adminManager.getAllEventCoordinators();
         tblCoordinator.clear();
         tblCoordinator.addAll(allCoordinators);
     }
 
-    public void addCoordinator(EventCoordinator coordinator) throws Exception {
-        EventCoordinator newCoordinator = adminManager.createEventCoordinator(coordinator);
+    public void addCoordinator(User coordinator) throws Exception {
+        User newCoordinator = adminManager.createEventCoordinator(coordinator);
         tblCoordinator.add(newCoordinator);
 
 
@@ -36,8 +36,8 @@ public class AdminModel {
 
     }
 
-    public void updateCoordinator(EventCoordinator coordinator) throws Exception {
-        EventCoordinator updatedCoordinator = adminManager.updateEventCoordinator(coordinator);
+    public void updateCoordinator(User coordinator) throws Exception {
+        User updatedCoordinator = adminManager.updateEventCoordinator(coordinator);
 
         int index = tblCoordinator.indexOf(coordinator);
         if (index != -1) {
@@ -48,12 +48,12 @@ public class AdminModel {
     }
 
 
-    public void removeCoordinator(EventCoordinator coordinator) throws Exception {
+    public void removeCoordinator(User coordinator) throws Exception {
         adminManager.deleteEventCoordinator(coordinator);
         tblCoordinator.remove(coordinator);
     }
 
-    public ObservableList<EventCoordinator> getCoordinators() {
+    public ObservableList<User> getCoordinators() {
         return tblCoordinator;
     }
 

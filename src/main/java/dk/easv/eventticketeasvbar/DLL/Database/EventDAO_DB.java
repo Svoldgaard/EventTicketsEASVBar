@@ -85,6 +85,7 @@ public class EventDAO_DB  implements IEvents {
             stmt.setFloat(4, event.getTime());
             stmt.setFloat(5, event.getDuration());
             stmt.setFloat(6, event.getPrice());
+            stmt.setString(7, event.getEvent());
 
             stmt.executeUpdate();
         } catch (Exception ex) {

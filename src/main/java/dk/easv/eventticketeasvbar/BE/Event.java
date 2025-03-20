@@ -3,7 +3,6 @@ package dk.easv.eventticketeasvbar.BE;
 import javafx.scene.image.Image;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Event {
@@ -14,7 +13,7 @@ public class Event {
     private Float time;
     private Float duration;
     private Float price;
-    private List<EventCoordinator> coordinators;
+    private List<User> coordinators;
     private Image image;
     private String description;
 
@@ -27,7 +26,7 @@ public class Event {
         this.description = description;
     }
 
-    public Event(String event, String location, LocalDate date, Float time, Float duration, Float price, List<EventCoordinator> coordinators) {
+    public Event(String event, String location, LocalDate date, Float time, Float duration, Float price, List<User> coordinators) {
         this.event = event;
         this.location = location;
         this.date = date;
@@ -47,20 +46,20 @@ public class Event {
         this.coordinators = new ArrayList<>();  // Ensure coordinators list is initialized
     }
 
-    public void addCoordinator(EventCoordinator coordinator) {
+    public void addCoordinator(User coordinator) {
         if (!coordinators.contains(coordinator)) {
             coordinators.add(coordinator);
             coordinator.setAmountOfEvents(coordinator.getAmountOfEvents() + 1);
         }
     }
 
-    public List<EventCoordinator> getCoordinators() {
+    public List<User> getCoordinators() {
         return coordinators;
     }
 
     public String getCoordinatorsAsString() {
         if (coordinators.isEmpty()) return "None";
-        return String.join(", ", coordinators.stream().map(EventCoordinator::getFirstname).toList());
+        return String.join(", ", coordinators.stream().map(User::getFirstname).toList());
     }
 
     public String getEvent() {
@@ -123,7 +122,7 @@ public class Event {
         this.price = price;
     }
 
-    public void setCoordinators(List<EventCoordinator> coordinators) {
+    public void setCoordinators(List<User> coordinators) {
         this.coordinators = coordinators;
     }
 

@@ -2,8 +2,8 @@ package dk.easv.eventticketeasvbar.GUI.Controller;
 
 // Imports
 import dk.easv.eventticketeasvbar.BE.Event;
-import dk.easv.eventticketeasvbar.BE.EventCoordinator;
-import dk.easv.eventticketeasvbar.GUI.Model.AdminModel;
+import dk.easv.eventticketeasvbar.BE.User;
+import dk.easv.eventticketeasvbar.GUI.Model.UserModel;
 import dk.easv.eventticketeasvbar.GUI.Model.EventModel;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;
@@ -14,7 +14,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -22,19 +21,19 @@ public class AssignEditController implements Initializable {
     @FXML
     private Label lblEventname;
     @FXML
-    private ListView<EventCoordinator> lstCoordinator;
+    private ListView<User> lstCoordinator;
     @FXML
     private MFXButton btnSave;
     @FXML
     private MFXButton btnCancel;
 
-    private AdminModel adminModel;
+    private UserModel adminModel;
     private EventModel eventModel;
     private Event event; // Store selected event
     private Stage stage;
 
     public AssignEditController() throws Exception {
-        adminModel = new AdminModel();
+        adminModel = new UserModel();
         eventModel = new EventModel();
     }
 
@@ -57,7 +56,7 @@ public class AssignEditController implements Initializable {
 
     @FXML
     private void btnSave(ActionEvent actionEvent) {
-        EventCoordinator selectedCoordinator = lstCoordinator.getSelectionModel().getSelectedItem();
+        User selectedCoordinator = lstCoordinator.getSelectionModel().getSelectedItem();
         if (selectedCoordinator == null) {
             Alert alert = new Alert(Alert.AlertType.WARNING, "Please select a coordinator.", javafx.scene.control.ButtonType.OK);
             alert.showAndWait();

@@ -1,6 +1,6 @@
 package dk.easv.eventticketeasvbar.BLL.Manager;
 // Project Imports
-import dk.easv.eventticketeasvbar.BE.EventCoordinator;
+import dk.easv.eventticketeasvbar.BE.User;
 import dk.easv.eventticketeasvbar.BE.Login;
 import dk.easv.eventticketeasvbar.DLL.Database.LoginDAO_DB;
 import dk.easv.eventticketeasvbar.DLL.DBConnection.DBConnection;
@@ -26,7 +26,7 @@ public class LoginManager {
     }
 
 
-    public void createLogin(EventCoordinator coordinator) throws Exception {
+    public void createLogin(User coordinator) throws Exception {
         String firstname = coordinator.getFirstname().replaceAll("\\s", "").toLowerCase();
         String username = (firstname.length() >= 5) ? firstname.substring(0, 5) : firstname;
         String password = username; // Default password same as username

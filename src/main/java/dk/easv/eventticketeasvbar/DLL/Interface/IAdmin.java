@@ -1,19 +1,18 @@
 package dk.easv.eventticketeasvbar.DLL.Interface;
 
-import dk.easv.eventticketeasvbar.BE.Event;
-import dk.easv.eventticketeasvbar.BE.EventCoordinator;
+import dk.easv.eventticketeasvbar.BE.User;
 
 import java.util.List;
 
 public interface IAdmin {
 
-    List<EventCoordinator> getAllEventCoordinators() throws Exception;
+    List<User> getAllEventCoordinators() throws Exception;
 
-    EventCoordinator createEventCoordinator(EventCoordinator eventCoordinator) throws Exception;
+    User createEventCoordinator(User eventCoordinator) throws Exception;
 
-    EventCoordinator updateEventCoordinator(EventCoordinator eventCoordinator) throws Exception;
+    User updateEventCoordinator(User eventCoordinator) throws Exception;
 
-    void deleteEventCoordinator(EventCoordinator eventCoordinator) throws Exception;
+    void deleteEventCoordinator(User eventCoordinator) throws Exception;
 
 
 }

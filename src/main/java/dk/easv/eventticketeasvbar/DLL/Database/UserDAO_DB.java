@@ -1,7 +1,6 @@
 package dk.easv.eventticketeasvbar.DLL.Database;
 
-import dk.easv.eventticketeasvbar.BE.Event;
-import dk.easv.eventticketeasvbar.BE.EventCoordinator;
+import dk.easv.eventticketeasvbar.BE.User;
 import dk.easv.eventticketeasvbar.DLL.DBConnection.DBConnection;
 import dk.easv.eventticketeasvbar.DLL.Interface.IAdmin;
 
@@ -10,17 +9,17 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdminDAO_DB implements IAdmin {
+public class UserDAO_DB implements IAdmin {
 
     private DBConnection dbConnection;
 
-    public AdminDAO_DB() throws IOException {
+    public UserDAO_DB() throws IOException {
         this.dbConnection = new DBConnection();
     }
 
     @Override
-    public List<EventCoordinator> getAllEventCoordinators() throws Exception {
-        List<EventCoordinator> coordinators = new ArrayList<>();
+    public List<User> getAllEventCoordinators() throws Exception {
+        List<User> coordinators = new ArrayList<>();
         String sql = "SELECT * FROM EventCoordinator";
 
         try (Connection conn = dbConnection.getConnection();
@@ -35,7 +34,7 @@ public class AdminDAO_DB implements IAdmin {
                 int phoneNumber = rs.getInt("phoneNumber");
                 int amountOfEvents = rs.getInt("amountOfEvents");
 
-                EventCoordinator coordinator = new EventCoordinator(id, firstname, lastname, email, phoneNumber, amountOfEvents);
+                User coordinator = new User(id, firstname, lastname, email, phoneNumber, amountOfEvents);
                 coordinators.add(coordinator);
             }
         } catch (Exception ex) {
@@ -46,8 +45,8 @@ public class AdminDAO_DB implements IAdmin {
     }
 
     @Override
-    public EventCoordinator createEventCoordinator(EventCoordinator eventCoordinator) throws Exception {
-        String sql = "INSERT INTO EventCoordinator (firstName, lastName, email, phoneNumber, amountOfEvents) VALUES (?, ?, ?, ?, ?)";
+    public User createEventCoordinator(User eventCoordinator) throws Exception {
+        String sql = "INSERT INTO EventCoordinator (id, firstName, lastName, email, phoneNumber, amountOfEvents) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = dbConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -58,7 +57,6 @@ public class AdminDAO_DB implements IAdmin {
             stmt.setInt(4, eventCoordinator.getPhoneNumber());
             stmt.setInt(5, eventCoordinator.getAmountOfEvents());
 
-
             int affectedRows = stmt.executeUpdate();
             if (affectedRows == 0) {
                 throw new SQLException("Creating event coordinator failed, no rows affected.");
@@ -68,7 +66,7 @@ public class AdminDAO_DB implements IAdmin {
                 if (generatedKeys.next()) {
                     int id = generatedKeys.getInt(1);
 
-                    return new EventCoordinator(
+                    return new User(
                             id,
                             eventCoordinator.getFirstname(),
                             eventCoordinator.getLastname(),
@@ -87,7 +85,7 @@ public class AdminDAO_DB implements IAdmin {
     }
 
     @Override
-    public EventCoordinator updateEventCoordinator(EventCoordinator eventCoordinator) throws Exception {
+    public User updateEventCoordinator(User eventCoordinator) throws Exception {
         String sql = "UPDATE EventCoordinator SET firstName = ?, lastName = ?, email = ?, phoneNumber = ?, amountOfEvents = ? WHERE id = ?";
 
         try (Connection conn = dbConnection.getConnection();
@@ -137,7 +135,7 @@ public class AdminDAO_DB implements IAdmin {
 
 
     @Override
-    public void deleteEventCoordinator(EventCoordinator eventCoordinator) throws Exception {
+    public void deleteEventCoordinator(User eventCoordinator) throws Exception {
         String sql = "DELETE FROM EventCoordinator WHERE email = ?";
 
         try (Connection conn = dbConnection.getConnection();
