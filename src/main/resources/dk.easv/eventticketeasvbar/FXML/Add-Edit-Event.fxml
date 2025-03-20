@@ -13,7 +13,7 @@
    <Label layoutX="28.0" layoutY="75.0" text="Due" />
    <Label layoutX="28.0" layoutY="145.0" text="Duration" />
    <Label layoutX="28.0" layoutY="180.0" text="Location" />
-   <Label layoutX="28.0" layoutY="215.0" text="Price" />
+   <Label layoutX="28.0" layoutY="215.0" text="Address" />
    <TextField fx:id="txtName" layoutX="112.0" layoutY="36.0" />
    <TextField fx:id="txtDuration" layoutX="112.0" layoutY="141.0" />
    <TextField fx:id="txtSetLocation" layoutX="112.0" layoutY="176.0" />
@@ -26,4 +26,10 @@
    <MFXButton layoutX="368.0" layoutY="230.0" onAction="#btnAddPicture" text="Add Picture" />
    <MFXButton layoutX="368.0" layoutY="361.0" onAction="#btnSaveEvent" text="Save Event" />
    <MFXButton layoutX="532.0" layoutY="361.0" onAction="#btnCancel" text="Cancel" />
+   <Label layoutX="28.0" layoutY="250.0" text="Postal Code" />
+   <TextField fx:id="txtPrice1" layoutX="112.0" layoutY="246.0" />
+   <Label layoutX="28.0" layoutY="285.0" text="City" />
+   <TextField fx:id="txtPrice2" layoutX="112.0" layoutY="281.0" />
+   <Label layoutX="28.0" layoutY="320.0" text="Price" />
+   <TextField fx:id="txtPrice3" layoutX="112.0" layoutY="316.0" />
 </AnchorPane>

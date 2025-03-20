@@ -7,8 +7,9 @@ public class User {
     private String email;
     private int phoneNumber;
     private int amountOfEvents;
+    private String userType;
 
-    public User(int id, String firstname, String lastname, String email, int phoneNumber, int amountOfEvents) {
+    public User(int id, String firstname, String lastname, String email, int phoneNumber, int amountOfEvents, String userType) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -23,6 +24,13 @@ public class User {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.amountOfEvents = amountOfEvents;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 
     public int getId() {
