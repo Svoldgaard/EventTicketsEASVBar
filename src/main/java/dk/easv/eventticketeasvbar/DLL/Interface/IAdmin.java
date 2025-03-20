@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface IAdmin {
 
-    List<User> getAllEventCoordinators() throws Exception;
+    List<User> getAllUsers() throws Exception;
 
-    User createEventCoordinator(User eventCoordinator) throws Exception;
+    User createUser(User user) throws Exception;
 
-    User updateEventCoordinator(User eventCoordinator) throws Exception;
+    User updateUser(User user) throws Exception;
 
-    void deleteEventCoordinator(User eventCoordinator) throws Exception;
+    void deleteUser(User user) throws Exception;
 
 
 }

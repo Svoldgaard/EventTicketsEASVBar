@@ -12,6 +12,8 @@ public class Event {
     private String address;
     private int postalCode;
     private String city;
+    private String eventName;
+
     private LocalDate date;
     private Float time;
     private Float duration;

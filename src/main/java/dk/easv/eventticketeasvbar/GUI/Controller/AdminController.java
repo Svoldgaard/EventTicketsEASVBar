@@ -73,7 +73,7 @@ public class AdminController implements Initializable {
         eventModel = new EventModel();
     }
 
-    public TextField txtEventSearch;
+    //public TextField txtEventSearch;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -103,14 +103,14 @@ public class AdminController implements Initializable {
         colCoordinator.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getCoordinatorsAsString()));
 
-        txtEventSearch.textProperty().addListener((observable, oldValue, newValue) -> {
+        /*txtEventSearch.textProperty().addListener((observable, oldValue, newValue) -> {
             try{
                 eventModel.searchEvent(newValue);
             }catch (Exception e){
                 displayError(e);
                 e.printStackTrace();
             }
-        });
+        });*/
 
         tblCoordinator.setItems(adminModel.getCoordinators());
         tblEvent.setItems(eventModel.getTblEvent());

@@ -18,9 +18,11 @@ public class UserDAO_DB implements IAdmin {
     }
 
     @Override
-    public List<User> getAllEventCoordinators() throws Exception {
-        List<User> coordinators = new ArrayList<>();
-        String sql = "SELECT * FROM EventCoordinator";
+    public List<User> getAllUsers() throws Exception {
+        List<User> users = new ArrayList<>();
+        String sql = "Select u.id, u.firstName, u.lastName, u.email, u.phoneNumber, u.amountOfEvents, u.userTypeID, t.userType " +
+                     "from [User] u " +
+                     "JOIN userType t on u.userTypeID = t.id";
 
         try (Connection conn = dbConnection.getConnection();
              Statement stmt = conn.createStatement();
@@ -33,29 +35,33 @@ public class UserDAO_DB implements IAdmin {
                 String email = rs.getString("email");
                 int phoneNumber = rs.getInt("phoneNumber");
                 int amountOfEvents = rs.getInt("amountOfEvents");
+                String userType = rs.getString("userType");
 
-                User coordinator = new User(id, firstname, lastname, email, phoneNumber, amountOfEvents);
-                coordinators.add(coordinator);
+                User user = new User(id, firstname, lastname, email, phoneNumber, amountOfEvents, userType);
+                users.add(user);
             }
         } catch (Exception ex) {
             ex.printStackTrace();
-            throw new Exception("Error fetching event coordinators from database.");
+            throw new Exception("Error fetching event users from database.");
         }
-        return coordinators;
+        return users;
     }
 
     @Override
-    public User createEventCoordinator(User eventCoordinator) throws Exception {
-        String sql = "INSERT INTO EventCoordinator (id, firstName, lastName, email, phoneNumber, amountOfEvents) VALUES (?, ?, ?, ?, ?, ?)";
+    public User createUser(User user) throws Exception {
+        String sql = "INSERT INTO [User] (firstName, lastName, email, phoneNumber, amountOfEvents, userTypeID) " +
+                "VALUES (?, ?, ?, ?, ?, 2)";
+
 
         try (Connection conn = dbConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
-            stmt.setString(1, eventCoordinator.getFirstname());
-            stmt.setString(2, eventCoordinator.getLastname());
-            stmt.setString(3, eventCoordinator.getEmail());
-            stmt.setInt(4, eventCoordinator.getPhoneNumber());
-            stmt.setInt(5, eventCoordinator.getAmountOfEvents());
+            stmt.setString(1, user.getFirstname());
+            stmt.setString(2, user.getLastname());
+            stmt.setString(3, user.getEmail());
+            stmt.setInt(4, user.getPhoneNumber());
+            stmt.setInt(5, user.getAmountOfEvents());
+            //stmt.setInt(6, user.getUserTypeID());
 
             int affectedRows = stmt.executeUpdate();
             if (affectedRows == 0) {
@@ -68,11 +74,14 @@ public class UserDAO_DB implements IAdmin {
 
                     return new User(
                             id,
-                            eventCoordinator.getFirstname(),
-                            eventCoordinator.getLastname(),
-                            eventCoordinator.getEmail(),
-                            eventCoordinator.getPhoneNumber(),
-                            eventCoordinator.getAmountOfEvents()
+                            user.getFirstname(),
+                            user.getLastname(),
+                            user.getEmail(),
+                            user.getPhoneNumber(),
+                            user.getAmountOfEvents(),
+                            2
+                            //user.getUserTypeID()
+
                     );
                 } else {
                     throw new SQLException("Creating event coordinator failed, no ID obtained.");
@@ -85,34 +94,37 @@ public class UserDAO_DB implements IAdmin {
     }
 
     @Override
-    public User updateEventCoordinator(User eventCoordinator) throws Exception {
-        String sql = "UPDATE EventCoordinator SET firstName = ?, lastName = ?, email = ?, phoneNumber = ?, amountOfEvents = ? WHERE id = ?";
+    public User updateUser(User user) throws Exception {
+        String sql = "UPDATE [User] SET firstName = ?, lastName = ?, email = ?, phoneNumber = ?, amountOfEvents = ?, " +
+                "userTypeID = 2 WHERE id = ?";
+
 
         try (Connection conn = dbConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             // Fetch current amountOfEvents
-            /*int currentEvents = getCurrentAmountOfEvents(eventCoordinator.getEmail(), conn);
+            /*int currentEvents = getCurrentAmountOfEvents(user.getEmail(), conn);
 
             // Prevent unnecessary updates
-            if (currentEvents == eventCoordinator.getAmountOfEvents()) {
-                return eventCoordinator; // No update needed
+            if (currentEvents == user.getAmountOfEvents()) {
+                return user; // No update needed
             }*/
 
-            stmt.setString(1, eventCoordinator.getFirstname());
-            stmt.setString(2, eventCoordinator.getLastname());
-            stmt.setString(3, eventCoordinator.getEmail());
-            stmt.setInt(4, eventCoordinator.getPhoneNumber());
-            stmt.setInt(5, eventCoordinator.getAmountOfEvents());
-            stmt.setInt(6, eventCoordinator.getId());
+            stmt.setString(1, user.getFirstname());
+            stmt.setString(2, user.getLastname());
+            stmt.setString(3, user.getEmail());
+            stmt.setInt(4, user.getPhoneNumber());
+            stmt.setInt(5, user.getAmountOfEvents());
+            stmt.setString(6, user.getUserType());
+            stmt.setInt(7, user.getId());
 
-            System.out.println("Debug id: " + eventCoordinator.getId());
+            System.out.println("Debug id: " + user.getId());
             int affectedRows = stmt.executeUpdate();
             if (affectedRows == 0) {
                 throw new SQLException("Updating event coordinator failed, no rows affected.");
             }
 
-            return eventCoordinator;
+            return user;
         } catch (SQLException ex) {
             ex.printStackTrace();
             throw new Exception("Error updating event coordinator in database.");
@@ -135,13 +147,13 @@ public class UserDAO_DB implements IAdmin {
 
 
     @Override
-    public void deleteEventCoordinator(User eventCoordinator) throws Exception {
-        String sql = "DELETE FROM EventCoordinator WHERE email = ?";
+    public void deleteUser(User user) throws Exception {
+        String sql = "DELETE FROM User WHERE id = ?";
 
         try (Connection conn = dbConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setString(1, eventCoordinator.getEmail());
+            stmt.setInt(1, user.getId());
 
             int affectedRows = stmt.executeUpdate();
             if (affectedRows == 0) {
