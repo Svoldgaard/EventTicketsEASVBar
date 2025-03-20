@@ -18,7 +18,7 @@ public class EventCoodinatorManager {
     }
 
     public List<User> getAllEvents() throws Exception{
-        return adminDAO.getAllEventCoordinators();
+        return adminDAO.getAllUsers();
     }
 
     public List<User> searchEvents(String query) throws Exception{

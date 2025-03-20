@@ -14,19 +14,19 @@ public class UserManager {
         adminDAO_DB = new UserDAO_DB();
     }
 
-    public List<User> getAllEventCoordinators() throws Exception {
-        return adminDAO_DB.getAllEventCoordinators();
+    public List<User> getAllUsers() throws Exception {
+        return adminDAO_DB.getAllUsers();
     }
 
-    public User createEventCoordinator(User eventCoordinator) throws Exception {
-        return adminDAO_DB.createEventCoordinator(eventCoordinator);
+    public User createUser(User user) throws Exception {
+        return adminDAO_DB.createUser(user);
     }
 
-    public User updateEventCoordinator(User eventCoordinator) throws Exception {
-        return adminDAO_DB.updateEventCoordinator(eventCoordinator);
+    public User updateUser(User user) throws Exception {
+        return adminDAO_DB.updateUser(user);
     }
 
-    public void deleteEventCoordinator(User eventCoordinator) throws Exception {
-        adminDAO_DB.deleteEventCoordinator(eventCoordinator);
+    public void deleteUser(User user) throws Exception {
+        adminDAO_DB.deleteUser(user);
     }
 }

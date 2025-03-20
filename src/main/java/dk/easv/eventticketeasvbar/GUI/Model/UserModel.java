@@ -22,13 +22,13 @@ public class UserModel {
     }
 
     public void loadCoordinators() throws Exception {
-        List<User> allCoordinators = adminManager.getAllEventCoordinators();
+        List<User> allCoordinators = adminManager.getAllUsers();
         tblCoordinator.clear();
         tblCoordinator.addAll(allCoordinators);
     }
 
-    public void addCoordinator(User coordinator) throws Exception {
-        User newCoordinator = adminManager.createEventCoordinator(coordinator);
+    public void addCoordinator(User user) throws Exception {
+        User newCoordinator = adminManager.createUser(user);
         tblCoordinator.add(newCoordinator);
 
 
@@ -36,21 +36,21 @@ public class UserModel {
 
     }
 
-    public void updateCoordinator(User coordinator) throws Exception {
-        User updatedCoordinator = adminManager.updateEventCoordinator(coordinator);
+    public void updateCoordinator(User user) throws Exception {
+        User updatedCoordinator = adminManager.updateUser(user);
 
-        int index = tblCoordinator.indexOf(coordinator);
+        int index = tblCoordinator.indexOf(user);
         if (index != -1) {
             tblCoordinator.set(index, updatedCoordinator);
         }
 
-        adminManager.updateEventCoordinator(coordinator);
+        adminManager.updateUser(user);
     }
 
 
-    public void removeCoordinator(User coordinator) throws Exception {
-        adminManager.deleteEventCoordinator(coordinator);
-        tblCoordinator.remove(coordinator);
+    public void removeCoordinator(User user) throws Exception {
+        adminManager.deleteUser(user);
+        tblCoordinator.remove(user);
     }
 
     public ObservableList<User> getCoordinators() {

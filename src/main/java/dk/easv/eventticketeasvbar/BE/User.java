@@ -8,6 +8,7 @@ public class User {
     private int phoneNumber;
     private int amountOfEvents;
     private String userType;
+    private int userTypeID;
 
     public User(int id, String firstname, String lastname, String email, int phoneNumber, int amountOfEvents, String userType) {
         this.id = id;
@@ -24,6 +25,23 @@ public class User {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.amountOfEvents = amountOfEvents;
+    }
+
+    public User(int id, String firstname, String lastname, String email, int phoneNumber, int amountOfEvents, int userTypeID) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.amountOfEvents = amountOfEvents;
+        this.userTypeID = userTypeID;
+    }
+
+    public int getUserTypeID() {
+        return userTypeID;
+    }
+
+    public void setUserTypeID(int userTypeID) {
+        this.userTypeID = userTypeID;
     }
 
     public String getUserType() {
