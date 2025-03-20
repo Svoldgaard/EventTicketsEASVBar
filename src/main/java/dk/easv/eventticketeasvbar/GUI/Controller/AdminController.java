@@ -139,7 +139,22 @@ public class AdminController implements Initializable {
     }
 
     @FXML
-    private void btnRemoveEvent(ActionEvent actionEvent) {
+    private void btnRemoveEvent(ActionEvent actionEvent) throws Exception {
+        Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
+
+        if (selectedEvent != null) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Delete Event");
+            alert.setHeaderText("Are you sure you want to delete this event?");
+            alert.setContentText(null);
+
+            ButtonType result = alert.showAndWait().get();
+
+            if (result == ButtonType.OK) {
+                eventModel.deleteEvent(selectedEvent);
+                tblEvent.getItems().remove(selectedEvent);
+            }
+        }
     }
 
     @FXML
