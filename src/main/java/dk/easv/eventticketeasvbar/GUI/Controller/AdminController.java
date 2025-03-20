@@ -286,7 +286,7 @@ public class AdminController implements Initializable {
                 if (!row.isEmpty()) {
                     Dragboard db = row.startDragAndDrop(TransferMode.MOVE);
                     ClipboardContent content = new ClipboardContent();
-                    content.putString(row.getItem().getEmail()); // Unique identifier
+                    content.putString(row.getItem().getFirstname());  // Store user info
                     db.setContent(content);
                     event.consume();
                 }
@@ -294,60 +294,64 @@ public class AdminController implements Initializable {
             return row;
         });
 
-        tblEvent.setOnDragOver(event -> {
-            if (event.getGestureSource() != tblEvent && event.getDragboard().hasString()) {
-                event.acceptTransferModes(TransferMode.MOVE);
-            }
-            event.consume();
-        });
+        tblEvent.setRowFactory(tv -> {
+            TableRow<Event> row = new TableRow<>();
+            row.setOnDragOver(event -> {
+                if (event.getGestureSource() != row && event.getDragboard().hasString()) {
+                    event.acceptTransferModes(TransferMode.MOVE);
+                }
+                event.consume();
+            });
 
-        tblEvent.setOnDragDropped(event -> {
-            Dragboard db = event.getDragboard();
-            boolean success = false;
+            row.setOnDragDropped(event -> {
+                Dragboard db = event.getDragboard();
+                boolean success = false;
+                if (db.hasString()) {
+                    User selectedCoordinator = findUserByName(db.getString());  // Fetch user object
+                    Event selectedEvent = row.getItem();
 
-            if (db.hasString()) {
-                String coordinatorEmail = db.getString();
-                Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
+                    if (selectedCoordinator != null && selectedEvent != null) {
+                        selectedEvent.addCoordinator(selectedCoordinator);
 
-                if (selectedEvent != null) {
-                    User coordinator = findCoordinatorByEmail(coordinatorEmail);
-                    if (coordinator != null) {
-
-                        if (!selectedEvent.getCoordinators().contains(coordinator)) {
-                            selectedEvent.addCoordinator(coordinator);
-
-                            // 🛑 Only increase if the coordinator is not already working on this event
-                            coordinator.setAmountOfEvents(coordinator.getAmountOfEvents() + 1);
-
-                            try {
-                                adminModel.updateCoordinator(coordinator);
-                                eventModel.updateEvent(selectedEvent);
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-
-                            tblEvent.refresh();
-                            tblCoordinator.refresh();
+                        try {
+                            eventModel.updateEvent(selectedEvent); // Update DB
+                            refreshEvents();  // Refresh event list after update
+                        } catch (Exception e) {
+                            displayError(e);
                         }
+
+                        success = true;
                     }
                 }
-            }
-            event.setDropCompleted(success);
-            event.consume();
-        });
+                event.setDropCompleted(success);
+                event.consume();
+            });
 
+
+            return row;
+        });
     }
 
 
-
-    private User findCoordinatorByEmail(String email) {
-        for (User ec : tblCoordinator.getItems()) {
-            if (ec.getEmail().equals(email)) {
-                return ec;
+    private User findUserByName(String firstname) {
+        for (User user : adminModel.getCoordinators()) {
+            if (user.getFirstname().equals(firstname)) {
+                return user;
             }
         }
         return null;
     }
+
+    private void refreshEvents() {
+        try {
+            eventModel.refreshEvents(); // Reload events from DB
+            tblEvent.refresh();
+        } catch (Exception e) {
+            displayError(e);
+        }
+    }
+
+
 
     public void setUsername(String username) {
         lblUsername.setText(username);

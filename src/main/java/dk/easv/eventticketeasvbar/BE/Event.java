@@ -88,6 +88,32 @@ public class Event {
         this.coordinators = new ArrayList<>();
     }
 
+    public Event(int id, String eventName, String location, String address, int postalCode, String city, LocalDate date, float time, float duration, float price, List<User> coordinators) {
+        this.id = id;
+        this.event = eventName;
+        this.location = location;
+        this.address = address;
+        this.postalCode = postalCode;
+        this.city = city;
+        this.date = date;
+        this.time = time;
+        this.duration = duration;
+        this.price = price;
+        this.coordinators = new ArrayList<>();
+
+    }
+
+    public Event(int id, String eventName, String location, LocalDate date, float time, float duration, float price, List<User> coordinators) {
+        this.id = id;
+        this.event = eventName;
+        this.location = location;
+        this.date = date;
+        this.time = time;
+        this.duration = duration;
+        this.price = price;
+        this.coordinators = coordinators;
+    }
+
     public void addCoordinator(User coordinator) {
         if (!coordinators.contains(coordinator)) {
             coordinators.add(coordinator);
