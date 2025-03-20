@@ -2,13 +2,12 @@ package dk.easv.eventticketeasvbar.GUI.Model;
 // Project Imports
 import dk.easv.eventticketeasvbar.BE.Event;
 // Java Imports
-import dk.easv.eventticketeasvbar.BE.EventCoordinator;
+import dk.easv.eventticketeasvbar.BE.User;
 import dk.easv.eventticketeasvbar.BLL.Manager.EventCoodinatorManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.List;
 
 public class EventCoordinatorModel {
@@ -63,7 +62,7 @@ public class EventCoordinatorModel {
     }
 
     public void searchEvent(String query) throws Exception {
-        List<EventCoordinator> searchResults = eventCoodinatorManager.searchEvents(query);
+        List<User> searchResults = eventCoodinatorManager.searchEvents(query);
         tblCoordinator.clear();
         tblCoordinator.addAll((EventCoordinatorModel) searchResults);
     }

@@ -1,16 +1,16 @@
 package dk.easv.eventticketeasvbar.BLL.Utility;
 
 
-import dk.easv.eventticketeasvbar.BE.EventCoordinator;
+import dk.easv.eventticketeasvbar.BE.User;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class EventCoordinatorSearch {
-    public List<EventCoordinator> search(List<EventCoordinator> searchBase, String query){
-        List<EventCoordinator> searchResult = new ArrayList<>();
+    public List<User> search(List<User> searchBase, String query){
+        List<User> searchResult = new ArrayList<>();
 
-        for(EventCoordinator eventCoodinator : searchBase) {
+        for(User eventCoodinator : searchBase) {
             if (compareToFirstName(query, eventCoodinator) || compareToLastName(query, eventCoodinator)) {
                 searchResult.add(eventCoodinator);
             }
@@ -18,11 +18,11 @@ public class EventCoordinatorSearch {
         return searchResult;
     }
 
-    private boolean compareToFirstName(String query, EventCoordinator eventCoodinator) {
+    private boolean compareToFirstName(String query, User eventCoodinator) {
         return eventCoodinator.getFirstname().toLowerCase().contains(query.toLowerCase());
     }
 
-    private boolean compareToLastName(String query, EventCoordinator eventCoodinator) {
+    private boolean compareToLastName(String query, User eventCoodinator) {
         return eventCoodinator.getLastname().toLowerCase().contains(query.toLowerCase());
     }
 }

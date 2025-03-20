@@ -1,14 +1,13 @@
 package dk.easv.eventticketeasvbar.GUI.Controller;
 
 // Other Imports
-import dk.easv.eventticketeasvbar.BE.EventCoordinator;
-import dk.easv.eventticketeasvbar.GUI.Model.AdminModel;
+import dk.easv.eventticketeasvbar.BE.User;
+import dk.easv.eventticketeasvbar.GUI.Model.UserModel;
 import io.github.palexdev.materialfx.controls.MFXButton;
 // Java Imports
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -29,17 +28,17 @@ public class CreateUserController {
 
 
 
-    private AdminModel adminModel;
-    private EventCoordinator editableCoordinator;
+    private UserModel adminModel;
+    private User editableCoordinator;
     private boolean isEditMode = false;
 
     private Stage stage;
 
     private boolean isUpdateMode;
-    private EventCoordinator coordinatorToUpdate;
+    private User coordinatorToUpdate;
 
     public CreateUserController() throws IOException {
-        adminModel = new AdminModel();
+        adminModel = new UserModel();
     }
 
     public void setStage(Stage stage) {
@@ -49,7 +48,7 @@ public class CreateUserController {
     /**
      * Set coordinator for editing mode
      */
-    public void setCoordinator(EventCoordinator coordinator) {
+    public void setCoordinator(User coordinator) {
         if (coordinator != null) {
             this.editableCoordinator = coordinator;
             this.isEditMode = true;
@@ -99,7 +98,7 @@ public class CreateUserController {
 
         } else {
             // Create new coordinator
-            EventCoordinator newCoordinator = new EventCoordinator(firstName, lastName, email, phoneNumber, 0);
+            User newCoordinator = new User(firstName, lastName, email, phoneNumber, 0);
             try {
                 adminModel.addCoordinator(newCoordinator);
             } catch (Exception e) {
@@ -127,7 +126,7 @@ public class CreateUserController {
         alert.showAndWait();
     }
 
-    public void setAdminModel(AdminModel adminModel) {
+    public void setAdminModel(UserModel adminModel) {
         this.adminModel = adminModel;
     }
 

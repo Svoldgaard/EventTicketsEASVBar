@@ -1,8 +1,6 @@
 package dk.easv.eventticketeasvbar.BE;
 
-import java.util.List;
-
-public class EventCoordinator {
+public class User {
     private int id;
     private String firstname;
     private String lastname;
@@ -10,7 +8,7 @@ public class EventCoordinator {
     private int phoneNumber;
     private int amountOfEvents;
 
-    public EventCoordinator(int id, String firstname,String lastname, String email, int phoneNumber, int amountOfEvents) {
+    public User(int id, String firstname, String lastname, String email, int phoneNumber, int amountOfEvents) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -19,7 +17,7 @@ public class EventCoordinator {
         this.amountOfEvents = amountOfEvents;
     }
 
-    public EventCoordinator(String firstname, String lastname, String email, int phoneNumber, int amountOfEvents) {
+    public User(String firstname, String lastname, String email, int phoneNumber, int amountOfEvents) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;

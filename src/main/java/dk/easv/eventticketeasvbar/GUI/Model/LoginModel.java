@@ -1,6 +1,6 @@
 package dk.easv.eventticketeasvbar.GUI.Model;
 // Project Imports
-import dk.easv.eventticketeasvbar.BE.EventCoordinator;
+import dk.easv.eventticketeasvbar.BE.User;
 import dk.easv.eventticketeasvbar.BLL.Manager.LoginManager;
 import dk.easv.eventticketeasvbar.BE.Login;
 // Java Imports
@@ -25,7 +25,7 @@ public class LoginModel {
     }
 
 
-    public void createLogin(EventCoordinator coordinator) throws Exception {
+    public void createLogin(User coordinator) throws Exception {
         loginManager.createLogin(coordinator);
     }
 

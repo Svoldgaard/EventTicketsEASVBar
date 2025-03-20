@@ -1,14 +1,12 @@
 package dk.easv.eventticketeasvbar.GUI.Controller;
 // Project Imports
 import dk.easv.eventticketeasvbar.BE.Event;
-import dk.easv.eventticketeasvbar.BE.EventCoordinator;
-import dk.easv.eventticketeasvbar.GUI.Model.AdminModel;
-import dk.easv.eventticketeasvbar.GUI.Model.EventCoordinatorModel;
+import dk.easv.eventticketeasvbar.BE.User;
+import dk.easv.eventticketeasvbar.GUI.Model.UserModel;
 import dk.easv.eventticketeasvbar.GUI.Model.EventModel;
 import dk.easv.eventticketeasvbar.GUI.Model.LoginModel;
 import dk.easv.eventticketeasvbar.Main;
 // Other Imports
-import io.github.palexdev.materialfx.controls.MFXButton;
 // Java Imports
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
@@ -26,7 +24,6 @@ import javafx.scene.input.TransferMode;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 
@@ -39,17 +36,17 @@ public class AdminController implements Initializable {
     @FXML
     private TextField searchEvent;
     @FXML
-    private TableView<EventCoordinator> tblCoordinator;
+    private TableView<User> tblCoordinator;
     @FXML
-    private TableColumn<EventCoordinator,String> colFName;
+    private TableColumn<User,String> colFName;
     @FXML
-    private TableColumn<EventCoordinator,String> colLName;
+    private TableColumn<User,String> colLName;
     @FXML
-    private TableColumn<EventCoordinator,String> colEmail;
+    private TableColumn<User,String> colEmail;
     @FXML
-    private TableColumn<EventCoordinator,Integer> colPhoneNumber;
+    private TableColumn<User,Integer> colPhoneNumber;
     @FXML
-    private TableColumn<EventCoordinator,Integer> colAmountOfEvents;
+    private TableColumn<User,Integer> colAmountOfEvents;
 
     @FXML
     private TableView<Event> tblEvent;
@@ -65,14 +62,14 @@ public class AdminController implements Initializable {
     private TableColumn<Event, String> colCoordinator;
 
 
-    private AdminModel adminModel;
+    private UserModel adminModel;
     private EventModel eventModel;
 
     private AssignEditController assignEditController;
     private CreateUserController createUserController;
 
     public AdminController() throws Exception {
-        adminModel = new AdminModel();
+        adminModel = new UserModel();
         eventModel = new EventModel();
     }
 
@@ -81,7 +78,7 @@ public class AdminController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            adminModel = new AdminModel();
+            adminModel = new UserModel();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -139,7 +136,22 @@ public class AdminController implements Initializable {
     }
 
     @FXML
-    private void btnRemoveEvent(ActionEvent actionEvent) {
+    private void btnRemoveEvent(ActionEvent actionEvent) throws Exception {
+        Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
+
+        if (selectedEvent != null) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Delete Event");
+            alert.setHeaderText("Are you sure you want to delete this event?");
+            alert.setContentText(null);
+
+            ButtonType result = alert.showAndWait().get();
+
+            if (result == ButtonType.OK) {
+                eventModel.deleteEvent(selectedEvent);
+                tblEvent.getItems().remove(selectedEvent);
+            }
+        }
     }
 
     @FXML
@@ -186,7 +198,7 @@ public class AdminController implements Initializable {
 
     @FXML
     private void btnEditUser(ActionEvent actionEvent) throws IOException {
-        EventCoordinator selectedCoordinator = tblCoordinator.getSelectionModel().getSelectedItem();
+        User selectedCoordinator = tblCoordinator.getSelectionModel().getSelectedItem();
 
         if (selectedCoordinator == null) {
             showAlert("No Selection", "Please select a coordinator to edit.");
@@ -224,7 +236,7 @@ public class AdminController implements Initializable {
 
     @FXML
     private void btnRemoveUser(ActionEvent actionEvent) {
-        EventCoordinator selectedCoordinator = tblCoordinator.getSelectionModel().getSelectedItem();
+        User selectedCoordinator = tblCoordinator.getSelectionModel().getSelectedItem();
         if (selectedCoordinator != null) {
             try {
                 adminModel.removeCoordinator(selectedCoordinator);
@@ -239,7 +251,7 @@ public class AdminController implements Initializable {
     @FXML
     private void btnCreateLogIn(ActionEvent actionEvent) {
         // Get selected coordinator from TableView
-        EventCoordinator selectedCoordinator = tblCoordinator.getSelectionModel().getSelectedItem();
+        User selectedCoordinator = tblCoordinator.getSelectionModel().getSelectedItem();
 
         if (selectedCoordinator == null) {
             System.out.println("No coordinator selected!");
@@ -269,7 +281,7 @@ public class AdminController implements Initializable {
     @FXML
     private void setupDragAndDrop() {
         tblCoordinator.setRowFactory(tv -> {
-            TableRow<EventCoordinator> row = new TableRow<>();
+            TableRow<User> row = new TableRow<>();
             row.setOnDragDetected(event -> {
                 if (!row.isEmpty()) {
                     Dragboard db = row.startDragAndDrop(TransferMode.MOVE);
@@ -298,7 +310,7 @@ public class AdminController implements Initializable {
                 Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
 
                 if (selectedEvent != null) {
-                    EventCoordinator coordinator = findCoordinatorByEmail(coordinatorEmail);
+                    User coordinator = findCoordinatorByEmail(coordinatorEmail);
                     if (coordinator != null) {
 
                         if (!selectedEvent.getCoordinators().contains(coordinator)) {
@@ -328,8 +340,8 @@ public class AdminController implements Initializable {
 
 
 
-    private EventCoordinator findCoordinatorByEmail(String email) {
-        for (EventCoordinator ec : tblCoordinator.getItems()) {
+    private User findCoordinatorByEmail(String email) {
+        for (User ec : tblCoordinator.getItems()) {
             if (ec.getEmail().equals(email)) {
                 return ec;
             }
