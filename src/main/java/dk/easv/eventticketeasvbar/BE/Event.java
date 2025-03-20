@@ -119,7 +119,17 @@ public class Event {
         this.price = price;
     }
 
+    public void setCoordinators(List<EventCoordinator> coordinators) {
+        this.coordinators = coordinators;
+    }
 
+    public void setImage(Image image) {
+        this.image = image;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     @Override
     public String toString() {

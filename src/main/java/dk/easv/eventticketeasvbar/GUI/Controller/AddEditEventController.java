@@ -69,6 +69,7 @@ public class AddEditEventController {
             event.setDuration(Float.valueOf(txtDuration.getText()));
             event.setLocation(txtSetLocation.getText());
             event.setPrice(Float.valueOf(txtPrice.getText()));
+            event.setDescription(txtAddDescription.getText());
 
             eventModel.updateEvent(event);
             eventModel.refreshEvents();
@@ -86,6 +87,7 @@ public class AddEditEventController {
         txtDuration.setText(String.valueOf(event.getDuration()));
         txtSetLocation.setText(event.getLocation());
         txtPrice.setText(String.valueOf(event.getPrice()));
+        txtAddDescription.setText(event.getDescription());
     }
 
     public void setText(String saveChanges) {
