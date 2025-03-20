@@ -9,20 +9,20 @@
 <?import javafx.scene.media.MediaView?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@/dk.easv/eventticketeasvbar/CSS/demo2.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.eventticketeasvbar.GUI.Controller.AddEditEventController">
-   <Label layoutX="30.0" layoutY="40.0" text="Name" />
-   <Label layoutX="32.0" layoutY="71.0" text="Due" />
-   <Label layoutX="32.0" layoutY="104.0" text="Duration" />
-   <Label layoutX="32.0" layoutY="136.0" text="Set place limit" />
-   <Label layoutX="33.0" layoutY="169.0" text="Price" />
-   <TextField fx:id="txtName" layoutX="114.0" layoutY="36.0" />
-   <TextField fx:id="txtDuration" layoutX="114.0" layoutY="100.0" />
-   <TextField fx:id="txtSetLocation" layoutX="114.0" layoutY="132.0" />
-   <TextField fx:id="txtPrice" layoutX="114.0" layoutY="164.0" />
+   <Label layoutX="28.0" layoutY="40.0" text="Name" />
+   <Label layoutX="28.0" layoutY="75.0" text="Due" />
+   <Label layoutX="28.0" layoutY="145.0" text="Duration" />
+   <Label layoutX="28.0" layoutY="180.0" text="Location" />
+   <Label layoutX="28.0" layoutY="215.0" text="Price" />
+   <TextField fx:id="txtName" layoutX="112.0" layoutY="36.0" />
+   <TextField fx:id="txtDuration" layoutX="112.0" layoutY="141.0" />
+   <TextField fx:id="txtSetLocation" layoutX="112.0" layoutY="176.0" />
+   <TextField fx:id="txtPrice" layoutX="112.0" layoutY="211.0" />
    <MediaView fx:id="MediaPictureEvent" fitHeight="200.0" fitWidth="200.0" layoutX="368.0" layoutY="21.0" />
    <TextArea fx:id="txtAddDescription" layoutX="368.0" layoutY="263.0" prefHeight="85.0" prefWidth="217.0" promptText="Add description" />
-   <DatePicker fx:id="txtDate" layoutX="114.0" layoutY="67.0" prefHeight="26.0" prefWidth="160.0" />
-   <Label layoutX="274.0" layoutY="71.0" text="Time: " />
-   <TextField fx:id="txtTime" layoutX="307.0" layoutY="68.0" prefHeight="26.0" prefWidth="62.0" />
+   <DatePicker fx:id="txtDate" layoutX="112.0" layoutY="71.0" prefHeight="26.0" prefWidth="160.0" />
+   <Label layoutX="28.0" layoutY="110.0" text="Time: " />
+   <TextField fx:id="txtTime" layoutX="112.0" layoutY="106.0" prefHeight="26.0" prefWidth="62.0" />
    <MFXButton layoutX="368.0" layoutY="230.0" onAction="#btnAddPicture" text="Add Picture" />
    <MFXButton layoutX="368.0" layoutY="361.0" onAction="#btnSaveEvent" text="Save Event" />
    <MFXButton layoutX="532.0" layoutY="361.0" onAction="#btnCancel" text="Cancel" />

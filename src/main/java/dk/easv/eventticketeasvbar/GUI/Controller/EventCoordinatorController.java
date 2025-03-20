@@ -120,12 +120,15 @@ public class EventCoordinatorController implements Initializable {
 
     public void btnEditEvent(ActionEvent actionEvent) throws IOException {
 
+        Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/Add-Edit-Event.fxml"));
-
         // Load FXML and get the controller
         Scene scene = new Scene(fxmlLoader.load());
         addEditEventController = fxmlLoader.getController();
+
+        addEditEventController.setEvent(selectedEvent);
+        addEditEventController.setEventModel(eventModel);
 
         // Pass the new button name to the controller
         if (addEditEventController != null) {
@@ -141,7 +144,10 @@ public class EventCoordinatorController implements Initializable {
         addEditEventController.setStage(stage);
         // Make the new stage modal, blocking interaction with the previous window
         stage.initModality(Modality.APPLICATION_MODAL);
-        stage.show();
+        stage.showAndWait();
+        tblEvent.setItems(eventModel.getTblEvent());
+
+        tblEvent.refresh();
 
     }
 
@@ -157,9 +163,8 @@ public class EventCoordinatorController implements Initializable {
             ButtonType result = alert.showAndWait().orElse(ButtonType.CANCEL);
 
             if(result == ButtonType.OK) {
-                EventCoordinatorModel.deleteEvent(selectedEvent);
-                refreshEvent();
-
+                eventModel.deleteEvent(selectedEvent);
+                tblEvent.getItems().remove(selectedEvent);
             }
         }
     }
@@ -180,25 +185,29 @@ public class EventCoordinatorController implements Initializable {
     public void btnAddTicket(ActionEvent actionEvent) {
     }
 
+    @FXML
     public void handleAssign(ActionEvent actionEvent) throws IOException {
+        Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
+        if (selectedEvent == null) {
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Please select an event first.", ButtonType.OK);
+            alert.showAndWait();
+            return;
+        }
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/Assign-edit Window.fxml"));
-
-        // Load FXML and get the controller
         Scene scene = new Scene(fxmlLoader.load());
-        assignEditController = fxmlLoader.getController();
 
-        // Open the assign Event stage
+        assignEditController = fxmlLoader.getController();
+        assignEditController.setStage(new Stage());
+        assignEditController.setEvent(selectedEvent); // Pass selected event
+
         Stage stage = new Stage();
         stage.setTitle("Assign Coordinator");
         stage.setScene(scene);
-        //reference to cancel button
-        assignEditController = fxmlLoader.getController();
         assignEditController.setStage(stage);
-
         stage.show();
-
     }
+
 
     public void alertMessage() {}
 

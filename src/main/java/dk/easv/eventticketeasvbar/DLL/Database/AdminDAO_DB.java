@@ -28,13 +28,14 @@ public class AdminDAO_DB implements IAdmin {
              ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
+                int id = rs.getInt("id");
                 String firstname = rs.getString("firstName");
                 String lastname = rs.getString("lastName");
                 String email = rs.getString("email");
                 int phoneNumber = rs.getInt("phoneNumber");
                 int amountOfEvents = rs.getInt("amountOfEvents");
 
-                EventCoordinator coordinator = new EventCoordinator(firstname, lastname, email, phoneNumber, amountOfEvents);
+                EventCoordinator coordinator = new EventCoordinator(id, firstname, lastname, email, phoneNumber, amountOfEvents);
                 coordinators.add(coordinator);
             }
         } catch (Exception ex) {
@@ -57,6 +58,7 @@ public class AdminDAO_DB implements IAdmin {
             stmt.setInt(4, eventCoordinator.getPhoneNumber());
             stmt.setInt(5, eventCoordinator.getAmountOfEvents());
 
+
             int affectedRows = stmt.executeUpdate();
             if (affectedRows == 0) {
                 throw new SQLException("Creating event coordinator failed, no rows affected.");
@@ -64,7 +66,10 @@ public class AdminDAO_DB implements IAdmin {
 
             try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
+                    int id = generatedKeys.getInt(1);
+
                     return new EventCoordinator(
+                            id,
                             eventCoordinator.getFirstname(),
                             eventCoordinator.getLastname(),
                             eventCoordinator.getEmail(),
@@ -83,26 +88,27 @@ public class AdminDAO_DB implements IAdmin {
 
     @Override
     public EventCoordinator updateEventCoordinator(EventCoordinator eventCoordinator) throws Exception {
-        String sql = "UPDATE EventCoordinator SET firstName = ?, lastName = ?, email = ?, phoneNumber = ?, amountOfEvents = ? WHERE email = ?";
+        String sql = "UPDATE EventCoordinator SET firstName = ?, lastName = ?, email = ?, phoneNumber = ?, amountOfEvents = ? WHERE id = ?";
 
         try (Connection conn = dbConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             // Fetch current amountOfEvents
-            int currentEvents = getCurrentAmountOfEvents(eventCoordinator.getEmail(), conn);
+            /*int currentEvents = getCurrentAmountOfEvents(eventCoordinator.getEmail(), conn);
 
             // Prevent unnecessary updates
             if (currentEvents == eventCoordinator.getAmountOfEvents()) {
                 return eventCoordinator; // No update needed
-            }
+            }*/
 
             stmt.setString(1, eventCoordinator.getFirstname());
             stmt.setString(2, eventCoordinator.getLastname());
             stmt.setString(3, eventCoordinator.getEmail());
             stmt.setInt(4, eventCoordinator.getPhoneNumber());
             stmt.setInt(5, eventCoordinator.getAmountOfEvents());
-            stmt.setString(6, eventCoordinator.getEmail());
+            stmt.setInt(6, eventCoordinator.getId());
 
+            System.out.println("Debug id: " + eventCoordinator.getId());
             int affectedRows = stmt.executeUpdate();
             if (affectedRows == 0) {
                 throw new SQLException("Updating event coordinator failed, no rows affected.");

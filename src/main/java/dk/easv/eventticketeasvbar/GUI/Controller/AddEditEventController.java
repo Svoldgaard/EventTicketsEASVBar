@@ -1,10 +1,13 @@
 package dk.easv.eventticketeasvbar.GUI.Controller;
 // Other Imports
+import dk.easv.eventticketeasvbar.BE.Event;
+import dk.easv.eventticketeasvbar.GUI.Model.EventModel;
 import io.github.palexdev.materialfx.controls.MFXButton;
 // Java Imports
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -45,7 +48,8 @@ public class AddEditEventController {
 
 
     public Stage stage;
-
+    private Event event;
+    private EventModel eventModel;
 
     @FXML
     public void btnCancel(ActionEvent actionEvent) throws IOException {
@@ -94,12 +98,42 @@ public class AddEditEventController {
     }
 
     @FXML
-    private void btnSaveEvent(ActionEvent actionEvent) {
+    private void btnSaveEvent(ActionEvent actionEvent) throws Exception {
+
+        if(event != null) {
+            event.setEvent(txtName.getText());
+            event.setDate(txtDate.getValue());
+            event.setTime(Float.valueOf(txtTime.getText()));
+            event.setDuration(Float.valueOf(txtDuration.getText()));
+            event.setLocation(txtSetLocation.getText());
+            event.setPrice(Float.valueOf(txtPrice.getText()));
+
+            eventModel.updateEvent(event);
+            eventModel.refreshEvents();
+
+            ((Stage) (((Button) actionEvent.getSource()).getScene().getWindow())).close();
+        }
+
     }
 
+    public void setEvent(Event event) {
+        this.event = event;
+        txtName.setText(event.getEvent());
+        txtDate.setValue(event.getDate());
+        txtTime.setText(String.valueOf(event.getTime()));
+        txtDuration.setText(String.valueOf(event.getDuration()));
+        txtSetLocation.setText(event.getLocation());
+        txtPrice.setText(String.valueOf(event.getPrice()));
+    }
+
+    public void setText(String saveChanges) {
     static void setText(String saveChanges) {
         if (btnSaveEvent != null) { // Prevents NullPointerException
             btnSaveEvent.setText(saveChanges);
         }
+    }
+
+    public void setEventModel(EventModel eventModel) {
+        this.eventModel = eventModel;
     }
 }

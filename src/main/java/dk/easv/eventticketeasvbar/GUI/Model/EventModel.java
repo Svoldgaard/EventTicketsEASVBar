@@ -42,7 +42,12 @@ public class EventModel {
     public void updateEvent(Event event) throws Exception {
         eventManager.updateEvent(event);
 
+        int index = tblEvent.indexOf(event);
+        if (index >= 0) {
+            tblEvent.set(index, event);
+        }
     }
+
 
     public void loadEvents() throws Exception {
         List<Event> events = eventManager.getAllEvents();

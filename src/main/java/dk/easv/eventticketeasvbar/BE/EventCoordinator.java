@@ -1,18 +1,36 @@
 package dk.easv.eventticketeasvbar.BE;
 
 public class EventCoordinator {
+    private int id;
     private String firstname;
     private String lastname;
     private String email;
     private int phoneNumber;
     private int amountOfEvents;
 
-    public EventCoordinator(String firstname,String lastname, String email, int phoneNumber, int amountOfEvents) {
+    public EventCoordinator(int id, String firstname,String lastname, String email, int phoneNumber, int amountOfEvents) {
+        this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.amountOfEvents = amountOfEvents;
+    }
+
+    public EventCoordinator(String firstname, String lastname, String email, int phoneNumber, int amountOfEvents) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.amountOfEvents = amountOfEvents;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getFirstname() {
@@ -57,12 +75,6 @@ public class EventCoordinator {
 
     @Override
     public String toString() {
-        return "EventCoordinator{" +
-                "firstname='" + firstname + '\'' +
-                ", lastname='" + lastname + '\'' +
-                ", email='" + email + '\'' +
-                ", phoneNumber=" + phoneNumber +
-                ", amountOfEvents=" + amountOfEvents +
-                '}';
+        return firstname;
     }
 }
