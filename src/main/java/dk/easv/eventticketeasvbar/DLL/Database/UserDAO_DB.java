@@ -96,7 +96,8 @@ public class UserDAO_DB implements IAdmin {
     @Override
     public User updateUser(User user) throws Exception {
         String sql = "UPDATE [User] SET firstName = ?, lastName = ?, email = ?, phoneNumber = ?, amountOfEvents = ?, " +
-                "userTypeID = 2 WHERE id = ?";
+                "userTypeID = (SELECT id FROM userType WHERE userType = ?) WHERE id = ?";
+
 
 
         try (Connection conn = dbConnection.getConnection();
