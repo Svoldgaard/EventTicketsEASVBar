@@ -8,7 +8,9 @@ import java.util.List;
 public class Event {
 
     private String event;
-    private String location;
+    private String adress;
+    private int postalCode;
+    private String city;
     private LocalDate date;
     private Float time;
     private Float duration;
@@ -18,7 +20,17 @@ public class Event {
     private String description;
 
 
-
+    public Event(String event, String adress, int postalCode, String city, LocalDate date, Float time, Float duration, Float price, List<User> coordinators) {
+        this.event = event;
+        this.adress = adress;
+        this.postalCode = postalCode;
+        this.city = city;
+        this.date = date;
+        this.time = time;
+        this.duration = duration;
+        this.price = price;
+        this.coordinators = coordinators;
+    }
 
     public Event(Image image, String event, String description) {
         this.image = image;
@@ -26,9 +38,8 @@ public class Event {
         this.description = description;
     }
 
-    public Event(String event, String location, LocalDate date, Float time, Float duration, Float price, List<User> coordinators) {
+    public Event(String event, LocalDate date, Float time, Float duration, Float price, List<User> coordinators) {
         this.event = event;
-        this.location = location;
         this.date = date;
         this.time = time;
         this.duration = duration;
@@ -36,9 +47,8 @@ public class Event {
         this.coordinators = new ArrayList<>();  // Initialize the list
     }
 
-    public Event(String event, String location, LocalDate date, Float time, Float duration, Float price) {
+    public Event(String event, LocalDate date, Float time, Float duration, Float price) {
         this.event = event;
-        this.location = location;
         this.date = date;
         this.time = time;
         this.duration = duration;
@@ -90,14 +100,6 @@ public class Event {
         this.date = date;
     }
 
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
     public float getTime() {
         return time;
     }
@@ -126,6 +128,30 @@ public class Event {
         this.coordinators = coordinators;
     }
 
+    public String getAdress() {
+        return adress;
+    }
+
+    public void setAdress(String adress) {
+        this.adress = adress;
+    }
+
+    public int getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(int postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
     public void setImage(Image image) {
         this.image = image;
     }
@@ -138,7 +164,6 @@ public class Event {
     public String toString() {
         return "Event{" +
                 "event='" + event + '\'' +
-                ", location='" + location + '\'' +
                 ", date=" + date +
                 ", time=" + time +
                 ", duration=" + duration +

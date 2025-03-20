@@ -3,6 +3,7 @@ package dk.easv.eventticketeasvbar.GUI.Controller;
 // Project Imports
 import dk.easv.eventticketeasvbar.GUI.Model.EventCoordinatorModel;
 import dk.easv.eventticketeasvbar.GUI.Model.EventModel;
+import dk.easv.eventticketeasvbar.GUI.Model.TicketModel;
 import dk.easv.eventticketeasvbar.Main;
 import dk.easv.eventticketeasvbar.BE.Event;
 // Other Imports
@@ -31,13 +32,18 @@ public class EventCoordinatorController implements Initializable {
     public TextField txtSearch;
     private AddEditEventController addEditEventController;
     private AssignEditController assignEditController;
+    private TicketController ticketController;
 
     @FXML
     private TableView<Event> tblEvent;
     @FXML
     private TableColumn<Event, String> eventColumn;
     @FXML
-    private TableColumn<Event, String> locationColumn;
+    private TableColumn adressColumn;
+    @FXML
+    private TableColumn postalCodeColumn;
+    @FXML
+    private TableColumn cityColumn;
     @FXML
     private TableColumn<Event, String> dateColumn;
     @FXML
@@ -48,22 +54,12 @@ public class EventCoordinatorController implements Initializable {
     private TableColumn<Event, Double> priceColumn;
     @FXML
     private TableColumn<Event, String> coordinatorColumn;
-    @FXML
-    private MFXButton handleLogoutCoordinator;
-    @FXML
-    private MFXButton btnCreateEvent;
-    @FXML
-    private MFXButton btnEditEvent;
-    @FXML
-    private MFXButton btnDeleteEvent;
-    @FXML
-    private MFXButton btnAddTicket;
-    @FXML
-    private MFXButton btnAssign;
+
 
 
     private EventCoordinatorModel EventCoordinatorModel;
     private EventModel eventModel;
+    private TicketModel ticketModel;
 
     public EventCoordinatorController() throws Exception {
         eventModel = new EventModel();
@@ -80,7 +76,9 @@ public class EventCoordinatorController implements Initializable {
 
         // Set up TableView columns
         eventColumn.setCellValueFactory(new PropertyValueFactory<>("event"));
-        locationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
+        adressColumn.setCellValueFactory(new PropertyValueFactory<>("adress"));
+        postalCodeColumn.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
+        cityColumn.setCellValueFactory(new PropertyValueFactory<>("city"));
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
         timeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
         durationColumn.setCellValueFactory(new PropertyValueFactory<>("duration"));
@@ -186,7 +184,22 @@ public class EventCoordinatorController implements Initializable {
 
     }
 
-    public void btnAddTicket(ActionEvent actionEvent) {
+    public void btnAddTicket(ActionEvent actionEvent) throws IOException {
+        Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
+
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/Ticket.fxml"));
+        // Load FXML and get the controller
+        Scene scene = new Scene(fxmlLoader.load());
+        ticketController = fxmlLoader.getController();
+        Stage stage = new Stage();
+        stage.setTitle("Edit");
+        stage.setScene(scene);
+        //reference to cancel button
+        //addEditEventController = fxmlLoader.getController();
+        ticketController.setStage(stage);
+        // Make the new stage modal, blocking interaction with the previous window
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
     }
 
     @FXML
