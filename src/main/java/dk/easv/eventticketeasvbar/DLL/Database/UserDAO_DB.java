@@ -19,8 +19,10 @@ public class UserDAO_DB implements IAdmin {
 
     @Override
     public List<User> getAllEventCoordinators() throws Exception {
-        List<User> coordinators = new ArrayList<>();
-        String sql = "SELECT * FROM EventCoordinator";
+        List<User> users = new ArrayList<>();
+        String sql = "Select u.id, u.firstName, u.lastName, u.email, u.phoneNumber, u.amountOfEvents, u.userTypeID, t.userType " +
+                     "from [User] u " +
+                     "JOIN userType t on u.userTypeID = t.id";
 
         try (Connection conn = dbConnection.getConnection();
              Statement stmt = conn.createStatement();
@@ -33,20 +35,21 @@ public class UserDAO_DB implements IAdmin {
                 String email = rs.getString("email");
                 int phoneNumber = rs.getInt("phoneNumber");
                 int amountOfEvents = rs.getInt("amountOfEvents");
+                String userType = rs.getString("userType");
 
-                User coordinator = new User(id, firstname, lastname, email, phoneNumber, amountOfEvents);
-                coordinators.add(coordinator);
+                User user = new User(id, firstname, lastname, email, phoneNumber, amountOfEvents, userType);
+                users.add(user);
             }
         } catch (Exception ex) {
             ex.printStackTrace();
-            throw new Exception("Error fetching event coordinators from database.");
+            throw new Exception("Error fetching event users from database.");
         }
-        return coordinators;
+        return users;
     }
 
     @Override
     public User createEventCoordinator(User eventCoordinator) throws Exception {
-        String sql = "INSERT INTO EventCoordinator (id, firstName, lastName, email, phoneNumber, amountOfEvents) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO [User] (id, firstName, lastName, email, phoneNumber, amountOfEvents, userType) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = dbConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -56,6 +59,7 @@ public class UserDAO_DB implements IAdmin {
             stmt.setString(3, eventCoordinator.getEmail());
             stmt.setInt(4, eventCoordinator.getPhoneNumber());
             stmt.setInt(5, eventCoordinator.getAmountOfEvents());
+            stmt.setString(6, eventCoordinator.getUserType());
 
             int affectedRows = stmt.executeUpdate();
             if (affectedRows == 0) {
@@ -72,7 +76,9 @@ public class UserDAO_DB implements IAdmin {
                             eventCoordinator.getLastname(),
                             eventCoordinator.getEmail(),
                             eventCoordinator.getPhoneNumber(),
-                            eventCoordinator.getAmountOfEvents()
+                            eventCoordinator.getAmountOfEvents(),
+                            eventCoordinator.getUserType()
+
                     );
                 } else {
                     throw new SQLException("Creating event coordinator failed, no ID obtained.");

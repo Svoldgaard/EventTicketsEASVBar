@@ -69,14 +69,14 @@ public class OverviewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-               txtSearch.textProperty().addListener((observable, oldValue, newValue) -> {
+               /*txtSearch.textProperty().addListener((observable, oldValue, newValue) -> {
             try{
                 OverViewModel.searchEvent(newValue);
             }catch (Exception e){
                 displayError(e);
                 e.printStackTrace();
             }
-        });
+        });*/
         try {
             openDescription();
         } catch (IOException e) {
