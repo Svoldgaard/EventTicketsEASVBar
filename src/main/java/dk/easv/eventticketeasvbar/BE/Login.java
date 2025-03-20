@@ -3,13 +3,13 @@ package dk.easv.eventticketeasvbar.BE;
 public class Login {
     private String username;
     private String password;
-    private String access;
+    private String userType;
 
     // Constructor with all fields
-    public Login(String username, String password, String access) {
+    public Login(String username, String password, String userType) {
         this.username = username;
         this.password = password;
-        this.access = access;
+        this.userType = userType;
     }
 
     // Constructor without 'access' field (for cases where it's not needed)
@@ -39,12 +39,12 @@ public class Login {
         this.password = password;
     }
 
-    public String getAccess() {
-        return access;
+    public String getUserType() {
+        return userType;
     }
 
-    public void setAccess(String access) {
-        this.access = access;
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 
     @Override
@@ -52,7 +52,7 @@ public class Login {
         return "Login{" +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", access='" + access + '\'' +
+                ", access='" + userType + '\'' +
                 '}';
     }
 }

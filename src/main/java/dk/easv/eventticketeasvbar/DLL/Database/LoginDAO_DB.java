@@ -40,17 +40,30 @@ public class LoginDAO_DB implements ILogin {
 
     @Override
     public Login createLogin(Login login) throws Exception {
-        String sql = "INSERT INTO Login (username, password, access) VALUES (?, ?, ?)";
+        String getUserTypeIdSql = "SELECT id FROM UserType WHERE userType = ?";
+        String insertLoginSql = "INSERT INTO Login (username, password, UserTypeID) VALUES (?, ?, ?)";
+
         String hashedPassword = BCrypt.hashpw(login.getPassword(), BCrypt.gensalt());
 
         try (Connection conn = dbConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+             PreparedStatement userTypeStmt = conn.prepareStatement(getUserTypeIdSql);
+             PreparedStatement insertStmt = conn.prepareStatement(insertLoginSql, Statement.RETURN_GENERATED_KEYS)) {
 
-            stmt.setString(1, login.getUsername());
-            stmt.setString(2, hashedPassword);
-            stmt.setString(3, login.getAccess());
-            stmt.executeUpdate();
+            // Get UserTypeID based on the provided type (e.g., "Admin" or "Event")
+            userTypeStmt.setString(1, login.getUserType());
+            ResultSet rs = userTypeStmt.executeQuery();
+            if (!rs.next()) {
+                throw new Exception("UserType not found: " + login.getUserType());
+            }
+            int userTypeId = rs.getInt("id");
+
+            // Insert into Login table
+            insertStmt.setString(1, login.getUsername());
+            insertStmt.setString(2, hashedPassword);
+            insertStmt.setInt(3, userTypeId);
+            insertStmt.executeUpdate();
         }
+
         return login;
     }
 
@@ -86,7 +99,10 @@ public class LoginDAO_DB implements ILogin {
 
 
     public Login verifyLogin(String username, String password) throws Exception {
-        String sql = "SELECT username, password, access FROM Login WHERE username = ?";
+        String sql = "SELECT l.username, l.password, u.userType AS userType " +
+                "FROM Login l " +
+                "JOIN UserType u ON l.UserTypeID = u.id " +
+                "WHERE l.username = ?";
 
         try (Connection conn = dbConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -97,7 +113,7 @@ public class LoginDAO_DB implements ILogin {
             if (rs.next()) {
                 String storedHashedPassword = rs.getString("password");
                 if (BCrypt.checkpw(password, storedHashedPassword)) {
-                    return new Login(username, null, rs.getString("access"));
+                    return new Login(username, null, rs.getString("userType"));
                 }
             }
         }

@@ -47,7 +47,7 @@ public class LoginController {
             Login login = loginModel.login(username, password);
 
             if (login != null) {
-                switch (login.getAccess()) {
+                switch (login.getUserType()) {
                     case "Admin":
                         loadAdminWindow(actionEvent);
                         break;
