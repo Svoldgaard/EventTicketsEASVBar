@@ -1,6 +1,8 @@
 package dk.easv.eventticketeasvbar.GUI.Controller;
 // Project Imports
 import dk.easv.eventticketeasvbar.BE.Event;
+import dk.easv.eventticketeasvbar.GUI.Model.EventModel;
+import dk.easv.eventticketeasvbar.GUI.Model.OverViewModel;
 import dk.easv.eventticketeasvbar.Main;
 //Other Imports
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -11,13 +13,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -45,9 +46,37 @@ public class OverviewController implements Initializable {
     private Stage infoStage;
     private EventInfoController eventInfoController;
 
+        public TextField txtSearch2;
+        public ListView<Event> lstEvents;
+        private OverViewModel overViewModel;
+
+        public OverviewController() {
+            try{
+                OverViewModel OverViewModel = new OverViewModel();
+            }catch (Exception e){
+                displayError(e);
+                e.printStackTrace();
+            }
+        }
+
+    private void displayError(Throwable e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(e.getMessage());
+            alert.showAndWait();
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+               txtSearch.textProperty().addListener((observable, oldValue, newValue) -> {
+            try{
+                OverViewModel.searchEvent(newValue);
+            }catch (Exception e){
+                displayError(e);
+                e.printStackTrace();
+            }
+        });
         try {
             openDescription();
         } catch (IOException e) {

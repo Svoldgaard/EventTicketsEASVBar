@@ -60,4 +60,6 @@ public class EventModel {
     }
 
 
+    public void searchEvent(String newValue) {
+    }
 }

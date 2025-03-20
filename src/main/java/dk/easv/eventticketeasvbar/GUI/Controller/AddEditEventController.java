@@ -49,11 +49,11 @@ public class AddEditEventController {
 
     public Stage stage;
     private Event event;
-    private EventModel eventModel;
+    private static EventModel eventModel;
 
     @FXML
     public void btnCancel(ActionEvent actionEvent) throws IOException {
-        if(stage!=null){
+        if (stage != null) {
             stage.close();
         }
 
@@ -70,18 +70,18 @@ public class AddEditEventController {
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image File", "*.jpg", "*.png"));
         File file = fileChooser.showOpenDialog(new Stage());
 
-        if(file!=null){
+        if (file != null) {
             String userEventsDirectory = "src/main/resources/Photos";
-            File photoDir =  new File(userEventsDirectory);
-            if(!photoDir.exists()){
+            File photoDir = new File(userEventsDirectory);
+            if (!photoDir.exists()) {
                 photoDir.mkdirs();
             }
 
             File destinationFile = new File(photoDir, file.getName());
-            try{
+            try {
                 Files.copy(file.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
                 AddEditEventController.setText("dk/easv/eventticketeasvbar/BE/Event.java");
-            }catch (IOException e){
+            } catch (IOException e) {
                 e.printStackTrace();
                 showAlert("Error", "Failed  to copt the file");
             }
@@ -100,7 +100,7 @@ public class AddEditEventController {
     @FXML
     private void btnSaveEvent(ActionEvent actionEvent) throws Exception {
 
-        if(event != null) {
+        if (event != null) {
             event.setEvent(txtName.getText());
             event.setDate(txtDate.getValue());
             event.setTime(Float.valueOf(txtTime.getText()));
@@ -126,14 +126,13 @@ public class AddEditEventController {
         txtPrice.setText(String.valueOf(event.getPrice()));
     }
 
-    public void setText(String saveChanges) {
-    static void setText(String saveChanges) {
-        if (btnSaveEvent != null) { // Prevents NullPointerException
-            btnSaveEvent.setText(saveChanges);
-        }
-    }
+    public static void setText(String saveChanges) {
 
-    public void setEventModel(EventModel eventModel) {
+            if (btnSaveEvent != null) { // Prevents NullPointerException
+                btnSaveEvent.setText(saveChanges);
+            }
+    }
+    public void setEventModel(EventModel eventModel){
         this.eventModel = eventModel;
     }
 }

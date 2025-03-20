@@ -71,7 +71,11 @@ public class EventCoordinatorController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        EventCoordinatorModel = new EventCoordinatorModel();
+        try {
+            EventCoordinatorModel = new EventCoordinatorModel();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
 
         // Set up TableView columns

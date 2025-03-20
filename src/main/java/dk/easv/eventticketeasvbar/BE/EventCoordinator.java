@@ -1,5 +1,7 @@
 package dk.easv.eventticketeasvbar.BE;
 
+import java.util.List;
+
 public class EventCoordinator {
     private int id;
     private String firstname;
@@ -32,6 +34,9 @@ public class EventCoordinator {
     public void setId(int id) {
         this.id = id;
     }
+
+
+
 
     public String getFirstname() {
         return firstname;
@@ -77,4 +82,7 @@ public class EventCoordinator {
     public String toString() {
         return firstname;
     }
+
+
+
 }

@@ -71,6 +71,10 @@ public class Event {
         this.event = event;
     }
 
+    public Event(int i, String eventTile) {
+
+    }
+
     public Image getImage() {
         return image;
     }
@@ -131,5 +135,11 @@ public class Event {
                 ", duration=" + duration +
                 ", price=" + price +
                 '}';
+    }
+
+
+    public String getTitle() {
+        String Date = "";
+        return Date;
     }
 }
