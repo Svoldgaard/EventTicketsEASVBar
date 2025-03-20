@@ -24,8 +24,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class OverviewController implements Initializable {
-    @FXML
-    private TextField txtSearch;
+
     @FXML
     private ChoiceBox DropMenu;
     @FXML
@@ -46,7 +45,7 @@ public class OverviewController implements Initializable {
     private Stage infoStage;
     private EventInfoController eventInfoController;
 
-        public TextField txtSearch2;
+
         public ListView<Event> lstEvents;
         private OverViewModel overViewModel;
 
@@ -69,14 +68,6 @@ public class OverviewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-               /*txtSearch.textProperty().addListener((observable, oldValue, newValue) -> {
-            try{
-                OverViewModel.searchEvent(newValue);
-            }catch (Exception e){
-                displayError(e);
-                e.printStackTrace();
-            }
-        });*/
         try {
             openDescription();
         } catch (IOException e) {

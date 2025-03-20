@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EventDAO_DB  implements IEvents {
-
     
     @Override
     public List<Event> getAllEvents() throws Exception {
@@ -25,15 +24,22 @@ public class EventDAO_DB  implements IEvents {
             ResultSet rs = stmt.executeQuery(sql);
 
             while(rs.next()) {
+                int id = rs.getInt("id");
                 String eventName = rs.getString("EventName");
                 String location = rs.getString("Location");
                 LocalDate date = rs.getDate("Date").toLocalDate();
                 float time = rs.getFloat("Time");
                 float duration = rs.getFloat("Duration");
                 float price = rs.getFloat("Price");
+                String coordinator = rs.getString("Coordinator");
+                String picture = rs.getString("Picture");
+                String description = rs.getString("Description");
+                int parkingInfoID = rs.getInt("ParkingInfoID");
+                int ticketID = rs.getInt("TicketID");
+                String category = rs.getString("Category");
 
-
-                Event event = new Event(eventName, location, date, time, duration, price);
+                Event event = new Event(id, eventName, location, date, time, duration, price, coordinator, picture,
+                        description, parkingInfoID, ticketID, category);
                 events.add(event);
             }
         }
@@ -47,7 +53,8 @@ public class EventDAO_DB  implements IEvents {
     @Override
     public Event createEvent(Event event) throws Exception {
         DBConnection dbConnection = new DBConnection();
-        String sql = "INSERT INTO Events (eventName, location, date, time, duration, price) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Events (eventName, location, date, time, duration, price, coordinator, picture, " +
+                "description, category) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try(Connection conn = dbConnection.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql)){
@@ -58,6 +65,10 @@ public class EventDAO_DB  implements IEvents {
             stmt.setFloat(4, event.getTime());
             stmt.setFloat(5, event.getDuration());
             stmt.setFloat(6, event.getPrice());
+            stmt.setString(7, event.getCoordinator());
+            stmt.setString(8, event.getPicture());
+            stmt.setString(9, event.getDescription());
+            stmt.setString(10, event.getCategory());
 
             stmt.executeUpdate();
 
@@ -73,8 +84,9 @@ public class EventDAO_DB  implements IEvents {
     @Override
     public Event updateEvent(Event event) throws Exception {
         DBConnection dbConnection = new DBConnection();
-        String sql = "UPDATE Events SET eventName = ?, location = ?, date = ?, time = ?, duration = ?, price = ? " +
-                "WHERE eventName = ?";
+        String sql = "UPDATE Events SET eventName = ?, location = ?, date = ?, time = ?, duration = ?, price = ?, " +
+                "coordinator = ?, picture = ?, description = ?, category = ?" +
+                "WHERE id = ?";
 
         try (Connection conn = dbConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -85,7 +97,11 @@ public class EventDAO_DB  implements IEvents {
             stmt.setFloat(4, event.getTime());
             stmt.setFloat(5, event.getDuration());
             stmt.setFloat(6, event.getPrice());
-            stmt.setString(7, event.getEvent());
+            stmt.setString(7, event.getCoordinator());
+            stmt.setString(8, event.getPicture());
+            stmt.setString(9, event.getDescription());
+            stmt.setString(10, event.getCategory());
+
 
             stmt.executeUpdate();
         } catch (Exception ex) {
@@ -99,7 +115,7 @@ public class EventDAO_DB  implements IEvents {
     @Override
     public void deleteEvent(Event event) throws Exception {
         DBConnection dbConnection = new DBConnection();
-        String sql = "DELETE FROM Events WHERE eventName = ?";
+        String sql = "DELETE FROM Events WHERE event = ?";
 
         try(Connection conn = dbConnection.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql)) {

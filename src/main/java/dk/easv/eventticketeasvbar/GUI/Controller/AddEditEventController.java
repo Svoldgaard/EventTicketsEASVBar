@@ -105,7 +105,9 @@ public class AddEditEventController {
             event.setDate(txtDate.getValue());
             event.setTime(Float.valueOf(txtTime.getText()));
             event.setDuration(Float.valueOf(txtDuration.getText()));
-            event.setLocation(txtSetLocation.getText());
+            event.setCity(txtName.getText());
+            event.setAdress(txtName.getText());
+            event.setPostalCode(Integer.parseInt(txtName.getText()));
             event.setPrice(Float.valueOf(txtPrice.getText()));
             event.setDescription(txtAddDescription.getText());
 
@@ -123,7 +125,7 @@ public class AddEditEventController {
         txtDate.setValue(event.getDate());
         txtTime.setText(String.valueOf(event.getTime()));
         txtDuration.setText(String.valueOf(event.getDuration()));
-        txtSetLocation.setText(event.getLocation());
+        txtSetLocation.setText(event.getAdress());
         txtPrice.setText(String.valueOf(event.getPrice()));
         txtAddDescription.setText(event.getDescription());
     }
