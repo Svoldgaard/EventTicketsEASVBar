@@ -26,6 +26,7 @@ public class EventDAO_DB  implements IEvents {
 
             while(rs.next()) {
                 String eventName = rs.getString("EventName");
+                String location = rs.getString("Location");
                 String address = rs.getString("Address");
                 int postalCode = rs.getInt("PostalCode");
                 String city = rs.getString("City");
@@ -35,7 +36,7 @@ public class EventDAO_DB  implements IEvents {
                 float price = rs.getFloat("Price");
 
 
-                Event event = new Event(eventName, address, postalCode, city, date, time, duration, price);
+                Event event = new Event(eventName, location, address, postalCode, city, date, time, duration, price);
                 events.add(event);
             }
         }
@@ -49,20 +50,21 @@ public class EventDAO_DB  implements IEvents {
     @Override
     public Event createEvent(Event event) throws Exception {
         DBConnection dbConnection = new DBConnection();
-        String sql = "INSERT INTO Events (eventName, address, postalCode, city, date, time, duration, price) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Events (eventName, location, address, postalCode, city, date, time, duration, price) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try(Connection conn = dbConnection.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql)){
 
             stmt.setString(1, event.getEvent());
-            stmt.setString(2, event.getAddress());
-            stmt.setInt(3, event.getPostalCode());
-            stmt.setString(4, event.getCity());
-            stmt.setDate(5, java.sql.Date.valueOf(event.getDate()));
-            stmt.setFloat(6, event.getTime());
-            stmt.setFloat(7, event.getDuration());
-            stmt.setFloat(8, event.getPrice());
+            stmt.setString(2, event.getLocation());
+            stmt.setString(3, event.getAddress());
+            stmt.setInt(4, event.getPostalCode());
+            stmt.setString(5, event.getCity());
+            stmt.setDate(6, java.sql.Date.valueOf(event.getDate()));
+            stmt.setFloat(7, event.getTime());
+            stmt.setFloat(8, event.getDuration());
+            stmt.setFloat(9, event.getPrice());
 
             stmt.executeUpdate();
 
@@ -79,21 +81,22 @@ public class EventDAO_DB  implements IEvents {
     @Override
     public Event updateEvent(Event event) throws Exception {
         DBConnection dbConnection = new DBConnection();
-        String sql = "UPDATE Events SET eventName = ?, address =?, postalCode =?, city =?, date = ?, time = ?, duration = ?, price = ? " +
-                "WHERE eventName = ?";
+        String sql = "UPDATE Events SET eventName = ?, location =?, address =?, postalCode =?, city =?, date = ?, time = ?, duration = ?, price = ? " +
+                "WHERE id = ?";
 
         try (Connection conn = dbConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, event.getEvent());
-            stmt.setString(2, event.getAddress());
-            stmt.setInt(3, event.getPostalCode());
-            stmt.setString(4, event.getCity());
-            stmt.setDate(5, java.sql.Date.valueOf(event.getDate()));
-            stmt.setFloat(6, event.getTime());
-            stmt.setFloat(7, event.getDuration());
-            stmt.setFloat(8, event.getPrice());
-            stmt.setString(9, event.getEvent());
+            stmt.setString(2, event.getLocation());
+            stmt.setString(3, event.getAddress());
+            stmt.setInt(4, event.getPostalCode());
+            stmt.setString(5, event.getCity());
+            stmt.setDate(6, java.sql.Date.valueOf(event.getDate()));
+            stmt.setFloat(7, event.getTime());
+            stmt.setFloat(8, event.getDuration());
+            stmt.setFloat(9, event.getPrice());
+            stmt.setString(10, event.getEvent());
 
             stmt.executeUpdate();
         } catch (Exception ex) {

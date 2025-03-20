@@ -9,6 +9,7 @@ public class Event {
 
     private int id;
     private String event;
+    private String location;
     private String address;
     private int postalCode;
     private String city;
@@ -33,7 +34,7 @@ public class Event {
         this.time = time;
         this.duration = duration;
         this.price = price;
-        this.coordinators = coordinators;
+        this.coordinators = new ArrayList<>();
     }
 
     public Event(Image image, String event, String description) {
@@ -42,17 +43,19 @@ public class Event {
         this.description = description;
     }
 
-    public Event(String event, LocalDate date, Float time, Float duration, Float price, List<User> coordinators) {
+    public Event(String event, String location, LocalDate date, Float time, Float duration, Float price, List<User> coordinators) {
         this.event = event;
+        this.location = location;
         this.date = date;
         this.time = time;
         this.duration = duration;
         this.price = price;
-        this.coordinators = new ArrayList<>();  // Initialize the list
+        this.coordinators = new ArrayList<>();
     }
 
-    public Event(String event, LocalDate date, Float time, Float duration, Float price) {
+    public Event(String event, String location, LocalDate date, Float time, Float duration, Float price) {
         this.event = event;
+        this.location = location;
         this.date = date;
         this.time = time;
         this.duration = duration;
@@ -72,6 +75,19 @@ public class Event {
         this.price = price;
     }
 
+    public Event(String eventName, String location, String address, int postalCode, String city, LocalDate date, float time, float duration, float price) {
+        this.event = eventName;
+        this.location = location;
+        this.address = address;
+        this.postalCode = postalCode;
+        this.city = city;
+        this.date = date;
+        this.time = time;
+        this.duration = duration;
+        this.price = price;
+        this.coordinators = new ArrayList<>();
+    }
+
     public void addCoordinator(User coordinator) {
         if (!coordinators.contains(coordinator)) {
             coordinators.add(coordinator);
@@ -84,7 +100,7 @@ public class Event {
     }
 
     public String getCoordinatorsAsString() {
-        if (coordinators.isEmpty()) return "None";
+        if (coordinators == null || coordinators.isEmpty()) return "None";
         return String.join(", ", coordinators.stream().map(User::getFirstname).toList());
     }
 
@@ -142,6 +158,14 @@ public class Event {
 
     public void setCoordinators(List<User> coordinators) {
         this.coordinators = coordinators;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    private void setLocation(String location) {
+        this.location = location;
     }
 
     public String getAddress() {
