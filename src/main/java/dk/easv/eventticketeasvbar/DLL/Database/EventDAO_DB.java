@@ -75,6 +75,7 @@ public class EventDAO_DB  implements IEvents {
 
     }
 
+
     @Override
     public Event updateEvent(Event event) throws Exception {
         DBConnection dbConnection = new DBConnection();
