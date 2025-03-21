@@ -4,10 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="424db850-1039-4886-89b3-66312f48d918" name="Changes" comment="Login works again afterRefactor">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="424db850-1039-4886-89b3-66312f48d918" name="Changes" comment="center screen">
+      <change afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/BLL/Utility/Email.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/BLL/Utility/QRCodeGenerator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/OverviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/OverviewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Photos/BarFight.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/Photos/BarFight.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Photos/Metal.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/Photos/Metal.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Photos/Party.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/Photos/Party.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Photos/Screenshot 2024-11-30 172429.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/Photos/Screenshot 2024-11-30 172429.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Photos/TechConference.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/Photos/TechConference.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,17 +108,17 @@
       <recent name="C:\EASV\IntelliJ\EventTicketsEASVBar\src\main\resources\Photos" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar" />
       <recent name="C:\EASV\IntelliJ\EventTicketsEASVBar\src\main\resources\Photos" />
       <recent name="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/CSS" />
       <recent name="D:\GitRepos\EventTicketsEASVBar\src\main\resources\css" />
       <recent name="D:\GitRepos\EventTicketsEASVBar\src\main\java\dk\easv\eventticketeasvbar\GUI\Controller" />
-      <recent name="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="dk.easv.eventticketeasvbar" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.QRCodeGenerator">
     <configuration name="HashExistingPasswords" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dk.easv.eventticketeasvbar.BLL.HashExistingPasswords" />
       <module name="EventTicketEASVBar" />
@@ -138,8 +145,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="QRCodeGenerator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dk.easv.eventticketeasvbar.BLL.Utility.QRCodeGenerator" />
+      <module name="EventTicketEASVBar" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dk.easv.eventticketeasvbar.BLL.Utility.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.QRCodeGenerator" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.HashExistingPasswords" />
       </list>
@@ -485,7 +506,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742479700024</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="center screen">
+      <option name="closed" value="true" />
+      <created>1742545473247</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1742545473247</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -506,8 +535,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="Overview.fxml" />
-    <MESSAGE value="New mfx buttons + color" />
     <MESSAGE value="Red top edge + red column headers" />
     <MESSAGE value="Minor changes" />
     <MESSAGE value="Minor fix" />
@@ -532,6 +559,7 @@
     <MESSAGE value="Refactor" />
     <MESSAGE value="WhiteSpace" />
     <MESSAGE value="Event and Admin event tables work!!!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Event and Admin event tables work!!!" />
+    <MESSAGE value="center screen" />
+    <option name="LAST_COMMIT_MESSAGE" value="center screen" />
   </component>
 </project>

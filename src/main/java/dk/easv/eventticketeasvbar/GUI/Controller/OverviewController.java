@@ -1,7 +1,6 @@
 package dk.easv.eventticketeasvbar.GUI.Controller;
 // Project Imports
 import dk.easv.eventticketeasvbar.BE.Event;
-import dk.easv.eventticketeasvbar.GUI.Model.EventModel;
 import dk.easv.eventticketeasvbar.GUI.Model.OverViewModel;
 import dk.easv.eventticketeasvbar.Main;
 //Other Imports
@@ -38,9 +37,9 @@ public class OverviewController implements Initializable {
     public LoginController loginController;
     private int i;
 
-    ImageView img1 = new ImageView(new Image("Photos/BarFight.png"));
-    ImageView img2 = new ImageView(new Image("Photos/Party.jpg"));
-    ImageView img3 = new ImageView(new Image("Photos/TechConference.png"));
+    ImageView img1 = new ImageView(new Image("dk.easv/eventticketeasvbar/Photos/BarFight.png"));
+    ImageView img2 = new ImageView(new Image("dk.easv/eventticketeasvbar/Photos/Party.jpg"));
+    ImageView img3 = new ImageView(new Image("dk.easv/eventticketeasvbar/Photos/TechConference.png"));
 
     private Stage infoStage;
     private EventInfoController eventInfoController;
