@@ -14,7 +14,7 @@
       <Label fx:id="lblStatus" layoutX="41.0" layoutY="219.0" prefHeight="18.0" prefWidth="170.0" />
       <MFXButton fx:id="btnLogin" layoutX="48.0" layoutY="180.0" onAction="#handleLogin" text="Login" />
       <MFXButton layoutX="141.0" layoutY="180.0" onAction="#handleCancel" text="Cancel" />
-      <MFXPasswordField fx:id="txtPassword" layoutX="45.0" layoutY="125.0" prefHeight="50.0" prefWidth="150.0" />
-      <MFXTextField fx:id="txtUsername" layoutX="45.0" layoutY="51.0" prefHeight="33.0" prefWidth="150.0" />
+      <MFXPasswordField fx:id="txtPassword" layoutX="45.0" layoutY="125.0" minHeight="-Infinity" prefHeight="30.0" prefWidth="150.0" />
+      <MFXTextField fx:id="txtUsername" layoutX="45.0" layoutY="51.0" minHeight="-Infinity" prefHeight="30.0" prefWidth="150.0" />
    </children>
 </AnchorPane>
