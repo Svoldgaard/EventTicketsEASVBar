@@ -11,15 +11,15 @@ public class EventSearch {
     List<Event> searchResult = new ArrayList<>();
 
     for(Event event : searchBase) {
-        if (compareToEventTitle(query, event)) {
+        if (compareToEventName(query, event)) {
             searchResult.add(event);
         }
         }
     return searchResult;
     }
 
-    private boolean compareToEventTitle(String query, Event event) {
-        return event.getTitle().toLowerCase().contains(query.toLowerCase());
+    private boolean compareToEventName(String query, Event event) {
+        return event.getEvent().toLowerCase().contains(query.toLowerCase());
     }
 
 
