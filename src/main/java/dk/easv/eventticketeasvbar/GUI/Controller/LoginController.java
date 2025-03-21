@@ -10,11 +10,13 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
@@ -70,14 +72,19 @@ public class LoginController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/dk.easv/eventticketeasvbar/FXML/Admin.fxml"));
         Parent root = loader.load();
 
-        // Get the AdminController instance
-        AdminController adminController = loader.getController();
-        adminController.setUsername(txtUsername.getText()); // Send username to AdminController
 
-        // Set up the stage
+        AdminController adminController = loader.getController();
+        adminController.setUsername(txtUsername.getText());
+
+
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
         stage.setTitle("Admin Dashboard");
+
+
+        centerStage(stage);
+
         stage.show();
     }
 
@@ -85,15 +92,27 @@ public class LoginController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/dk.easv/eventticketeasvbar/FXML/EventCoordinator.fxml"));
         Parent root = loader.load();
 
-        // Get the AdminController instance
-        EventCoordinatorController eventCoordinatorController = loader.getController();
-        eventCoordinatorController.setUsername(txtUsername.getText()); // Send username to AdminController
 
-        // Set up the stage
+        EventCoordinatorController eventCoordinatorController = loader.getController();
+        eventCoordinatorController.setUsername(txtUsername.getText());
+
+
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
         stage.setTitle("Coordinator Dashboard");
+
+
+        centerStage(stage);
+
         stage.show();
+    }
+
+    private void centerStage(Stage stage) {
+        Scene scene = stage.getScene();
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        stage.setX((screenBounds.getWidth() - scene.getWidth()) / 2);
+        stage.setY((screenBounds.getHeight() - scene.getHeight()) / 2);
     }
 
     private void loadScene(ActionEvent actionEvent, String fxmlPath, String title) throws IOException {
