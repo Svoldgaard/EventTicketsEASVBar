@@ -13,6 +13,11 @@ AnchorPane{
     -fx-text-fill: white;
 }
 
+.whiteLabel {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
 .redEdge {
     -fx-background-color: C00D0D;
     -fx-pref-height: 40px;
@@ -24,16 +29,18 @@ MFXButton{
     -fx-background-color: C00D0D;
     -fx-text-fill: white;
     -fx-font-family: "Anaheim", sans-serif;
+    -fx-font-weight: bold;
 }
 
 .whiteButton {
     -fx-background-color: white !important;
     -fx-text-fill: black !important;
     -fx-font-family: "Anaheim", sans-serif;
+    -fx-font-weight: bold;
 
 }
 
-.table-view .column-header {
+.table-view .column-header .label {
     -fx-background-color: C00D0D;
     -fx-text-fill: white;
     -fx-font-family: "Anaheim", sans-serif;

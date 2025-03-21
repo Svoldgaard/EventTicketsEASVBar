@@ -14,12 +14,12 @@
     <VBox>
         <HBox prefHeight="38.0" prefWidth="1016.0" styleClass="redEdge">
          <children>
-               <Label text="Name:">
+               <Label text="Name:" styleClass="whiteLabel">
                <HBox.margin>
                   <Insets left="820.0" top="12.0" />
                </HBox.margin>
-            </Label>
-               <Label fx:id="lblUsername" text="NAME INPUT">
+            </Label >
+               <Label fx:id="lblUsername" text="NAME INPUT" styleClass="whiteLabel">
                <HBox.margin>
                   <Insets left="5.0" top="12.0" />
                </HBox.margin>

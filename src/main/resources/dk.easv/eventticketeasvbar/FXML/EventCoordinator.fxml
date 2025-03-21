@@ -16,12 +16,12 @@
       <children>
          <HBox prefHeight="37.0" prefWidth="625.0" styleClass="redEdge">
             <children>
-                <Label text="Name:">
+                <Label text="Name:" styleClass="whiteLabel">
                   <HBox.margin>
                      <Insets left="540.0" top="10.0" />
                   </HBox.margin>
                </Label>
-                <Label fx:id="lblUsername" text="Name??">
+                <Label fx:id="lblUsername" text="Name??" styleClass="whiteLabel">
                   <HBox.margin>
                      <Insets left="5.0" right="15.0" top="10.0" />
                   </HBox.margin>
