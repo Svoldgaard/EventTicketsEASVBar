@@ -45,11 +45,17 @@ public class AddEditEventController {
     private static MFXButton btnSaveEvent;
     @FXML
     private MFXButton btnCancel;
-
+    @FXML
+    private TextField txtPostalCode;
+    @FXML
+    private TextField txtCity;
+    @FXML
+    private TextField txtAddress;
 
     public Stage stage;
     private Event event;
     private static EventModel eventModel;
+
 
     @FXML
     public void btnCancel(ActionEvent actionEvent) throws IOException {
@@ -105,9 +111,9 @@ public class AddEditEventController {
             event.setDate(txtDate.getValue());
             event.setTime(Float.valueOf(txtTime.getText()));
             event.setDuration(Float.valueOf(txtDuration.getText()));
-            event.setCity(txtName.getText());
-            event.setAddress(txtName.getText());
-            event.setPostalCode(Integer.parseInt(txtName.getText()));
+            event.setCity(txtCity.getText());
+            event.setAddress(txtAddress.getText());
+            event.setPostalCode(Integer.parseInt(txtPostalCode.getText()));
             event.setPrice(Float.valueOf(txtPrice.getText()));
             event.setDescription(txtAddDescription.getText());
 
@@ -125,7 +131,9 @@ public class AddEditEventController {
         txtDate.setValue(event.getDate());
         txtTime.setText(String.valueOf(event.getTime()));
         txtDuration.setText(String.valueOf(event.getDuration()));
-        txtSetLocation.setText(event.getAddress());
+        txtAddress.setText(event.getAddress());
+        txtPostalCode.setText(String.valueOf(event.getPostalCode()));
+        txtCity.setText(event.getCity());
         txtPrice.setText(String.valueOf(event.getPrice()));
         txtAddDescription.setText(event.getDescription());
     }

@@ -17,7 +17,7 @@
    <TextField fx:id="txtName" layoutX="112.0" layoutY="36.0" />
    <TextField fx:id="txtDuration" layoutX="112.0" layoutY="141.0" />
    <TextField fx:id="txtSetLocation" layoutX="112.0" layoutY="176.0" />
-   <TextField fx:id="txtPrice" layoutX="112.0" layoutY="211.0" />
+   <TextField fx:id="txtAddress" layoutX="112.0" layoutY="211.0" />
    <MediaView fx:id="MediaPictureEvent" fitHeight="200.0" fitWidth="200.0" layoutX="368.0" layoutY="21.0" />
    <TextArea fx:id="txtAddDescription" layoutX="368.0" layoutY="263.0" prefHeight="85.0" prefWidth="217.0" promptText="Add description" />
    <DatePicker fx:id="txtDate" layoutX="112.0" layoutY="71.0" prefHeight="26.0" prefWidth="160.0" />
@@ -27,9 +27,9 @@
    <MFXButton layoutX="368.0" layoutY="361.0" onAction="#btnSaveEvent" text="Save Event" />
    <MFXButton layoutX="532.0" layoutY="361.0" onAction="#btnCancel" text="Cancel" />
    <Label layoutX="28.0" layoutY="250.0" text="Postal Code" />
-   <TextField fx:id="txtPrice1" layoutX="112.0" layoutY="246.0" />
+   <TextField fx:id="txtPostalCode" layoutX="112.0" layoutY="246.0" />
    <Label layoutX="28.0" layoutY="285.0" text="City" />
-   <TextField fx:id="txtPrice2" layoutX="112.0" layoutY="281.0" />
+   <TextField fx:id="txtCity" layoutX="112.0" layoutY="281.0" />
    <Label layoutX="28.0" layoutY="320.0" text="Price" />
-   <TextField fx:id="txtPrice3" layoutX="112.0" layoutY="316.0" />
+   <TextField fx:id="txtPrice" layoutX="112.0" layoutY="316.0" />
 </AnchorPane>
