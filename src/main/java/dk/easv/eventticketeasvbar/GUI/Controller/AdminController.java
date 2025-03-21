@@ -190,7 +190,7 @@ public class AdminController implements Initializable {
     }
 
     @FXML
-    private void btnCreateUser(ActionEvent actionEvent) throws IOException {
+    private void btnCreateUser(ActionEvent actionEvent) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/CreateUser.fxml"));
 
         // Load FXML and get the controller
@@ -207,11 +207,12 @@ public class AdminController implements Initializable {
 
         stage.showAndWait();
         tblCoordinator.refresh(); // Refresh table after creation
+        adminModel.loadCoordinators();
         System.out.println("Coordinator created and table refreshed");
     }
 
     @FXML
-    private void btnEditUser(ActionEvent actionEvent) throws IOException {
+    private void btnEditUser(ActionEvent actionEvent) throws Exception {
         User selectedCoordinator = tblCoordinator.getSelectionModel().getSelectedItem();
 
         if (selectedCoordinator == null) {
@@ -236,6 +237,7 @@ public class AdminController implements Initializable {
 
         stage.showAndWait();
         tblCoordinator.refresh(); // Refresh table after editing
+        adminModel.loadCoordinators();
         System.out.println("Coordinator edited and table refreshed");
     }
 

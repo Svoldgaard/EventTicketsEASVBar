@@ -154,7 +154,11 @@ public class UserDAO_DB implements IAdmin {
         try (Connection conn = dbConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
+            int userId = user.getId();
+            System.out.println("Debug id: " + userId);
+
             stmt.setInt(1, user.getId());
+
 
             int affectedRows = stmt.executeUpdate();
             if (affectedRows == 0) {
