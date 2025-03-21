@@ -1,6 +1,7 @@
 package dk.easv.eventticketeasvbar.DLL.Database;
 // Project Import
 import dk.easv.eventticketeasvbar.BE.Event;
+import dk.easv.eventticketeasvbar.BE.User;
 import dk.easv.eventticketeasvbar.DLL.DBConnection.DBConnection;
 import dk.easv.eventticketeasvbar.DLL.Interface.IEvents;
 // Java Import
@@ -11,38 +12,39 @@ import java.util.List;
 
 public class EventDAO_DB  implements IEvents {
 
-    
+
     @Override
     public List<Event> getAllEvents() throws Exception {
         DBConnection dbConnection = new DBConnection();
-        ArrayList<Event> events = new ArrayList<>();
+        List<Event> events = new ArrayList<>();
 
-        String sql = "SELECT * FROM Events, ParkingInfo";
+        String sql = "SELECT id, eventName, location, date, time, duration, price, coordinator FROM Events";
 
-        try(Connection conn = dbConnection.getConnection();
-            Statement stmt = conn.createStatement()){
+        try (Connection conn = dbConnection.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
 
-            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String eventName = rs.getString("eventName");
+                String location = rs.getString("location");
+                LocalDate date = rs.getDate("date").toLocalDate();
+                float time = rs.getFloat("time");
+                float duration = rs.getFloat("duration");
+                float price = rs.getFloat("price");
+                String coordinatorStr = rs.getString("coordinator");
 
-            while(rs.next()) {
-                String eventName = rs.getString("EventName");
-                String location = rs.getString("Location");
-                String address = rs.getString("Address");
-                int postalCode = rs.getInt("PostalCode");
-                String city = rs.getString("City");
-                LocalDate date = rs.getDate("Date").toLocalDate();
-                float time = rs.getFloat("Time");
-                float duration = rs.getFloat("Duration");
-                float price = rs.getFloat("Price");
+                List<User> coordinators = new ArrayList<>();
+                if (coordinatorStr != null && !coordinatorStr.isEmpty()) {
+                    String[] coordinatorNames = coordinatorStr.split(",\\s*");
+                    for (String name : coordinatorNames) {
+                        coordinators.add(new User(name));
+                    }
+                }
 
-
-                Event event = new Event(eventName, location, address, postalCode, city, date, time, duration, price);
+                Event event = new Event(id, eventName, location, date, time, duration, price, coordinators);
                 events.add(event);
             }
-        }
-        catch(Exception ex) {
-            ex.printStackTrace();
-            throw new RuntimeException("Failed to retrieve events", ex);
         }
         return events;
     }
@@ -81,30 +83,26 @@ public class EventDAO_DB  implements IEvents {
     @Override
     public Event updateEvent(Event event) throws Exception {
         DBConnection dbConnection = new DBConnection();
-        String sql = "UPDATE Events SET eventName = ?, location =?, address =?, postalCode =?, city =?, date = ?, time = ?, duration = ?, price = ? " +
-                "WHERE id = ?";
+        String sql = "UPDATE Events SET eventName = ?, location = ?, date = ?, time = ?, duration = ?, price = ?, coordinator = ? WHERE id = ?";
 
         try (Connection conn = dbConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, event.getEvent());
             stmt.setString(2, event.getLocation());
-            stmt.setString(3, event.getAddress());
-            stmt.setInt(4, event.getPostalCode());
-            stmt.setString(5, event.getCity());
-            stmt.setDate(6, java.sql.Date.valueOf(event.getDate()));
-            stmt.setFloat(7, event.getTime());
-            stmt.setFloat(8, event.getDuration());
-            stmt.setFloat(9, event.getPrice());
-            stmt.setString(10, event.getEvent());
+            stmt.setDate(3, java.sql.Date.valueOf(event.getDate()));
+            stmt.setFloat(4, event.getTime());
+            stmt.setFloat(5, event.getDuration());
+            stmt.setFloat(6, event.getPrice());
+            stmt.setString(7, event.getCoordinatorsAsString());  // Save coordinator names as CSV
+            stmt.setInt(8, event.getId());
 
             stmt.executeUpdate();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            throw new Exception("Error updating event in the database.");
         }
         return event;
     }
+
+
 
 
     @Override

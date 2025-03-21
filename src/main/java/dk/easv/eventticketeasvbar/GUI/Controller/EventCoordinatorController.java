@@ -1,8 +1,10 @@
 package dk.easv.eventticketeasvbar.GUI.Controller;
 
 // Project Imports
+import dk.easv.eventticketeasvbar.BE.Parking;
 import dk.easv.eventticketeasvbar.GUI.Model.EventCoordinatorModel;
 import dk.easv.eventticketeasvbar.GUI.Model.EventModel;
+import dk.easv.eventticketeasvbar.GUI.Model.ParkingModel;
 import dk.easv.eventticketeasvbar.GUI.Model.TicketModel;
 import dk.easv.eventticketeasvbar.Main;
 import dk.easv.eventticketeasvbar.BE.Event;
@@ -30,20 +32,19 @@ public class EventCoordinatorController implements Initializable {
 
     public Label lblUsername;
     public TextField txtSearch;
+
     private AddEditEventController addEditEventController;
     private AssignEditController assignEditController;
     private TicketController ticketController;
+    private EventInfoController eventInfoController;
+    private ParkingController parkingController;
 
     @FXML
     private TableView<Event> tblEvent;
     @FXML
     private TableColumn<Event, String> eventColumn;
     @FXML
-    private TableColumn addressColumn;
-    @FXML
-    private TableColumn postalCodeColumn;
-    @FXML
-    private TableColumn cityColumn;
+    private TableColumn<Event, String> locationColumn;
     @FXML
     private TableColumn<Event, String> dateColumn;
     @FXML
@@ -60,9 +61,12 @@ public class EventCoordinatorController implements Initializable {
     private EventCoordinatorModel EventCoordinatorModel;
     private EventModel eventModel;
     private TicketModel ticketModel;
+    private ParkingModel parkingModel;
 
     public EventCoordinatorController() throws Exception {
         eventModel = new EventModel();
+        eventInfoController = new EventInfoController();
+        parkingController = new ParkingController();
     }
 
     @Override
@@ -76,9 +80,7 @@ public class EventCoordinatorController implements Initializable {
 
         // Set up TableView columns
         eventColumn.setCellValueFactory(new PropertyValueFactory<>("event"));
-        addressColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
-        postalCodeColumn.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
-        cityColumn.setCellValueFactory(new PropertyValueFactory<>("city"));
+        locationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
         timeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
         durationColumn.setCellValueFactory(new PropertyValueFactory<>("duration"));
@@ -248,4 +250,58 @@ public class EventCoordinatorController implements Initializable {
     public void setUsername(String username) {
         lblUsername.setText(username);
     }
+
+    public void btnMoreEventInfo(ActionEvent actionEvent) throws IOException {
+        Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
+
+        if (selectedEvent == null) {
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Please select an event first.", ButtonType.OK);
+            alert.showAndWait();
+            return;
+        }
+
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/EventInfo.fxml"));
+        Parent root = fxmlLoader.load();
+        EventInfoController eventInfoController = fxmlLoader.getController();
+
+        // Pass the selected event details to the EventInfoController
+        eventInfoController.setEventDetails(selectedEvent);
+
+        Stage stage = new Stage();
+        stage.setTitle("Event Info");
+        stage.setScene(new Scene(root, 600, 500));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
+    }
+
+
+    public void btnParkingInfo(ActionEvent actionEvent) throws IOException {
+        Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
+
+        if (selectedEvent == null) {
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Please select an event first.", ButtonType.OK);
+            alert.showAndWait();
+            return;
+        }
+
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/Parking.fxml"));
+        Parent root = fxmlLoader.load();
+        ParkingController parkingController = fxmlLoader.getController();
+
+        // Fetch parking info related to the event
+        /*Parking parking = parkingModel.getParkingForEvent(selectedEvent.getId());
+        if (parking != null) {
+            parkingController.setParkingInfo(parking);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "No parking info available for this event.", ButtonType.OK);
+            alert.showAndWait();
+        }*/
+
+        Stage stage = new Stage();
+        stage.setTitle("Parking Info");
+        stage.setScene(new Scene(root, 600, 500));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
+    }
+
 }
