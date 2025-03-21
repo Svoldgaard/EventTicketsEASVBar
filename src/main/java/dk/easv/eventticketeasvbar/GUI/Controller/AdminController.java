@@ -1,7 +1,9 @@
 package dk.easv.eventticketeasvbar.GUI.Controller;
 // Project Imports
+import com.sun.javafx.scene.TreeShowingExpression;
 import dk.easv.eventticketeasvbar.BE.Event;
 import dk.easv.eventticketeasvbar.BE.User;
+import dk.easv.eventticketeasvbar.GUI.Model.EventCoordinatorModel;
 import dk.easv.eventticketeasvbar.GUI.Model.UserModel;
 import dk.easv.eventticketeasvbar.GUI.Model.EventModel;
 import dk.easv.eventticketeasvbar.GUI.Model.LoginModel;
@@ -64,6 +66,7 @@ public class AdminController implements Initializable {
 
     private UserModel adminModel;
     private EventModel eventModel;
+    private EventCoordinatorModel eventCoordinatorModel;
 
     private AssignEditController assignEditController;
     private CreateUserController createUserController;
@@ -79,6 +82,7 @@ public class AdminController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         try {
             adminModel = new UserModel();
+            eventCoordinatorModel = new EventCoordinatorModel();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -103,17 +107,27 @@ public class AdminController implements Initializable {
         colCoordinator.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getCoordinatorsAsString()));
 
-        /*txtEventSearch.textProperty().addListener((observable, oldValue, newValue) -> {
+        searchEvent.textProperty().addListener((observable, oldValue, newValue) -> {
             try{
                 eventModel.searchEvent(newValue);
             }catch (Exception e){
                 displayError(e);
                 e.printStackTrace();
             }
-        });*/
+        });
+
+       SearchCoordinators.textProperty().addListener((observable, oldValue, newValue) -> {
+            try{
+                eventCoordinatorModel.searchEventCoordinator(newValue);
+            }catch (Exception t){
+                displayError(t);
+                t.printStackTrace();
+            }
+        });
 
         tblCoordinator.setItems(adminModel.getCoordinators());
         tblEvent.setItems(eventModel.getTblEvent());
+
 
         setupDragAndDrop();
     }
@@ -176,7 +190,7 @@ public class AdminController implements Initializable {
     }
 
     @FXML
-    private void btnCreateUser(ActionEvent actionEvent) throws IOException {
+    private void btnCreateUser(ActionEvent actionEvent) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/CreateUser.fxml"));
 
         // Load FXML and get the controller
@@ -193,11 +207,12 @@ public class AdminController implements Initializable {
 
         stage.showAndWait();
         tblCoordinator.refresh(); // Refresh table after creation
+        adminModel.loadCoordinators();
         System.out.println("Coordinator created and table refreshed");
     }
 
     @FXML
-    private void btnEditUser(ActionEvent actionEvent) throws IOException {
+    private void btnEditUser(ActionEvent actionEvent) throws Exception {
         User selectedCoordinator = tblCoordinator.getSelectionModel().getSelectedItem();
 
         if (selectedCoordinator == null) {
@@ -222,6 +237,7 @@ public class AdminController implements Initializable {
 
         stage.showAndWait();
         tblCoordinator.refresh(); // Refresh table after editing
+        adminModel.loadCoordinators();
         System.out.println("Coordinator edited and table refreshed");
     }
 

@@ -5,6 +5,7 @@ import dk.easv.eventticketeasvbar.BLL.Manager.EventManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class EventModel {
@@ -60,6 +61,17 @@ public class EventModel {
     }
 
 
-    public void searchEvent(String newValue) {
+    public void searchEvent(String query) throws Exception {
+        List<Event> searchResults = eventManager.searchEvent(query);
+        tblEvent.clear();
+        tblEvent.addAll(searchResults);
     }
+
+
+    /*public void searchCoordinators(String query) throws Exception {
+        List<Event> searchResults = searchCoordinators();
+    }*/
+
+
 }
+

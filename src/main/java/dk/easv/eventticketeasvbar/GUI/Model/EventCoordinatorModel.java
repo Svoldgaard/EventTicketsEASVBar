@@ -61,7 +61,7 @@ public class EventCoordinatorModel {
 
     }
 
-    public void searchEvent(String query) throws Exception {
+    public void searchEventCoordinator(String query) throws Exception {
         List<User> searchResults = eventCoodinatorManager.searchEvents(query);
         tblCoordinator.clear();
         tblCoordinator.addAll((EventCoordinatorModel) searchResults);

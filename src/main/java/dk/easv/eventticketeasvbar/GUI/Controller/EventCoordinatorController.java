@@ -90,6 +90,22 @@ public class EventCoordinatorController implements Initializable {
         // Bind data to TableView
         tblEvent.setItems(eventModel.getTblEvent());
 
+        txtSearch.textProperty().addListener((observable, oldValue, newValue) -> {
+            try{
+                eventModel.searchEvent(newValue);
+            }catch (Exception e){
+                displayError(e);
+                e.printStackTrace();
+            }
+        });
+
+    }
+
+    private void displayError(Exception e) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(e.getMessage());
+        alert.showAndWait();
     }
 
     @FXML
