@@ -4,17 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="424db850-1039-4886-89b3-66312f48d918" name="Changes" comment="center screen">
-      <change afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/BLL/Utility/Email.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/BLL/Utility/QRCodeGenerator.java" afterDir="false" />
+    <list default="true" id="424db850-1039-4886-89b3-66312f48d918" name="Changes" comment="QRCOde made">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/OverviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/OverviewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Photos/BarFight.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/Photos/BarFight.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Photos/Metal.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/Photos/Metal.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Photos/Party.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/Photos/Party.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Photos/Screenshot 2024-11-30 172429.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/Photos/Screenshot 2024-11-30 172429.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Photos/TechConference.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/Photos/TechConference.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,12 +31,12 @@
     &quot;assignee&quot;: &quot;Svoldgaard&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Svoldgaard/EventTicketsEASVBar.git&quot;,
-    &quot;accountId&quot;: &quot;9dd35d70-1aeb-487d-98b8-8979c6842df0&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Svoldgaard/EventTicketsEASVBar.git",
+    "accountId": "9c3df1c5-9697-4be6-9974-a38bd9ae68b4"
   }
-}</component>
+}]]></component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Model/AdminModel.java" root0="SKIP_INSPECTION" />
   </component>
@@ -76,6 +67,7 @@
     &quot;Application.HashExistingPasswords.executor&quot;: &quot;Run&quot;,
     &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
     &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.QRCodeGenerator.executor&quot;: &quot;Run&quot;,
     &quot;Downloaded.Files.Path.Enabled&quot;: &quot;true&quot;,
     &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
     &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
@@ -169,8 +161,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.22562.218" />
-        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-IU-243.22562.218" />
+        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.20224.419" />
+        <option value="bundled-js-predefined-d6986cc7102b-410509235cf1-JavaScript-IU-242.20224.419" />
       </set>
     </attachedChunks>
   </component>
@@ -209,6 +201,7 @@
       <workItem from="1742451228909" duration="2211000" />
       <workItem from="1741946748904" duration="3679000" />
       <workItem from="1742378400030" duration="4260000" />
+      <workItem from="1742810850619" duration="551000" />
     </task>
     <task id="LOCAL-00001" summary="First">
       <option name="closed" value="true" />
@@ -514,7 +507,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742545473247</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="QRCOde made">
+      <option name="closed" value="true" />
+      <created>1742552563994</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1742552563994</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -535,7 +536,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="Red top edge + red column headers" />
     <MESSAGE value="Minor changes" />
     <MESSAGE value="Minor fix" />
     <MESSAGE value="Added PasswordField + minor changes" />
@@ -560,6 +560,18 @@
     <MESSAGE value="WhiteSpace" />
     <MESSAGE value="Event and Admin event tables work!!!" />
     <MESSAGE value="center screen" />
-    <option name="LAST_COMMIT_MESSAGE" value="center screen" />
+    <MESSAGE value="QRCOde made" />
+    <option name="LAST_COMMIT_MESSAGE" value="QRCOde made" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/BLL/Utility/QRCodeGenerator.java</url>
+          <line>12</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -12,16 +12,16 @@ import java.nio.file.Path;
 
 public class QRCodeGenerator {
 
-    // Method to generate a QR code
+
     public static void generateQRCode(String data, String filePath) throws WriterException, IOException {
         QRCodeWriter qrCodeWriter = new QRCodeWriter();
-        int width = 300;  // Width of the QR code
-        int height = 300; // Height of the QR code
+        int width = 300;
+        int height = 300;
 
-        // Generate the QR code
+
         BitMatrix bitMatrix = qrCodeWriter.encode(data, BarcodeFormat.QR_CODE, width, height);
 
-        // Save the QR code to the specified path
+
         Path path = FileSystems.getDefault().getPath(filePath);
         MatrixToImageWriter.writeToPath(bitMatrix, "PNG", path);
         System.out.println("QR Code generated and saved at: " + filePath);
@@ -29,19 +29,19 @@ public class QRCodeGenerator {
 
     public static void main(String[] args) {
         try {
-            // Path where the QR code will be saved
+
             String qrCodePath = "src/main/resources/dk.easv/eventticketeasvbar/QRCode/ticketQRCode.png";
 
-            // Ensure the directory exists
+
             Path path = FileSystems.getDefault().getPath("src/main/resources/dk.easv/eventticketeasvbar/QRCode");
             if (!path.toFile().exists()) {
                 path.toFile().mkdirs();
             }
 
-            // Data to be encoded in the QR code
+
             String qrData = "https://www.easv.dk/event/ticket";
 
-            // Generate and save the QR code
+
             generateQRCode(qrData, qrCodePath);
         } catch (WriterException | IOException e) {
             System.err.println("An error occurred while generating the QR code: " + e.getMessage());
