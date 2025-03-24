@@ -212,10 +212,10 @@ public class EventCoordinatorController implements Initializable {
         Stage stage = new Stage();
         stage.setTitle("Edit");
         stage.setScene(scene);
-        //reference to cancel button
-        //addEditEventController = fxmlLoader.getController();
+
+        ticketController.setEvent(selectedEvent);
         ticketController.setStage(stage);
-        // Make the new stage modal, blocking interaction with the previous window
+
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
     }

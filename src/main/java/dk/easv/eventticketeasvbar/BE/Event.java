@@ -114,6 +114,10 @@ public class Event {
         this.coordinators = coordinators;
     }
 
+    public Event() {
+
+    }
+
     public void addCoordinator(User coordinator) {
         if (!coordinators.contains(coordinator)) {
             coordinators.add(coordinator);
