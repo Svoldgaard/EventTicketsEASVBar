@@ -4,13 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="424db850-1039-4886-89b3-66312f48d918" name="Changes" comment="QRCOde made">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/BE/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/BE/Event.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/EventCoordinatorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/EventCoordinatorController.java" afterDir="false" />
+    <list default="true" id="424db850-1039-4886-89b3-66312f48d918" name="Changes" comment="PDF kinda works &#10;still working on email">
       <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/TicketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/TicketController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/Ticket.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/Ticket.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -206,7 +201,7 @@
       <workItem from="1742451228909" duration="2211000" />
       <workItem from="1741946748904" duration="3679000" />
       <workItem from="1742378400030" duration="4260000" />
-      <workItem from="1742810850619" duration="8717000" />
+      <workItem from="1742810850619" duration="9126000" />
     </task>
     <task id="LOCAL-00001" summary="First">
       <option name="closed" value="true" />
@@ -528,7 +523,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742811468489</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="PDF kinda works &#10;still working on email">
+      <option name="closed" value="true" />
+      <created>1742848169065</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1742848169065</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -549,7 +552,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="Minor changes" />
     <MESSAGE value="Minor fix" />
     <MESSAGE value="Added PasswordField + minor changes" />
     <MESSAGE value="Photo's" />
@@ -574,7 +576,8 @@
     <MESSAGE value="Event and Admin event tables work!!!" />
     <MESSAGE value="center screen" />
     <MESSAGE value="QRCOde made" />
-    <option name="LAST_COMMIT_MESSAGE" value="QRCOde made" />
+    <MESSAGE value="PDF kinda works &#10;still working on email" />
+    <option name="LAST_COMMIT_MESSAGE" value="PDF kinda works &#10;still working on email" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

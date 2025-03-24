@@ -91,7 +91,7 @@ public class TicketController implements Initializable {
         lblSection.setText(String.valueOf(randomSection));
         lblRow.setText(String.valueOf(randomRow));
         lblSeat.setText(String.valueOf(randomSeat));
-        lblEventCode.setText(new StringBuilder().append(randomEventCode1).append("Easv").append(randomEventCode2).toString());
+        //lblEventCode.setText(new StringBuilder().append(randomEventCode1).append("Easv").append(randomEventCode2).toString());
     }
 
     @FXML
@@ -234,6 +234,7 @@ public class TicketController implements Initializable {
         lblLocation.setText(event.getLocation());
         lblDate.setText(String.valueOf(event.getDate()));
         lblPrice.setText(String.valueOf(event.getPrice()));
+        lblEventCode.setText((event.getId() + event.getEvent()));
 
     }
 }
