@@ -12,6 +12,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.media.MediaView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -44,7 +46,7 @@ public class AddEditEventController {
     @FXML
     private MFXButton btnAddPicture;
     @FXML
-    private static MFXButton btnSaveEvent;
+    private MFXButton btnSaveEvent;
     @FXML
     private MFXButton btnCancel;
     @FXML
@@ -55,11 +57,18 @@ public class AddEditEventController {
     private TextField txtAddress;
     @FXML
     private MFXComboBox pickCoordinator;
+    @FXML
+    private ImageView eventImg;
+
+    private String imagePath;
 
     public Stage stage;
     private Event event;
     private EventModel eventModel;
 
+    public AddEditEventController() throws Exception {
+        eventModel = new EventModel();
+    }
 
     @FXML
     public void btnCancel(ActionEvent actionEvent) throws IOException {
@@ -90,7 +99,11 @@ public class AddEditEventController {
             File destinationFile = new File(photoDir, file.getName());
             try {
                 Files.copy(file.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-                AddEditEventController.setText("dk/easv/eventticketeasvbar/BE/Event.java");
+
+                imagePath = destinationFile.getPath();
+                eventImg.setImage(new Image(destinationFile.toURI().toString()));
+
+                //AddEditEventController.setText("dk/easv/eventticketeasvbar/BE/Event.java");
             } catch (IOException e) {
                 e.printStackTrace();
                 showAlert("Error", "Failed  to copt the file");
@@ -118,7 +131,8 @@ public class AddEditEventController {
             //String coordinator = pickCoordinator.getText();
             float price = Float.parseFloat(txtPrice.getText().toString());
 
-            Event newEvent = new Event(eventName, location, date, time, duration, price);
+
+            Event newEvent = new Event(eventName, location, date, time, duration, price, imagePath);
 
 
             eventModel.addEvent(newEvent);
@@ -144,7 +158,7 @@ public class AddEditEventController {
         txtAddDescription.setText(event.getDescription());
     }
 
-    public static void setText(String saveChanges) {
+    public void setText(String saveChanges) {
 
             if (btnSaveEvent != null) { // Prevents NullPointerException
                 btnSaveEvent.setText(saveChanges);

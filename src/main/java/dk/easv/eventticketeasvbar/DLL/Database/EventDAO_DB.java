@@ -18,7 +18,7 @@ public class EventDAO_DB  implements IEvents {
         DBConnection dbConnection = new DBConnection();
         List<Event> events = new ArrayList<>();
 
-        String sql = "SELECT id, eventName, location, date, time, duration, price, coordinator FROM Events";
+        String sql = "SELECT id, eventName, location, date, time, duration, price, coordinator, image FROM Events";
 
         try (Connection conn = dbConnection.getConnection();
              Statement stmt = conn.createStatement();
@@ -33,6 +33,7 @@ public class EventDAO_DB  implements IEvents {
                 float duration = rs.getFloat("duration");
                 float price = rs.getFloat("price");
                 String coordinatorStr = rs.getString("coordinator");
+                String image = rs.getString("image");
 
                 List<User> coordinators = new ArrayList<>();
                 if (coordinatorStr != null && !coordinatorStr.isEmpty()) {
@@ -42,7 +43,7 @@ public class EventDAO_DB  implements IEvents {
                     }
                 }
 
-                Event event = new Event(id, eventName, location, date, time, duration, price, coordinators);
+                Event event = new Event(id, eventName, location, date, time, duration, price, coordinators, image);
                 events.add(event);
             }
         }
@@ -52,8 +53,8 @@ public class EventDAO_DB  implements IEvents {
     @Override
     public Event createEvent(Event event) throws Exception {
         DBConnection dbConnection = new DBConnection();
-        String sql = "INSERT INTO Events (eventName, location, date, time, duration, price) " +
-                "VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Events (eventName, location, date, time, duration, price, image) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try(Connection conn = dbConnection.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql)){
@@ -64,6 +65,8 @@ public class EventDAO_DB  implements IEvents {
             stmt.setFloat(4, event.getTime());
             stmt.setFloat(5, event.getDuration());
             stmt.setFloat(6, event.getPrice());
+            stmt.setString(7, event.getImagePath());
+
 
             stmt.executeUpdate();
 
