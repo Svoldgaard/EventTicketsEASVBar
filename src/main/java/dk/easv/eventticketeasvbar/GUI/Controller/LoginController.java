@@ -115,13 +115,6 @@ public class LoginController {
         stage.setY((screenBounds.getHeight() - scene.getHeight()) / 2);
     }
 
-    private void loadScene(ActionEvent actionEvent, String fxmlPath, String title) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlPath)));
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.setTitle(title);
-        stage.show();
-    }
 
     @FXML
     private void handleCancel(ActionEvent actionEvent) {

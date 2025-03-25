@@ -1,6 +1,5 @@
 package dk.easv.eventticketeasvbar.GUI.Controller;
 // Project Imports
-import com.sun.javafx.scene.TreeShowingExpression;
 import dk.easv.eventticketeasvbar.BE.Event;
 import dk.easv.eventticketeasvbar.BE.User;
 import dk.easv.eventticketeasvbar.GUI.Model.EventCoordinatorModel;
@@ -9,8 +8,9 @@ import dk.easv.eventticketeasvbar.GUI.Model.EventModel;
 import dk.easv.eventticketeasvbar.GUI.Model.LoginModel;
 import dk.easv.eventticketeasvbar.Main;
 // Other Imports
-// Java Imports
+// JavaFX Imports
 import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.image.ImageView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,6 +24,8 @@ import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.stage.Stage;
+
+// Java import
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -68,7 +70,6 @@ public class AdminController implements Initializable {
     private EventModel eventModel;
     private EventCoordinatorModel eventCoordinatorModel;
 
-    private AssignEditController assignEditController;
     private CreateUserController createUserController;
 
     public AdminController() throws Exception {
@@ -76,7 +77,6 @@ public class AdminController implements Initializable {
         eventModel = new EventModel();
     }
 
-    //public TextField txtEventSearch;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -94,6 +94,7 @@ public class AdminController implements Initializable {
         colAmountOfEvents.setCellValueFactory(new PropertyValueFactory<>("amountOfEvents"));
 
         tblCoordinator.setItems(adminModel.getCoordinators());
+        tblCoordinator.setStyle("-fx-alternative-row-fill-visible: #009FDA");
         try {
             adminModel.loadCoordinators();
         } catch (Exception e) {
@@ -168,26 +169,6 @@ public class AdminController implements Initializable {
         }
     }
 
-    @FXML
-    private void btnAssignCoordinator(ActionEvent actionEvent) throws IOException {
-
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/Assign-edit Window.fxml"));
-
-        // Load FXML and get the controller
-        Scene scene = new Scene(fxmlLoader.load());
-        assignEditController = fxmlLoader.getController();
-
-        // Open the assign Event stage
-        Stage stage = new Stage();
-        stage.setTitle("Assign Coordinator");
-        stage.setScene(scene);
-        //reference to cancel button
-        assignEditController = fxmlLoader.getController();
-        assignEditController.setStage(stage);
-
-        stage.show();
-
-    }
 
     @FXML
     private void btnCreateUser(ActionEvent actionEvent) throws Exception {
@@ -304,6 +285,14 @@ public class AdminController implements Initializable {
                     ClipboardContent content = new ClipboardContent();
                     content.putString(row.getItem().getFirstname());  // Store user info
                     db.setContent(content);
+
+                    ImageView imageView = new ImageView("/dk.easv/eventticketeasvbar/Photos/BarFight.png"); // path to user picture when added
+
+                    imageView.setFitWidth(50);
+                    imageView.setFitHeight(50);
+
+                    db.setDragView(imageView.snapshot(null, null));
+
                     event.consume();
                 }
             });
@@ -315,7 +304,13 @@ public class AdminController implements Initializable {
             row.setOnDragOver(event -> {
                 if (event.getGestureSource() != row && event.getDragboard().hasString()) {
                     event.acceptTransferModes(TransferMode.MOVE);
+                    row.setStyle("-fx-background-color: #009FDA");
                 }
+                event.consume();
+            });
+
+            row.setOnDragExited(event -> {
+                row.setStyle(""); // Reset to default style
                 event.consume();
             });
 
@@ -340,6 +335,7 @@ public class AdminController implements Initializable {
                     }
                 }
                 event.setDropCompleted(success);
+                row.setStyle("");
                 event.consume();
             });
 

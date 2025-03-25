@@ -16,12 +16,12 @@
       <children>
          <HBox prefHeight="37.0" prefWidth="625.0" styleClass="redEdge">
             <children>
-                <Label text="Name:" styleClass="whiteLabel">
+                <Label styleClass="whiteLabel" text="Name:">
                   <HBox.margin>
                      <Insets left="540.0" top="10.0" />
                   </HBox.margin>
                </Label>
-                <Label fx:id="lblUsername" text="Name??" styleClass="whiteLabel">
+                <Label fx:id="lblUsername" styleClass="whiteLabel" text="Name??">
                   <HBox.margin>
                      <Insets left="5.0" right="15.0" top="10.0" />
                   </HBox.margin>
@@ -47,7 +47,7 @@
       </columns>
     </TableView>
 
-                               <TextField fx:id="txtSearch" layoutX="51.0" layoutY="64.0" promptText="Search:" />
+                                           <TextField fx:id="txtSearch" layoutX="32.0" layoutY="64.0" promptText="Search:" />
     <ButtonBar layoutX="14.0" layoutY="478.0" prefHeight="40.0" prefWidth="307.0">
       <buttons>
          <MFXButton fx:id="btnCreate" onAction="#btnCreateEvent" text="Create Event" />

@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="424db850-1039-4886-89b3-66312f48d918" name="Changes" comment="PDF kinda works &#10;still working on email">
-      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/TicketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/TicketController.java" afterDir="false" />
+    <list default="true" id="424db850-1039-4886-89b3-66312f48d918" name="Changes" comment="small delete off never used methods and instance">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/AdminController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,12 +32,12 @@
     &quot;assignee&quot;: &quot;Svoldgaard&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Svoldgaard/EventTicketsEASVBar.git",
-    "accountId": "9c3df1c5-9697-4be6-9974-a38bd9ae68b4"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Svoldgaard/EventTicketsEASVBar.git&quot;,
+    &quot;accountId&quot;: &quot;9c3df1c5-9697-4be6-9974-a38bd9ae68b4&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Model/AdminModel.java" root0="SKIP_INSPECTION" />
   </component>
@@ -201,7 +202,9 @@
       <workItem from="1742451228909" duration="2211000" />
       <workItem from="1741946748904" duration="3679000" />
       <workItem from="1742378400030" duration="4260000" />
-      <workItem from="1742810850619" duration="9126000" />
+      <workItem from="1742810850619" duration="9911000" />
+      <workItem from="1742886414433" duration="2038000" />
+      <workItem from="1742892374962" duration="5372000" />
     </task>
     <task id="LOCAL-00001" summary="First">
       <option name="closed" value="true" />
@@ -531,7 +534,39 @@
       <option name="project" value="LOCAL" />
       <updated>1742848169065</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="ticket takes in data from event + set it in pfd when clicked on this button">
+      <option name="closed" value="true" />
+      <created>1742848519795</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1742848519795</updated>
+    </task>
+    <task id="LOCAL-00043" summary="ticket takes in data from event + set it in pfd when clicked on this button">
+      <option name="closed" value="true" />
+      <created>1742848538558</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1742848538558</updated>
+    </task>
+    <task id="LOCAL-00044" summary="Allign search bar &amp; add .-DKK to price">
+      <option name="closed" value="true" />
+      <created>1742895073583</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1742895073583</updated>
+    </task>
+    <task id="LOCAL-00045" summary="small delete off never used methods and instance">
+      <option name="closed" value="true" />
+      <created>1742895451660</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1742895451660</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -552,9 +587,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="Minor fix" />
-    <MESSAGE value="Added PasswordField + minor changes" />
-    <MESSAGE value="Photo's" />
     <MESSAGE value="Shows multiple photo's now, problems with spacing" />
     <MESSAGE value="Photo's show and login button works" />
     <MESSAGE value="Password working with hash password" />
@@ -577,7 +609,10 @@
     <MESSAGE value="center screen" />
     <MESSAGE value="QRCOde made" />
     <MESSAGE value="PDF kinda works &#10;still working on email" />
-    <option name="LAST_COMMIT_MESSAGE" value="PDF kinda works &#10;still working on email" />
+    <MESSAGE value="ticket takes in data from event + set it in pfd when clicked on this button" />
+    <MESSAGE value="Allign search bar &amp; add .-DKK to price" />
+    <MESSAGE value="small delete off never used methods and instance" />
+    <option name="LAST_COMMIT_MESSAGE" value="small delete off never used methods and instance" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

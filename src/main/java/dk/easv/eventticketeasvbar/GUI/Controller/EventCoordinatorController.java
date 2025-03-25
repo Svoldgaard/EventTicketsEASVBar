@@ -48,11 +48,11 @@ public class EventCoordinatorController implements Initializable {
     @FXML
     private TableColumn<Event, String> dateColumn;
     @FXML
-    private TableColumn<Event, Double> timeColumn;
+    private TableColumn<Event, Float> timeColumn;
     @FXML
-    private TableColumn<Event, Double> durationColumn;
+    private TableColumn<Event, Float> durationColumn;
     @FXML
-    private TableColumn<Event, Double> priceColumn;
+    private TableColumn<Event, Float> priceColumn;
     @FXML
     private TableColumn<Event, String> coordinatorColumn;
 
@@ -77,29 +77,43 @@ public class EventCoordinatorController implements Initializable {
             throw new RuntimeException(e);
         }
 
-
         // Set up TableView columns
         eventColumn.setCellValueFactory(new PropertyValueFactory<>("event"));
         locationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
         timeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
-        durationColumn.setCellValueFactory(new PropertyValueFactory<>("duration"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
+        durationColumn.setCellValueFactory(new PropertyValueFactory<>("duration"));
         coordinatorColumn.setCellValueFactory(new PropertyValueFactory<>("coordinators"));
+
+        // Custom cell factory to add currency symbol to the price column
+        priceColumn.setCellFactory(column -> new TableCell<Event, Float>() {
+            @Override
+            protected void updateItem(Float price, boolean empty) {
+                super.updateItem(price, empty);
+                if (empty || price == null) {
+                    setText(null);
+                } else {
+                    setText(String.format("%.2f.-DKK", price)); // Format what is after the price after the %.2f. if you add space after there is space after the number
+                }
+            }
+        });
+
+
 
         // Bind data to TableView
         tblEvent.setItems(eventModel.getTblEvent());
 
         txtSearch.textProperty().addListener((observable, oldValue, newValue) -> {
-            try{
+            try {
                 eventModel.searchEvent(newValue);
-            }catch (Exception e){
+            } catch (Exception e) {
                 displayError(e);
                 e.printStackTrace();
             }
         });
-
     }
+
 
     private void displayError(Exception e) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -189,24 +203,11 @@ public class EventCoordinatorController implements Initializable {
         }
     }
 
-    private void refreshEvent() {
-        Platform.runLater(() -> {
-            try{
-                EventCoordinatorModel.refreshEvent();
-                tblEvent.setItems(EventCoordinatorModel.getEvents());
-            }
-            catch (Exception ex) {
-                ex.printStackTrace();
-            }
-        });
-
-    }
 
     public void btnAddTicket(ActionEvent actionEvent) throws IOException {
         Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/Ticket.fxml"));
-        // Load FXML and get the controller
         Scene scene = new Scene(fxmlLoader.load());
         ticketController = fxmlLoader.getController();
         Stage stage = new Stage();
@@ -242,9 +243,6 @@ public class EventCoordinatorController implements Initializable {
         assignEditController.setStage(stage);
         stage.show();
     }
-
-
-
 
 
     public void setUsername(String username) {
@@ -303,5 +301,7 @@ public class EventCoordinatorController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
     }
+
+
 
 }
