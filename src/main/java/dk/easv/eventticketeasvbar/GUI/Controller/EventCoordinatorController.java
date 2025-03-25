@@ -244,7 +244,7 @@ public class EventCoordinatorController implements Initializable {
     }
 
 
-    public void alertMessage() {}
+
 
 
     public void setUsername(String username) {

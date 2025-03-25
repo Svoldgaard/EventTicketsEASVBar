@@ -4,6 +4,7 @@ import dk.easv.eventticketeasvbar.BE.Event;
 import dk.easv.eventticketeasvbar.GUI.Model.EventModel;
 import io.github.palexdev.materialfx.controls.MFXButton;
 // Java Imports
+import io.github.palexdev.materialfx.controls.MFXComboBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -19,6 +20,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.time.LocalDate;
 
 import static jdk.javadoc.internal.doclets.formats.html.markup.HtmlStyle.title;
 
@@ -51,10 +53,12 @@ public class AddEditEventController {
     private TextField txtCity;
     @FXML
     private TextField txtAddress;
+    @FXML
+    private MFXComboBox pickCoordinator;
 
     public Stage stage;
     private Event event;
-    private static EventModel eventModel;
+    private EventModel eventModel;
 
 
     @FXML
@@ -106,22 +110,24 @@ public class AddEditEventController {
     @FXML
     private void btnSaveEvent(ActionEvent actionEvent) throws Exception {
 
-        if (event != null) {
-            event.setEvent(txtName.getText());
-            event.setDate(txtDate.getValue());
-            event.setTime(Float.valueOf(txtTime.getText()));
-            event.setDuration(Float.valueOf(txtDuration.getText()));
-            event.setCity(txtCity.getText());
-            event.setAddress(txtAddress.getText());
-            event.setPostalCode(Integer.parseInt(txtPostalCode.getText()));
-            event.setPrice(Float.valueOf(txtPrice.getText()));
-            event.setDescription(txtAddDescription.getText());
+            String eventName = txtName.getText().trim();
+            LocalDate date = txtDate.getValue();
+            float time = Float.parseFloat(txtTime.getText().toString());
+            float duration = Float.parseFloat(txtDuration.getText().toString());
+            String location = txtSetLocation.getText().trim();
+            //String coordinator = pickCoordinator.getText();
+            float price = Float.parseFloat(txtPrice.getText().toString());
 
-            eventModel.updateEvent(event);
+            Event newEvent = new Event(eventName, location, date, time, duration, price);
+
+
+            eventModel.addEvent(newEvent);
             eventModel.refreshEvents();
 
-            ((Stage) (((Button) actionEvent.getSource()).getScene().getWindow())).close();
+        if (stage != null) {
+            stage.close();
         }
+
 
     }
 

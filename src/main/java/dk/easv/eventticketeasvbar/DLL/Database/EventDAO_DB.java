@@ -52,21 +52,18 @@ public class EventDAO_DB  implements IEvents {
     @Override
     public Event createEvent(Event event) throws Exception {
         DBConnection dbConnection = new DBConnection();
-        String sql = "INSERT INTO Events (eventName, location, address, postalCode, city, date, time, duration, price) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Events (eventName, location, date, time, duration, price) " +
+                "VALUES (?, ?, ?, ?, ?, ?)";
 
         try(Connection conn = dbConnection.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql)){
 
             stmt.setString(1, event.getEvent());
             stmt.setString(2, event.getLocation());
-            stmt.setString(3, event.getAddress());
-            stmt.setInt(4, event.getPostalCode());
-            stmt.setString(5, event.getCity());
-            stmt.setDate(6, java.sql.Date.valueOf(event.getDate()));
-            stmt.setFloat(7, event.getTime());
-            stmt.setFloat(8, event.getDuration());
-            stmt.setFloat(9, event.getPrice());
+            stmt.setDate(3, java.sql.Date.valueOf(event.getDate()));
+            stmt.setFloat(4, event.getTime());
+            stmt.setFloat(5, event.getDuration());
+            stmt.setFloat(6, event.getPrice());
 
             stmt.executeUpdate();
 

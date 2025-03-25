@@ -24,10 +24,9 @@ public class EventModel {
         return tblEvent;
     }
 
-    public Event addEvent(Event event) throws Exception {
-        Event createdEvent = eventManager.createEvent(event);
-        tblEvent.add(createdEvent);
-        return createdEvent;
+    public void addEvent(Event event) throws Exception {
+        Event newEvent = eventManager.createEvent(event);
+        tblEvent.add(newEvent);
     }
 
     public void createdEvent(Event event) throws Exception {
