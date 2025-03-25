@@ -85,13 +85,11 @@ public class TicketController implements Initializable {
         int randomSection = random.nextInt(20) +1;
         int randomRow = random.nextInt(20) +1;
         int randomSeat = random.nextInt(20) +1;
-        int randomEventCode1 = random.nextInt(20) +1;
-        int randomEventCode2 = random.nextInt(20) +1;
 
         lblSection.setText(String.valueOf(randomSection));
         lblRow.setText(String.valueOf(randomRow));
         lblSeat.setText(String.valueOf(randomSeat));
-        //lblEventCode.setText(new StringBuilder().append(randomEventCode1).append("Easv").append(randomEventCode2).toString());
+
     }
 
     @FXML
@@ -110,13 +108,12 @@ public class TicketController implements Initializable {
 
             // Create a new PDF document with margins
             Document document = new Document(com.itextpdf.text.PageSize.A4, 36, 36, 36, 36);
-            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filePath));
             document.open();
 
-            // Add a logo
-            // Add logo (if available)
+            // Add logo
+            // change path to be from database when it is fixed so it can be taken from there
             com.itextpdf.text.Image logo = com.itextpdf.text.Image.getInstance("src/main/resources/dk.easv/eventticketeasvbar/Photos/BarFight.png");
-            logo.scaleToFit(100, 100);
+            logo.scaleToFit(300, 300);
             logo.setAlignment(com.itextpdf.text.Element.ALIGN_CENTER);
             document.add(logo);
 
@@ -161,7 +158,7 @@ public class TicketController implements Initializable {
 
             document.add(table);
 
-            // Add QR Code (if available)
+            // Add QR Code
             com.itextpdf.text.Image qrCode = com.itextpdf.text.Image.getInstance("src/main/resources/dk.easv/eventticketeasvbar/QRCode/ticketQRCode.png");
             qrCode.scaleToFit(100, 100);
             qrCode.setAlignment(com.itextpdf.text.Element.ALIGN_CENTER);
