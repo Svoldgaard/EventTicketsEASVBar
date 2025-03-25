@@ -47,7 +47,7 @@
       </columns>
     </TableView>
 
-                               <TextField fx:id="txtSearch" layoutX="51.0" layoutY="64.0" promptText="Search:" />
+                                           <TextField fx:id="txtSearch" layoutX="32.0" layoutY="64.0" promptText="Search:" />
     <ButtonBar layoutX="14.0" layoutY="478.0" prefHeight="40.0" prefWidth="307.0">
       <buttons>
          <MFXButton fx:id="btnCreate" onAction="#btnCreateEvent" text="Create Event" />

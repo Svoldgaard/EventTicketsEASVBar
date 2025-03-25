@@ -1,6 +1,5 @@
 package dk.easv.eventticketeasvbar.GUI.Controller;
 // Project Imports
-import com.sun.javafx.scene.TreeShowingExpression;
 import dk.easv.eventticketeasvbar.BE.Event;
 import dk.easv.eventticketeasvbar.BE.User;
 import dk.easv.eventticketeasvbar.GUI.Model.EventCoordinatorModel;
@@ -9,7 +8,7 @@ import dk.easv.eventticketeasvbar.GUI.Model.EventModel;
 import dk.easv.eventticketeasvbar.GUI.Model.LoginModel;
 import dk.easv.eventticketeasvbar.Main;
 // Other Imports
-// Java Imports
+// JavaFX Imports
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
@@ -27,6 +26,8 @@ import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.stage.Stage;
+
+// Java import
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -73,7 +74,6 @@ public class AdminController implements Initializable {
     private EventModel eventModel;
     private EventCoordinatorModel eventCoordinatorModel;
 
-    private AssignEditController assignEditController;
     private CreateUserController createUserController;
 
     private final ImageView imageView = new ImageView();
@@ -83,7 +83,6 @@ public class AdminController implements Initializable {
         eventModel = new EventModel();
     }
 
-    //public TextField txtEventSearch;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -197,26 +196,6 @@ public class AdminController implements Initializable {
         }
     }
 
-    @FXML
-    private void btnAssignCoordinator(ActionEvent actionEvent) throws IOException {
-
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/Assign-edit Window.fxml"));
-
-        // Load FXML and get the controller
-        Scene scene = new Scene(fxmlLoader.load());
-        assignEditController = fxmlLoader.getController();
-
-        // Open the assign Event stage
-        Stage stage = new Stage();
-        stage.setTitle("Assign Coordinator");
-        stage.setScene(scene);
-        //reference to cancel button
-        assignEditController = fxmlLoader.getController();
-        assignEditController.setStage(stage);
-
-        stage.show();
-
-    }
 
     @FXML
     private void btnCreateUser(ActionEvent actionEvent) throws Exception {
