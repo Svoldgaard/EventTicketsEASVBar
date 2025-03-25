@@ -4,6 +4,7 @@ import dk.easv.eventticketeasvbar.BE.Event;
 import dk.easv.eventticketeasvbar.GUI.Model.EventModel;
 import io.github.palexdev.materialfx.controls.MFXButton;
 // Java Imports
+import io.github.palexdev.materialfx.controls.MFXComboBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -11,6 +12,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.media.MediaView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -19,6 +22,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.time.LocalDate;
 
 import static jdk.javadoc.internal.doclets.formats.html.markup.HtmlStyle.title;
 
@@ -42,7 +46,7 @@ public class AddEditEventController {
     @FXML
     private MFXButton btnAddPicture;
     @FXML
-    private static MFXButton btnSaveEvent;
+    private MFXButton btnSaveEvent;
     @FXML
     private MFXButton btnCancel;
     @FXML
@@ -51,11 +55,20 @@ public class AddEditEventController {
     private TextField txtCity;
     @FXML
     private TextField txtAddress;
+    @FXML
+    private MFXComboBox pickCoordinator;
+    @FXML
+    private ImageView eventImg;
+
+    private String imagePath;
 
     public Stage stage;
     private Event event;
-    private static EventModel eventModel;
+    private EventModel eventModel;
 
+    public AddEditEventController() throws Exception {
+        eventModel = new EventModel();
+    }
 
     @FXML
     public void btnCancel(ActionEvent actionEvent) throws IOException {
@@ -86,7 +99,11 @@ public class AddEditEventController {
             File destinationFile = new File(photoDir, file.getName());
             try {
                 Files.copy(file.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-                AddEditEventController.setText("dk/easv/eventticketeasvbar/BE/Event.java");
+
+                imagePath = destinationFile.getPath();
+                eventImg.setImage(new Image(destinationFile.toURI().toString()));
+
+                //AddEditEventController.setText("dk/easv/eventticketeasvbar/BE/Event.java");
             } catch (IOException e) {
                 e.printStackTrace();
                 showAlert("Error", "Failed  to copt the file");
@@ -106,22 +123,25 @@ public class AddEditEventController {
     @FXML
     private void btnSaveEvent(ActionEvent actionEvent) throws Exception {
 
-        if (event != null) {
-            event.setEvent(txtName.getText());
-            event.setDate(txtDate.getValue());
-            event.setTime(Float.valueOf(txtTime.getText()));
-            event.setDuration(Float.valueOf(txtDuration.getText()));
-            event.setCity(txtCity.getText());
-            event.setAddress(txtAddress.getText());
-            event.setPostalCode(Integer.parseInt(txtPostalCode.getText()));
-            event.setPrice(Float.valueOf(txtPrice.getText()));
-            event.setDescription(txtAddDescription.getText());
+            String eventName = txtName.getText().trim();
+            LocalDate date = txtDate.getValue();
+            float time = Float.parseFloat(txtTime.getText().toString());
+            float duration = Float.parseFloat(txtDuration.getText().toString());
+            String location = txtSetLocation.getText().trim();
+            //String coordinator = pickCoordinator.getText();
+            float price = Float.parseFloat(txtPrice.getText().toString());
 
-            eventModel.updateEvent(event);
+
+            Event newEvent = new Event(eventName, location, date, time, duration, price, imagePath);
+
+
+            eventModel.addEvent(newEvent);
             eventModel.refreshEvents();
 
-            ((Stage) (((Button) actionEvent.getSource()).getScene().getWindow())).close();
+        if (stage != null) {
+            stage.close();
         }
+
 
     }
 
@@ -138,7 +158,7 @@ public class AddEditEventController {
         txtAddDescription.setText(event.getDescription());
     }
 
-    public static void setText(String saveChanges) {
+    public void setText(String saveChanges) {
 
             if (btnSaveEvent != null) { // Prevents NullPointerException
                 btnSaveEvent.setText(saveChanges);

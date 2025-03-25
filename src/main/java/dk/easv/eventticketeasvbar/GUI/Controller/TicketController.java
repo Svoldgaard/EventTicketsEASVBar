@@ -71,7 +71,7 @@ public class TicketController implements Initializable {
             stage.close();
         }
 
-        event = new Event();
+
     }
 
     @Override

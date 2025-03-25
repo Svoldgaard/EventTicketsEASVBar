@@ -12,7 +12,6 @@ import dk.easv.eventticketeasvbar.BE.Event;
 import io.github.palexdev.materialfx.controls.MFXButton;
 //Java Imports
 import javafx.application.Platform;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
