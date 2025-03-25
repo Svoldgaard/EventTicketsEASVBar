@@ -10,6 +10,7 @@ import dk.easv.eventticketeasvbar.Main;
 // Other Imports
 // JavaFX Imports
 import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.image.ImageView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -93,6 +94,7 @@ public class AdminController implements Initializable {
         colAmountOfEvents.setCellValueFactory(new PropertyValueFactory<>("amountOfEvents"));
 
         tblCoordinator.setItems(adminModel.getCoordinators());
+        tblCoordinator.setStyle("-fx-alternative-row-fill-visible: #009FDA");
         try {
             adminModel.loadCoordinators();
         } catch (Exception e) {
@@ -283,6 +285,14 @@ public class AdminController implements Initializable {
                     ClipboardContent content = new ClipboardContent();
                     content.putString(row.getItem().getFirstname());  // Store user info
                     db.setContent(content);
+
+                    ImageView imageView = new ImageView("/dk.easv/eventticketeasvbar/Photos/BarFight.png"); // path to user picture when added
+
+                    imageView.setFitWidth(50);
+                    imageView.setFitHeight(50);
+
+                    db.setDragView(imageView.snapshot(null, null));
+
                     event.consume();
                 }
             });
@@ -294,7 +304,13 @@ public class AdminController implements Initializable {
             row.setOnDragOver(event -> {
                 if (event.getGestureSource() != row && event.getDragboard().hasString()) {
                     event.acceptTransferModes(TransferMode.MOVE);
+                    row.setStyle("-fx-background-color: #009FDA");
                 }
+                event.consume();
+            });
+
+            row.setOnDragExited(event -> {
+                row.setStyle(""); // Reset to default style
                 event.consume();
             });
 
@@ -319,6 +335,7 @@ public class AdminController implements Initializable {
                     }
                 }
                 event.setDropCompleted(success);
+                row.setStyle("");
                 event.consume();
             });
 
