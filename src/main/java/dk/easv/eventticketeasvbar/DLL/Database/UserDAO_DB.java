@@ -20,7 +20,7 @@ public class UserDAO_DB implements IAdmin {
     @Override
     public List<User> getAllUsers() throws Exception {
         List<User> users = new ArrayList<>();
-        String sql = "Select u.id, u.firstName, u.lastName, u.email, u.phoneNumber, u.amountOfEvents, u.userTypeID, t.userType " +
+        String sql = "Select u.id, u.photo, u.firstName, u.lastName, u.email, u.phoneNumber, u.amountOfEvents, u.userTypeID, t.userType " +
                      "from [User] u " +
                      "JOIN userType t on u.userTypeID = t.id";
 
@@ -30,6 +30,7 @@ public class UserDAO_DB implements IAdmin {
 
             while (rs.next()) {
                 int id = rs.getInt("id");
+                String photo = rs.getString("photo");
                 String firstname = rs.getString("firstName");
                 String lastname = rs.getString("lastName");
                 String email = rs.getString("email");

@@ -2,6 +2,7 @@ package dk.easv.eventticketeasvbar.BE;
 
 public class User {
     private int id;
+    private String photo;
     private String firstname;
     private String lastname;
     private String email;
@@ -19,7 +20,7 @@ public class User {
         this.amountOfEvents = amountOfEvents;
     }
 
-    public User(String firstname, String lastname, String email, int phoneNumber, int amountOfEvents) {
+    public User(String photo, String firstname, String lastname, String email, int phoneNumber, int amountOfEvents) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
@@ -63,8 +64,9 @@ public class User {
         this.id = id;
     }
 
+    public String getPhoto() { return photo;}
 
-
+    public void setPhoto(String photo) { this.photo = photo;}
 
     public String getFirstname() {
         return firstname;
