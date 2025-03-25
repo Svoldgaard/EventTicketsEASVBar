@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="424db850-1039-4886-89b3-66312f48d918" name="Changes" comment="ticket takes in data from event + set it in pfd when clicked on this button">
+    <list default="true" id="424db850-1039-4886-89b3-66312f48d918" name="Changes" comment="small delete off never used methods and instance">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/BE/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/BE/Event.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/EventCoordinatorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/EventCoordinatorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/TicketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/TicketController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/EventCoordinator.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/EventCoordinator.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/AdminController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -208,7 +204,7 @@
       <workItem from="1742378400030" duration="4260000" />
       <workItem from="1742810850619" duration="9911000" />
       <workItem from="1742886414433" duration="2038000" />
-      <workItem from="1742892374962" duration="2672000" />
+      <workItem from="1742892374962" duration="5372000" />
     </task>
     <task id="LOCAL-00001" summary="First">
       <option name="closed" value="true" />
@@ -554,7 +550,23 @@
       <option name="project" value="LOCAL" />
       <updated>1742848538558</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="Allign search bar &amp; add .-DKK to price">
+      <option name="closed" value="true" />
+      <created>1742895073583</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1742895073583</updated>
+    </task>
+    <task id="LOCAL-00045" summary="small delete off never used methods and instance">
+      <option name="closed" value="true" />
+      <created>1742895451660</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1742895451660</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -575,8 +587,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="Added PasswordField + minor changes" />
-    <MESSAGE value="Photo's" />
     <MESSAGE value="Shows multiple photo's now, problems with spacing" />
     <MESSAGE value="Photo's show and login button works" />
     <MESSAGE value="Password working with hash password" />
@@ -600,7 +610,9 @@
     <MESSAGE value="QRCOde made" />
     <MESSAGE value="PDF kinda works &#10;still working on email" />
     <MESSAGE value="ticket takes in data from event + set it in pfd when clicked on this button" />
-    <option name="LAST_COMMIT_MESSAGE" value="ticket takes in data from event + set it in pfd when clicked on this button" />
+    <MESSAGE value="Allign search bar &amp; add .-DKK to price" />
+    <MESSAGE value="small delete off never used methods and instance" />
+    <option name="LAST_COMMIT_MESSAGE" value="small delete off never used methods and instance" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
