@@ -95,7 +95,7 @@ public class EventCoordinatorController implements Initializable {
                 if (empty || price == null) {
                     setText(null);
                 } else {
-                    setText(String.format("%.2f.-DKK", price)); // Format price with currency symbol
+                    setText(String.format("%.2f.-DKK", price)); // Format what is after the price after the %.2f. if you add space after there is space after the number
                 }
             }
         });
