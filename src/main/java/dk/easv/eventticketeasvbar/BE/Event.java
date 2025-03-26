@@ -108,7 +108,8 @@ public class Event {
 
     }
 
-    public Event(int id, String eventName, String location, LocalDate date, float time, float duration, float price, List<User> coordinators, String imagePath) {
+    //Constructor for retrieving data
+    public Event(int id, String eventName, String location, LocalDate date, float time, float duration, float price, List<User> coordinators, String imagePath, String description) {
         this.id = id;
         this.event = eventName;
         this.location = location;
@@ -118,6 +119,7 @@ public class Event {
         this.price = price;
         this.coordinators = coordinators;
         this.imagePath = imagePath;
+        this.description = description;
     }
 
     public String getImagePath() {
@@ -204,7 +206,7 @@ public class Event {
         return location;
     }
 
-    private void setLocation(String location) {
+    public void setLocation(String location) {
         this.location = location;
     }
 
@@ -239,6 +241,7 @@ public class Event {
     public void setDescription(String description) {
         this.description = description;
     }
+
 
     @Override
     public String toString() {

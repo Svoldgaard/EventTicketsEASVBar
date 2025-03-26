@@ -18,7 +18,7 @@ public class EventDAO_DB  implements IEvents {
         DBConnection dbConnection = new DBConnection();
         List<Event> events = new ArrayList<>();
 
-        String sql = "SELECT id, eventName, location, date, time, duration, price, coordinator, image FROM Events";
+        String sql = "SELECT id, eventName, location, date, time, duration, price, coordinator, image, description FROM Events";
 
         try (Connection conn = dbConnection.getConnection();
              Statement stmt = conn.createStatement();
@@ -34,6 +34,7 @@ public class EventDAO_DB  implements IEvents {
                 float price = rs.getFloat("price");
                 String coordinatorStr = rs.getString("coordinator");
                 String image = rs.getString("image");
+                String description = rs.getString("description");
 
                 List<User> coordinators = new ArrayList<>();
                 if (coordinatorStr != null && !coordinatorStr.isEmpty()) {
@@ -43,7 +44,7 @@ public class EventDAO_DB  implements IEvents {
                     }
                 }
 
-                Event event = new Event(id, eventName, location, date, time, duration, price, coordinators, image);
+                Event event = new Event(id, eventName, location, date, time, duration, price, coordinators, image, description);
                 events.add(event);
             }
         }

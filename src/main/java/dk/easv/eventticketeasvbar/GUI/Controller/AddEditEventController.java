@@ -24,7 +24,7 @@ import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 
-import static jdk.javadoc.internal.doclets.formats.html.markup.HtmlStyle.title;
+//import static jdk.javadoc.internal.doclets.formats.html.markup.HtmlStyle.title;
 
 public class AddEditEventController {
     @FXML
@@ -101,12 +101,12 @@ public class AddEditEventController {
     }
 
     private void showAlert(String error, String s) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(String.valueOf(title));
-        alert.setHeaderText(null);
-        String message = "";
-        alert.setContentText(message);
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(s);
+        alert.setContentText(error);
         alert.showAndWait();
+
     }
 
     @FXML
@@ -121,14 +121,27 @@ public class AddEditEventController {
             float price = Float.parseFloat(txtPrice.getText().toString());
             String description = txtDescription.getText();
 
+
+        if (selectedImage != null) {
+            String userEventsDirectory = "src/main/resources/Photos";
+            File photoDir = new File(userEventsDirectory);
+            if (!photoDir.exists()) photoDir.mkdirs();
+
+            File destinationFile = new File(photoDir, eventName + "_" + selectedImage.getName());
+            Files.copy(selectedImage.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            imagePath = destinationFile.getPath();
+        }
+
+
+
             if(imagePath == null || imagePath.isEmpty()) {
                 showAlert("Missing an image", "Please add an image");
                 return;
             }
 
             if(isEditMode) {
-
                eventToEdit.setEvent(eventName);
+               eventToEdit.setLocation(location);
                eventToEdit.setDate(date);
                eventToEdit.setTime(time);
                eventToEdit.setDuration(duration);
@@ -144,16 +157,6 @@ public class AddEditEventController {
 
 
             } else {
-
-                if (selectedImage != null) {
-                    String userEventsDirectory = "src/main/resources/Photos";
-                    File photoDir = new File(userEventsDirectory);
-                    if (!photoDir.exists()) photoDir.mkdirs();
-
-                    File destinationFile = new File(photoDir, eventName);
-                    Files.copy(selectedImage.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-                    imagePath = destinationFile.getPath();
-                }
 
                 Event newEvent = new Event(eventName, location, date, time, duration, price, imagePath, description);
                 eventModel.addEvent(newEvent);
@@ -174,11 +177,11 @@ public class AddEditEventController {
             this.isEditMode = true;
 
             txtName.setText(event.getEvent());
+            txtLocation.setText(event.getLocation());
             txtDate.setValue(event.getDate());
             txtTime.setText(String.valueOf(event.getTime()));
             txtDuration.setText(String.valueOf(event.getDuration()));
             txtPrice.setText(String.valueOf(event.getPrice()));
-            txtLocation.setText(event.getLocation());
             txtDescription.setText(event.getDescription());
 
             imagePath = event.getImagePath();
