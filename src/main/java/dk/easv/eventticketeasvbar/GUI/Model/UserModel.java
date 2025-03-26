@@ -44,7 +44,7 @@ public class UserModel {
             tblCoordinator.set(index, updatedCoordinator);
         }
 
-        adminManager.updateUser(user);
+        //adminManager.updateUser(user);
     }
 
 

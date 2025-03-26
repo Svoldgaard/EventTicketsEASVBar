@@ -9,6 +9,7 @@ import dk.easv.eventticketeasvbar.GUI.Model.LoginModel;
 import dk.easv.eventticketeasvbar.Main;
 // Other Imports
 // JavaFX Imports
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.image.ImageView;
 import javafx.event.ActionEvent;
@@ -20,6 +21,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
@@ -41,6 +44,8 @@ public class AdminController implements Initializable {
     private TextField searchEvent;
     @FXML
     private TableView<User> tblCoordinator;
+    @FXML
+    private TableColumn<User, String> colPhoto;
     @FXML
     private TableColumn<User,String> colFName;
     @FXML
@@ -72,6 +77,8 @@ public class AdminController implements Initializable {
 
     private CreateUserController createUserController;
 
+    private final ImageView imageView = new ImageView();
+
     public AdminController() throws Exception {
         adminModel = new UserModel();
         eventModel = new EventModel();
@@ -86,12 +93,32 @@ public class AdminController implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
+        colPhoto.setCellValueFactory(new PropertyValueFactory<>("photo"));
         colFName.setCellValueFactory(new PropertyValueFactory<>("firstname"));
         colLName.setCellValueFactory(new PropertyValueFactory<>("lastname"));
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         colPhoneNumber.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
         colAmountOfEvents.setCellValueFactory(new PropertyValueFactory<>("amountOfEvents"));
+        colPhoto.setCellFactory(column -> new TableCell<User, String>() {
+            private final ImageView imageView = new ImageView();
+
+            @Override
+            protected void updateItem(String imagePath, boolean empty) {
+                super.updateItem(imagePath, empty);
+                if (empty || imagePath == null || imagePath.isEmpty()) {
+                    setGraphic(null);
+                } else {
+                    try {
+                        // Forvent at imagePath er en sti til et billede i resources
+                        Image image = new Image(getClass().getResourceAsStream("/" + imagePath), 50, 50, true, true);
+                        imageView.setImage(image);
+                        setGraphic(imageView);
+                    } catch (Exception e) {
+                        setGraphic(null);
+                    }
+                }
+            }
+        });
 
         tblCoordinator.setItems(adminModel.getCoordinators());
         tblCoordinator.setStyle("-fx-alternative-row-fill-visible: #009FDA");
@@ -132,6 +159,8 @@ public class AdminController implements Initializable {
 
         setupDragAndDrop();
     }
+
+
 
     private void displayError(Exception e) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
