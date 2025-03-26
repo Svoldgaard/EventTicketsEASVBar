@@ -32,6 +32,8 @@ public class AssignEditController implements Initializable {
     private Event event; // Store selected event
     private Stage stage;
 
+
+
     public AssignEditController() throws Exception {
         adminModel = new UserModel();
         eventModel = new EventModel();

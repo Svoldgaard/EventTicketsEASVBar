@@ -54,7 +54,9 @@ public class Event {
         this.coordinators = new ArrayList<>();
     }
 
-    public Event(String event, String location, LocalDate date, Float time, Float duration, Float price, String imagePath) {
+    //Constructor for making events
+    //What the hell here is so many of them :=)
+    public Event(String event, String location, LocalDate date, Float time, Float duration, Float price, String imagePath, String description) {
         this.event = event;
         this.location = location;
         this.date = date;
@@ -63,6 +65,7 @@ public class Event {
         this.price = price;
         this.coordinators = new ArrayList<>();  // Ensure coordinators list is initialized
         this.imagePath = imagePath;
+        this.description = description;
     }
 
     public Event(String eventName, String address, int postalCode, String city, LocalDate date, float time,
@@ -105,7 +108,8 @@ public class Event {
 
     }
 
-    public Event(int id, String eventName, String location, LocalDate date, float time, float duration, float price, List<User> coordinators, String imagePath) {
+    //Constructor for retrieving data
+    public Event(int id, String eventName, String location, LocalDate date, float time, float duration, float price, List<User> coordinators, String imagePath, String description) {
         this.id = id;
         this.event = eventName;
         this.location = location;
@@ -115,6 +119,7 @@ public class Event {
         this.price = price;
         this.coordinators = coordinators;
         this.imagePath = imagePath;
+        this.description = description;
     }
 
     public String getImagePath() {
@@ -201,7 +206,7 @@ public class Event {
         return location;
     }
 
-    private void setLocation(String location) {
+    public void setLocation(String location) {
         this.location = location;
     }
 
@@ -236,6 +241,7 @@ public class Event {
     public void setDescription(String description) {
         this.description = description;
     }
+
 
     @Override
     public String toString() {
