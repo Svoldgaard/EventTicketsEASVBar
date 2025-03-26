@@ -32,13 +32,13 @@ public class AddEditEventController {
     @FXML
     private TextField txtDuration;
     @FXML
-    private TextField txtSetLocation;
+    private TextField txtLocation;
     @FXML
     private TextField txtPrice;
     @FXML
     private MediaView MediaPictureEvent;
     @FXML
-    private TextArea txtAddDescription;
+    private TextArea txtDescription;
     @FXML
     private DatePicker txtDate;
     @FXML
@@ -61,10 +61,14 @@ public class AddEditEventController {
     private ImageView eventImg;
 
     private String imagePath;
+    private File selectedImage;
 
     public Stage stage;
     private Event event;
     private EventModel eventModel;
+
+    private boolean isEditMode = false;
+    private Event eventToEdit;
 
     public AddEditEventController() throws Exception {
         eventModel = new EventModel();
@@ -90,24 +94,9 @@ public class AddEditEventController {
         File file = fileChooser.showOpenDialog(new Stage());
 
         if (file != null) {
-            String userEventsDirectory = "src/main/resources/Photos";
-            File photoDir = new File(userEventsDirectory);
-            if (!photoDir.exists()) {
-                photoDir.mkdirs();
-            }
+            selectedImage = file;
+            eventImg.setImage(new Image(file.toURI().toString()));
 
-            File destinationFile = new File(photoDir, file.getName());
-            try {
-                Files.copy(file.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-
-                imagePath = destinationFile.getPath();
-                eventImg.setImage(new Image(destinationFile.toURI().toString()));
-
-                //AddEditEventController.setText("dk/easv/eventticketeasvbar/BE/Event.java");
-            } catch (IOException e) {
-                e.printStackTrace();
-                showAlert("Error", "Failed  to copt the file");
-            }
         }
     }
 
@@ -127,35 +116,76 @@ public class AddEditEventController {
             LocalDate date = txtDate.getValue();
             float time = Float.parseFloat(txtTime.getText().toString());
             float duration = Float.parseFloat(txtDuration.getText().toString());
-            String location = txtSetLocation.getText().trim();
+            String location = txtLocation.getText().trim();
             //String coordinator = pickCoordinator.getText();
             float price = Float.parseFloat(txtPrice.getText().toString());
+            String description = txtDescription.getText();
+
+            if(imagePath == null || imagePath.isEmpty()) {
+                showAlert("Missing an image", "Please add an image");
+                return;
+            }
+
+            if(isEditMode) {
+
+               eventToEdit.setEvent(eventName);
+               eventToEdit.setDate(date);
+               eventToEdit.setTime(time);
+               eventToEdit.setDuration(duration);
+               eventToEdit.setPrice(price);
+               eventToEdit.setDescription(description);
+               eventToEdit.setImagePath(imagePath);
+
+               try {
+                   eventModel.updateEvent(eventToEdit);
+               }catch (Exception e) {
+                   e.printStackTrace();
+               }
 
 
-            Event newEvent = new Event(eventName, location, date, time, duration, price, imagePath);
+            } else {
 
+                if (selectedImage != null) {
+                    String userEventsDirectory = "src/main/resources/Photos";
+                    File photoDir = new File(userEventsDirectory);
+                    if (!photoDir.exists()) photoDir.mkdirs();
 
-            eventModel.addEvent(newEvent);
-            eventModel.refreshEvents();
+                    File destinationFile = new File(photoDir, eventName);
+                    Files.copy(selectedImage.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                    imagePath = destinationFile.getPath();
+                }
 
-        if (stage != null) {
-            stage.close();
-        }
+                Event newEvent = new Event(eventName, location, date, time, duration, price, imagePath, description);
+                eventModel.addEvent(newEvent);
+                eventModel.refreshEvents();
+            }
 
+                if (stage != null) {
+                    stage.close();
+            }
 
     }
 
     public void setEvent(Event event) {
-        this.event = event;
-        txtName.setText(event.getEvent());
-        txtDate.setValue(event.getDate());
-        txtTime.setText(String.valueOf(event.getTime()));
-        txtDuration.setText(String.valueOf(event.getDuration()));
-        txtAddress.setText(event.getAddress());
-        txtPostalCode.setText(String.valueOf(event.getPostalCode()));
-        txtCity.setText(event.getCity());
-        txtPrice.setText(String.valueOf(event.getPrice()));
-        txtAddDescription.setText(event.getDescription());
+
+        if(event != null) {
+            this.event = event;
+            this.eventToEdit = event;
+            this.isEditMode = true;
+
+            txtName.setText(event.getEvent());
+            txtDate.setValue(event.getDate());
+            txtTime.setText(String.valueOf(event.getTime()));
+            txtDuration.setText(String.valueOf(event.getDuration()));
+            txtPrice.setText(String.valueOf(event.getPrice()));
+            txtLocation.setText(event.getLocation());
+            txtDescription.setText(event.getDescription());
+
+            imagePath = event.getImagePath();
+            if (imagePath != null && !imagePath.isEmpty()) {
+                eventImg.setImage(new Image(new File(imagePath).toURI().toString()));
+            }
+        }
     }
 
     public void setText(String saveChanges) {

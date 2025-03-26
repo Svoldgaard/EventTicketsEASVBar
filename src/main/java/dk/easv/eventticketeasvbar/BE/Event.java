@@ -54,7 +54,9 @@ public class Event {
         this.coordinators = new ArrayList<>();
     }
 
-    public Event(String event, String location, LocalDate date, Float time, Float duration, Float price, String imagePath) {
+    //Constructor for making events
+    //What the hell here is so many of them :=)
+    public Event(String event, String location, LocalDate date, Float time, Float duration, Float price, String imagePath, String description) {
         this.event = event;
         this.location = location;
         this.date = date;
@@ -63,6 +65,7 @@ public class Event {
         this.price = price;
         this.coordinators = new ArrayList<>();  // Ensure coordinators list is initialized
         this.imagePath = imagePath;
+        this.description = description;
     }
 
     public Event(String eventName, String address, int postalCode, String city, LocalDate date, float time,
