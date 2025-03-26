@@ -38,7 +38,7 @@ public class UserDAO_DB implements IAdmin {
                 int amountOfEvents = rs.getInt("amountOfEvents");
                 String userType = rs.getString("userType");
 
-                User user = new User(id, firstname, lastname, email, phoneNumber, amountOfEvents, userType);
+                User user = new User(id, photo, firstname, lastname, email, phoneNumber, amountOfEvents, userType);
                 users.add(user);
             }
         } catch (Exception ex) {
@@ -50,18 +50,19 @@ public class UserDAO_DB implements IAdmin {
 
     @Override
     public User createUser(User user) throws Exception {
-        String sql = "INSERT INTO [User] (firstName, lastName, email, phoneNumber, amountOfEvents, userTypeID) " +
-                "VALUES (?, ?, ?, ?, ?, 2)";
+        String sql = "INSERT INTO [User] (photo, firstName, lastName, email, phoneNumber, amountOfEvents, userTypeID) " +
+                "VALUES (?, ?, ?, ?, ?, ?, 2)";
 
 
         try (Connection conn = dbConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
-            stmt.setString(1, user.getFirstname());
-            stmt.setString(2, user.getLastname());
-            stmt.setString(3, user.getEmail());
-            stmt.setInt(4, user.getPhoneNumber());
-            stmt.setInt(5, user.getAmountOfEvents());
+            stmt.setString(1, user.getPhoto());
+            stmt.setString(2, user.getFirstname());
+            stmt.setString(3, user.getLastname());
+            stmt.setString(4, user.getEmail());
+            stmt.setInt(5, user.getPhoneNumber());
+            stmt.setInt(6, user.getAmountOfEvents());
             //stmt.setInt(6, user.getUserTypeID());
 
             int affectedRows = stmt.executeUpdate();
@@ -75,6 +76,7 @@ public class UserDAO_DB implements IAdmin {
 
                     return new User(
                             id,
+                            user.getPhoto(),
                             user.getFirstname(),
                             user.getLastname(),
                             user.getEmail(),
@@ -96,7 +98,7 @@ public class UserDAO_DB implements IAdmin {
 
     @Override
     public User updateUser(User user) throws Exception {
-        String sql = "UPDATE [User] SET firstName = ?, lastName = ?, email = ?, phoneNumber = ?, amountOfEvents = ? " +
+        String sql = "UPDATE [User] SET photo = ?, firstName = ?, lastName = ?, email = ?, phoneNumber = ?, amountOfEvents = ? " +
                 " WHERE id = ?";
 
 
@@ -112,13 +114,14 @@ public class UserDAO_DB implements IAdmin {
                 return user; // No update needed
             }*/
 
-            stmt.setString(1, user.getFirstname());
-            stmt.setString(2, user.getLastname());
-            stmt.setString(3, user.getEmail());
-            stmt.setInt(4, user.getPhoneNumber());
-            stmt.setInt(5, user.getAmountOfEvents());
+            stmt.setString(1, user.getPhoto());
+            stmt.setString(2, user.getFirstname());
+            stmt.setString(3, user.getLastname());
+            stmt.setString(4, user.getEmail());
+            stmt.setInt(5, user.getPhoneNumber());
+            stmt.setInt(6, user.getAmountOfEvents());
             //stmt.setString(6, user.getUserType());
-            stmt.setInt(6, user.getId());
+            stmt.setInt(7, user.getId());
 
             System.out.println("Debug id: " + user.getId());
             int affectedRows = stmt.executeUpdate();

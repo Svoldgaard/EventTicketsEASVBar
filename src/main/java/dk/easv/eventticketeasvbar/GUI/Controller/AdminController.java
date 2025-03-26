@@ -93,7 +93,7 @@ public class AdminController implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
+        colPhoto.setCellValueFactory(new PropertyValueFactory<>("photo"));
         colFName.setCellValueFactory(new PropertyValueFactory<>("firstname"));
         colLName.setCellValueFactory(new PropertyValueFactory<>("lastname"));
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));

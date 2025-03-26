@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.media.MediaView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -41,12 +42,16 @@ public class CreateUserController {
     private User editableCoordinator;
     private boolean isEditMode = false;
 
+    private String imagePath;
     private Stage stage;
 
     private boolean isUpdateMode;
     private User coordinatorToUpdate;
     @FXML
     private MediaView MediaPictureEmployee;
+    @FXML
+    private ImageView imageEmployee;
+
 
     public CreateUserController() throws IOException {
         adminModel = new UserModel();
@@ -69,7 +74,6 @@ public class CreateUserController {
             txtLastName.setText(coordinator.getLastname());
             txtPhoneNumber.setText(String.valueOf(coordinator.getPhoneNumber()));
             txtEmail.setText(coordinator.getEmail());
-
 
         }
     }
@@ -147,7 +151,10 @@ public class CreateUserController {
             File destinationFile = new File(photoDir, file.getName());
             try {
                 Files.copy(file.toPath(),destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-                CreateUserController.setText("dk/easv/eventticketeasvbar/BE/User.java");
+                photo = "Photos/" + file.getName();
+
+                imagePath = destinationFile.getPath();
+                imageEmployee.setImage(new javafx.scene.image.Image(destinationFile.toURI().toString()));
             }
             catch(Exception ex) {
                 ex.printStackTrace();
@@ -155,9 +162,6 @@ public class CreateUserController {
 
         }
         
-    }
-
-    private static void setText(String saveChanges) {
     }
 
     private void showErrorAlert(String title, String message) {

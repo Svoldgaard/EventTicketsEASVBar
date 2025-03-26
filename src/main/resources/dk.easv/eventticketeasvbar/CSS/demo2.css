@@ -14,7 +14,7 @@ AnchorPane{
 }
 
 .redAnchorPane {
-    -fx-background-color: red;
+    -fx-background-color: #C00D0D;
     -fx-text-fill: white;
 }
 

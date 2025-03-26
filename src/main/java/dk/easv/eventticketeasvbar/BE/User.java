@@ -28,18 +28,42 @@ public class User {
         this.amountOfEvents = amountOfEvents;
     }
 
-    public User(int id, String firstname, String lastname, String email, int phoneNumber, int amountOfEvents, int userTypeID) {
+    /*public User(int id, String firstname, String lastname, String email, int phoneNumber, int amountOfEvents, int userTypeID) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.amountOfEvents = amountOfEvents;
         this.userTypeID = userTypeID;
+    }*/
+
+    public User(int id, String photo, String firstname, String lastname, String email, int phoneNumber, int amountOfEvents, int i) {
+        this.id = id;
+        this.photo = photo;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.amountOfEvents = amountOfEvents;
+        this.userTypeID = i;
     }
 
     public User(String name) {
         this.firstname = name;
     }
+
+    public User(int id, String photo, String firstname, String lastname, String email, int phoneNumber, int amountOfEvents, String userType) {
+        this.id = id;
+        this.photo = photo;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.amountOfEvents = amountOfEvents;
+        this.userType = userType;
+
+    }
+
 
     public int getUserTypeID() {
         return userTypeID;
