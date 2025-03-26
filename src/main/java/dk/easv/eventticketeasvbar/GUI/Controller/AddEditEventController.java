@@ -59,7 +59,7 @@ public class AddEditEventController {
     @FXML
     private Label lblDescCount;
 
-    private static final int DESCRIPTION_CHAR_LIMIT = 244;
+    private static final int DESCRIPTION_CHAR_LIMIT = 254;
 
     private String imagePath;
     private File selectedImage;
@@ -101,6 +101,7 @@ public class AddEditEventController {
         }
     }
 
+    //handles text limit
     @FXML
     private void onDescTyped(KeyEvent keyEvent) {
         String text = txtDescription.getText();
@@ -111,7 +112,7 @@ public class AddEditEventController {
 
         }
         int len = txtDescription.getText().length();
-        lblDescCount.setStyle(len >= 230 ? "-fx-text-fill: red;" : "-fx-text-fill: black;");
+        lblDescCount.setStyle(len >= 200 ? "-fx-text-fill: red;" : "-fx-text-fill: black;");
         lblDescCount.setText(txtDescription.getText().length() + "/" + DESCRIPTION_CHAR_LIMIT);
     }
 
@@ -127,14 +128,29 @@ public class AddEditEventController {
     @FXML
     private void btnSaveEvent(ActionEvent actionEvent) throws Exception {
 
-            String eventName = txtName.getText().trim();
-            LocalDate date = txtDate.getValue();
-            float time = Float.parseFloat(txtTime.getText().toString());
-            float duration = Float.parseFloat(txtDuration.getText().toString());
-            String location = txtLocation.getText().trim();
-            //String coordinator = pickCoordinator.getText();
-            float price = Float.parseFloat(txtPrice.getText().toString());
-            String description = txtDescription.getText();
+        String eventName = txtName.getText().trim();
+        LocalDate date = txtDate.getValue();
+        String timeText = txtTime.getText().trim();
+        String durationText = txtDuration.getText().trim();
+        String location = txtLocation.getText().trim();
+        String priceText = txtPrice.getText().trim();
+        String description = txtDescription.getText().trim();
+
+        if (eventName.isEmpty() || date == null || timeText.isEmpty() ||
+                durationText.isEmpty() || location.isEmpty() || priceText.isEmpty() || description.isEmpty()) {
+            showAlert("Missing Fields", "Please fill in all required fields.");
+            return;
+        }
+        float time, duration, price;
+
+        try{
+            time = Float.parseFloat(timeText);
+            duration = Float.parseFloat(durationText);
+            price = Float.parseFloat(priceText);
+        } catch (NumberFormatException e) {
+            showAlert("Invalid Number", "Please enter valid numbers for time, duration, and price.");
+            return;
+        }
 
 
         if (selectedImage != null) {
