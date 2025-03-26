@@ -22,6 +22,7 @@ public class Event {
     private List<User> coordinators;
     private Image image;
     private String description;
+    private String imagePath;
 
 
     public Event(int id, String event, String address, int postalCode, String city, LocalDate date, Float time, Float duration, Float price, List<User> coordinators) {
@@ -53,7 +54,7 @@ public class Event {
         this.coordinators = new ArrayList<>();
     }
 
-    public Event(String event, String location, LocalDate date, Float time, Float duration, Float price) {
+    public Event(String event, String location, LocalDate date, Float time, Float duration, Float price, String imagePath) {
         this.event = event;
         this.location = location;
         this.date = date;
@@ -61,6 +62,7 @@ public class Event {
         this.duration = duration;
         this.price = price;
         this.coordinators = new ArrayList<>();  // Ensure coordinators list is initialized
+        this.imagePath = imagePath;
     }
 
     public Event(String eventName, String address, int postalCode, String city, LocalDate date, float time,
@@ -103,7 +105,7 @@ public class Event {
 
     }
 
-    public Event(int id, String eventName, String location, LocalDate date, float time, float duration, float price, List<User> coordinators) {
+    public Event(int id, String eventName, String location, LocalDate date, float time, float duration, float price, List<User> coordinators, String imagePath) {
         this.id = id;
         this.event = eventName;
         this.location = location;
@@ -112,10 +114,15 @@ public class Event {
         this.duration = duration;
         this.price = price;
         this.coordinators = coordinators;
+        this.imagePath = imagePath;
     }
 
-    public Event() {
+    public String getImagePath() {
+        return imagePath;
+    }
 
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
     public void addCoordinator(User coordinator) {

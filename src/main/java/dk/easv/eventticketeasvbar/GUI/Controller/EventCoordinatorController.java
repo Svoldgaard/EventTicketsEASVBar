@@ -62,9 +62,6 @@ public class EventCoordinatorController implements Initializable {
     private TableColumn<Event, String> coordinatorColumn;
 
 
-
-
-
     private EventCoordinatorModel EventCoordinatorModel;
     private EventModel eventModel;
     private TicketModel ticketModel;
