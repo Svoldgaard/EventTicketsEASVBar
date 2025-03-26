@@ -7,13 +7,10 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.media.MediaView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -59,6 +56,10 @@ public class AddEditEventController {
     private MFXComboBox pickCoordinator;
     @FXML
     private ImageView eventImg;
+    @FXML
+    private Label lblDescCount;
+
+    private static final int DESCRIPTION_CHAR_LIMIT = 244;
 
     private String imagePath;
     private File selectedImage;
@@ -98,6 +99,20 @@ public class AddEditEventController {
             eventImg.setImage(new Image(file.toURI().toString()));
 
         }
+    }
+
+    @FXML
+    private void onDescTyped(KeyEvent keyEvent) {
+        String text = txtDescription.getText();
+
+        if(text.length() > DESCRIPTION_CHAR_LIMIT) {
+            txtDescription.setText(text.substring(0, DESCRIPTION_CHAR_LIMIT));
+            txtDescription.positionCaret(DESCRIPTION_CHAR_LIMIT);
+
+        }
+        int len = txtDescription.getText().length();
+        lblDescCount.setStyle(len >= 230 ? "-fx-text-fill: red;" : "-fx-text-fill: black;");
+        lblDescCount.setText(txtDescription.getText().length() + "/" + DESCRIPTION_CHAR_LIMIT);
     }
 
     private void showAlert(String error, String s) {
