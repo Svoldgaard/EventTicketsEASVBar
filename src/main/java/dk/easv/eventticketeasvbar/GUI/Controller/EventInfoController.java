@@ -5,9 +5,12 @@ import dk.easv.eventticketeasvbar.BE.Event;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
+import java.io.File;
 
 public class EventInfoController {
     @FXML
@@ -33,7 +36,14 @@ public class EventInfoController {
 
     // Set all event details at once
     public void setEventDetails(Event event) {
-        imageView.setImage(event.getImage());
+        String imagePath = event.getImagePath();
+        File imageFile = new File(imagePath);
+        if (imageFile.exists()) {
+            Image image = new Image(imageFile.toURI().toString());
+            imageView.setImage(image);
+        } else {
+            System.out.println("Image file not found at: " + imagePath);
+        }
         eventName.setText(event.getEvent());
         desc.setText(event.getDescription());
     }

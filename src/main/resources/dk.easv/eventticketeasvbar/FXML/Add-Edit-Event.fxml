@@ -31,5 +31,5 @@
    <ImageView fx:id="eventImg" fitHeight="161.0" fitWidth="218.0" layoutX="368.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true" />
    <Label layoutX="28.0" layoutY="225.0" text="Coordiantor" />
    <MFXComboBox fx:id="pickCoordinator" layoutX="112.0" layoutY="221.0" minHeight="25.6" prefHeight="10.0" prefWidth="149.0" />
-   <Label fx:id="lblDescCount" layoutX="489.0" layoutY="323.0" prefHeight="17.0" prefWidth="81.0" />
+   <Label fx:id="lblDescCount" layoutX="489.0" layoutY="323.0" prefHeight="17.0" prefWidth="77.0" />
 </AnchorPane>
