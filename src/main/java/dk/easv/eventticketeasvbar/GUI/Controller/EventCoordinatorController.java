@@ -1,7 +1,6 @@
 package dk.easv.eventticketeasvbar.GUI.Controller;
 
 // Project Imports
-import dk.easv.eventticketeasvbar.BE.Parking;
 import dk.easv.eventticketeasvbar.GUI.Model.EventCoordinatorModel;
 import dk.easv.eventticketeasvbar.GUI.Model.EventModel;
 import dk.easv.eventticketeasvbar.GUI.Model.ParkingModel;
@@ -9,10 +8,7 @@ import dk.easv.eventticketeasvbar.GUI.Model.TicketModel;
 import dk.easv.eventticketeasvbar.Main;
 import dk.easv.eventticketeasvbar.BE.Event;
 // Other Imports
-import io.github.palexdev.materialfx.controls.MFXButton;
 //Java Imports
-import javafx.application.Platform;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,6 +18,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -34,11 +32,17 @@ public class EventCoordinatorController implements Initializable {
     public Label lblUsername;
     public TextField txtSearch;
 
+    private Stage eventInfoStage = null;
     private AddEditEventController addEditEventController;
     private AssignEditController assignEditController;
     private TicketController ticketController;
     private EventInfoController eventInfoController;
     private ParkingController parkingController;
+
+
+    private Event currentPopupEvent = null;
+    private boolean isPopupActive = false;
+
 
     @FXML
     private TableView<Event> tblEvent;
@@ -56,6 +60,8 @@ public class EventCoordinatorController implements Initializable {
     private TableColumn<Event, Float> priceColumn;
     @FXML
     private TableColumn<Event, String> coordinatorColumn;
+
+
 
 
 
@@ -104,6 +110,30 @@ public class EventCoordinatorController implements Initializable {
 
         // Bind data to TableView
         tblEvent.setItems(eventModel.getTblEvent());
+
+        tblEvent.setRowFactory(tv -> {
+            TableRow<Event> row = new TableRow<>();
+
+            row.setOnMouseEntered(event -> {
+                if (!row.isEmpty() && !isPopupActive) {
+                    Event hoveredEvent = row.getItem();
+
+                    // Show the popup only if it's a new event
+                    if (!hoveredEvent.equals(currentPopupEvent)) {
+                        showEventInfoPopup(hoveredEvent);
+                    }
+                }
+            });
+
+            row.setOnMouseExited(event -> {
+                // Don't close the popup if it's active
+                if (!row.isEmpty() && !isPopupActive && eventInfoStage != null) {
+                    closeEventInfoPopup();
+                }
+            });
+
+            return row;
+        });
 
         txtSearch.textProperty().addListener((observable, oldValue, newValue) -> {
             try {
@@ -303,6 +333,55 @@ public class EventCoordinatorController implements Initializable {
         stage.showAndWait();
     }
 
+    private void showEventInfoPopup(Event event) {
+        try {
+            if (isPopupActive && event.equals(currentPopupEvent)) {
+                return;
+            }
+
+            // Close the previous popup if it's a different event
+            closeEventInfoPopup();
+
+            // Load the new popup
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/EventInfo.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            eventInfoController = fxmlLoader.getController();
+            eventInfoController.setEventDetails(event);
+
+            eventInfoStage = new Stage();
+            eventInfoStage.setTitle("Event Info");
+            eventInfoStage.setScene(scene);
+            eventInfoStage.setOpacity(0.9);
+            eventInfoStage.setResizable(false);
 
 
+            currentPopupEvent = event;
+            isPopupActive = true;
+
+            scene.setOnMouseExited(mouseEvent -> {
+                closeEventInfoPopup();
+            });
+
+            eventInfoStage.setOnHiding(e -> {
+                isPopupActive = false;
+                currentPopupEvent = null;
+            });
+
+            eventInfoStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+    private void closeEventInfoPopup() {
+        if (eventInfoStage != null) {
+            eventInfoStage.close();
+            eventInfoStage = null;
+            currentPopupEvent = null;
+        }
+    }
 }
