@@ -1,7 +1,9 @@
 package dk.easv.eventticketeasvbar.GUI.Controller;
 // Other Imports
 import dk.easv.eventticketeasvbar.BE.Event;
+import dk.easv.eventticketeasvbar.BE.User;
 import dk.easv.eventticketeasvbar.GUI.Model.EventModel;
+import dk.easv.eventticketeasvbar.GUI.Model.UserModel;
 import io.github.palexdev.materialfx.controls.MFXButton;
 // Java Imports
 import io.github.palexdev.materialfx.controls.MFXComboBox;
@@ -20,6 +22,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
+import java.util.List;
 
 //import static jdk.javadoc.internal.doclets.formats.html.markup.HtmlStyle.title;
 
@@ -53,7 +56,7 @@ public class AddEditEventController {
     @FXML
     private TextField txtAddress;
     @FXML
-    private MFXComboBox pickCoordinator;
+    private MFXComboBox<User> pickCoordinator;
     @FXML
     private ImageView eventImg;
     @FXML
@@ -67,12 +70,20 @@ public class AddEditEventController {
     public Stage stage;
     private Event event;
     private EventModel eventModel;
+    private UserModel userModel;
 
     private boolean isEditMode = false;
     private Event eventToEdit;
 
     public AddEditEventController() throws Exception {
         eventModel = new EventModel();
+        userModel = new UserModel();
+    }
+
+    @FXML
+    public void initialize() throws Exception {
+        userModel.loadCoordinators();
+        pickCoordinator.setItems(userModel.getCoordinators());
     }
 
     @FXML
@@ -136,8 +147,11 @@ public class AddEditEventController {
         String priceText = txtPrice.getText().trim();
         String description = txtDescription.getText().trim();
 
+        List<User> selectedCoordinator = pickCoordinator.getItems();
+
+
         if (eventName.isEmpty() || date == null || timeText.isEmpty() ||
-                durationText.isEmpty() || location.isEmpty() || priceText.isEmpty() || description.isEmpty()) {
+                durationText.isEmpty() || location.isEmpty() || priceText.isEmpty() || description.isEmpty() || selectedCoordinator.isEmpty()) {
             showAlert("Missing Fields", "Please fill in all required fields.");
             return;
         }
@@ -163,8 +177,6 @@ public class AddEditEventController {
             imagePath = destinationFile.getPath();
         }
 
-
-
             if(imagePath == null || imagePath.isEmpty()) {
                 showAlert("Missing an image", "Please add an image");
                 return;
@@ -180,16 +192,16 @@ public class AddEditEventController {
                eventToEdit.setDescription(description);
                eventToEdit.setImagePath(imagePath);
 
-               try {
-                   eventModel.updateEvent(eventToEdit);
-               }catch (Exception e) {
-                   e.printStackTrace();
-               }
+               eventToEdit.setCoordinators(selectedCoordinator);
+
+               eventModel.updateEvent(eventToEdit);
+
 
 
             } else {
 
                 Event newEvent = new Event(eventName, location, date, time, duration, price, imagePath, description);
+                newEvent.setCoordinators(selectedCoordinator);
                 eventModel.addEvent(newEvent);
                 eventModel.refreshEvents();
             }
@@ -219,6 +231,11 @@ public class AddEditEventController {
             if (imagePath != null && !imagePath.isEmpty()) {
                 eventImg.setImage(new Image(new File(imagePath).toURI().toString()));
             }
+
+            pickCoordinator.getSelectionModel().clearSelection();
+            for (User coordinator : event.getCoordinators()) {
+                pickCoordinator.getSelectionModel().selectItem(coordinator);
+            }
         }
     }
 
@@ -231,4 +248,11 @@ public class AddEditEventController {
     public void setEventModel(EventModel eventModel){
         this.eventModel = eventModel;
     }
+
+    public void populateComboBox() throws Exception {
+        userModel.loadCoordinators();
+        pickCoordinator.setItems(userModel.getCoordinators());
+    }
+
+
 }
