@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="566.0" prefWidth="689.0" stylesheets="@/dk.easv/eventticketeasvbar/CSS/demo2.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.eventticketeasvbar.GUI.Controller.EventCoordinatorController">
+<AnchorPane prefHeight="566.0" prefWidth="689.0" stylesheets="@/dk.easv/eventticketeasvbar/CSS/demo2.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.eventticketeasvbar.GUI.Controller.EventCoordinatorController">
    <VBox minWidth="-Infinity" prefHeight="85.0" prefWidth="700.0">
       <children>
          <HBox minWidth="-Infinity" prefHeight="43.0" prefWidth="700.0" styleClass="redEdge">

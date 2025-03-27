@@ -7,8 +7,7 @@ import dk.easv.eventticketeasvbar.GUI.Model.ParkingModel;
 import dk.easv.eventticketeasvbar.GUI.Model.TicketModel;
 import dk.easv.eventticketeasvbar.Main;
 import dk.easv.eventticketeasvbar.BE.Event;
-// Other Imports
-//Java Imports
+// javafx Imports
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,10 +17,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+//Java Imports
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -108,29 +107,6 @@ public class EventCoordinatorController implements Initializable {
         // Bind data to TableView
         tblEvent.setItems(eventModel.getTblEvent());
 
-        tblEvent.setRowFactory(tv -> {
-            TableRow<Event> row = new TableRow<>();
-
-            row.setOnMouseEntered(event -> {
-                if (!row.isEmpty() && !isPopupActive) {
-                    Event hoveredEvent = row.getItem();
-
-                    // Show the popup only if it's a new event
-                    if (!hoveredEvent.equals(currentPopupEvent)) {
-                        showEventInfoPopup(hoveredEvent);
-                    }
-                }
-            });
-
-            row.setOnMouseExited(event -> {
-                // Don't close the popup if it's active
-                if (!row.isEmpty() && !isPopupActive && eventInfoStage != null) {
-                    closeEventInfoPopup();
-                }
-            });
-
-            return row;
-        });
 
         txtSearch.textProperty().addListener((observable, oldValue, newValue) -> {
             try {
@@ -140,6 +116,82 @@ public class EventCoordinatorController implements Initializable {
                 e.printStackTrace();
             }
         });
+
+
+        // Context menu
+
+        ContextMenu contextMenu = new ContextMenu();
+
+        MenuItem editItem = new MenuItem("Edit");
+        editItem.setOnAction((ActionEvent event) -> {
+            Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
+            if(selectedEvent != null) {
+                try{
+                    btnEditEvent(null);
+                } catch (IOException e) {
+                    displayError(e);
+                }
+            }else {
+                Alert alert = new Alert(Alert.AlertType.WARNING, "Please select an event to edit.", ButtonType.OK);
+                alert.showAndWait();
+            }
+        });
+
+        MenuItem deleteItem = new MenuItem("Delete");
+        deleteItem.setOnAction((ActionEvent event) -> {
+
+        });
+
+        MenuItem assignEventCoordinator = new MenuItem("Assign Event Coordinator");
+        assignEventCoordinator.setOnAction((ActionEvent event) -> {
+
+        });
+
+        // More info
+        Menu moreInfo = new Menu("More info");
+
+        MenuItem eventInfoItem = new MenuItem("Event Info");
+        eventInfoItem.setOnAction((ActionEvent event) -> {
+
+        });
+
+        MenuItem parking = new MenuItem("Parking");
+        parking.setOnAction((ActionEvent event) -> {
+
+        });
+
+
+        // menu for tickets
+
+        Menu ticket = new Menu("Ticket");
+
+        MenuItem eventTicket = new MenuItem("Event Ticket");
+        eventTicket.setOnAction((ActionEvent event) -> {
+
+        });
+
+        MenuItem discountTicket = new MenuItem("Discount Ticket");
+        discountTicket.setOnAction((ActionEvent event) -> {
+
+        });
+
+        MenuItem freeBeerTicket = new MenuItem("Free Beer Ticket");
+        freeBeerTicket.setOnAction((ActionEvent event) -> {
+
+        });
+
+        // add submenu item for the extra info
+
+        moreInfo.getItems().addAll(eventInfoItem,parking);
+
+        // add submenu item for the ticket menu
+        ticket.getItems().addAll(eventTicket, discountTicket, freeBeerTicket);
+
+        // add the menu option to the context menu
+        contextMenu.getItems().addAll(editItem,deleteItem, ticket,moreInfo);
+
+        // attaches the context menu to the tableView
+        tblEvent.setContextMenu(contextMenu);
     }
 
 
@@ -331,57 +383,5 @@ public class EventCoordinatorController implements Initializable {
         stage.setScene(new Scene(root, 600, 500));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
-    }
-
-    private void showEventInfoPopup(Event event) {
-        try {
-            if (isPopupActive && event.equals(currentPopupEvent)) {
-                return;
-            }
-
-            // Close the previous popup if it's a different event
-            closeEventInfoPopup();
-
-            // Load the new popup
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/EventInfo.fxml"));
-            Scene scene = new Scene(fxmlLoader.load());
-            eventInfoController = fxmlLoader.getController();
-            eventInfoController.setEventDetails(event);
-
-            eventInfoStage = new Stage();
-            eventInfoStage.setTitle("Event Info");
-            eventInfoStage.setScene(scene);
-            eventInfoStage.setOpacity(0.9);
-            eventInfoStage.setResizable(false);
-
-
-            currentPopupEvent = event;
-            isPopupActive = true;
-
-            scene.setOnMouseExited(mouseEvent -> {
-                closeEventInfoPopup();
-            });
-
-            eventInfoStage.setOnHiding(e -> {
-                isPopupActive = false;
-                currentPopupEvent = null;
-            });
-
-            eventInfoStage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-
-
-    private void closeEventInfoPopup() {
-        if (eventInfoStage != null) {
-            eventInfoStage.close();
-            eventInfoStage = null;
-            currentPopupEvent = null;
-        }
     }
 }
