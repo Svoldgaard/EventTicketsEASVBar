@@ -90,7 +90,7 @@ public class AdminController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        setButtonIcon3(btnCreateUser, "/dk.easv/eventticketeasvbar/Icon/create-task-icon.png");
+        setButtonIcon(btnCreateUser, "/dk.easv/eventticketeasvbar/Icon/create-task-icon.png");
 
         try {
             adminModel = new UserModel();
@@ -224,7 +224,7 @@ public class AdminController implements Initializable {
         tblCoordinator.setContextMenu(contextMenuCoordinator);
     }
 
-    private void setButtonIcon3(Button button, String iconPath) {
+    private void setButtonIcon(Button button, String iconPath) {
         URL iconUrl = getClass().getResource(iconPath);
 
         if (iconUrl == null) {
