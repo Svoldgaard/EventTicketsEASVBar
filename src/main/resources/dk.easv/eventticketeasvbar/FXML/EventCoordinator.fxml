@@ -2,7 +2,6 @@
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -11,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="566.0" prefWidth="689.0" stylesheets="@/dk.easv/eventticketeasvbar/CSS/demo2.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.eventticketeasvbar.GUI.Controller.EventCoordinatorController">
+<AnchorPane prefHeight="566.0" prefWidth="689.0" stylesheets="@/dk.easv/eventticketeasvbar/CSS/demo2.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.eventticketeasvbar.GUI.Controller.EventCoordinatorController">
    <VBox minWidth="-Infinity" prefHeight="85.0" prefWidth="700.0">
       <children>
          <HBox minWidth="-Infinity" prefHeight="43.0" prefWidth="700.0" styleClass="redEdge">
@@ -48,19 +47,5 @@
     </TableView>
 
                                            <TextField fx:id="txtSearch" layoutX="32.0" layoutY="64.0" promptText="Search:" />
-    <ButtonBar layoutX="14.0" layoutY="478.0" prefHeight="40.0" prefWidth="307.0">
-      <buttons>
-         <MFXButton fx:id="btnCreate" onAction="#btnCreateEvent" text="Create Event" />
-         <MFXButton fx:id="btnEditEvent" onAction="#btnEditEvent" text="Edit" />
-         <MFXButton onAction="#btnDeleteEvent" text="Delete" />
-      </buttons>
-    </ButtonBar>
-    <ButtonBar layoutX="347.0" layoutY="478.0" prefHeight="40.0" prefWidth="214.0">
-      <buttons>
-         <MFXButton onAction="#btnAddTicket" text="Print Ticket" />
-         <MFXButton onAction="#handleAssign" text="Assign" />
-      </buttons>
-    </ButtonBar>
-   <MFXButton layoutX="576.0" layoutY="137.0" onAction="#btnMoreEventInfo" text="More Event Info" />
-   <MFXButton layoutX="576.0" layoutY="172.0" onAction="#btnParkingInfo" text="Parking Info" />
+   <MFXButton fx:id="btnCreate" layoutX="576.0" layoutY="103.0" onAction="#btnCreateEvent" text="Create Event" />
 </AnchorPane>

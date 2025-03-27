@@ -7,8 +7,9 @@ import dk.easv.eventticketeasvbar.GUI.Model.ParkingModel;
 import dk.easv.eventticketeasvbar.GUI.Model.TicketModel;
 import dk.easv.eventticketeasvbar.Main;
 import dk.easv.eventticketeasvbar.BE.Event;
-// Other Imports
-//Java Imports
+
+// javafx Imports
+import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,32 +19,25 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+//Java Imports
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class EventCoordinatorController implements Initializable {
 
-
-    public Label lblUsername;
-    public TextField txtSearch;
-
-    private Stage eventInfoStage = null;
-    private AddEditEventController addEditEventController;
-    private AssignEditController assignEditController;
-    private TicketController ticketController;
-    private EventInfoController eventInfoController;
-    private ParkingController parkingController;
-
-
-    private Event currentPopupEvent = null;
-    private boolean isPopupActive = false;
-
-
+    // javafx instance
+    @FXML
+    private MFXButton btnCreate;
+    @FXML
+    private Label lblUsername;
+    @FXML
+    private TextField txtSearch;
     @FXML
     private TableView<Event> tblEvent;
     @FXML
@@ -61,11 +55,15 @@ public class EventCoordinatorController implements Initializable {
     @FXML
     private TableColumn<Event, String> coordinatorColumn;
 
-
+    // normal instance
+    private AddEditEventController addEditEventController;
+    private AssignEditController assignEditController;
+    private TicketController ticketController;
+    private EventInfoController eventInfoController;
+    private ParkingController parkingController;
     private EventCoordinatorModel EventCoordinatorModel;
     private EventModel eventModel;
-    private TicketModel ticketModel;
-    private ParkingModel parkingModel;
+
 
     public EventCoordinatorController() throws Exception {
         eventModel = new EventModel();
@@ -75,6 +73,10 @@ public class EventCoordinatorController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+
+        setButtonIcon(btnCreate, "/dk.easv/eventticketeasvbar/Icon/create-task-icon.png");
+
         try {
             EventCoordinatorModel = new EventCoordinatorModel();
         } catch (IOException e) {
@@ -104,33 +106,9 @@ public class EventCoordinatorController implements Initializable {
         });
 
 
-
         // Bind data to TableView
         tblEvent.setItems(eventModel.getTblEvent());
 
-        tblEvent.setRowFactory(tv -> {
-            TableRow<Event> row = new TableRow<>();
-
-            row.setOnMouseEntered(event -> {
-                if (!row.isEmpty() && !isPopupActive) {
-                    Event hoveredEvent = row.getItem();
-
-                    // Show the popup only if it's a new event
-                    if (!hoveredEvent.equals(currentPopupEvent)) {
-                        showEventInfoPopup(hoveredEvent);
-                    }
-                }
-            });
-
-            row.setOnMouseExited(event -> {
-                // Don't close the popup if it's active
-                if (!row.isEmpty() && !isPopupActive && eventInfoStage != null) {
-                    closeEventInfoPopup();
-                }
-            });
-
-            return row;
-        });
 
         txtSearch.textProperty().addListener((observable, oldValue, newValue) -> {
             try {
@@ -140,7 +118,116 @@ public class EventCoordinatorController implements Initializable {
                 e.printStackTrace();
             }
         });
+
+
+        // Context menu
+
+        ContextMenu contextMenu = new ContextMenu();
+
+        MenuItem editItem = new MenuItem("Edit");
+        editItem.setOnAction((ActionEvent event) -> {
+            Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
+            if(selectedEvent != null) {
+                try{
+                    editEvent();
+                } catch (IOException e) {
+                    displayError(e);
+                }
+            }
+        });
+
+        MenuItem deleteItem = new MenuItem("Delete");
+        deleteItem.setOnAction((ActionEvent event) -> {
+            Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
+            if(selectedEvent != null) {
+                try{
+                    deleteEvent();
+                } catch (Exception e) {
+                    displayError(e);
+                }
+            }
+        });
+
+        MenuItem assignEventCoordinator = new MenuItem("Assign Event Coordinator");
+        assignEventCoordinator.setOnAction((ActionEvent event) -> {
+            Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
+            if(selectedEvent != null) {
+                try{
+                    assignCoordinator();
+                } catch (Exception e) {
+                    displayError(e);
+                }
+            }
+        });
+
+        // More info
+        Menu moreInfo = new Menu("More info");
+
+        MenuItem eventInfoItem = new MenuItem("Event Info");
+        eventInfoItem.setOnAction((ActionEvent event) -> {
+            Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
+            if(selectedEvent != null) {
+                try{
+                    moreEventInfo();
+                } catch (Exception e) {
+                    displayError(e);
+                }
+            }
+        });
+
+        MenuItem parking = new MenuItem("Parking");
+        parking.setOnAction((ActionEvent event) -> {
+            Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
+            if(selectedEvent != null) {
+                try{
+                    parkingInfo();
+                } catch (Exception e) {
+                    displayError(e);
+                }
+            }
+        });
+
+
+        // menu for tickets
+
+        Menu ticket = new Menu("Ticket");
+
+        MenuItem eventTicket = new MenuItem("Event Ticket");
+        eventTicket.setOnAction((ActionEvent event) -> {
+            Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
+            if(selectedEvent != null) {
+                try {
+                    eventTicket();
+                } catch (Exception e) {
+                    displayError(e);
+                }
+            }
+        });
+
+        MenuItem discountTicket = new MenuItem("Discount Ticket");
+        discountTicket.setOnAction((ActionEvent event) -> {
+
+        });
+
+        MenuItem freeBeerTicket = new MenuItem("Free Beer Ticket");
+        freeBeerTicket.setOnAction((ActionEvent event) -> {
+
+        });
+
+        // add submenu item for the extra info
+
+        moreInfo.getItems().addAll(eventInfoItem,parking);
+
+        // add submenu item for the ticket menu
+        ticket.getItems().addAll(eventTicket, discountTicket, freeBeerTicket);
+
+        // add the menu option to the context menu
+        contextMenu.getItems().addAll(editItem,deleteItem, ticket,moreInfo);
+
+        // attaches the context menu to the tableView
+        tblEvent.setContextMenu(contextMenu);
     }
+
 
 
     private void displayError(Exception e) {
@@ -158,7 +245,6 @@ public class EventCoordinatorController implements Initializable {
         stage.setTitle("Login Screen");
         stage.show();
     }
-
 
     public void btnCreateEvent(ActionEvent actionEvent) throws Exception {
 
@@ -182,8 +268,7 @@ public class EventCoordinatorController implements Initializable {
 
     }
 
-    public void btnEditEvent(ActionEvent actionEvent) throws IOException {
-
+    private void editEvent() throws IOException {
         Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/Add-Edit-Event.fxml"));
@@ -213,10 +298,9 @@ public class EventCoordinatorController implements Initializable {
         tblEvent.setItems(eventModel.getTblEvent());
 
         tblEvent.refresh();
-
     }
 
-    public void btnDeleteEvent(ActionEvent actionEvent) throws Exception {
+    private void deleteEvent() throws Exception {
         Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
 
         if (selectedEvent != null) {
@@ -227,15 +311,14 @@ public class EventCoordinatorController implements Initializable {
 
             ButtonType result = alert.showAndWait().orElse(ButtonType.CANCEL);
 
-            if(result == ButtonType.OK) {
+            if (result == ButtonType.OK) {
                 eventModel.deleteEvent(selectedEvent);
                 tblEvent.getItems().remove(selectedEvent);
             }
         }
     }
 
-
-    public void btnAddTicket(ActionEvent actionEvent) throws IOException {
+    private void eventTicket() throws IOException {
         Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/Ticket.fxml"));
@@ -252,8 +335,8 @@ public class EventCoordinatorController implements Initializable {
         stage.showAndWait();
     }
 
-    @FXML
-    public void handleAssign(ActionEvent actionEvent) throws IOException {
+
+    private void assignCoordinator() throws IOException {
         Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
         if (selectedEvent == null) {
             Alert alert = new Alert(Alert.AlertType.WARNING, "Please select an event first.", ButtonType.OK);
@@ -275,12 +358,11 @@ public class EventCoordinatorController implements Initializable {
         stage.show();
     }
 
-
     public void setUsername(String username) {
         lblUsername.setText(username);
     }
 
-    public void btnMoreEventInfo(ActionEvent actionEvent) throws IOException {
+    private void moreEventInfo() throws IOException {
         Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
 
         if (selectedEvent == null) {
@@ -304,7 +386,7 @@ public class EventCoordinatorController implements Initializable {
     }
 
 
-    public void btnParkingInfo(ActionEvent actionEvent) throws IOException {
+    private void parkingInfo() throws IOException {
         Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
 
         if (selectedEvent == null) {
@@ -333,55 +415,21 @@ public class EventCoordinatorController implements Initializable {
         stage.showAndWait();
     }
 
-    private void showEventInfoPopup(Event event) {
-        try {
-            if (isPopupActive && event.equals(currentPopupEvent)) {
-                return;
-            }
 
-            // Close the previous popup if it's a different event
-            closeEventInfoPopup();
+    private void setButtonIcon(Button button, String iconPath) {
+       URL iconUrl = getClass().getResource(iconPath);
 
-            // Load the new popup
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/EventInfo.fxml"));
-            Scene scene = new Scene(fxmlLoader.load());
-            eventInfoController = fxmlLoader.getController();
-            eventInfoController.setEventDetails(event);
+       if (iconUrl == null) {
+           System.out.println("Error loading icon: " + iconPath);
+           return;
+       }
 
-            eventInfoStage = new Stage();
-            eventInfoStage.setTitle("Event Info");
-            eventInfoStage.setScene(scene);
-            eventInfoStage.setOpacity(0.9);
-            eventInfoStage.setResizable(false);
+       Image icon = new Image(iconUrl.toExternalForm());
+       ImageView imageView = new ImageView(icon);
+       imageView.setFitHeight(20);
+       imageView.setFitWidth(20);
 
-
-            currentPopupEvent = event;
-            isPopupActive = true;
-
-            scene.setOnMouseExited(mouseEvent -> {
-                closeEventInfoPopup();
-            });
-
-            eventInfoStage.setOnHiding(e -> {
-                isPopupActive = false;
-                currentPopupEvent = null;
-            });
-
-            eventInfoStage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-
-
-    private void closeEventInfoPopup() {
-        if (eventInfoStage != null) {
-            eventInfoStage.close();
-            eventInfoStage = null;
-            currentPopupEvent = null;
-        }
+       button.setGraphic(imageView);
     }
 }
+
