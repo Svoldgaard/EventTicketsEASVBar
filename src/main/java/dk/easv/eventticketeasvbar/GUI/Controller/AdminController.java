@@ -9,6 +9,7 @@ import dk.easv.eventticketeasvbar.GUI.Model.LoginModel;
 import dk.easv.eventticketeasvbar.Main;
 // Other Imports
 // JavaFX Imports
+import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.image.ImageView;
@@ -78,6 +79,8 @@ public class AdminController implements Initializable {
     private CreateUserController createUserController;
 
     private final ImageView imageView = new ImageView();
+    @FXML
+    private MFXButton btnCreateUser;
 
     public AdminController() throws Exception {
         adminModel = new UserModel();
@@ -87,6 +90,8 @@ public class AdminController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        setButtonIcon3(btnCreateUser, "/dk.easv/eventticketeasvbar/Icon/create-task-icon.png");
+
         try {
             adminModel = new UserModel();
             eventCoordinatorModel = new EventCoordinatorModel();
@@ -160,6 +165,21 @@ public class AdminController implements Initializable {
         setupDragAndDrop();
     }
 
+    private void setButtonIcon3(Button button, String iconPath) {
+        URL iconUrl = getClass().getResource(iconPath);
+
+        if (iconUrl == null) {
+            System.out.println("Error loading icon: " + iconPath);
+            return;
+        }
+
+        Image icon = new Image(iconUrl.toExternalForm());
+        ImageView imageView = new ImageView(icon);
+        imageView.setFitHeight(20);
+        imageView.setFitWidth(20);
+
+        button.setGraphic(imageView);
+    }
 
 
     private void displayError(Exception e) {
