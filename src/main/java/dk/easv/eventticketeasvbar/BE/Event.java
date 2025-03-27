@@ -4,6 +4,7 @@ import javafx.scene.image.Image;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Event {
 
@@ -241,6 +242,26 @@ public class Event {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    /**
+     * Two users are considered equal if their ID matches.
+     */
+    /*
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User other)) return false;
+        return this.id == other.getId();
+    }
+
+    /**
+     * Use the same fields in hashCode that you do in equals.
+     */
+    /*
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }*/
 
 
     @Override
