@@ -1,19 +1,18 @@
 package dk.easv.eventticketeasvbar.GUI.Controller;
 // Other Imports
 import dk.easv.eventticketeasvbar.BE.Event;
+import dk.easv.eventticketeasvbar.BE.User;
 import dk.easv.eventticketeasvbar.GUI.Model.EventModel;
+import dk.easv.eventticketeasvbar.GUI.Model.UserModel;
 import io.github.palexdev.materialfx.controls.MFXButton;
 // Java Imports
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.media.MediaView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -23,8 +22,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
+import java.util.List;
 
-import static jdk.javadoc.internal.doclets.formats.html.markup.HtmlStyle.title;
+//import static jdk.javadoc.internal.doclets.formats.html.markup.HtmlStyle.title;
 
 public class AddEditEventController {
     @FXML
@@ -32,13 +32,13 @@ public class AddEditEventController {
     @FXML
     private TextField txtDuration;
     @FXML
-    private TextField txtSetLocation;
+    private TextField txtLocation;
     @FXML
     private TextField txtPrice;
     @FXML
     private MediaView MediaPictureEvent;
     @FXML
-    private TextArea txtAddDescription;
+    private TextArea txtDescription;
     @FXML
     private DatePicker txtDate;
     @FXML
@@ -56,18 +56,34 @@ public class AddEditEventController {
     @FXML
     private TextField txtAddress;
     @FXML
-    private MFXComboBox pickCoordinator;
+    private MFXComboBox<User> pickCoordinator;
     @FXML
     private ImageView eventImg;
+    @FXML
+    private Label lblDescCount;
+
+    private static final int DESCRIPTION_CHAR_LIMIT = 254;
 
     private String imagePath;
+    private File selectedImage;
 
     public Stage stage;
     private Event event;
     private EventModel eventModel;
+    private UserModel userModel;
+
+    private boolean isEditMode = false;
+    private Event eventToEdit;
 
     public AddEditEventController() throws Exception {
         eventModel = new EventModel();
+        userModel = new UserModel();
+    }
+
+    @FXML
+    public void initialize() throws Exception {
+        userModel.loadCoordinators();
+        pickCoordinator.setItems(userModel.getCoordinators());
     }
 
     @FXML
@@ -90,72 +106,137 @@ public class AddEditEventController {
         File file = fileChooser.showOpenDialog(new Stage());
 
         if (file != null) {
-            String userEventsDirectory = "src/main/resources/Photos";
-            File photoDir = new File(userEventsDirectory);
-            if (!photoDir.exists()) {
-                photoDir.mkdirs();
-            }
+            selectedImage = file;
+            eventImg.setImage(new Image(file.toURI().toString()));
 
-            File destinationFile = new File(photoDir, file.getName());
-            try {
-                Files.copy(file.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-
-                imagePath = destinationFile.getPath();
-                eventImg.setImage(new Image(destinationFile.toURI().toString()));
-
-                //AddEditEventController.setText("dk/easv/eventticketeasvbar/BE/Event.java");
-            } catch (IOException e) {
-                e.printStackTrace();
-                showAlert("Error", "Failed  to copt the file");
-            }
         }
     }
 
+    //handles text limit
+    @FXML
+    private void onDescTyped(KeyEvent keyEvent) {
+        String text = txtDescription.getText();
+
+        if(text.length() > DESCRIPTION_CHAR_LIMIT) {
+            txtDescription.setText(text.substring(0, DESCRIPTION_CHAR_LIMIT));
+            txtDescription.positionCaret(DESCRIPTION_CHAR_LIMIT);
+
+        }
+        int len = txtDescription.getText().length();
+        lblDescCount.setStyle(len >= 200 ? "-fx-text-fill: red;" : "-fx-text-fill: black;");
+        lblDescCount.setText(txtDescription.getText().length() + "/" + DESCRIPTION_CHAR_LIMIT);
+    }
+
     private void showAlert(String error, String s) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(String.valueOf(title));
-        alert.setHeaderText(null);
-        String message = "";
-        alert.setContentText(message);
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(s);
+        alert.setContentText(error);
         alert.showAndWait();
+
     }
 
     @FXML
     private void btnSaveEvent(ActionEvent actionEvent) throws Exception {
 
-            String eventName = txtName.getText().trim();
-            LocalDate date = txtDate.getValue();
-            float time = Float.parseFloat(txtTime.getText().toString());
-            float duration = Float.parseFloat(txtDuration.getText().toString());
-            String location = txtSetLocation.getText().trim();
-            //String coordinator = pickCoordinator.getText();
-            float price = Float.parseFloat(txtPrice.getText().toString());
+        String eventName = txtName.getText().trim();
+        LocalDate date = txtDate.getValue();
+        String timeText = txtTime.getText().trim();
+        String durationText = txtDuration.getText().trim();
+        String location = txtLocation.getText().trim();
+        String priceText = txtPrice.getText().trim();
+        String description = txtDescription.getText().trim();
+
+        List<User> selectedCoordinator = pickCoordinator.getItems();
 
 
-            Event newEvent = new Event(eventName, location, date, time, duration, price, imagePath);
+        if (eventName.isEmpty() || date == null || timeText.isEmpty() ||
+                durationText.isEmpty() || location.isEmpty() || priceText.isEmpty() || description.isEmpty() || selectedCoordinator.isEmpty()) {
+            showAlert("Missing Fields", "Please fill in all required fields.");
+            return;
+        }
+        float time, duration, price;
 
-
-            eventModel.addEvent(newEvent);
-            eventModel.refreshEvents();
-
-        if (stage != null) {
-            stage.close();
+        try{
+            time = Float.parseFloat(timeText);
+            duration = Float.parseFloat(durationText);
+            price = Float.parseFloat(priceText);
+        } catch (NumberFormatException e) {
+            showAlert("Invalid Number", "Please enter valid numbers for time, duration, and price.");
+            return;
         }
 
+
+        if (selectedImage != null) {
+            String userEventsDirectory = "src/main/resources/Photos";
+            File photoDir = new File(userEventsDirectory);
+            if (!photoDir.exists()) photoDir.mkdirs();
+
+            File destinationFile = new File(photoDir, eventName + "_" + selectedImage.getName());
+            Files.copy(selectedImage.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            imagePath = destinationFile.getPath();
+        }
+
+            if(imagePath == null || imagePath.isEmpty()) {
+                showAlert("Missing an image", "Please add an image");
+                return;
+            }
+
+            if(isEditMode) {
+               eventToEdit.setEvent(eventName);
+               eventToEdit.setLocation(location);
+               eventToEdit.setDate(date);
+               eventToEdit.setTime(time);
+               eventToEdit.setDuration(duration);
+               eventToEdit.setPrice(price);
+               eventToEdit.setDescription(description);
+               eventToEdit.setImagePath(imagePath);
+
+               eventToEdit.setCoordinators(selectedCoordinator);
+
+               eventModel.updateEvent(eventToEdit);
+
+
+
+            } else {
+
+                Event newEvent = new Event(eventName, location, date, time, duration, price, imagePath, description);
+                newEvent.setCoordinators(selectedCoordinator);
+                eventModel.addEvent(newEvent);
+                eventModel.refreshEvents();
+            }
+
+                if (stage != null) {
+                    stage.close();
+            }
 
     }
 
     public void setEvent(Event event) {
-        this.event = event;
-        txtName.setText(event.getEvent());
-        txtDate.setValue(event.getDate());
-        txtTime.setText(String.valueOf(event.getTime()));
-        txtDuration.setText(String.valueOf(event.getDuration()));
-        txtAddress.setText(event.getAddress());
-        txtPostalCode.setText(String.valueOf(event.getPostalCode()));
-        txtCity.setText(event.getCity());
-        txtPrice.setText(String.valueOf(event.getPrice()));
-        txtAddDescription.setText(event.getDescription());
+
+        if(event != null) {
+            this.event = event;
+            this.eventToEdit = event;
+            this.isEditMode = true;
+
+            txtName.setText(event.getEvent());
+            txtLocation.setText(event.getLocation());
+            txtDate.setValue(event.getDate());
+            txtTime.setText(String.valueOf(event.getTime()));
+            txtDuration.setText(String.valueOf(event.getDuration()));
+            txtPrice.setText(String.valueOf(event.getPrice()));
+            txtDescription.setText(event.getDescription());
+
+            imagePath = event.getImagePath();
+            if (imagePath != null && !imagePath.isEmpty()) {
+                eventImg.setImage(new Image(new File(imagePath).toURI().toString()));
+            }
+
+            pickCoordinator.getSelectionModel().clearSelection();
+            for (User coordinator : event.getCoordinators()) {
+                pickCoordinator.getSelectionModel().selectItem(coordinator);
+            }
+        }
     }
 
     public void setText(String saveChanges) {
@@ -167,4 +248,11 @@ public class AddEditEventController {
     public void setEventModel(EventModel eventModel){
         this.eventModel = eventModel;
     }
+
+    public void populateComboBox() throws Exception {
+        userModel.loadCoordinators();
+        pickCoordinator.setItems(userModel.getCoordinators());
+    }
+
+
 }

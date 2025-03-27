@@ -1,15 +1,20 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Anaheim:wght@400..800&family=Pridi:wght@200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
 
 BorderPane{
     -fx-background-color: white;
-    -fx-font-family: "Anaheim", sans-serif;
+    -fx-font-family: "Source Sans 3", sans-serif;
     -fx-text-fill: white;
 }
 
 AnchorPane{
     -fx-background-color: white;
-    -fx-font-family: "Anaheim", sans-serif;
+    -fx-font-family: "Source Sans 3", sans-serif;
+    -fx-text-fill: white;
+}
+
+.redAnchorPane {
+    -fx-background-color: #C00D0D;
     -fx-text-fill: white;
 }
 
@@ -19,50 +24,50 @@ AnchorPane{
 }
 
 .redEdge {
-    -fx-background-color: C00D0D;
+    -fx-background-color: #C00D0D;
     -fx-pref-height: 40px;
     -fx-pref-width: 100%;
     -fx-text-fill: white;
 }
 
 MFXButton{
-    -fx-background-color: C00D0D;
+    -fx-background-color: #C00D0D;
     -fx-text-fill: white;
-    -fx-font-family: "Anaheim", sans-serif;
+    -fx-font-family: "Source Sans 3", sans-serif;
     -fx-font-weight: bold;
 }
 
 .whiteButton {
     -fx-background-color: white !important;
     -fx-text-fill: black !important;
-    -fx-font-family: "Anaheim", sans-serif;
+    -fx-font-family: "Source Sans 3", sans-serif;
     -fx-font-weight: bold;
 
 }
 
 .table-view .column-header .label {
-    -fx-background-color: C00D0D;
+    -fx-background-color: #C00D0D;
     -fx-text-fill: white;
-    -fx-font-family: "Anaheim", sans-serif;
+    -fx-font-family: "Source Sans 3", sans-serif;
 }
 
 .date-picker .cell:hover {
-    -fx-background-color: C00D0D;
+    -fx-background-color: #C00D0D;
     -fx-text-fill: white;
 }
 
 .date-picker .cell:focused {
-    -fx-background-color: C00D0D;
+    -fx-background-color: #C00D0D;
     -fx-text-fill: white;
 }
 
 .date-picker .selected {
-    -fx-background-color: C00D0D;
+    -fx-background-color: #C00D0D;
     -fx-text-fill: white;
 }
 
 .date-picker-popup .month-year-pane {
-    -fx-background-color: C00D0D;
+    -fx-background-color: #C00D0D;
 }
 .date-picker-popup .month-year-pane .label {
     -fx-text-fill: white;
@@ -74,5 +79,5 @@ MFXButton{
 }
 
 .date-picker-popup .week-number-cell {
-    -fx-text-fill: C00D0D;
+    -fx-text-fill: #C00D0D;
 }

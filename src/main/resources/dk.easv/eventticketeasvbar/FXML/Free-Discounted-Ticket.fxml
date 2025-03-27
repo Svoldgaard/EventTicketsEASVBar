@@ -5,7 +5,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.eventticketeasvbar.GUI.Controller.FreeDiscountedTicketController">
+<AnchorPane styleClass="redAnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.eventticketeasvbar.GUI.Controller.FreeDiscountedTicketController">
    <children>
       <Label layoutX="315.0" layoutY="14.0" text="Bar Coupon" />
       <Label layoutX="27.0" layoutY="97.0" text="Bar Lounge">

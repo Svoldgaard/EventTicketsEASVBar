@@ -160,7 +160,7 @@ public class EventCoordinatorController implements Initializable {
     }
 
 
-    public void btnCreateEvent(ActionEvent actionEvent) throws IOException {
+    public void btnCreateEvent(ActionEvent actionEvent) throws Exception {
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/Add-Edit-Event.fxml"));
 
@@ -173,6 +173,8 @@ public class EventCoordinatorController implements Initializable {
         stage.setScene(scene);
         //reference to cancel button
         addEditEventController = fxmlLoader.getController();
+        addEditEventController.setEventModel(eventModel);
+        addEditEventController.populateComboBox();
         addEditEventController.setStage(stage);
         // Make the new stage modal, blocking interaction with the previous window
         stage.initModality(Modality.APPLICATION_MODAL);
@@ -187,6 +189,7 @@ public class EventCoordinatorController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/Add-Edit-Event.fxml"));
         // Load FXML and get the controller
         Scene scene = new Scene(fxmlLoader.load());
+
         addEditEventController = fxmlLoader.getController();
 
         addEditEventController.setEvent(selectedEvent);

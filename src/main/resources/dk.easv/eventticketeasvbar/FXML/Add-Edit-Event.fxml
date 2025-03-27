@@ -10,16 +10,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.media.MediaView?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@/dk.easv/eventticketeasvbar/CSS/demo2.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.eventticketeasvbar.GUI.Controller.AddEditEventController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@/dk.easv/eventticketeasvbar/CSS/demo2.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.eventticketeasvbar.GUI.Controller.AddEditEventController">
    <Label layoutX="28.0" layoutY="49.0" text="Name" />
    <Label layoutX="28.0" layoutY="84.0" text="Due" />
    <Label layoutX="28.0" layoutY="154.0" text="Duration" />
    <Label layoutX="28.0" layoutY="189.0" text="Location" />
    <TextField fx:id="txtName" layoutX="112.0" layoutY="45.0" />
    <TextField fx:id="txtDuration" layoutX="112.0" layoutY="150.0" />
-   <TextField fx:id="txtSetLocation" layoutX="112.0" layoutY="185.0" />
+   <TextField fx:id="txtLocation" layoutX="112.0" layoutY="185.0" />
    <MediaView fx:id="MediaPictureEvent" fitHeight="200.0" fitWidth="200.0" layoutX="368.0" layoutY="21.0" />
-   <TextArea fx:id="txtDescription" layoutX="368.0" layoutY="263.0" prefHeight="85.0" prefWidth="217.0" promptText="Add description" />
+   <TextArea fx:id="txtDescription" layoutX="368.0" layoutY="263.0" onKeyTyped="#onDescTyped" prefHeight="85.0" prefWidth="217.0" promptText="Add description" />
    <DatePicker fx:id="txtDate" layoutX="112.0" layoutY="80.0" prefHeight="26.0" prefWidth="160.0" />
    <Label layoutX="28.0" layoutY="119.0" text="Time: " />
    <TextField fx:id="txtTime" layoutX="112.0" layoutY="115.0" prefHeight="26.0" prefWidth="62.0" />
@@ -31,4 +31,5 @@
    <ImageView fx:id="eventImg" fitHeight="161.0" fitWidth="218.0" layoutX="368.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true" />
    <Label layoutX="28.0" layoutY="225.0" text="Coordiantor" />
    <MFXComboBox fx:id="pickCoordinator" layoutX="112.0" layoutY="221.0" minHeight="25.6" prefHeight="10.0" prefWidth="149.0" />
+   <Label fx:id="lblDescCount" layoutX="489.0" layoutY="323.0" prefHeight="17.0" prefWidth="77.0" />
 </AnchorPane>

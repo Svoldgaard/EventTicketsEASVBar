@@ -9,9 +9,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.media.MediaView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 
 public class CreateUserController {
 
@@ -25,17 +31,27 @@ public class CreateUserController {
     private TextField txtFirstName;
     @FXML
     private MFXButton saveBtn;
+    @FXML
+    private MFXButton btnCancel;
+    @FXML
+    private MFXButton btnAddPicture;
 
-
+    String photo;
 
     private UserModel adminModel;
     private User editableCoordinator;
     private boolean isEditMode = false;
 
+    private String imagePath;
     private Stage stage;
 
     private boolean isUpdateMode;
     private User coordinatorToUpdate;
+    @FXML
+    private MediaView MediaPictureEmployee;
+    @FXML
+    private ImageView imageEmployee;
+
 
     public CreateUserController() throws IOException {
         adminModel = new UserModel();
@@ -58,7 +74,6 @@ public class CreateUserController {
             txtLastName.setText(coordinator.getLastname());
             txtPhoneNumber.setText(String.valueOf(coordinator.getPhoneNumber()));
             txtEmail.setText(coordinator.getEmail());
-
 
         }
     }
@@ -85,6 +100,7 @@ public class CreateUserController {
 
         if (isEditMode) {
             // Update existing coordinator
+            editableCoordinator.setPhoto(photo);
             editableCoordinator.setFirstname(firstName);
             editableCoordinator.setLastname(lastName);
             editableCoordinator.setEmail(email);
@@ -98,7 +114,7 @@ public class CreateUserController {
 
         } else {
             // Create new coordinator
-            User newCoordinator = new User(firstName, lastName, email, phoneNumber, 0);
+            User newCoordinator = new User(photo, firstName, lastName, email, phoneNumber, 0);
             try {
                 adminModel.addCoordinator(newCoordinator);
             } catch (Exception e) {
@@ -116,6 +132,36 @@ public class CreateUserController {
         if (stage != null) {
             stage.close();
         }
+    }
+
+    @FXML
+    private void btnAddPicture(ActionEvent actionEvent) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Image File");
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image File", "*.jpg", "*.png"));
+        File file = fileChooser.showOpenDialog(new Stage());
+
+        if(file != null) {
+            String userEventsDirectory = "src/main/resources/Photos";
+            File photoDir = new File(userEventsDirectory);
+            if(!photoDir.exists()) {
+                photoDir.mkdir();
+            }
+
+            File destinationFile = new File(photoDir, file.getName());
+            try {
+                Files.copy(file.toPath(),destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                photo = "Photos/" + file.getName();
+
+                imagePath = destinationFile.getPath();
+                imageEmployee.setImage(new javafx.scene.image.Image(destinationFile.toURI().toString()));
+            }
+            catch(Exception ex) {
+                ex.printStackTrace();
+            }
+
+        }
+        
     }
 
     private void showErrorAlert(String title, String message) {
