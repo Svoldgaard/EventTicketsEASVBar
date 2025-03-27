@@ -1,11 +1,14 @@
 package dk.easv.eventticketeasvbar.GUI.Controller;
 // Project Imports
 import dk.easv.eventticketeasvbar.BE.Event;
+import dk.easv.eventticketeasvbar.GUI.Model.EventModel;
 import dk.easv.eventticketeasvbar.GUI.Model.OverViewModel;
 import dk.easv.eventticketeasvbar.Main;
 //Other Imports
 import io.github.palexdev.materialfx.controls.MFXButton;
 // Java Imports
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -34,28 +37,18 @@ public class OverviewController implements Initializable {
     @FXML
     private HBox imageContainer;
 
-    public LoginController loginController;
-    private int i;
-
-    ImageView img1 = new ImageView(new Image("dk.easv/eventticketeasvbar/Photos/BarFight.png"));
-    ImageView img2 = new ImageView(new Image("dk.easv/eventticketeasvbar/Photos/Party.jpg"));
-    ImageView img3 = new ImageView(new Image("dk.easv/eventticketeasvbar/Photos/TechConference.png"));
+    private OverViewModel overviewModel;
 
     private Stage infoStage;
     private EventInfoController eventInfoController;
 
 
-        public ListView<Event> lstEvents;
-        private OverViewModel overViewModel;
+    public OverviewController() throws Exception {
+       overviewModel = new OverViewModel();
 
-        public OverviewController() {
-            try{
-                OverViewModel OverViewModel = new OverViewModel();
-            }catch (Exception e){
-                displayError(e);
-                e.printStackTrace();
-            }
-        }
+    }
+
+
 
     private void displayError(Throwable e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -67,183 +60,56 @@ public class OverviewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        try {
-            openDescription();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        try{
+            overviewModel = new OverViewModel();
+            populateEvents();
+        } catch (Exception e) {
+            displayError(e);
         }
 
-        //ImageView img4 = new ImageView(new Image("Photos/Metal.png"));
 
-        // Description labels initially empty (or you can set them as not visible)
-        Label desc1 = new Label("");
-        Label desc2 = new Label("");
-        Label desc3 = new Label("");
+    }
 
-        // Set wrapping and maximum width for each description label
-        desc1.setWrapText(true);
-        desc2.setWrapText(true);
-        desc3.setWrapText(true);
+    private VBox createVBox(Event event) {
+        ImageView imageView = new ImageView();
+        imageView.setFitHeight(200);
+        imageView.setFitWidth(150);
 
-        // Optionally adjust max width to match image width or desired layout
-        desc1.setPrefWidth(250);
-        desc2.setPrefWidth(250);
-        desc3.setPrefWidth(250);
+        if(event.getImagePath() != null && !event.getImagePath().isEmpty()) {
+            imageView.setImage(new Image( new java.io.File(event.getImagePath()).toURI().toString()));
+        } else if (event.getImage() != null) {
+            imageView.setImage(event.getImage());
 
+        }
 
-        /*img1.setOnMouseClicked(event -> desc1.setText("Bar Fight it is an incredible event with gifts and some real men fights"));
-        img2.setOnMouseClicked(event -> desc2.setText("It is really cool event"));
-        img3.setOnMouseClicked(event -> desc3.setText("Just a Tech Conference, nothing much"));*/
+        Label lblTitle = new Label(event.getEvent());
 
 
-        img1.setFitHeight(200);
-        img1.setFitWidth(150);
-        img2.setFitHeight(200);
-        img2.setFitWidth(150);
-        img3.setFitHeight(200);
-        img3.setFitWidth(150);
-        //img4.setFitHeight(200);
-        //img4.setFitWidth(150);
+        VBox vBox = new VBox(imageView, lblTitle);
+        vBox.setSpacing(5);
+        vBox.setAlignment(Pos.CENTER);
 
-        Label lbl1 = new Label("Bar Fight");
-        Label lbl2 = new Label("Music Night");
-        Label lbl3 = new Label("Tech Conference");
-        Label lbl4 = new Label("Just a Metal concert");
+        vBox.setOnMouseClicked(event1 ->{
+            try{
+                loadInfoWindow(event);
+            }catch(IOException ex){
+                ex.printStackTrace();
+            }
+        });
+        return vBox;
+    }
 
-        VBox vbox1 = new VBox(img1, lbl1, desc1);
-        VBox vbox2 = new VBox(img2, lbl2, desc2);
-        VBox vbox3 = new VBox(img3, lbl3, desc3);
-        //VBox vbox4 = new VBox(img4, lbl4);
+    private void populateEvents() throws Exception {
+        imageContainer.getChildren().clear();
 
-        vbox1.setAlignment(Pos.TOP_CENTER);
-        vbox2.setAlignment(Pos.TOP_CENTER);
-        vbox3.setAlignment(Pos.TOP_CENTER);
-        //vbox4.setAlignment(Pos.TOP_CENTER);
-
-        vbox1.setSpacing(5);
-        vbox2.setSpacing(5);
-        vbox3.setSpacing(5);
-        //vbox4.setSpacing(5);
-
-        // Add to HBox
-        imageContainer.getChildren().addAll(vbox1, vbox2, vbox3);
-
-
-        // LOGIN DOESN'T WORK
-        /*String[] imagePaths = {
-                "Photos/BarFight.png",
-                "Photos/Party.jpg",
-                "Photos/TechConference.png"
-        };
-
-        String[] descriptions = {
-                "Bar Fight",
-                "Music Night",
-                "Tech Conference"
-        };
-
-        TilePane.setPrefTileHeight(100.0);
-        TilePane.setPrefTileWidth(300.0);
-        TilePane.setHgap(20); // Space between images
-        TilePane.setVgap(20);
-        TilePane.setPrefColumns(3); // Number of images per row
-
-        for (int i = 0; i < imagePaths.length; i++) {
-            ImageView imageview = new ImageView(new javafx.scene.image.Image(imagePaths[i]));
-            imageview.setFitHeight(200);
-            imageview.setFitWidth(150);
-
-            Label lblDescription = new Label(descriptions[i]);
-
-            VBox vbox = new VBox(imageview, lblDescription);
-            vbox.setAlignment(javafx.geometry.Pos.CENTER); // Centers image and text
-            vbox.setSpacing(10); // Adds space between image and label
-
-            TilePane.getChildren().add(vbox);
-        }*/
-
-
-        // SHOWS ONLY ONE PHOTO (WORKS)
-        /*Label lblDescription = new Label("Bar Fight");
-        ImageView imageview = new ImageView("Photos/BarFight.png");
-        imageview.setFitHeight(200);
-        imageview.setFitWidth(130);
-
-        VBox vbox = new VBox();
-        vbox.getChildren().add(imageview);
-        vbox.getChildren().add(lblDescription);
-        vbox.setAlignment(javafx.geometry.Pos.CENTER); // Centers image and text
-        vbox.setSpacing(10); // Adds space between image and label
-
-        TilePane.setPrefTileHeight(350.0);
-        TilePane.setPrefTileWidth(40.0);
-
-        TilePane.getChildren().add(vbox);
-
-        VBox.setVgrow(imageview, Priority.ALWAYS);*/
-
+        for(Event event : overviewModel.getEventsToBeViewed()){
+            VBox vbox = createVBox(event);
+            imageContainer.getChildren().add(vbox);
+        }
     }
 
 
 
-    private void openDescription() throws IOException {
-        img1.setOnMouseClicked(event -> {
-
-            try {
-                // Create an EventDetails object for the clicked event
-                Event eventDetails = new Event(
-                        ((ImageView) event.getSource()).getImage(),
-                        "Bar Fight",
-                        "Bar Fight is an incredible event with gifts and some real man fights."
-                );
-
-
-                loadInfoWindow(eventDetails);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-        });
-
-        img2.setOnMouseClicked(event -> {
-
-            try {
-                // Create an EventDetails object for the clicked event
-                Event eventDetails = new Event(
-                        ((ImageView) event.getSource()).getImage(),
-                        "Music Night",
-                        "It is really cool event."
-                );
-
-
-                loadInfoWindow(eventDetails);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-        });
-
-        img3.setOnMouseClicked(event -> {
-
-            try {
-                // Create an EventDetails object for the clicked event
-                Event eventDetails = new Event(
-                        ((ImageView) event.getSource()).getImage(),
-                        "Tech Conference",
-                        "Just a Tech Conference, nothing much."
-                );
-
-
-                loadInfoWindow(eventDetails);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-        });
-
-
-
-    }
 
 
     @FXML
@@ -279,12 +145,7 @@ public class OverviewController implements Initializable {
 
         eventInfoController = fxmlLoader.getController();
         eventInfoController.setInfoStage(infoStage);
-
-        // Pass the clicked image to the EventInfoController
         eventInfoController.setEventDetails(event);
-
-        // When the window is closed, set infoStage back to null so it can be reopened later
-        //infoStage.setOnCloseRequest(event -> infoStage = null);
 
         infoStage.show();
     }

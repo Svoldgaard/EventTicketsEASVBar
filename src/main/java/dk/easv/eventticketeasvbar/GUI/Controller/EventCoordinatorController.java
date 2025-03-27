@@ -279,6 +279,7 @@ public class EventCoordinatorController implements Initializable {
         addEditEventController.setEvent(selectedEvent);
         addEditEventController.setEventModel(eventModel);
 
+
         // Pass the new button name to the controller
         if (addEditEventController != null) {
             addEditEventController.setText("Save Changes");
