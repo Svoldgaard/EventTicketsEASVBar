@@ -7,6 +7,7 @@ import dk.easv.eventticketeasvbar.GUI.Model.ParkingModel;
 import dk.easv.eventticketeasvbar.GUI.Model.TicketModel;
 import dk.easv.eventticketeasvbar.Main;
 import dk.easv.eventticketeasvbar.BE.Event;
+
 // javafx Imports
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;
@@ -20,39 +21,23 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 //Java Imports
-
-import javax.imageio.ImageIO;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Objects;
 import java.util.ResourceBundle;
-
-import static java.lang.Object.*;
 
 public class EventCoordinatorController implements Initializable {
 
-
-    public Label lblUsername;
-    public TextField txtSearch;
-
-    private Stage eventInfoStage = null;
-    private AddEditEventController addEditEventController;
-    private AssignEditController assignEditController;
-    private TicketController ticketController;
-    private EventInfoController eventInfoController;
-    private ParkingController parkingController;
-
-
-    private Event currentPopupEvent = null;
-    private boolean isPopupActive = false;
-
-
+    // javafx instance
+    @FXML
+    private MFXButton btnCreate;
+    @FXML
+    private Label lblUsername;
+    @FXML
+    private TextField txtSearch;
     @FXML
     private TableView<Event> tblEvent;
     @FXML
@@ -70,15 +55,15 @@ public class EventCoordinatorController implements Initializable {
     @FXML
     private TableColumn<Event, String> coordinatorColumn;
 
-
+    // normal instance
+    private AddEditEventController addEditEventController;
+    private AssignEditController assignEditController;
+    private TicketController ticketController;
+    private EventInfoController eventInfoController;
+    private ParkingController parkingController;
     private EventCoordinatorModel EventCoordinatorModel;
     private EventModel eventModel;
-    private TicketModel ticketModel;
-    private ParkingModel parkingModel;
-    @FXML
-    private MFXButton btnEditEvent;
-    @FXML
-    private MFXButton btnCreate;
+
 
     public EventCoordinatorController() throws Exception {
         eventModel = new EventModel();
@@ -89,8 +74,8 @@ public class EventCoordinatorController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        setButtonIcon(btnEditEvent, "/dk.easv/eventticketeasvbar/Icon/edit.png");
-        setButtonIcon1(btnCreate, "/dk.easv/eventticketeasvbar/Icon/create-task-icon.png");
+
+        setButtonIcon(btnCreate, "/dk.easv/eventticketeasvbar/Icon/create-task-icon.png");
 
         try {
             EventCoordinatorModel = new EventCoordinatorModel();
@@ -144,24 +129,35 @@ public class EventCoordinatorController implements Initializable {
             Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
             if(selectedEvent != null) {
                 try{
-                    btnEditEvent(null);
+                    editEvent();
                 } catch (IOException e) {
                     displayError(e);
                 }
-            }else {
-                Alert alert = new Alert(Alert.AlertType.WARNING, "Please select an event to edit.", ButtonType.OK);
-                alert.showAndWait();
             }
         });
 
         MenuItem deleteItem = new MenuItem("Delete");
         deleteItem.setOnAction((ActionEvent event) -> {
-
+            Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
+            if(selectedEvent != null) {
+                try{
+                    deleteEvent();
+                } catch (Exception e) {
+                    displayError(e);
+                }
+            }
         });
 
         MenuItem assignEventCoordinator = new MenuItem("Assign Event Coordinator");
         assignEventCoordinator.setOnAction((ActionEvent event) -> {
-
+            Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
+            if(selectedEvent != null) {
+                try{
+                    assignCoordinator();
+                } catch (Exception e) {
+                    displayError(e);
+                }
+            }
         });
 
         // More info
@@ -169,12 +165,26 @@ public class EventCoordinatorController implements Initializable {
 
         MenuItem eventInfoItem = new MenuItem("Event Info");
         eventInfoItem.setOnAction((ActionEvent event) -> {
-
+            Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
+            if(selectedEvent != null) {
+                try{
+                    moreEventInfo();
+                } catch (Exception e) {
+                    displayError(e);
+                }
+            }
         });
 
         MenuItem parking = new MenuItem("Parking");
         parking.setOnAction((ActionEvent event) -> {
-
+            Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
+            if(selectedEvent != null) {
+                try{
+                    parkingInfo();
+                } catch (Exception e) {
+                    displayError(e);
+                }
+            }
         });
 
 
@@ -184,7 +194,14 @@ public class EventCoordinatorController implements Initializable {
 
         MenuItem eventTicket = new MenuItem("Event Ticket");
         eventTicket.setOnAction((ActionEvent event) -> {
-
+            Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
+            if(selectedEvent != null) {
+                try {
+                    eventTicket();
+                } catch (Exception e) {
+                    displayError(e);
+                }
+            }
         });
 
         MenuItem discountTicket = new MenuItem("Discount Ticket");
@@ -212,6 +229,7 @@ public class EventCoordinatorController implements Initializable {
     }
 
 
+
     private void displayError(Exception e) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
@@ -227,7 +245,6 @@ public class EventCoordinatorController implements Initializable {
         stage.setTitle("Login Screen");
         stage.show();
     }
-
 
     public void btnCreateEvent(ActionEvent actionEvent) throws Exception {
 
@@ -251,8 +268,7 @@ public class EventCoordinatorController implements Initializable {
 
     }
 
-    public void btnEditEvent(ActionEvent actionEvent) throws IOException {
-
+    private void editEvent() throws IOException {
         Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/Add-Edit-Event.fxml"));
@@ -282,10 +298,9 @@ public class EventCoordinatorController implements Initializable {
         tblEvent.setItems(eventModel.getTblEvent());
 
         tblEvent.refresh();
-
     }
 
-    public void btnDeleteEvent(ActionEvent actionEvent) throws Exception {
+    private void deleteEvent() throws Exception {
         Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
 
         if (selectedEvent != null) {
@@ -303,8 +318,7 @@ public class EventCoordinatorController implements Initializable {
         }
     }
 
-
-    public void btnAddTicket(ActionEvent actionEvent) throws IOException {
+    private void eventTicket() throws IOException {
         Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/Ticket.fxml"));
@@ -321,8 +335,8 @@ public class EventCoordinatorController implements Initializable {
         stage.showAndWait();
     }
 
-    @FXML
-    public void handleAssign(ActionEvent actionEvent) throws IOException {
+
+    private void assignCoordinator() throws IOException {
         Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
         if (selectedEvent == null) {
             Alert alert = new Alert(Alert.AlertType.WARNING, "Please select an event first.", ButtonType.OK);
@@ -344,12 +358,11 @@ public class EventCoordinatorController implements Initializable {
         stage.show();
     }
 
-
     public void setUsername(String username) {
         lblUsername.setText(username);
     }
 
-    public void btnMoreEventInfo(ActionEvent actionEvent) throws IOException {
+    private void moreEventInfo() throws IOException {
         Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
 
         if (selectedEvent == null) {
@@ -373,7 +386,7 @@ public class EventCoordinatorController implements Initializable {
     }
 
 
-    public void btnParkingInfo(ActionEvent actionEvent) throws IOException {
+    private void parkingInfo() throws IOException {
         Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
 
         if (selectedEvent == null) {
@@ -417,22 +430,6 @@ public class EventCoordinatorController implements Initializable {
        imageView.setFitWidth(20);
 
        button.setGraphic(imageView);
-    }
-
-    private void setButtonIcon1(Button button, String iconPath) {
-        URL iconUrl = getClass().getResource(iconPath);
-
-        if (iconUrl == null) {
-            System.out.println("Error loading icon: " + iconPath);
-            return;
-        }
-
-        Image icon = new Image(iconUrl.toExternalForm());
-        ImageView imageView = new ImageView(icon);
-        imageView.setFitHeight(20);
-        imageView.setFitWidth(20);
-
-        button.setGraphic(imageView);
     }
 }
 

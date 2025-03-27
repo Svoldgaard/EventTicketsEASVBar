@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="424db850-1039-4886-89b3-66312f48d918" name="Changes" comment="fxid btnEdit">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="424db850-1039-4886-89b3-66312f48d918" name="Changes" comment="fxid create admin">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/EventCoordinatorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/EventCoordinatorController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/EventCoordinator.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/EventCoordinator.fxml" afterDir="false" />
@@ -206,23 +205,8 @@
       <workItem from="1742378400030" duration="4260000" />
       <workItem from="1742810850619" duration="9911000" />
       <workItem from="1742886414433" duration="2038000" />
-      <workItem from="1742892374962" duration="19160000" />
-    </task>
-    <task id="LOCAL-00001" summary="First">
-      <option name="closed" value="true" />
-      <created>1738085846192</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1738085846192</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Package">
-      <option name="closed" value="true" />
-      <created>1738086296922</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1738086296922</updated>
+      <workItem from="1742892374962" duration="20409000" />
+      <workItem from="1743076753037" duration="829000" />
     </task>
     <task id="LOCAL-00003" summary="Some classes to start with">
       <option name="closed" value="true" />
@@ -600,7 +584,23 @@
       <option name="project" value="LOCAL" />
       <updated>1743059573621</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="context menu">
+      <option name="closed" value="true" />
+      <created>1743069927064</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1743069927064</updated>
+    </task>
+    <task id="LOCAL-00051" summary="fxid create admin">
+      <option name="closed" value="true" />
+      <created>1743070290709</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1743070290709</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -621,8 +621,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="create Login for eventCoordinator now works" />
-    <MESSAGE value="ForgotPassword.fxml + ForgotPasswordController&#10;setup and working" />
     <MESSAGE value="Utility classes and package" />
     <MESSAGE value="forgot password fit better" />
     <MESSAGE value="Delete" />
@@ -646,7 +644,9 @@
     <MESSAGE value="Deag and drop style and picture" />
     <MESSAGE value="popup v1 working" />
     <MESSAGE value="fxid btnEdit" />
-    <option name="LAST_COMMIT_MESSAGE" value="fxid btnEdit" />
+    <MESSAGE value="context menu" />
+    <MESSAGE value="fxid create admin" />
+    <option name="LAST_COMMIT_MESSAGE" value="fxid create admin" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
