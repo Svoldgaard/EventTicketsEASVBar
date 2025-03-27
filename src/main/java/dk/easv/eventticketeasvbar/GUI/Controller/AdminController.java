@@ -350,35 +350,6 @@ public class AdminController implements Initializable {
         System.out.println("Coordinator edited and table refreshed");
     }
 
-    @FXML
-    private void btnEditUser(ActionEvent actionEvent) throws Exception {
-        User selectedCoordinator = tblCoordinator.getSelectionModel().getSelectedItem();
-
-        if (selectedCoordinator == null) {
-            showAlert("No Selection", "Please select a coordinator to edit.");
-            return;
-        }
-
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/CreateUser.fxml"));
-
-        // Load FXML and get the controller
-        Scene scene = new Scene(fxmlLoader.load());
-        createUserController = fxmlLoader.getController();
-
-        // Set coordinator for editing
-        createUserController.setCoordinator(selectedCoordinator);
-
-        // Open the Edit User window
-        Stage stage = new Stage();
-        stage.setTitle("Edit User");
-        stage.setScene(scene);
-        createUserController.setStage(stage);
-
-        stage.showAndWait();
-        tblCoordinator.refresh(); // Refresh table after editing
-        adminModel.loadCoordinators();
-        System.out.println("Coordinator edited and table refreshed");
-    }
 
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -400,18 +371,6 @@ public class AdminController implements Initializable {
         }
     }
 
-    @FXML
-    private void btnRemoveUser(ActionEvent actionEvent) {
-        User selectedCoordinator = tblCoordinator.getSelectionModel().getSelectedItem();
-        if (selectedCoordinator != null) {
-            try {
-                adminModel.removeCoordinator(selectedCoordinator);
-                tblCoordinator.getItems().remove(selectedCoordinator);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
 
     private void createLogin(){
         // Get selected coordinator from TableView
@@ -442,35 +401,6 @@ public class AdminController implements Initializable {
         }
     }
 
-    @FXML
-    private void btnCreateLogIn(ActionEvent actionEvent) {
-        // Get selected coordinator from TableView
-        User selectedCoordinator = tblCoordinator.getSelectionModel().getSelectedItem();
-
-        if (selectedCoordinator == null) {
-            System.out.println("No coordinator selected!");
-            return;
-        }
-
-
-        // Get first 5 letters of the firstname
-        String firstname = selectedCoordinator.getFirstname();
-        String cleanName = firstname.replaceAll("\\s", "");
-        String username = (cleanName.length() >= 5) ? cleanName.substring(0, 5) : cleanName;
-        username = username.toLowerCase();
-        String password = username;
-
-
-        try {
-            // Call the LoginModel to create a login
-            LoginModel loginModel = new LoginModel();
-            loginModel.createLogin(selectedCoordinator);
-
-            System.out.println("Login created for: " + username);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     @FXML
     private void setupDragAndDrop() {
