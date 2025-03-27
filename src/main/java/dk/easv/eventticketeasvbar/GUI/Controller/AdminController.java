@@ -78,10 +78,9 @@ public class AdminController implements Initializable {
 
     private CreateUserController createUserController;
 
-    private final ImageView imageView = new ImageView();
+    private ImageView imageView = new ImageView();
     @FXML
     private MFXButton btnCreateUser;
-    private ImageView imageView = new ImageView();
 
     public AdminController() throws Exception {
         adminModel = new UserModel();
