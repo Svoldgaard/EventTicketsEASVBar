@@ -246,7 +246,7 @@ public class Event {
     /**
      * Two users are considered equal if their ID matches.
      */
-    /*
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -257,11 +257,11 @@ public class Event {
     /**
      * Use the same fields in hashCode that you do in equals.
      */
-    /*
+
     @Override
     public int hashCode() {
         return Objects.hash(id);
-    }*/
+    }
 
 
     @Override
