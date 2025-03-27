@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="332.0" prefWidth="600.0" stylesheets="@/dk.easv/eventticketeasvbar/CSS/demo2.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.eventticketeasvbar.GUI.Controller.TicketController">
+<AnchorPane prefHeight="332.0" prefWidth="600.0" stylesheets="@/dk.easv/eventticketeasvbar/CSS/demo2.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.eventticketeasvbar.GUI.Controller.Tickets.TicketController">
    <children>
       <Label layoutX="38.0" layoutY="28.0" text="Event Code:" />
       <Label fx:id="lblEventCode" layoutX="38.0" layoutY="45.0" text="Eventcode input" />

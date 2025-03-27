@@ -1,13 +1,9 @@
-package dk.easv.eventticketeasvbar.GUI.Controller;
+package dk.easv.eventticketeasvbar.GUI.Controller.Tickets;
 
 // project import
 import dk.easv.eventticketeasvbar.BE.Event;
 
 // JavaFX imports
-import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,7 +14,6 @@ import javafx.stage.Stage;
 
 // Java imports
 import java.io.File;
-import java.io.FileOutputStream;
 import java.net.URL;
 import java.util.Properties;
 import java.util.Random;
@@ -26,10 +21,12 @@ import java.util.ResourceBundle;
 
 // iText imports for PDF generation
 import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
 
+// javax import
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
 import javax.mail.*;
@@ -62,7 +59,6 @@ public class TicketController implements Initializable {
 
     public Stage stage;
 
-    private Event event;
 
     private Random random;
 
@@ -232,6 +228,5 @@ public class TicketController implements Initializable {
         lblDate.setText(String.valueOf(event.getDate()));
         lblPrice.setText(String.valueOf(event.getPrice()));
         lblEventCode.setText((event.getId() + event.getEvent()));
-
     }
 }

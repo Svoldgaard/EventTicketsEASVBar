@@ -32,6 +32,7 @@ import javafx.stage.Stage;
 // Java import
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 
@@ -78,10 +79,10 @@ public class AdminController implements Initializable {
 
     private CreateUserController createUserController;
 
-    private final ImageView imageView = new ImageView();
+    private ImageView imageView = new ImageView();
     @FXML
     private MFXButton btnCreateUser;
-    private ImageView imageView = new ImageView();
+
 
     public AdminController() throws Exception {
         adminModel = new UserModel();
@@ -479,21 +480,34 @@ public class AdminController implements Initializable {
                 if (!row.isEmpty()) {
                     Dragboard db = row.startDragAndDrop(TransferMode.MOVE);
                     ClipboardContent content = new ClipboardContent();
-                    content.putString(row.getItem().getFirstname());  // Store user info
+
+                    // Store the user's first name as the drag content
+                    content.putString(row.getItem().getFirstname());
                     db.setContent(content);
 
-                    ImageView imageView = new ImageView("/dk.easv/eventticketeasvbar/Photos/BarFight.png"); // path to user picture when added
+                    // Get the image path from the user's photo property
+                    String photoPath = row.getItem().getPhoto();
+                    if (photoPath != null && !photoPath.isEmpty()) {
+                        try {
+                            // Load the image for drag view
+                            Image image = new Image(getClass().getResourceAsStream("/" + photoPath), 200, 200, true, true);
+                            ImageView imageView = new ImageView(image);
 
-                    imageView.setFitWidth(50);
-                    imageView.setFitHeight(50);
+                            imageView.setFitWidth(50);
+                            imageView.setFitHeight(50);
 
-                    db.setDragView(imageView.snapshot(null, null));
+                            db.setDragView(imageView.snapshot(null, null));
+                        } catch (Exception e) {
+                            System.err.println("Error loading image for drag view: " + e.getMessage());
+                        }
+                    }
 
                     event.consume();
                 }
             });
             return row;
         });
+
 
         tblEvent.setRowFactory(tv -> {
             TableRow<Event> row = new TableRow<>();

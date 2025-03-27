@@ -5,10 +5,10 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane styleClass="redAnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.eventticketeasvbar.GUI.Controller.FreeDiscountedTicketController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="redAnchorPane" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.eventticketeasvbar.GUI.Controller.Tickets.FreeDiscountedTicketController">
    <children>
       <Label layoutX="315.0" layoutY="14.0" text="Bar Coupon" />
-      <Label layoutX="27.0" layoutY="97.0" text="Bar Lounge">
+      <Label fx:id="lblLaungeName1" layoutX="27.0" layoutY="97.0" text="Bar Lounge">
          <font>
             <Font size="41.0" />
          </font>
@@ -16,7 +16,7 @@
       <Line endX="100.0" layoutX="130.0" layoutY="157.0" startX="-100.0" />
       <Line endX="-100.0" endY="391.9999694824219" layoutX="504.0" layoutY="8.0" startX="-100.0" startY="-7.99999475479126" />
       <Label fx:id="lbBarInfo" layoutX="30.0" layoutY="173.0" prefHeight="199.0" prefWidth="205.0" text="Label" />
-      <Label layoutX="428.0" layoutY="31.0" prefHeight="59.0" prefWidth="137.0" text="Bar Lounge">
+      <Label fx:id="lblLaungeName2" layoutX="428.0" layoutY="31.0" prefHeight="59.0" prefWidth="137.0" text="Bar Lounge">
          <font>
             <Font size="26.0" />
          </font>
