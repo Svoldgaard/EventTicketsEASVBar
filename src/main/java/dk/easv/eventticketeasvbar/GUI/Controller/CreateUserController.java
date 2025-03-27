@@ -37,13 +37,11 @@ public class CreateUserController {
     @FXML
     private MFXButton btnAddPicture;
 
-    String photo;
-
     private UserModel adminModel;
     private User editableCoordinator;
     private boolean isEditMode = false;
 
-    //private String imagePath;
+    private String imagePath;
     private Stage stage;
     private File selectedImage;
 
@@ -77,9 +75,9 @@ public class CreateUserController {
             txtPhoneNumber.setText(String.valueOf(coordinator.getPhoneNumber()));
             txtEmail.setText(coordinator.getEmail());
 
-            photo = coordinator.getPhoto();
-            if(photo != null && !photo.isEmpty()){
-                imageEmployee.setImage(new Image(new File(photo).toURI().toString()));
+            imagePath = coordinator.getPhoto();
+            if(imagePath != null && !imagePath.isEmpty()){
+                imageEmployee.setImage(new Image(new File(imagePath).toURI().toString()));
             }
 
         }
@@ -89,7 +87,7 @@ public class CreateUserController {
     private void btnSave(ActionEvent actionEvent) {
 
         if (selectedImage != null) {
-            photo = "Photos/" + selectedImage.getName();
+            imagePath = "Photos/" + selectedImage.getName();
         }
 
         String firstName = txtFirstName.getText().trim();
@@ -114,7 +112,7 @@ public class CreateUserController {
 
         if (isEditMode) {
             // Update existing coordinator
-            editableCoordinator.setPhoto(photo);
+            editableCoordinator.setPhoto(imagePath);
             editableCoordinator.setFirstname(firstName);
             editableCoordinator.setLastname(lastName);
             editableCoordinator.setEmail(email);
@@ -128,7 +126,7 @@ public class CreateUserController {
 
         } else {
             // Create new coordinator
-            User newCoordinator = new User(photo, firstName, lastName, email, phoneNumber, 0);
+            User newCoordinator = new User(firstName, lastName, email, phoneNumber, 0, imagePath);
             try {
                 adminModel.addCoordinator(newCoordinator);
             } catch (Exception e) {
@@ -166,7 +164,7 @@ public class CreateUserController {
             File destinationFile = new File(photoDir, file.getName());
             try {
                 Files.copy(file.toPath(),destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-                photo = "Photos/" + file.getName();
+                imagePath = "Photos/" + file.getName();
 
 
                 imageEmployee.setImage(new javafx.scene.image.Image(destinationFile.toURI().toString()));

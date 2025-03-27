@@ -508,7 +508,6 @@ public class AdminController implements Initializable {
             return row;
         });
 
-
         tblEvent.setRowFactory(tv -> {
             TableRow<Event> row = new TableRow<>();
             row.setOnDragOver(event -> {
