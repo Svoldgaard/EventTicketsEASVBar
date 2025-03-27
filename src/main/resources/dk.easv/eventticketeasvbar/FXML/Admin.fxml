@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="542.0" prefWidth="1116.0" stylesheets="@/dk.easv/eventticketeasvbar/CSS/demo2.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.eventticketeasvbar.GUI.Controller.AdminController">
+<AnchorPane prefHeight="542.0" prefWidth="1116.0" stylesheets="@/dk.easv/eventticketeasvbar/CSS/demo2.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.eventticketeasvbar.GUI.Controller.AdminController">
     <VBox minWidth="-Infinity" prefWidth="1116.0">
         <HBox prefHeight="38.0" prefWidth="1116.0" styleClass="redEdge">
          <children>
@@ -35,7 +35,7 @@
 
     <TextField fx:id="SearchCoordinators" layoutX="26.0" layoutY="55.0" promptText="Search Coordinators" />
     <TextField fx:id="searchEvent" layoutX="616.0" layoutY="55.0" promptText="Search Event:" />
-   <MFXButton layoutX="26.0" layoutY="497.0" onAction="#btnCreateUser" text="Create User" />
+   <MFXButton fx:id="btnCreateUser" layoutX="26.0" layoutY="497.0" onAction="#btnCreateUser" text="Create User" />
    <MFXButton layoutX="117.0" layoutY="497.0" onAction="#btnEditUser" text="Edit User" />
    <MFXButton layoutX="194.0" layoutY="497.0" onAction="#btnRemoveUser" text="Remove User" />
    <MFXButton layoutX="990.0" layoutY="497.0" onAction="#btnRemoveEvent" text="Remove Event" />

@@ -8,6 +8,7 @@ import dk.easv.eventticketeasvbar.GUI.Model.TicketModel;
 import dk.easv.eventticketeasvbar.Main;
 import dk.easv.eventticketeasvbar.BE.Event;
 // javafx Imports
+import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
