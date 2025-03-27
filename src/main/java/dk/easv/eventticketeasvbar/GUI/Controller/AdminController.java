@@ -163,6 +163,65 @@ public class AdminController implements Initializable {
 
 
         setupDragAndDrop();
+
+
+
+        ContextMenu contextMenuCoordinator = new ContextMenu();
+        ContextMenu contextMenuEvent = new ContextMenu();
+
+        MenuItem editUser = new MenuItem("Edit User");
+        editUser.setOnAction(event -> {
+            User selectedEvent = tblCoordinator.getSelectionModel().getSelectedItem();
+            if(selectedEvent != null) {
+                try{
+                    editUser();
+                } catch (Exception e) {
+                    displayError(e);
+                }
+            }
+        });
+
+        MenuItem deleteUser = new MenuItem("Delete User");
+        deleteUser.setOnAction(event -> {
+            User selectedEvent = tblCoordinator.getSelectionModel().getSelectedItem();
+            if(selectedEvent != null) {
+                try{
+                    removeUser();
+                } catch (Exception e) {
+                    displayError(e);
+                }
+            }
+        });
+
+        MenuItem createLogin = new MenuItem("Create Login");
+        createLogin.setOnAction(event -> {
+            User selectedEvent = tblCoordinator.getSelectionModel().getSelectedItem();
+            if(selectedEvent != null) {
+                try{
+                    createLogin();
+                } catch (Exception e) {
+                    displayError(e);
+                }
+            }
+        });
+
+        MenuItem removeEvent = new MenuItem("Remove Event");
+        removeEvent.setOnAction(event -> {
+            Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
+            if(selectedEvent != null) {
+                try{
+                    removeEvent();
+                } catch (Exception e) {
+                    displayError(e);
+                }
+            }
+        });
+
+        contextMenuCoordinator.getItems().addAll(editUser, deleteUser, createLogin);
+        contextMenuEvent.getItems().addAll(removeEvent);
+
+        tblEvent.setContextMenu(contextMenuEvent);
+        tblCoordinator.setContextMenu(contextMenuCoordinator);
     }
 
     private void setButtonIcon3(Button button, String iconPath) {
@@ -197,6 +256,24 @@ public class AdminController implements Initializable {
         stage.setScene(new Scene(root));
         stage.setTitle("Login Screen");
         stage.show();
+    }
+
+    private void removeEvent() throws Exception {
+        Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
+
+        if (selectedEvent != null) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Delete Event");
+            alert.setHeaderText("Are you sure you want to delete this event?");
+            alert.setContentText(null);
+
+            ButtonType result = alert.showAndWait().get();
+
+            if (result == ButtonType.OK) {
+                eventModel.deleteEvent(selectedEvent);
+                tblEvent.getItems().remove(selectedEvent);
+            }
+        }
     }
 
     @FXML
@@ -241,6 +318,35 @@ public class AdminController implements Initializable {
         System.out.println("Coordinator created and table refreshed");
     }
 
+    private void editUser() throws Exception {
+        User selectedCoordinator = tblCoordinator.getSelectionModel().getSelectedItem();
+
+        if (selectedCoordinator == null) {
+            showAlert("No Selection", "Please select a coordinator to edit.");
+            return;
+        }
+
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/CreateUser.fxml"));
+
+        // Load FXML and get the controller
+        Scene scene = new Scene(fxmlLoader.load());
+        createUserController = fxmlLoader.getController();
+
+        // Set coordinator for editing
+        createUserController.setCoordinator(selectedCoordinator);
+
+        // Open the Edit User window
+        Stage stage = new Stage();
+        stage.setTitle("Edit User");
+        stage.setScene(scene);
+        createUserController.setStage(stage);
+
+        stage.showAndWait();
+        tblCoordinator.refresh(); // Refresh table after editing
+        adminModel.loadCoordinators();
+        System.out.println("Coordinator edited and table refreshed");
+    }
+
     @FXML
     private void btnEditUser(ActionEvent actionEvent) throws Exception {
         User selectedCoordinator = tblCoordinator.getSelectionModel().getSelectedItem();
@@ -279,6 +385,17 @@ public class AdminController implements Initializable {
         alert.showAndWait();
     }
 
+    private void removeUser(){
+        User selectedCoordinator = tblCoordinator.getSelectionModel().getSelectedItem();
+        if (selectedCoordinator != null) {
+            try {
+                adminModel.removeCoordinator(selectedCoordinator);
+                tblCoordinator.getItems().remove(selectedCoordinator);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     @FXML
     private void btnRemoveUser(ActionEvent actionEvent) {
@@ -293,6 +410,34 @@ public class AdminController implements Initializable {
         }
     }
 
+    private void createLogin(){
+        // Get selected coordinator from TableView
+        User selectedCoordinator = tblCoordinator.getSelectionModel().getSelectedItem();
+
+        if (selectedCoordinator == null) {
+            System.out.println("No coordinator selected!");
+            return;
+        }
+
+
+        // Get first 5 letters of the firstname
+        String firstname = selectedCoordinator.getFirstname();
+        String cleanName = firstname.replaceAll("\\s", "");
+        String username = (cleanName.length() >= 5) ? cleanName.substring(0, 5) : cleanName;
+        username = username.toLowerCase();
+        String password = username;
+
+
+        try {
+            // Call the LoginModel to create a login
+            LoginModel loginModel = new LoginModel();
+            loginModel.createLogin(selectedCoordinator);
+
+            System.out.println("Login created for: " + username);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     private void btnCreateLogIn(ActionEvent actionEvent) {

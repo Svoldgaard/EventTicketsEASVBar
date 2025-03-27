@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="424db850-1039-4886-89b3-66312f48d918" name="Changes" comment="fxid create admin">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/EventCoordinatorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/EventCoordinatorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/EventCoordinator.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/EventCoordinator.fxml" afterDir="false" />
+    <list default="true" id="424db850-1039-4886-89b3-66312f48d918" name="Changes" comment="Context menu all works execpt discount ticket">
+      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/AdminController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -206,15 +204,7 @@
       <workItem from="1742810850619" duration="9911000" />
       <workItem from="1742886414433" duration="2038000" />
       <workItem from="1742892374962" duration="20409000" />
-      <workItem from="1743076753037" duration="829000" />
-    </task>
-    <task id="LOCAL-00003" summary="Some classes to start with">
-      <option name="closed" value="true" />
-      <created>1738086924095</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1738086924095</updated>
+      <workItem from="1743076753037" duration="2309000" />
     </task>
     <task id="LOCAL-00004" summary="login FXML">
       <option name="closed" value="true" />
@@ -600,7 +590,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743070290709</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="Context menu all works execpt discount ticket">
+      <option name="closed" value="true" />
+      <created>1743077851071</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1743077851072</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -621,7 +619,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="Utility classes and package" />
     <MESSAGE value="forgot password fit better" />
     <MESSAGE value="Delete" />
     <MESSAGE value="config" />
@@ -646,7 +643,8 @@
     <MESSAGE value="fxid btnEdit" />
     <MESSAGE value="context menu" />
     <MESSAGE value="fxid create admin" />
-    <option name="LAST_COMMIT_MESSAGE" value="fxid create admin" />
+    <MESSAGE value="Context menu all works execpt discount ticket" />
+    <option name="LAST_COMMIT_MESSAGE" value="Context menu all works execpt discount ticket" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
