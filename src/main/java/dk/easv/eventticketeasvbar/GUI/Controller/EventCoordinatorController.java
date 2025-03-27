@@ -9,6 +9,7 @@ import dk.easv.eventticketeasvbar.Main;
 import dk.easv.eventticketeasvbar.BE.Event;
 // Other Imports
 //Java Imports
+import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,14 +18,24 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+import javax.imageio.ImageIO;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
+
+import static java.lang.Object.*;
 
 public class EventCoordinatorController implements Initializable {
 
@@ -66,6 +77,10 @@ public class EventCoordinatorController implements Initializable {
     private EventModel eventModel;
     private TicketModel ticketModel;
     private ParkingModel parkingModel;
+    @FXML
+    private MFXButton btnEditEvent;
+    @FXML
+    private MFXButton btnCreate;
 
     public EventCoordinatorController() throws Exception {
         eventModel = new EventModel();
@@ -75,6 +90,10 @@ public class EventCoordinatorController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        setButtonIcon(btnEditEvent, "/dk.easv/eventticketeasvbar/Icon/edit.png");
+        setButtonIcon1(btnCreate, "/dk.easv/eventticketeasvbar/Icon/create-task-icon.png");
+
         try {
             EventCoordinatorModel = new EventCoordinatorModel();
         } catch (IOException e) {
@@ -102,7 +121,6 @@ public class EventCoordinatorController implements Initializable {
                 }
             }
         });
-
 
 
         // Bind data to TableView
@@ -161,6 +179,7 @@ public class EventCoordinatorController implements Initializable {
 
 
     public void btnCreateEvent(ActionEvent actionEvent) throws Exception {
+
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/Add-Edit-Event.fxml"));
 
@@ -227,7 +246,7 @@ public class EventCoordinatorController implements Initializable {
 
             ButtonType result = alert.showAndWait().orElse(ButtonType.CANCEL);
 
-            if(result == ButtonType.OK) {
+            if (result == ButtonType.OK) {
                 eventModel.deleteEvent(selectedEvent);
                 tblEvent.getItems().remove(selectedEvent);
             }
@@ -375,8 +394,6 @@ public class EventCoordinatorController implements Initializable {
     }
 
 
-
-
     private void closeEventInfoPopup() {
         if (eventInfoStage != null) {
             eventInfoStage.close();
@@ -384,4 +401,37 @@ public class EventCoordinatorController implements Initializable {
             currentPopupEvent = null;
         }
     }
+
+    private void setButtonIcon(Button button, String iconPath) {
+       URL iconUrl = getClass().getResource(iconPath);
+
+       if (iconUrl == null) {
+           System.out.println("Error loading icon: " + iconPath);
+           return;
+       }
+
+       Image icon = new Image(iconUrl.toExternalForm());
+       ImageView imageView = new ImageView(icon);
+       imageView.setFitHeight(20);
+       imageView.setFitWidth(20);
+
+       button.setGraphic(imageView);
+    }
+
+    private void setButtonIcon1(Button button, String iconPath) {
+        URL iconUrl = getClass().getResource(iconPath);
+
+        if (iconUrl == null) {
+            System.out.println("Error loading icon: " + iconPath);
+            return;
+        }
+
+        Image icon = new Image(iconUrl.toExternalForm());
+        ImageView imageView = new ImageView(icon);
+        imageView.setFitHeight(20);
+        imageView.setFitWidth(20);
+
+        button.setGraphic(imageView);
+    }
 }
+
