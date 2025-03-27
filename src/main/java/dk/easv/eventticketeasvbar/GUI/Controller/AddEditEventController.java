@@ -232,9 +232,15 @@ public class AddEditEventController {
                 eventImg.setImage(new Image(new File(imagePath).toURI().toString()));
             }
 
-            pickCoordinator.getSelectionModel().clearSelection();
-            for (User coordinator : event.getCoordinators()) {
-                pickCoordinator.getSelectionModel().selectItem(coordinator);
+            // For each coordinator, ensure it's in the items. If not, add it.
+            if (event.getCoordinators() != null && !event.getCoordinators().isEmpty()) {
+                for (User coord : event.getCoordinators()) {
+                    // This check uses equals(...) in User to see if the item is in the combo
+                    if (!pickCoordinator.getItems().contains(coord)) {
+                        pickCoordinator.getItems().add(coord);
+                    }
+                    pickCoordinator.getSelectionModel().selectItem(coord);
+                }
             }
         }
     }
