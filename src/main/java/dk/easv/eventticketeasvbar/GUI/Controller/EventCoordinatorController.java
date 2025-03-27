@@ -17,13 +17,22 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 //Java Imports
+
+import javax.imageio.ImageIO;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
+
+import static java.lang.Object.*;
 
 public class EventCoordinatorController implements Initializable {
 
@@ -65,6 +74,10 @@ public class EventCoordinatorController implements Initializable {
     private EventModel eventModel;
     private TicketModel ticketModel;
     private ParkingModel parkingModel;
+    @FXML
+    private MFXButton btnEditEvent;
+    @FXML
+    private MFXButton btnCreate;
 
     public EventCoordinatorController() throws Exception {
         eventModel = new EventModel();
@@ -74,6 +87,10 @@ public class EventCoordinatorController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        setButtonIcon(btnEditEvent, "/dk.easv/eventticketeasvbar/Icon/edit.png");
+        setButtonIcon1(btnCreate, "/dk.easv/eventticketeasvbar/Icon/create-task-icon.png");
+
         try {
             EventCoordinatorModel = new EventCoordinatorModel();
         } catch (IOException e) {
@@ -101,7 +118,6 @@ public class EventCoordinatorController implements Initializable {
                 }
             }
         });
-
 
 
         // Bind data to TableView
@@ -279,7 +295,7 @@ public class EventCoordinatorController implements Initializable {
 
             ButtonType result = alert.showAndWait().orElse(ButtonType.CANCEL);
 
-            if(result == ButtonType.OK) {
+            if (result == ButtonType.OK) {
                 eventModel.deleteEvent(selectedEvent);
                 tblEvent.getItems().remove(selectedEvent);
             }
@@ -384,4 +400,38 @@ public class EventCoordinatorController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
     }
+
+
+    private void setButtonIcon(Button button, String iconPath) {
+       URL iconUrl = getClass().getResource(iconPath);
+
+       if (iconUrl == null) {
+           System.out.println("Error loading icon: " + iconPath);
+           return;
+       }
+
+       Image icon = new Image(iconUrl.toExternalForm());
+       ImageView imageView = new ImageView(icon);
+       imageView.setFitHeight(20);
+       imageView.setFitWidth(20);
+
+       button.setGraphic(imageView);
+    }
+
+    private void setButtonIcon1(Button button, String iconPath) {
+        URL iconUrl = getClass().getResource(iconPath);
+
+        if (iconUrl == null) {
+            System.out.println("Error loading icon: " + iconPath);
+            return;
+        }
+
+        Image icon = new Image(iconUrl.toExternalForm());
+        ImageView imageView = new ImageView(icon);
+        imageView.setFitHeight(20);
+        imageView.setFitWidth(20);
+
+        button.setGraphic(imageView);
+    }
 }
+
