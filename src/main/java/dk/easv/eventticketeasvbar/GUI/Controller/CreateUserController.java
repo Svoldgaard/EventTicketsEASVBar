@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.media.MediaView;
 import javafx.stage.FileChooser;
@@ -42,8 +43,9 @@ public class CreateUserController {
     private User editableCoordinator;
     private boolean isEditMode = false;
 
-    private String imagePath;
+    //private String imagePath;
     private Stage stage;
+    private File selectedImage;
 
     private boolean isUpdateMode;
     private User coordinatorToUpdate;
@@ -75,15 +77,27 @@ public class CreateUserController {
             txtPhoneNumber.setText(String.valueOf(coordinator.getPhoneNumber()));
             txtEmail.setText(coordinator.getEmail());
 
+            photo = coordinator.getPhoto();
+            if(photo != null && !photo.isEmpty()){
+                imageEmployee.setImage(new Image(new File(photo).toURI().toString()));
+            }
+
         }
     }
 
     @FXML
     private void btnSave(ActionEvent actionEvent) {
+
+        if (selectedImage != null) {
+            photo = "Photos/" + selectedImage.getName();
+        }
+
         String firstName = txtFirstName.getText().trim();
         String lastName = txtLastName.getText().trim();
         String phoneNumberStr = txtPhoneNumber.getText().trim();
         String email = txtEmail.getText().trim();
+
+
 
         if (firstName.isEmpty() || lastName.isEmpty() || phoneNumberStr.isEmpty() || email.isEmpty()) {
             showErrorAlert("Field is empty", "All fields must be filled.");
@@ -142,6 +156,7 @@ public class CreateUserController {
         File file = fileChooser.showOpenDialog(new Stage());
 
         if(file != null) {
+            selectedImage = file;
             String userEventsDirectory = "src/main/resources/Photos";
             File photoDir = new File(userEventsDirectory);
             if(!photoDir.exists()) {
@@ -153,7 +168,7 @@ public class CreateUserController {
                 Files.copy(file.toPath(),destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
                 photo = "Photos/" + file.getName();
 
-                imagePath = destinationFile.getPath();
+
                 imageEmployee.setImage(new javafx.scene.image.Image(destinationFile.toURI().toString()));
             }
             catch(Exception ex) {

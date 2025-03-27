@@ -77,7 +77,7 @@ public class AdminController implements Initializable {
 
     private CreateUserController createUserController;
 
-    private final ImageView imageView = new ImageView();
+    private ImageView imageView = new ImageView();
 
     public AdminController() throws Exception {
         adminModel = new UserModel();
@@ -99,18 +99,19 @@ public class AdminController implements Initializable {
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         colPhoneNumber.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
         colAmountOfEvents.setCellValueFactory(new PropertyValueFactory<>("amountOfEvents"));
+
         colPhoto.setCellFactory(column -> new TableCell<User, String>() {
             private final ImageView imageView = new ImageView();
 
             @Override
-            protected void updateItem(String imagePath, boolean empty) {
-                super.updateItem(imagePath, empty);
-                if (empty || imagePath == null || imagePath.isEmpty()) {
+            protected void updateItem(String photo, boolean empty) {
+                super.updateItem(photo, empty);
+                if (empty || photo == null || photo.isEmpty()) {
                     setGraphic(null);
                 } else {
                     try {
                         // Forvent at imagePath er en sti til et billede i resources
-                        Image image = new Image(getClass().getResourceAsStream("/" + imagePath), 50, 50, true, true);
+                        Image image = new Image(getClass().getResourceAsStream("/" + photo), 50, 50, true, true);
                         imageView.setImage(image);
                         setGraphic(imageView);
                     } catch (Exception e) {
@@ -399,4 +400,11 @@ public class AdminController implements Initializable {
     }
 
 
+    private ImageView getImageView() {
+        return imageView;
+    }
+
+    private void setImageView(ImageView imageView) {
+        this.imageView = imageView;
+    }
 }
