@@ -4,11 +4,14 @@ import dk.easv.eventticketeasvbar.BE.Event;
 import dk.easv.eventticketeasvbar.BE.User;
 import dk.easv.eventticketeasvbar.GUI.Model.EventModel;
 import dk.easv.eventticketeasvbar.GUI.Model.UserModel;
+import dk.easv.eventticketeasvbar.Main;
 import io.github.palexdev.materialfx.controls.MFXButton;
 // Java Imports
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -94,7 +97,7 @@ public class AddEditEventController {
 
     }
 
-    public void setStage(Stage stage) {
+    public void setStage(Stage stage) throws IOException {
         this.stage = stage;
     }
 

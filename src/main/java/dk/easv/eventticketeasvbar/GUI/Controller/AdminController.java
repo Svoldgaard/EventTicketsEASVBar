@@ -27,11 +27,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 // Java import
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 
@@ -78,10 +80,10 @@ public class AdminController implements Initializable {
 
     private CreateUserController createUserController;
 
-    private final ImageView imageView = new ImageView();
+    private ImageView imageView = new ImageView();
     @FXML
     private MFXButton btnCreateUser;
-    private ImageView imageView = new ImageView();
+
 
     public AdminController() throws Exception {
         adminModel = new UserModel();
@@ -91,7 +93,9 @@ public class AdminController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        setButtonIcon(btnCreateUser, "/dk.easv/eventticketeasvbar/Icon/create-task-icon.png");
+        setButtonIcon(btnCreateUser, "/dk.easv/eventticketeasvbar/Icon/—Pngtree—edit icon_4479680.png");
+
+
 
         try {
             adminModel = new UserModel();
@@ -310,6 +314,7 @@ public class AdminController implements Initializable {
 
         // Open the Create User window
         Stage stage = new Stage();
+        stage.getIcons().add(new Image("/dk.easv/eventticketeasvbar/Icon/Skærmbillede 2025-03-27 142743.png"));
         stage.setTitle("Create User");
         stage.setScene(scene);
         createUserController.setStage(stage); // Set the stage for closing
@@ -339,6 +344,7 @@ public class AdminController implements Initializable {
 
         // Open the Edit User window
         Stage stage = new Stage();
+        stage.getIcons().add(new Image("/dk.easv/eventticketeasvbar/Icon/Skærmbillede 2025-03-27 142743.png"));
         stage.setTitle("Edit User");
         stage.setScene(scene);
         createUserController.setStage(stage);
@@ -369,6 +375,7 @@ public class AdminController implements Initializable {
 
         // Open the Edit User window
         Stage stage = new Stage();
+        stage.getIcons().add(new Image("/dk.easv/eventticketeasvbar/Icon/Skærmbillede 2025-03-27 142743.png"));
         stage.setTitle("Edit User");
         stage.setScene(scene);
         createUserController.setStage(stage);
