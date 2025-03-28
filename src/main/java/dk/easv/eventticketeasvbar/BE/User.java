@@ -11,32 +11,17 @@ public class User {
     private String userType;
     private int userTypeID;
 
-    public User(int id, String firstname, String lastname, String email, int phoneNumber, int amountOfEvents, String userType) {
-        this.id = id;
+    // Constructor for btnSave in CreateUserController
+    public User(String firstname, String lastname, String email, int phoneNumber, int amountOfEvents, String imagePath) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.amountOfEvents = amountOfEvents;
+        this.photo = imagePath;
     }
 
-    public User(String photo, String firstname, String lastname, String email, int phoneNumber, int amountOfEvents) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.amountOfEvents = amountOfEvents;
-    }
-
-    /*public User(int id, String firstname, String lastname, String email, int phoneNumber, int amountOfEvents, int userTypeID) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.amountOfEvents = amountOfEvents;
-        this.userTypeID = userTypeID;
-    }*/
-
+    // Used in UserDAO_DB in createUser
     public User(int id, String photo, String firstname, String lastname, String email, int phoneNumber, int amountOfEvents, int i) {
         this.id = id;
         this.photo = photo;
@@ -48,10 +33,12 @@ public class User {
         this.userTypeID = i;
     }
 
+    // Used in EventDAO_DB in getAllEvents
     public User(String name) {
         this.firstname = name;
     }
 
+    // Used in UserDAO_DB in getAllUsers
     public User(int id, String photo, String firstname, String lastname, String email, int phoneNumber, int amountOfEvents, String userType) {
         this.id = id;
         this.photo = photo;
@@ -63,7 +50,6 @@ public class User {
         this.userType = userType;
 
     }
-
 
     public int getUserTypeID() {
         return userTypeID;

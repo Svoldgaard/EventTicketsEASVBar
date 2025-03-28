@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -10,36 +9,25 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="542.0" prefWidth="1116.0" stylesheets="@/dk.easv/eventticketeasvbar/CSS/demo2.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.eventticketeasvbar.GUI.Controller.AdminController">
+<AnchorPane prefHeight="542.0" prefWidth="1116.0" stylesheets="@/dk.easv/eventticketeasvbar/CSS/demo2.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.eventticketeasvbar.GUI.Controller.AdminController">
     <VBox minWidth="-Infinity" prefWidth="1116.0">
         <HBox prefHeight="38.0" prefWidth="1116.0" styleClass="redEdge">
          <children>
-               <Label styleClass="whiteLabel" text="Name:">
-               <HBox.margin>
-                  <Insets left="910.0" top="12.0" />
-               </HBox.margin>
-            </Label>
-               <Label fx:id="lblUsername" styleClass="whiteLabel" text="NAME INPUT">
-               <HBox.margin>
-                  <Insets left="5.0" top="12.0" />
-               </HBox.margin>
-            </Label>
-               <MFXButton onAction="#btnLogoutAdmin" styleClass="whiteButton" text="Logout">
-               <HBox.margin>
-                  <Insets left="10.0" top="7.0" />
-               </HBox.margin>
-            </MFXButton>
+            <AnchorPane prefHeight="38.0" prefWidth="1120.0" styleClass="redAnchorPane">
+               <children>
+                     <MFXButton layoutX="1031.0" layoutY="7.0" onAction="#btnLogoutAdmin" styleClass="whiteButton" text="Logout" />
+                     <Label fx:id="lblUsername" layoutX="949.0" layoutY="11.0" prefHeight="18.0" prefWidth="79.0" styleClass="whiteLabel" text="NAME INPUT" />
+                     <Label layoutX="911.0" layoutY="10.0" styleClass="whiteLabel" text="Name:" />
+               </children>
+            </AnchorPane>
          </children></HBox>
         <HBox prefHeight="26.0" prefWidth="1116.0" />
     </VBox>
 
     <TextField fx:id="SearchCoordinators" layoutX="26.0" layoutY="55.0" promptText="Search Coordinators" />
     <TextField fx:id="searchEvent" layoutX="616.0" layoutY="55.0" promptText="Search Event:" />
-   <MFXButton fx:id="btnCreateUser" layoutX="26.0" layoutY="497.0" onAction="#btnCreateUser" text="Create User" />
-   <MFXButton layoutX="117.0" layoutY="497.0" onAction="#btnEditUser" text="Edit User" />
-   <MFXButton layoutX="194.0" layoutY="497.0" onAction="#btnRemoveUser" text="Remove User" />
+   <MFXButton fx:id="btnCreateUser" layoutX="26.0" layoutY="497.0" onAction="#btnCreateUser" styleClass="redbutton" text="." />
    <MFXButton layoutX="990.0" layoutY="497.0" onAction="#btnRemoveEvent" text="Remove Event" />
-   <MFXButton layoutX="294.0" layoutY="497.0" onAction="#btnCreateLogIn" text="Create Login" />
     <TableView fx:id="tblCoordinator" layoutX="26.0" layoutY="94.0" prefHeight="382.0" prefWidth="574.0">
       <columns>
           <TableColumn fx:id="colPhoto" prefWidth="75.0" text="Photo" />

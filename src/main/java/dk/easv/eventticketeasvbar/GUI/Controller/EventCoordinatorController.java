@@ -1,10 +1,9 @@
 package dk.easv.eventticketeasvbar.GUI.Controller;
 
 // Project Imports
+import dk.easv.eventticketeasvbar.GUI.Controller.Tickets.TicketController;
 import dk.easv.eventticketeasvbar.GUI.Model.EventCoordinatorModel;
 import dk.easv.eventticketeasvbar.GUI.Model.EventModel;
-import dk.easv.eventticketeasvbar.GUI.Model.ParkingModel;
-import dk.easv.eventticketeasvbar.GUI.Model.TicketModel;
 import dk.easv.eventticketeasvbar.Main;
 import dk.easv.eventticketeasvbar.BE.Event;
 
@@ -281,6 +280,7 @@ public class EventCoordinatorController implements Initializable {
         addEditEventController.setEvent(selectedEvent);
         addEditEventController.setEventModel(eventModel);
 
+
         // Pass the new button name to the controller
         if (addEditEventController != null) {
             addEditEventController.setText("Save Changes");
@@ -323,7 +323,7 @@ public class EventCoordinatorController implements Initializable {
     private void eventTicket() throws IOException {
         Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
 
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/Ticket.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/Ticket/Ticket.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         ticketController = fxmlLoader.getController();
         Stage stage = new Stage();

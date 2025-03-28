@@ -4,8 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="424db850-1039-4886-89b3-66312f48d918" name="Changes" comment="Context menu all works execpt discount ticket">
+    <list default="true" id="424db850-1039-4886-89b3-66312f48d918" name="Changes" comment="ContextMenu admin page">
+      <change afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/Tickets/FreeDiscountedTicketController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/EventCoordinatorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/EventCoordinatorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/FreeDiscountedTicketController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/TicketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/Tickets/TicketController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/Free-Discounted-Ticket.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/Ticket/Free-Discounted-Ticket.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/Ticket.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/Ticket/Ticket.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,11 +107,11 @@
       <recent name="C:\EASV\IntelliJ\EventTicketsEASVBar\src\main\resources\Photos" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/Ticket" />
       <recent name="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar" />
       <recent name="C:\EASV\IntelliJ\EventTicketsEASVBar\src\main\resources\Photos" />
       <recent name="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/CSS" />
       <recent name="D:\GitRepos\EventTicketsEASVBar\src\main\resources\css" />
-      <recent name="D:\GitRepos\EventTicketsEASVBar\src\main\java\dk\easv\eventticketeasvbar\GUI\Controller" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="dk.easv.eventticketeasvbar" />
@@ -204,23 +211,7 @@
       <workItem from="1742810850619" duration="9911000" />
       <workItem from="1742886414433" duration="2038000" />
       <workItem from="1742892374962" duration="20409000" />
-      <workItem from="1743076753037" duration="2309000" />
-    </task>
-    <task id="LOCAL-00004" summary="login FXML">
-      <option name="closed" value="true" />
-      <created>1738575673621</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1738575673621</updated>
-    </task>
-    <task id="LOCAL-00005" summary="ticket FXML">
-      <option name="closed" value="true" />
-      <created>1738576362082</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1738576362082</updated>
+      <workItem from="1743076753037" duration="5264000" />
     </task>
     <task id="LOCAL-00006" summary="Add-Edit-Event.fxml">
       <option name="closed" value="true" />
@@ -598,7 +589,23 @@
       <option name="project" value="LOCAL" />
       <updated>1743077851072</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="ContextMenu admin page">
+      <option name="closed" value="true" />
+      <created>1743079565413</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1743079565413</updated>
+    </task>
+    <task id="LOCAL-00054" summary="ContextMenu admin page">
+      <option name="closed" value="true" />
+      <created>1743080220295</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1743080220295</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -619,7 +626,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="forgot password fit better" />
     <MESSAGE value="Delete" />
     <MESSAGE value="config" />
     <MESSAGE value="fixed miner type to get AmountOfEvents to work in admin view" />
@@ -644,7 +650,8 @@
     <MESSAGE value="context menu" />
     <MESSAGE value="fxid create admin" />
     <MESSAGE value="Context menu all works execpt discount ticket" />
-    <option name="LAST_COMMIT_MESSAGE" value="Context menu all works execpt discount ticket" />
+    <MESSAGE value="ContextMenu admin page" />
+    <option name="LAST_COMMIT_MESSAGE" value="ContextMenu admin page" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

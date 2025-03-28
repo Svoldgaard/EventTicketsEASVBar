@@ -406,18 +406,6 @@ public class AdminController implements Initializable {
         }
     }
 
-    @FXML
-    private void btnRemoveUser(ActionEvent actionEvent) {
-        User selectedCoordinator = tblCoordinator.getSelectionModel().getSelectedItem();
-        if (selectedCoordinator != null) {
-            try {
-                adminModel.removeCoordinator(selectedCoordinator);
-                tblCoordinator.getItems().remove(selectedCoordinator);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
 
     private void createLogin(){
         // Get selected coordinator from TableView
@@ -448,35 +436,6 @@ public class AdminController implements Initializable {
         }
     }
 
-    @FXML
-    private void btnCreateLogIn(ActionEvent actionEvent) {
-        // Get selected coordinator from TableView
-        User selectedCoordinator = tblCoordinator.getSelectionModel().getSelectedItem();
-
-        if (selectedCoordinator == null) {
-            System.out.println("No coordinator selected!");
-            return;
-        }
-
-
-        // Get first 5 letters of the firstname
-        String firstname = selectedCoordinator.getFirstname();
-        String cleanName = firstname.replaceAll("\\s", "");
-        String username = (cleanName.length() >= 5) ? cleanName.substring(0, 5) : cleanName;
-        username = username.toLowerCase();
-        String password = username;
-
-
-        try {
-            // Call the LoginModel to create a login
-            LoginModel loginModel = new LoginModel();
-            loginModel.createLogin(selectedCoordinator);
-
-            System.out.println("Login created for: " + username);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     @FXML
     private void setupDragAndDrop() {
@@ -486,15 +445,27 @@ public class AdminController implements Initializable {
                 if (!row.isEmpty()) {
                     Dragboard db = row.startDragAndDrop(TransferMode.MOVE);
                     ClipboardContent content = new ClipboardContent();
-                    content.putString(row.getItem().getFirstname());  // Store user info
+
+                    // Store the user's first name as the drag content
+                    content.putString(row.getItem().getFirstname());
                     db.setContent(content);
 
-                    ImageView imageView = new ImageView("/dk.easv/eventticketeasvbar/Photos/BarFight.png"); // path to user picture when added
+                    // Get the image path from the user's photo property
+                    String photoPath = row.getItem().getPhoto();
+                    if (photoPath != null && !photoPath.isEmpty()) {
+                        try {
+                            // Load the image for drag view
+                            Image image = new Image(getClass().getResourceAsStream("/" + photoPath), 200, 200, true, true);
+                            ImageView imageView = new ImageView(image);
 
-                    imageView.setFitWidth(50);
-                    imageView.setFitHeight(50);
+                            imageView.setFitWidth(50);
+                            imageView.setFitHeight(50);
 
-                    db.setDragView(imageView.snapshot(null, null));
+                            db.setDragView(imageView.snapshot(null, null));
+                        } catch (Exception e) {
+                            System.err.println("Error loading image for drag view: " + e.getMessage());
+                        }
+                    }
 
                     event.consume();
                 }
