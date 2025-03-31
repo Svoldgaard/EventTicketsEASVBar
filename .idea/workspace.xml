@@ -4,49 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="424db850-1039-4886-89b3-66312f48d918" name="Changes" comment="removes unused method">
-      <change afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/BE/BarDrinksTicket.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/BE/BaseTicket.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/BE/EventTicket.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/BE/VipTicket.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/BLL/Manager/TicketManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/DLL/Database/TicketDAO_DB.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/Tickets/VipTicketController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Photos/BarFight.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Photos/MaleUser.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Photos/Metal.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Photos/Party.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Photos/Screenshot 2024-11-30 172429.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Photos/TechConference.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/Ticket/Vip-Ticket.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/BE/Ticket.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/BLL/Manager/EventCoodinatorManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/BLL/Manager/UserManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/BLL/Manager/UserManager.java" afterDir="false" />
+    <list default="true" id="424db850-1039-4886-89b3-66312f48d918" name="Changes" comment="search now works and ticket for event &amp; Vip works with db">
       <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/EventCoordinatorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/EventCoordinatorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/EventInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/EventInfoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/OverviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/OverviewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/Tickets/FreeDiscountedTicketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/Tickets/DiscountTicketController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/Tickets/TicketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/Tickets/EventTicketController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Model/EventCoordinatorModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Model/EventCoordinatorModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Model/TicketModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Model/TicketModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Model/UserModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Model/UserModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/Add-Edit-Event.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/EventCoordinator/Add-Edit-Event.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/Admin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/Admin/Admin.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/Assign-edit Window.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/EventCoordinator/Assign-edit Window.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/CreateUser.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/Admin/CreateUser.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/EventCoordinator.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/EventCoordinator/EventCoordinator.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/EventInfo.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/EventCoordinator/EventInfo.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/ForgotPassword.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/Login/ForgotPassword.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/LoginScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/Login/LoginScreen.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/Overview.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/Mainpage/Overview.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/Parking.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/EventCoordinator/Parking.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/Ticket/Free-Discounted-Ticket.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/Ticket/Discount-Ticket.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/Ticket/Ticket.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dk.easv/eventticketeasvbar/FXML/Ticket/Ticket.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/dk/easv/eventticketeasvbar/Ticket/ticket_3Tech Conference.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dk/easv/eventticketeasvbar/Ticket/ticket_3Tech Conference.pdf" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -249,15 +208,7 @@
       <workItem from="1742892374962" duration="20409000" />
       <workItem from="1743076753037" duration="13138000" />
       <workItem from="1743147214478" duration="4235000" />
-      <workItem from="1743362595412" duration="5021000" />
-    </task>
-    <task id="LOCAL-00008" summary="Overview.fxml">
-      <option name="closed" value="true" />
-      <created>1738588336994</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1738588336995</updated>
+      <workItem from="1743362595412" duration="5775000" />
     </task>
     <task id="LOCAL-00009" summary="New mfx buttons + color">
       <option name="closed" value="true" />
@@ -643,7 +594,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743083132270</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="search now works and ticket for event &amp; Vip works with db">
+      <option name="closed" value="true" />
+      <created>1743403794056</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1743403794056</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -664,7 +623,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="fixed miner type to get AmountOfEvents to work in admin view" />
     <MESSAGE value="CSS + Layout fixes" />
     <MESSAGE value="model and table works" />
     <MESSAGE value="Lable for who is login and miner bugs" />
@@ -689,7 +647,8 @@
     <MESSAGE value="ContextMenu admin page" />
     <MESSAGE value="image path changed to photo off the coordinator" />
     <MESSAGE value="removes unused method" />
-    <option name="LAST_COMMIT_MESSAGE" value="removes unused method" />
+    <MESSAGE value="search now works and ticket for event &amp; Vip works with db" />
+    <option name="LAST_COMMIT_MESSAGE" value="search now works and ticket for event &amp; Vip works with db" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
