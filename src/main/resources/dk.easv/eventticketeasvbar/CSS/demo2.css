@@ -18,6 +18,10 @@ AnchorPane{
     -fx-font-weight: bold;
 }
 
+.redAnchorPane {
+    -fx-background-color: #C00D0D;
+}
+
 .redEdge {
     -fx-background-color: #C00D0D;
     -fx-pref-height: 40px;

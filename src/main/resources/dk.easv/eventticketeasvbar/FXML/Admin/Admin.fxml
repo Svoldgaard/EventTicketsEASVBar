@@ -27,7 +27,6 @@
     <TextField fx:id="SearchCoordinators" layoutX="26.0" layoutY="55.0" promptText="Search Coordinators" />
     <TextField fx:id="searchEvent" layoutX="616.0" layoutY="55.0" promptText="Search Event:" />
    <MFXButton fx:id="btnCreateUser" layoutX="26.0" layoutY="497.0" onAction="#btnCreateUser" styleClass="redbutton" text="." />
-   <MFXButton layoutX="990.0" layoutY="497.0" onAction="#btnRemoveEvent" text="Remove Event" />
     <TableView fx:id="tblCoordinator" layoutX="26.0" layoutY="94.0" prefHeight="382.0" prefWidth="574.0">
       <columns>
           <TableColumn fx:id="colPhoto" prefWidth="75.0" text="Photo" />
