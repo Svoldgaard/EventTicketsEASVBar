@@ -379,7 +379,7 @@ public class AdminController implements Initializable {
 
         stage.showAndWait();
         tblCoordinator.refresh(); // Refresh table after editing
-        adminModel.loadCoordinators();
+        userModel.loadCoordinators();
         System.out.println("Coordinator edited and table refreshed");
     }
 
