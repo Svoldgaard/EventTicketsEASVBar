@@ -82,7 +82,7 @@ public class EventCoordinatorController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
 
-        setButtonIcon(btnCreate, "/dk.easv/eventticketeasvbar/Icon/create-task-icon.png");
+        setButtonIcon(btnCreate, "/dk.easv/eventticketeasvbar/Icon/—Pngtree—edit icon_4479680.png");
 
         try {
             EventCoordinatorModel = new EventCoordinatorModel();
@@ -276,6 +276,7 @@ public class EventCoordinatorController implements Initializable {
 
         // Open the Add/Edit Event stage
         Stage stage = new Stage();
+        stage.getIcons().add(new Image("/dk.easv/eventticketeasvbar/Icon/Skærmbillede 2025-03-27 142743.png"));
         stage.setTitle("Create");
         stage.setScene(scene);
         //reference to cancel button
@@ -301,6 +302,7 @@ public class EventCoordinatorController implements Initializable {
         addEditEventController.setEvent(selectedEvent);
         addEditEventController.setEventModel(eventModel);
 
+
         // Pass the new button name to the controller
         if (addEditEventController != null) {
             addEditEventController.setText("Save Changes");
@@ -308,6 +310,7 @@ public class EventCoordinatorController implements Initializable {
 
         // Open the Add/Edit Event stage
         Stage stage = new Stage();
+        stage.getIcons().add(new Image("/dk.easv/eventticketeasvbar/Icon/Skærmbillede 2025-03-27 142743.png"));
         stage.setTitle("Edit");
         stage.setScene(scene);
         //reference to cancel button
@@ -346,6 +349,7 @@ public class EventCoordinatorController implements Initializable {
         Scene scene = new Scene(fxmlLoader.load());
         eventTicketController = fxmlLoader.getController();
         Stage stage = new Stage();
+        stage.getIcons().add(new Image("/dk.easv/eventticketeasvbar/Icon/Skærmbillede 2025-03-27 142743.png"));
         stage.setTitle("Event Ticket");
         stage.setScene(scene);
 
@@ -407,6 +411,7 @@ public class EventCoordinatorController implements Initializable {
         assignEditController.setEvent(selectedEvent); // Pass selected event
 
         Stage stage = new Stage();
+        stage.getIcons().add(new Image("/dk.easv/eventticketeasvbar/Icon/Skærmbillede 2025-03-27 142743.png"));
         stage.setTitle("Assign Coordinator");
         stage.setScene(scene);
         assignEditController.setStage(stage);
@@ -434,6 +439,7 @@ public class EventCoordinatorController implements Initializable {
         eventInfoController.setEventDetails(selectedEvent);
 
         Stage stage = new Stage();
+        stage.getIcons().add(new Image("/dk.easv/eventticketeasvbar/Icon/Skærmbillede 2025-03-27 142743.png"));
         stage.setTitle("Event Info");
         stage.setScene(new Scene(root, 600, 500));
         stage.initModality(Modality.APPLICATION_MODAL);
@@ -464,6 +470,7 @@ public class EventCoordinatorController implements Initializable {
         }*/
 
         Stage stage = new Stage();
+        stage.getIcons().add(new Image("/dk.easv/eventticketeasvbar/Icon/Skærmbillede 2025-03-27 142743.png"));
         stage.setTitle("Parking Info");
         stage.setScene(new Scene(root, 600, 500));
         stage.initModality(Modality.APPLICATION_MODAL);

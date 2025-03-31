@@ -1,15 +1,15 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Boldonse&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
 BorderPane{
     -fx-background-color: white;
-    -fx-font-family: "Source Sans 3", sans-serif;
+    -fx-font-family: "Work Sans", sans-serif;
     -fx-text-fill: white;
 }
 
 AnchorPane{
     -fx-background-color: white;
-    -fx-font-family: "Source Sans 3", sans-serif;
+    -fx-font-family: "Work Sans", sans-serif;
     -fx-text-fill: white;
 }
 
@@ -42,7 +42,10 @@ MFXButton{
     -fx-text-fill: black !important;
     -fx-font-family: "Source Sans 3", sans-serif;
     -fx-font-weight: bold;
+}
 
+.redbutton {
+    -fx-text-fill: #C00D0D;
 }
 
 .table-view .column-header .label {
@@ -80,4 +83,12 @@ MFXButton{
 
 .date-picker-popup .week-number-cell {
     -fx-text-fill: #C00D0D;
+}
+
+MFXTextField {
+    -fx-border-color: #C00D0D;
+}
+
+MFXPasswordField {
+    -fx-border-color: #C00D0D;
 }

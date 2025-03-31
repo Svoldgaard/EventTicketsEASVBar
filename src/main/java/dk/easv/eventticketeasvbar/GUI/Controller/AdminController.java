@@ -25,6 +25,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 // Java import
@@ -89,7 +90,9 @@ public class AdminController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        setButtonIcon(btnCreateUser, "/dk.easv/eventticketeasvbar/Icon/create-task-icon.png");
+        setButtonIcon(btnCreateUser, "/dk.easv/eventticketeasvbar/Icon/—Pngtree—edit icon_4479680.png");
+
+
 
         try {
             userModel = new UserModel();
@@ -308,6 +311,7 @@ public class AdminController implements Initializable {
 
         // Open the Create User window
         Stage stage = new Stage();
+        stage.getIcons().add(new Image("/dk.easv/eventticketeasvbar/Icon/Skærmbillede 2025-03-27 142743.png"));
         stage.setTitle("Create User");
         stage.setScene(scene);
         createUserController.setStage(stage); // Set the stage for closing
@@ -337,6 +341,7 @@ public class AdminController implements Initializable {
 
         // Open the Edit User window
         Stage stage = new Stage();
+        stage.getIcons().add(new Image("/dk.easv/eventticketeasvbar/Icon/Skærmbillede 2025-03-27 142743.png"));
         stage.setTitle("Edit User");
         stage.setScene(scene);
         createUserController.setStage(stage);
@@ -347,6 +352,36 @@ public class AdminController implements Initializable {
         System.out.println("Coordinator edited and table refreshed");
     }
 
+    @FXML
+    private void btnEditUser(ActionEvent actionEvent) throws Exception {
+        User selectedCoordinator = tblCoordinator.getSelectionModel().getSelectedItem();
+
+        if (selectedCoordinator == null) {
+            showAlert("No Selection", "Please select a coordinator to edit.");
+            return;
+        }
+
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/CreateUser.fxml"));
+
+        // Load FXML and get the controller
+        Scene scene = new Scene(fxmlLoader.load());
+        createUserController = fxmlLoader.getController();
+
+        // Set coordinator for editing
+        createUserController.setCoordinator(selectedCoordinator);
+
+        // Open the Edit User window
+        Stage stage = new Stage();
+        stage.getIcons().add(new Image("/dk.easv/eventticketeasvbar/Icon/Skærmbillede 2025-03-27 142743.png"));
+        stage.setTitle("Edit User");
+        stage.setScene(scene);
+        createUserController.setStage(stage);
+
+        stage.showAndWait();
+        tblCoordinator.refresh(); // Refresh table after editing
+        adminModel.loadCoordinators();
+        System.out.println("Coordinator edited and table refreshed");
+    }
 
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.WARNING);

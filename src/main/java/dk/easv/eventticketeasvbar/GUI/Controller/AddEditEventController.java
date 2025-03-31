@@ -4,11 +4,18 @@ import dk.easv.eventticketeasvbar.BE.Event;
 import dk.easv.eventticketeasvbar.BE.User;
 import dk.easv.eventticketeasvbar.GUI.Model.EventModel;
 import dk.easv.eventticketeasvbar.GUI.Model.UserModel;
+import dk.easv.eventticketeasvbar.Main;
 import io.github.palexdev.materialfx.controls.MFXButton;
 // Java Imports
+import io.github.palexdev.materialfx.controls.MFXCheckListView;
+import io.github.palexdev.materialfx.controls.MFXCheckTreeView;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
+import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -22,6 +29,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 //import static jdk.javadoc.internal.doclets.formats.html.markup.HtmlStyle.title;
@@ -56,7 +64,7 @@ public class AddEditEventController {
     @FXML
     private TextField txtAddress;
     @FXML
-    private MFXComboBox<User> pickCoordinator;
+    private MFXCheckListView<User> pickCoordinator;
     @FXML
     private ImageView eventImg;
     @FXML
@@ -94,7 +102,7 @@ public class AddEditEventController {
 
     }
 
-    public void setStage(Stage stage) {
+    public void setStage(Stage stage) throws IOException {
         this.stage = stage;
     }
 
@@ -147,8 +155,8 @@ public class AddEditEventController {
         String priceText = txtPrice.getText().trim();
         String description = txtDescription.getText().trim();
 
-        List<User> selectedCoordinator = pickCoordinator.getItems();
-
+        ObservableMap<Integer, User> selectionMap = pickCoordinator.getSelectionModel().getSelection();
+        List<User> selectedCoordinator = new ArrayList<>(selectionMap.values());
 
         if (eventName.isEmpty() || date == null || timeText.isEmpty() ||
                 durationText.isEmpty() || location.isEmpty() || priceText.isEmpty() || description.isEmpty() || selectedCoordinator.isEmpty()) {
@@ -195,6 +203,8 @@ public class AddEditEventController {
                eventToEdit.setCoordinators(selectedCoordinator);
 
                eventModel.updateEvent(eventToEdit);
+
+               eventToEdit.setCoordinators(selectedCoordinator);
 
 
 
