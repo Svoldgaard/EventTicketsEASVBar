@@ -13,11 +13,6 @@ AnchorPane{
     -fx-text-fill: white;
 }
 
-.redAnchorPane {
-    -fx-background-color: #C00D0D;
-    -fx-text-fill: white;
-}
-
 .whiteLabel {
     -fx-text-fill: white;
     -fx-font-weight: bold;
