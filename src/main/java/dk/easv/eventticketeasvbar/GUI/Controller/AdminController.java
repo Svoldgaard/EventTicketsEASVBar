@@ -7,10 +7,9 @@ import dk.easv.eventticketeasvbar.GUI.Model.UserModel;
 import dk.easv.eventticketeasvbar.GUI.Model.EventModel;
 import dk.easv.eventticketeasvbar.GUI.Model.LoginModel;
 import dk.easv.eventticketeasvbar.Main;
-// Other Imports
+
 // JavaFX Imports
 import io.github.palexdev.materialfx.controls.MFXButton;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.image.ImageView;
 import javafx.event.ActionEvent;
@@ -23,7 +22,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
@@ -32,7 +30,6 @@ import javafx.stage.Stage;
 // Java import
 import java.io.IOException;
 import java.net.URL;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 
@@ -73,7 +70,7 @@ public class AdminController implements Initializable {
     private TableColumn<Event, String> colCoordinator;
 
 
-    private UserModel adminModel;
+    private UserModel userModel;
     private EventModel eventModel;
     private EventCoordinatorModel eventCoordinatorModel;
 
@@ -85,7 +82,7 @@ public class AdminController implements Initializable {
 
 
     public AdminController() throws Exception {
-        adminModel = new UserModel();
+        userModel = new UserModel();
         eventModel = new EventModel();
     }
 
@@ -95,7 +92,7 @@ public class AdminController implements Initializable {
         setButtonIcon(btnCreateUser, "/dk.easv/eventticketeasvbar/Icon/create-task-icon.png");
 
         try {
-            adminModel = new UserModel();
+            userModel = new UserModel();
             eventCoordinatorModel = new EventCoordinatorModel();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -128,10 +125,10 @@ public class AdminController implements Initializable {
             }
         });
 
-        tblCoordinator.setItems(adminModel.getCoordinators());
+        tblCoordinator.setItems(userModel.getCoordinators());
         tblCoordinator.setStyle("-fx-alternative-row-fill-visible: #009FDA");
         try {
-            adminModel.loadCoordinators();
+            userModel.loadCoordinators();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -154,14 +151,14 @@ public class AdminController implements Initializable {
 
        SearchCoordinators.textProperty().addListener((observable, oldValue, newValue) -> {
             try{
-                eventCoordinatorModel.searchEventCoordinator(newValue);
+                userModel.searchEventCoordinator(newValue);
             }catch (Exception t){
                 displayError(t);
                 t.printStackTrace();
             }
         });
 
-        tblCoordinator.setItems(adminModel.getCoordinators());
+        tblCoordinator.setItems(userModel.getCoordinators());
         tblEvent.setItems(eventModel.getTblEvent());
 
 
@@ -254,7 +251,7 @@ public class AdminController implements Initializable {
 
     @FXML
     private void btnLogoutAdmin(ActionEvent actionEvent) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/dk.easv/eventticketeasvbar/FXML/LoginScreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/dk.easv/eventticketeasvbar/FXML/Login/LoginScreen.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.setTitle("Login Screen");
@@ -301,13 +298,13 @@ public class AdminController implements Initializable {
 
     @FXML
     private void btnCreateUser(ActionEvent actionEvent) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/CreateUser.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/Admin/CreateUser.fxml"));
 
         // Load FXML and get the controller
         Scene scene = new Scene(fxmlLoader.load());
         createUserController = fxmlLoader.getController();
         // Inject the AdminModel you already have
-        createUserController.setAdminModel(this.adminModel);
+        createUserController.setAdminModel(this.userModel);
 
         // Open the Create User window
         Stage stage = new Stage();
@@ -317,7 +314,7 @@ public class AdminController implements Initializable {
 
         stage.showAndWait();
         tblCoordinator.refresh(); // Refresh table after creation
-        adminModel.loadCoordinators();
+        userModel.loadCoordinators();
         System.out.println("Coordinator created and table refreshed");
     }
 
@@ -329,7 +326,7 @@ public class AdminController implements Initializable {
             return;
         }
 
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/CreateUser.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/Admin/CreateUser.fxml"));
 
         // Load FXML and get the controller
         Scene scene = new Scene(fxmlLoader.load());
@@ -346,7 +343,7 @@ public class AdminController implements Initializable {
 
         stage.showAndWait();
         tblCoordinator.refresh(); // Refresh table after editing
-        adminModel.loadCoordinators();
+        userModel.loadCoordinators();
         System.out.println("Coordinator edited and table refreshed");
     }
 
@@ -363,7 +360,7 @@ public class AdminController implements Initializable {
         User selectedCoordinator = tblCoordinator.getSelectionModel().getSelectedItem();
         if (selectedCoordinator != null) {
             try {
-                adminModel.removeCoordinator(selectedCoordinator);
+                userModel.removeCoordinator(selectedCoordinator);
                 tblCoordinator.getItems().remove(selectedCoordinator);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -485,7 +482,7 @@ public class AdminController implements Initializable {
 
 
     private User findUserByName(String firstname) {
-        for (User user : adminModel.getCoordinators()) {
+        for (User user : userModel.getCoordinators()) {
             if (user.getFirstname().equals(firstname)) {
                 return user;
             }

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="542.0" prefWidth="1116.0" stylesheets="@/dk.easv/eventticketeasvbar/CSS/demo2.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.eventticketeasvbar.GUI.Controller.AdminController">
+    <VBox minWidth="-Infinity" prefWidth="1116.0">
+        <HBox prefHeight="38.0" prefWidth="1116.0" styleClass="redEdge">
+         <children>
+               <Label styleClass="whiteLabel" text="Name:">
+               <HBox.margin>
+                  <Insets left="910.0" top="12.0" />
+               </HBox.margin>
+            </Label>
+               <Label fx:id="lblUsername" styleClass="whiteLabel" text="NAME INPUT">
+               <HBox.margin>
+                  <Insets left="5.0" top="12.0" />
+               </HBox.margin>
+            </Label>
+               <MFXButton onAction="#btnLogoutAdmin" styleClass="whiteButton" text="Logout">
+               <HBox.margin>
+                  <Insets left="10.0" top="7.0" />
+               </HBox.margin>
+            </MFXButton>
+         </children></HBox>
+        <HBox prefHeight="26.0" prefWidth="1116.0" />
+    </VBox>
+
+    <TextField fx:id="SearchCoordinators" layoutX="26.0" layoutY="55.0" promptText="Search Coordinators" />
+    <TextField fx:id="searchEvent" layoutX="616.0" layoutY="55.0" promptText="Search Event:" />
+   <MFXButton fx:id="btnCreateUser" layoutX="26.0" layoutY="497.0" onAction="#btnCreateUser" text="." />
+   <MFXButton layoutX="990.0" layoutY="497.0" onAction="#btnRemoveEvent" text="Remove Event" />
+    <TableView fx:id="tblCoordinator" layoutX="26.0" layoutY="94.0" prefHeight="382.0" prefWidth="574.0">
+      <columns>
+          <TableColumn fx:id="colPhoto" prefWidth="75.0" text="Photo" />
+          <TableColumn fx:id="colFName" prefWidth="75.0" text="First name" />
+          <TableColumn fx:id="colLName" prefWidth="96.00001525878906" text="Last name" />
+          <TableColumn fx:id="colEmail" prefWidth="88.0" text="Email" />
+         <TableColumn fx:id="colPhoneNumber" prefWidth="126.4000244140625" text="Phone number" />
+         <TableColumn fx:id="colAmountOfEvents" prefWidth="112.0" text="Amount of Events" />
+      </columns>
+    </TableView>
+   <TableView fx:id="tblEvent" layoutX="616.0" layoutY="94.0" prefHeight="382.0" prefWidth="470.0">
+      <columns>
+         <TableColumn fx:id="colEvent" prefWidth="75.0" text="Event" />
+         <TableColumn fx:id="colLocation" prefWidth="75.0" text="Location" />
+         <TableColumn fx:id="colDate" prefWidth="75.0" text="Date" />
+         <TableColumn fx:id="colTime" prefWidth="111.0" text="Time" />
+         <TableColumn fx:id="colCoordinator" prefWidth="132.7999267578125" text="Coordinator" />
+      </columns>
+   </TableView>
+
+</AnchorPane>

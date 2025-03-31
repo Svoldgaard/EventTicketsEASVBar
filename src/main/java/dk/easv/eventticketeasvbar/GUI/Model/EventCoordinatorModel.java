@@ -3,7 +3,6 @@ package dk.easv.eventticketeasvbar.GUI.Model;
 import dk.easv.eventticketeasvbar.BE.Event;
 // Java Imports
 import dk.easv.eventticketeasvbar.BE.User;
-import dk.easv.eventticketeasvbar.BLL.Manager.EventCoodinatorManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -14,13 +13,13 @@ public class EventCoordinatorModel {
     private ObservableList<Event> tblEvent;
     private ObservableList<EventCoordinatorModel> tblCoordinator;
 
-    private EventCoodinatorManager eventCoodinatorManager;
+    //private EventCoodinatorManager eventCoodinatorManager;
 
     public EventCoordinatorModel() throws IOException {
         tblEvent = FXCollections.observableArrayList();
         tblCoordinator = FXCollections.observableArrayList();
         //loadMockData();
-        eventCoodinatorManager = new EventCoodinatorManager();
+        //eventCoodinatorManager = new EventCoodinatorManager();
     }
 
    /* private void loadMockData() {
@@ -61,10 +60,10 @@ public class EventCoordinatorModel {
 
     }
 
-    public void searchEventCoordinator(String query) throws Exception {
+    /*public void searchEventCoordinator(String query) throws Exception {
         List<User> searchResults = eventCoodinatorManager.searchEvents(query);
         tblCoordinator.clear();
         tblCoordinator.addAll((EventCoordinatorModel) searchResults);
-    }
+    }*/
 
 }

@@ -1,9 +1,12 @@
 package dk.easv.eventticketeasvbar.GUI.Controller;
 
 // Project Imports
-import dk.easv.eventticketeasvbar.GUI.Controller.Tickets.TicketController;
+import dk.easv.eventticketeasvbar.GUI.Controller.Tickets.DiscountTicketController;
+import dk.easv.eventticketeasvbar.GUI.Controller.Tickets.EventTicketController;
+import dk.easv.eventticketeasvbar.GUI.Controller.Tickets.VipTicketController;
 import dk.easv.eventticketeasvbar.GUI.Model.EventCoordinatorModel;
 import dk.easv.eventticketeasvbar.GUI.Model.EventModel;
+import dk.easv.eventticketeasvbar.GUI.Model.TicketModel;
 import dk.easv.eventticketeasvbar.Main;
 import dk.easv.eventticketeasvbar.BE.Event;
 
@@ -57,17 +60,22 @@ public class EventCoordinatorController implements Initializable {
     // normal instance
     private AddEditEventController addEditEventController;
     private AssignEditController assignEditController;
-    private TicketController ticketController;
+    private EventTicketController eventTicketController;
+    private VipTicketController vipTicketController;
+    private DiscountTicketController discountTicketController;
     private EventInfoController eventInfoController;
     private ParkingController parkingController;
     private EventCoordinatorModel EventCoordinatorModel;
     private EventModel eventModel;
+    private TicketModel ticketModel;
 
 
     public EventCoordinatorController() throws Exception {
         eventModel = new EventModel();
         eventInfoController = new EventInfoController();
         parkingController = new ParkingController();
+        ticketModel = new TicketModel();
+
     }
 
     @Override
@@ -191,11 +199,11 @@ public class EventCoordinatorController implements Initializable {
 
         Menu ticket = new Menu("Ticket");
 
-        MenuItem eventTicket = new MenuItem("Event Ticket");
+        MenuItem eventTicket = new MenuItem("Ticket");
         eventTicket.setOnAction((ActionEvent event) -> {
             Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
             if(selectedEvent != null) {
-                try {
+                try{
                     eventTicket();
                 } catch (Exception e) {
                     displayError(e);
@@ -203,22 +211,36 @@ public class EventCoordinatorController implements Initializable {
             }
         });
 
+
         MenuItem discountTicket = new MenuItem("Discount Ticket");
         discountTicket.setOnAction((ActionEvent event) -> {
-
+            Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
+            if(selectedEvent != null) {
+                try{
+                    eventDiscountTicket();
+                } catch (Exception e) {
+                    displayError(e);
+                }
+            }
         });
 
-        MenuItem freeBeerTicket = new MenuItem("Free Beer Ticket");
-        freeBeerTicket.setOnAction((ActionEvent event) -> {
-
+        MenuItem vipTicket = new MenuItem("VIP Ticket");
+        vipTicket.setOnAction((ActionEvent event) -> {
+            Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
+            if(selectedEvent != null) {
+                try{
+                    eventVipTicket();
+                } catch (Exception e) {
+                    displayError(e);
+                }
+            }
         });
 
         // add submenu item for the extra info
-
         moreInfo.getItems().addAll(eventInfoItem,parking);
 
         // add submenu item for the ticket menu
-        ticket.getItems().addAll(eventTicket, discountTicket, freeBeerTicket);
+        ticket.getItems().addAll(eventTicket, discountTicket, vipTicket);
 
         // add the menu option to the context menu
         contextMenu.getItems().addAll(editItem,deleteItem, ticket,moreInfo);
@@ -238,7 +260,7 @@ public class EventCoordinatorController implements Initializable {
 
     @FXML
     private void handleLogoutCoordinator(ActionEvent actionEvent) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/dk.easv/eventticketeasvbar/FXML/LoginScreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/dk.easv/eventticketeasvbar/FXML/Login/LoginScreen.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.setTitle("Login Screen");
@@ -247,7 +269,7 @@ public class EventCoordinatorController implements Initializable {
 
     public void btnCreateEvent(ActionEvent actionEvent) throws Exception {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/Add-Edit-Event.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/EventCoordinator/Add-Edit-Event.fxml"));
 
         // Load FXML and get the controller
         Scene scene = new Scene(fxmlLoader.load());
@@ -270,7 +292,7 @@ public class EventCoordinatorController implements Initializable {
     private void editEvent() throws IOException {
         Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
 
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/Add-Edit-Event.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/EventCoordinator/Add-Edit-Event.fxml"));
         // Load FXML and get the controller
         Scene scene = new Scene(fxmlLoader.load());
 
@@ -322,13 +344,47 @@ public class EventCoordinatorController implements Initializable {
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/Ticket/Ticket.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        ticketController = fxmlLoader.getController();
+        eventTicketController = fxmlLoader.getController();
         Stage stage = new Stage();
-        stage.setTitle("Edit");
+        stage.setTitle("Event Ticket");
         stage.setScene(scene);
 
-        ticketController.setEvent(selectedEvent);
-        ticketController.setStage(stage);
+        eventTicketController.setEvent(selectedEvent);
+        //eventTicketController.setStage(stage);
+
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
+    }
+
+    private void eventVipTicket() throws IOException {
+        Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
+
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/Ticket/Vip-Ticket.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        vipTicketController = fxmlLoader.getController();
+        Stage stage = new Stage();
+        stage.setTitle("Vip Ticket");
+        stage.setScene(scene);
+
+        vipTicketController.setEvent(selectedEvent);
+        //vipTicketController.setStage(stage);
+
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
+    }
+
+    private void eventDiscountTicket() throws IOException {
+        Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
+
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/Ticket/Discount-Ticket.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        discountTicketController = fxmlLoader.getController();
+        Stage stage = new Stage();
+        stage.setTitle("Discount Ticket");
+        stage.setScene(scene);
+
+        discountTicketController.setEvent(selectedEvent);
+        discountTicketController.setStage(stage);
 
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
@@ -343,7 +399,7 @@ public class EventCoordinatorController implements Initializable {
             return;
         }
 
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/Assign-edit Window.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/EventCoordinator/Assign-edit Window.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
 
         assignEditController = fxmlLoader.getController();
@@ -370,7 +426,7 @@ public class EventCoordinatorController implements Initializable {
             return;
         }
 
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/EventInfo.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/EventCoordinator/EventInfo.fxml"));
         Parent root = fxmlLoader.load();
         EventInfoController eventInfoController = fxmlLoader.getController();
 
@@ -394,7 +450,7 @@ public class EventCoordinatorController implements Initializable {
             return;
         }
 
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/Parking.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/EventCoordinator/Parking.fxml"));
         Parent root = fxmlLoader.load();
         ParkingController parkingController = fxmlLoader.getController();
 

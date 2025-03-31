@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="332.0" prefWidth="600.0" stylesheets="@/dk.easv/eventticketeasvbar/CSS/demo2.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.eventticketeasvbar.GUI.Controller.Tickets.VipTicketController">
+   <Label layoutX="38.0" layoutY="28.0" text="Event Code:" />
+   <Label fx:id="lblEventCode" layoutX="38.0" layoutY="45.0" text="Eventcode input" />
+   <Label layoutX="159.0" layoutY="28.0" text="Section:" />
+   <Label fx:id="lblSection" layoutX="159.0" layoutY="45.0" text="Section input" />
+   <Label layoutX="267.0" layoutY="28.0" text="Row:" />
+   <Label fx:id="lblRow" layoutX="267.0" layoutY="45.0" text="Row input" />
+   <Label layoutX="339.0" layoutY="28.0" text="Seat:" />
+   <Label fx:id="lblSeat" layoutX="339.0" layoutY="45.0" text="Sear input" />
+   <Label layoutX="38.0" layoutY="96.0" text="Price:" />
+   <Label fx:id="lblPrice" layoutX="38.0" layoutY="113.0" text="Price input" />
+   <ImageView fx:id="QRCode" fitHeight="200.0" fitWidth="222.0" layoutX="357.0" layoutY="89.0" />
+   <Label layoutX="440.0" layoutY="72.0" text="QR CODE" />
+   <Label fx:id="lblEventName" layoutX="130.0" layoutY="152.0" text="Event name ">
+      <font>
+         <Font size="20.0" />
+      </font>
+   </Label>
+   <Label layoutX="133.0" layoutY="289.0" text="Location: " />
+   <Label fx:id="lblLocation" layoutX="189.0" layoutY="289.0" text="location input" />
+   <Label layoutX="133.0" layoutY="306.0" text="Date: " />
+   <Label fx:id="lblDate" layoutX="180.0" layoutY="306.0" text="date input " />
+   <MFXButton layoutX="537.0" layoutY="293.0" onAction="#btnPDF" text="PDF" />
+</AnchorPane>

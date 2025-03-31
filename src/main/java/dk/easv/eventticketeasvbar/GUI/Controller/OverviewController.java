@@ -249,7 +249,7 @@ public class OverviewController implements Initializable {
     @FXML
     private void handleLogin(ActionEvent actionEvent) throws IOException {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/LoginScreen.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/Login/LoginScreen.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage();
         stage.setTitle("Event Tickets EASV Bar");
@@ -270,7 +270,7 @@ public class OverviewController implements Initializable {
             return;
         }
 
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/EventInfo.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/EventCoordinator/EventInfo.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
 
         infoStage = new Stage();

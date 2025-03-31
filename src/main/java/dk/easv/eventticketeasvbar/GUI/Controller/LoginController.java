@@ -19,7 +19,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import java.io.IOException;
-import java.util.Objects;
 
 public class LoginController {
 
@@ -69,7 +68,7 @@ public class LoginController {
     }
 
     private void loadAdminWindow(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/dk.easv/eventticketeasvbar/FXML/Admin.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/dk.easv/eventticketeasvbar/FXML/Admin/Admin.fxml"));
         Parent root = loader.load();
 
 
@@ -89,7 +88,7 @@ public class LoginController {
     }
 
     private void loadCoordinatorWindow(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/dk.easv/eventticketeasvbar/FXML/EventCoordinator.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/dk.easv/eventticketeasvbar/FXML/EventCoordinator/EventCoordinator.fxml"));
         Parent root = loader.load();
 
 
@@ -124,7 +123,7 @@ public class LoginController {
 
     @FXML
     private void handleForgotPassword(MouseEvent mouseEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/ForgotPassword.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/Login/ForgotPassword.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage();
         stage.setTitle("Forgot Password");

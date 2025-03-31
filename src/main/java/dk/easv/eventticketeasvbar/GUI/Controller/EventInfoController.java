@@ -14,9 +14,9 @@ import java.io.File;
 
 public class EventInfoController {
     @FXML
-    private Text desc;
+    public Label lblEventName;
     @FXML
-    private Label eventName;
+    public Text lblDescription;
     @FXML
     private Stage infoStage;
     @FXML
@@ -44,8 +44,8 @@ public class EventInfoController {
         } else {
             System.out.println("Image file not found at: " + imagePath);
         }
-        eventName.setText(event.getEvent());
-        desc.setText(event.getDescription());
+        lblEventName.setText(event.getEvent());
+        lblDescription.setText(event.getDescription());
     }
 
 }

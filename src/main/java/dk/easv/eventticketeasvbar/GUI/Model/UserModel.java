@@ -12,32 +12,27 @@ import java.util.List;
 public class UserModel {
     private final ObservableList<Event> tblEvent;
     private final ObservableList<User> tblCoordinator;
-    private final UserManager adminManager;
-
+    private final UserManager userManager;
 
     public UserModel() throws IOException {
-        adminManager = new UserManager();
+        userManager = new UserManager();
         tblCoordinator = FXCollections.observableArrayList();
         tblEvent = FXCollections.observableArrayList();
     }
 
     public void loadCoordinators() throws Exception {
-        List<User> allCoordinators = adminManager.getAllUsers();
+        List<User> allCoordinators = userManager.getAllUsers();
         tblCoordinator.clear();
         tblCoordinator.addAll(allCoordinators);
     }
 
     public void addCoordinator(User user) throws Exception {
-        User newCoordinator = adminManager.createUser(user);
+        User newCoordinator = userManager.createUser(user);
         tblCoordinator.add(newCoordinator);
-
-
-
-
     }
 
     public void updateCoordinator(User user) throws Exception {
-        User updatedCoordinator = adminManager.updateUser(user);
+        User updatedCoordinator = userManager.updateUser(user);
 
         int index = tblCoordinator.indexOf(user);
         if (index != -1) {
@@ -49,7 +44,7 @@ public class UserModel {
 
 
     public void removeCoordinator(User user) throws Exception {
-        adminManager.deleteUser(user);
+        userManager.deleteUser(user);
         tblCoordinator.remove(user);
     }
 
@@ -59,5 +54,11 @@ public class UserModel {
 
     public ObservableList<Event> getEvents() {
         return tblEvent;
+    }
+
+    public void searchEventCoordinator(String query) throws Exception {
+        List<User> searchResults = userManager.searchUsers(query);
+        tblCoordinator.clear();
+        tblCoordinator.addAll(searchResults);
     }
 }
