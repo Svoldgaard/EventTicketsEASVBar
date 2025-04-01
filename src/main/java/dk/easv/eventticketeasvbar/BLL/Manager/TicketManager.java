@@ -30,5 +30,10 @@ public class TicketManager {
         ticketDAO.deleteTicket(qrCode);
     }
 
+    public void updateTicketPDFPath(String qrCode, String pdfPath) throws SQLException, IOException {
+        ticketDAO.updateTicketPDFPath(qrCode, pdfPath);
+    }
+
+
 
 }

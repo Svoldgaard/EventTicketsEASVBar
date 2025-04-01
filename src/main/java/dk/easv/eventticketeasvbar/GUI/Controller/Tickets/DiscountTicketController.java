@@ -1,60 +1,42 @@
 package dk.easv.eventticketeasvbar.GUI.Controller.Tickets;
 // project import
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.PdfWriter;
 import dk.easv.eventticketeasvbar.BE.Event;
 
 // JavaFX imports
+import dk.easv.eventticketeasvbar.GUI.Model.TicketModel;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 // Java imports
 import java.io.File;
+import java.io.FileOutputStream;
 import java.net.URL;
-import java.util.Properties;
-import java.util.Random;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.ResourceBundle;
 
 // iText imports for PDF generation
-import com.itextpdf.text.Document;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 
 
 public class DiscountTicketController implements Initializable {
 
-    @FXML
-    private Label lblEventCode;
-    @FXML
-    private Label lblSection;
-    @FXML
-    private Label lblRow;
-    @FXML
-    private Label lblSeat;
-    @FXML
-    private Label lblPrice;
-    @FXML
-    private ImageView QRCode;
-    @FXML
-    private Label lblEventName;
-    @FXML
-    private Label lblLocation;
-    @FXML
-    private Label lblDate;
 
-    public Label lblLaungeName1;
-    public Label lbBarInfo;
-    public Label lblLaungeName2;
-    public Label lbBarInfoTicket;
-    public Label lbFreeOrDiscounted;
-
-    private Random random;
     public Stage stage;
+
+    @FXML
+    private MFXTextField txtAmountOffDiscount;
+    @FXML
+    private Label lblBarName;
+
+    private TicketModel ticketModel;
 
 
     public DiscountTicketController() {
@@ -62,115 +44,92 @@ public class DiscountTicketController implements Initializable {
             stage.close();
         }
 
-
+        ticketModel = new TicketModel();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        String imagePath = "/dk.easv/eventticketeasvbar/QRCode/ticketQRCode.png";
-        Image image = new Image(imagePath);
-        QRCode.setImage(image);
+        txtAmountOffDiscount.selectableProperty().addListener((observable, oldValue, newValue) -> {
 
-        random = new Random();
-
-        int randomSection = random.nextInt(20) +1;
-        int randomRow = random.nextInt(20) +1;
-        int randomSeat = random.nextInt(20) +1;
-
-        lblSection.setText(String.valueOf(randomSection));
-        lblRow.setText(String.valueOf(randomRow));
-        lblSeat.setText(String.valueOf(randomSeat));
-
+        });
     }
 
     @FXML
     private void btnPDF(ActionEvent actionEvent) {
         try {
-            // Define the folder and file path
+            // Get values from UI
+            String barName = lblBarName.getText();
+            String discount = txtAmountOffDiscount.getText();
+            String qrCode = "QR_" + System.currentTimeMillis(); // Generate unique QR code
+            int drinkCount = Integer.parseInt(discount); // Assuming discount is an integer
+
+            // **1. Save ticket using TicketModel (Database Layer)**
+            ticketModel.saveBarDrinksTicket(barName, qrCode, drinkCount);
+            System.out.println("Ticket saved to database!");
+
+            // **2. Generate PDF**
             String folderPath = "src/main/resources/dk/easv/eventticketeasvbar/Ticket";
             File folder = new File(folderPath);
-
             if (!folder.exists()) {
                 folder.mkdirs();
             }
 
-            String fileName = "ticket_" + lblEventCode.getText() + ".pdf";
+            String fileName = "Discount_Ticket_" + barName.replace(" ", "_") + ".pdf";
             String filePath = folderPath + "/" + fileName;
 
-            // Create a new PDF document with margins
-            Document document = new Document(com.itextpdf.text.PageSize.A4, 36, 36, 36, 36);
+            // Create PDF matching the FXML dimensions
+            Document document = new Document(new Rectangle(319, 206));
+            PdfWriter.getInstance(document, new FileOutputStream(filePath));
             document.open();
 
-            // Add logo
-            // change path to be from database when it is fixed so it can be taken from there
-            com.itextpdf.text.Image logo = com.itextpdf.text.Image.getInstance("src/main/resources/dk.easv/eventticketeasvbar/Photos/BarFight.png");
-            logo.scaleToFit(300, 300);
-            logo.setAlignment(com.itextpdf.text.Element.ALIGN_CENTER);
-            document.add(logo);
-
-
-            // Add a title
-            com.itextpdf.text.Font titleFont = new com.itextpdf.text.Font(com.itextpdf.text.Font.FontFamily.HELVETICA, 18, com.itextpdf.text.Font.BOLD);
-            Paragraph title = new Paragraph(lblEventName.getText(), titleFont);
-            title.setAlignment(Paragraph.ALIGN_CENTER);
-            title.setSpacingAfter(20);
-            document.add(title);
-
-            // Add a table for ticket details
+            // Create a table layout with two columns
             PdfPTable table = new PdfPTable(2);
             table.setWidthPercentage(100);
-            table.setSpacingBefore(10f);
-            table.setSpacingAfter(10f);
+            table.setWidths(new float[]{2, 1}); // Adjust column width ratio
 
-            // Add table headers
-            com.itextpdf.text.Font headerFont = new com.itextpdf.text.Font(com.itextpdf.text.Font.FontFamily.HELVETICA, 12, com.itextpdf.text.Font.BOLD);
-            PdfPCell headerCell1 = new PdfPCell(new Paragraph("Field", headerFont));
-            headerCell1.setBackgroundColor(BaseColor.LIGHT_GRAY);
-            table.addCell(headerCell1);
-            PdfPCell headerCell2 = new PdfPCell(new Paragraph("Value", headerFont));
-            headerCell2.setBackgroundColor(BaseColor.LIGHT_GRAY);
-            table.addCell(headerCell2);
+            // Add title and discount text to the left side
+            Font titleFont = new Font(Font.FontFamily.HELVETICA, 14, Font.BOLD);
+            Paragraph title = new Paragraph(barName + "\nDiscount: " + discount + "%", titleFont);
+            PdfPCell textCell = new PdfPCell();
+            textCell.addElement(title);
+            textCell.setBorder(Rectangle.NO_BORDER);
+            table.addCell(textCell);
 
-            // Add ticket details
-            table.addCell("Event Name:");
-            table.addCell(lblEventName.getText());
-            table.addCell("Location:");
-            table.addCell(lblLocation.getText());
-            table.addCell("Date:");
-            table.addCell(lblDate.getText());
-            table.addCell("Section:");
-            table.addCell(lblSection.getText());
-            table.addCell("Row:");
-            table.addCell(lblRow.getText());
-            table.addCell("Seat:");
-            table.addCell(lblSeat.getText());
-            table.addCell("Price:");
-            table.addCell(lblPrice.getText());
+            // Add QR Code Image to the right side
+            String qrCodePath = "/Users/majkensvoldgaard/Desktop/EventTicketEASVBar/src/main/resources/dk.easv/eventticketeasvbar/QRCode/ticketQRCode.png";
+            File qrCodeFile = new File(qrCodePath);
+            PdfPCell qrCell = new PdfPCell();
+            if (qrCodeFile.exists()) {
+                Image qrImage = Image.getInstance(qrCodeFile.getAbsolutePath());
+                qrImage.scaleToFit(100, 100); // Adjust size as needed
+                qrCell.addElement(qrImage);
+            } else {
+                System.err.println("QR Code image not found at: " + qrCodePath);
+            }
+            qrCell.setBorder(Rectangle.NO_BORDER);
+            table.addCell(qrCell);
 
+            // Add the table to the document
             document.add(table);
 
-            // Add QR Code
-            com.itextpdf.text.Image qrCode = com.itextpdf.text.Image.getInstance("src/main/resources/dk.easv/eventticketeasvbar/QRCode/ticketQRCode.png");
-            qrCode.scaleToFit(100, 100);
-            qrCode.setAlignment(com.itextpdf.text.Element.ALIGN_CENTER);
-            document.add(qrCode);
-
-
-            // Add a footer
-            com.itextpdf.text.Font footerFont = new com.itextpdf.text.Font(com.itextpdf.text.Font.FontFamily.HELVETICA, 10, com.itextpdf.text.Font.ITALIC);
-            Paragraph footer = new Paragraph("Thank you for purchasing your ticket with us!", footerFont);
+            // Add footer
+            Font footerFont = new Font(Font.FontFamily.HELVETICA, 6, Font.ITALIC);
+            Paragraph footer = new Paragraph("Can be used on all drinks in this bar", footerFont);
             footer.setAlignment(Paragraph.ALIGN_CENTER);
             footer.setSpacingBefore(20);
             document.add(footer);
 
-            // Close the document
             document.close();
-            System.out.println("PDF Created and saved to: " + filePath);
+            System.out.println("PDF Created at: " + filePath);
+
+            // **3. Update ticket with PDF path in Database**
+            ticketModel.updateTicketPDFPath(qrCode, filePath);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
 
     public void setStage(Stage stage) {
         this.stage = stage;
@@ -178,11 +137,9 @@ public class DiscountTicketController implements Initializable {
 
 
     public void setEvent(Event event) {
-        lblEventName.setText(event.getEvent());
-        lblLocation.setText(event.getLocation());
-        lblDate.setText(String.valueOf(event.getDate()));
-        lblPrice.setText(String.valueOf(event.getPrice()));
-        lblEventCode.setText((event.getId() + event.getEvent()));
+        lblBarName.setText(new StringBuilder().append(event.getEvent()).append(" Launge").toString());
+
+
     }
 }
 
