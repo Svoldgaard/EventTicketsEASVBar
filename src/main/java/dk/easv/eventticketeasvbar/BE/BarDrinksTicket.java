@@ -2,21 +2,18 @@ package dk.easv.eventticketeasvbar.BE;
 
 
 public class BarDrinksTicket extends BaseTicket {
-    private int drinkCount;
+    private Double Discount;
 
-    public BarDrinksTicket(String eventCode, String qrCode, int drinkCount) {
-        super(eventCode, qrCode, "BarDrinksTicket");
-        this.drinkCount = drinkCount;
+    public BarDrinksTicket(String eventCode, String photo, Double discount) {
+        super(eventCode, photo, "BarDrinksTicket");
+        this.Discount = discount;
     }
 
-    public int getDrinkCount() {
-        return drinkCount;
+    public Double getDiscount() {
+        return Discount;
     }
 
-
-
-
-
-
-
+    public void setDiscount(Double discount) {
+        Discount = discount;
+    }
 }

@@ -2,12 +2,12 @@ package dk.easv.eventticketeasvbar.BE;
 
 public abstract class BaseTicket {
     private String eventCode;
-    private String qrCode;
+    private String photo;
     private String ticketType;
 
-    public BaseTicket(String eventCode, String qrCode, String ticketType) {
+    public BaseTicket(String eventCode, String photo, String ticketType) {
         this.eventCode = eventCode;
-        this.qrCode = qrCode;
+        this.photo = photo;
         this.ticketType = ticketType;
     }
 
@@ -15,8 +15,8 @@ public abstract class BaseTicket {
         return eventCode;
     }
 
-    public String getQrCode() {
-        return qrCode;
+    public String getPhoto() {
+        return photo;
     }
 
     public String getTicketType() {

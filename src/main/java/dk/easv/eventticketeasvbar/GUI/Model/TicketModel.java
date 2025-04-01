@@ -17,14 +17,14 @@ public class TicketModel {
 
     }
 
-    public void saveEventTicket(String eventCode, String qrCode, String section, String row, String seat) throws SQLException, IOException {
-        EventTicket eventTicket = new EventTicket(eventCode, qrCode, section, row, seat);
+    public void saveEventTicket(String eventCode, String photo, String section, String row, String seat) throws SQLException, IOException {
+        EventTicket eventTicket = new EventTicket(eventCode, photo, section, row, seat);
         ticketManager.saveTicket(eventTicket);
     }
 
 
-    public void saveBarDrinksTicket(String eventCode, String qrCode, int drinkCount) throws SQLException, IOException {
-        BarDrinksTicket barDrinksTicket = new BarDrinksTicket(eventCode, qrCode, drinkCount);
+    public void saveBarDrinksTicket(String eventCode, String qrCode, double discount) throws SQLException, IOException {
+        BarDrinksTicket barDrinksTicket = new BarDrinksTicket(eventCode, qrCode, discount);
         ticketManager.saveTicket(barDrinksTicket);
     }
 
@@ -45,5 +45,11 @@ public class TicketModel {
     }
 
 
+    public void saveEventTicket() {
+    }
+
+    public void updateTicketPDFPath(String qrCode, String pdfPath) throws SQLException, IOException {
+        ticketManager.updateTicketPDFPath(qrCode, pdfPath);
+    }
 
 }

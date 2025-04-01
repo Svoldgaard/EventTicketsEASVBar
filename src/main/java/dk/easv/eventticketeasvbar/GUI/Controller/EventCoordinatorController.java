@@ -75,6 +75,7 @@ public class EventCoordinatorController implements Initializable {
         eventInfoController = new EventInfoController();
         parkingController = new ParkingController();
         ticketModel = new TicketModel();
+        discountTicketController = new DiscountTicketController();
 
     }
 
@@ -199,7 +200,7 @@ public class EventCoordinatorController implements Initializable {
 
         Menu ticket = new Menu("Ticket");
 
-        MenuItem eventTicket = new MenuItem("Ticket");
+        MenuItem eventTicket = new MenuItem("Event ticket");
         eventTicket.setOnAction((ActionEvent event) -> {
             Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
             if(selectedEvent != null) {
@@ -217,7 +218,7 @@ public class EventCoordinatorController implements Initializable {
             Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
             if(selectedEvent != null) {
                 try{
-                    eventDiscountTicket();
+                    discountTicket();
                 } catch (Exception e) {
                     displayError(e);
                 }
@@ -363,10 +364,11 @@ public class EventCoordinatorController implements Initializable {
     private void eventVipTicket() throws IOException {
         Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
 
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/Ticket/Vip-Ticket.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/dk.easv/eventticketeasvbar/FXML/Ticket/Vip-Ticket.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         vipTicketController = fxmlLoader.getController();
         Stage stage = new Stage();
+        stage.getIcons().add(new Image("/dk.easv/eventticketeasvbar/Icon/Skærmbillede 2025-03-27 142743.png"));
         stage.setTitle("Vip Ticket");
         stage.setScene(scene);
 
@@ -377,13 +379,15 @@ public class EventCoordinatorController implements Initializable {
         stage.showAndWait();
     }
 
-    private void eventDiscountTicket() throws IOException {
+
+    private void discountTicket() throws IOException {
         Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/Ticket/Discount-Ticket.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         discountTicketController = fxmlLoader.getController();
         Stage stage = new Stage();
+        stage.getIcons().add(new Image("/dk.easv/eventticketeasvbar/Icon/Skærmbillede 2025-03-27 142743.png"));
         stage.setTitle("Discount Ticket");
         stage.setScene(scene);
 
@@ -393,7 +397,6 @@ public class EventCoordinatorController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
     }
-
 
     private void assignCoordinator() throws IOException {
         Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
@@ -446,7 +449,6 @@ public class EventCoordinatorController implements Initializable {
         stage.showAndWait();
     }
 
-
     private void parkingInfo() throws IOException {
         Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
 
@@ -476,7 +478,6 @@ public class EventCoordinatorController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
     }
-
 
     private void setButtonIcon(Button button, String iconPath) {
        URL iconUrl = getClass().getResource(iconPath);
