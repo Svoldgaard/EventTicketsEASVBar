@@ -15,10 +15,14 @@ import javafx.scene.media.MediaView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import javax.naming.directory.Attributes;
+import javax.naming.directory.DirContext;
+import javax.naming.directory.InitialDirContext;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.util.Hashtable;
 
 public class CreateUserController {
 
@@ -51,6 +55,7 @@ public class CreateUserController {
     private MediaView MediaPictureEmployee;
     @FXML
     private ImageView imageEmployee;
+    private String phoneNumber;
 
 
     public CreateUserController() throws IOException {
@@ -96,19 +101,31 @@ public class CreateUserController {
         String email = txtEmail.getText().trim();
 
 
-
         if (firstName.isEmpty() || lastName.isEmpty() || phoneNumberStr.isEmpty() || email.isEmpty()) {
             showErrorAlert("Field is empty", "All fields must be filled.");
             return;
         }
 
-        int phoneNumber;
+        if (!isValidEmail(email)){
+            showErrorAlert("Email address is invalid", "Email address is invalid.");
+            return;
+        }
+
+        if (!isValidPhoneNumber(phoneNumberStr)){
+            showErrorAlert("Phone number is invalid", "Phone number is invalid.");
+            return;
+        }
+
+        phoneNumber = phoneNumberStr;
+
+        /*int phoneNumber;
         try {
             phoneNumber = Integer.parseInt(phoneNumberStr);
         } catch (NumberFormatException e) {
             showErrorAlert("Invalid Input", "Phone number must be a number.");
             return;
-        }
+        }*/
+
 
         if (isEditMode) {
             // Update existing coordinator
@@ -117,6 +134,7 @@ public class CreateUserController {
             editableCoordinator.setLastname(lastName);
             editableCoordinator.setEmail(email);
             editableCoordinator.setPhoneNumber(phoneNumber);
+
 
             try {
                 adminModel.updateCoordinator(editableCoordinator);
@@ -137,6 +155,15 @@ public class CreateUserController {
         if (stage != null) {
             stage.close();
         }
+    }
+
+    private boolean isValidPhoneNumber(String phoneNumberStr) {
+        String PHONE_PATTERN = "^\\+\\d{1,3}\\d{7,14}$";
+        return phoneNumberStr.matches(PHONE_PATTERN);
+    }
+
+    private boolean isValidEmail(String email) {
+        return email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$");
     }
 
     @FXML
@@ -167,7 +194,7 @@ public class CreateUserController {
                 imagePath = "Photos/" + file.getName();
 
 
-                imageEmployee.setImage(new javafx.scene.image.Image(destinationFile.toURI().toString()));
+                imageEmployee.setImage(new Image(destinationFile.toURI().toString()));
             }
             catch(Exception ex) {
                 ex.printStackTrace();
