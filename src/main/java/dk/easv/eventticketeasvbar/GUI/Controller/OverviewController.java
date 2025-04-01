@@ -88,7 +88,7 @@ public class OverviewController implements Initializable {
 
         VBox vBox = new VBox(imageView, lblTitle);
         vBox.setSpacing(5);
-        vBox.setAlignment(Pos.CENTER);
+        vBox.setAlignment(Pos.TOP_CENTER);
 
         vBox.setOnMouseClicked(event1 ->{
             try{

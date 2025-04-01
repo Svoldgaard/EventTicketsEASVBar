@@ -35,9 +35,9 @@
          <children>
             <Label layoutX="23.0" layoutY="17.0" text="Popular Events" />
             <ChoiceBox fx:id="DropMenu" layoutX="431.0" layoutY="13.0" prefWidth="150.0" />
-            <MFXScrollPane layoutX="17.0" layoutY="54.0" prefHeight="278.0" prefWidth="569.0">
+            <MFXScrollPane layoutX="15.0" layoutY="61.0" prefHeight="278.0" prefWidth="569.0">
                <content>
-                  <TilePane fx:id="imageContainer" prefHeight="276.0" prefWidth="570.0" />
+                  <TilePane fx:id="imageContainer" alignment="CENTER" hgap="20.0" prefHeight="278.0" prefWidth="555.0" vgap="15.0" />
                </content>
             </MFXScrollPane>
          </children>
