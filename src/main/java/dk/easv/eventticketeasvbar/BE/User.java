@@ -6,13 +6,13 @@ public class User {
     private String firstname;
     private String lastname;
     private String email;
-    private int phoneNumber;
+    private String phoneNumber;
     private int amountOfEvents;
     private String userType;
     private int userTypeID;
 
     // Constructor for btnSave in CreateUserController
-    public User(String firstname, String lastname, String email, int phoneNumber, int amountOfEvents, String imagePath) {
+    public User(String firstname, String lastname, String email, String phoneNumber, int amountOfEvents, String imagePath) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
@@ -22,7 +22,7 @@ public class User {
     }
 
     // Used in UserDAO_DB in createUser
-    public User(int id, String photo, String firstname, String lastname, String email, int phoneNumber, int amountOfEvents, int i) {
+    public User(int id, String photo, String firstname, String lastname, String email, String phoneNumber, int amountOfEvents, int i) {
         this.id = id;
         this.photo = photo;
         this.firstname = firstname;
@@ -39,7 +39,7 @@ public class User {
     }
 
     // Used in UserDAO_DB in getAllUsers
-    public User(int id, String photo, String firstname, String lastname, String email, int phoneNumber, int amountOfEvents, String userType) {
+    public User(int id, String photo, String firstname, String lastname, String email, String phoneNumber, int amountOfEvents, String userType) {
         this.id = id;
         this.photo = photo;
         this.firstname = firstname;
@@ -50,6 +50,8 @@ public class User {
         this.userType = userType;
 
     }
+
+   //public User(String firstName, String lastName, String email, String phoneNumber, int amountOfEvents, String imagePath) {}
 
     public int getUserTypeID() {
         return userTypeID;
@@ -102,11 +104,11 @@ public class User {
         this.email = email;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

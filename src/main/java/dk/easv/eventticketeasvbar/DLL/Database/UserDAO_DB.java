@@ -34,11 +34,11 @@ public class UserDAO_DB implements IAdmin {
                 String firstname = rs.getString("firstName");
                 String lastname = rs.getString("lastName");
                 String email = rs.getString("email");
-                int phoneNumber = rs.getInt("phoneNumber");
+                String phoneNumber = rs.getString("phoneNumber");
                 int amountOfEvents = rs.getInt("amountOfEvents");
                 String userType = rs.getString("userType");
 
-                User user = new User(id, photo, firstname, lastname, email, phoneNumber, amountOfEvents, userType);
+                User user = new User(id, photo, firstname, lastname, email, String.valueOf(phoneNumber), amountOfEvents, userType);
                 users.add(user);
             }
         } catch (Exception ex) {
@@ -61,7 +61,7 @@ public class UserDAO_DB implements IAdmin {
             stmt.setString(2, user.getFirstname());
             stmt.setString(3, user.getLastname());
             stmt.setString(4, user.getEmail());
-            stmt.setInt(5, user.getPhoneNumber());
+            stmt.setString(5, user.getPhoneNumber());
             stmt.setInt(6, user.getAmountOfEvents());
             //stmt.setInt(6, user.getUserTypeID());
 
@@ -118,7 +118,7 @@ public class UserDAO_DB implements IAdmin {
             stmt.setString(2, user.getFirstname());
             stmt.setString(3, user.getLastname());
             stmt.setString(4, user.getEmail());
-            stmt.setInt(5, user.getPhoneNumber());
+            stmt.setString(5, user.getPhoneNumber());
             stmt.setInt(6, user.getAmountOfEvents());
             //stmt.setString(6, user.getUserType());
             stmt.setInt(7, user.getId());
