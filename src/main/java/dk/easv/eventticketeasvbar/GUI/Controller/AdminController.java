@@ -488,23 +488,30 @@ public class AdminController implements Initializable {
             row.setOnDragDropped(event -> {
                 Dragboard db = event.getDragboard();
                 boolean success = false;
+
                 if (db.hasString()) {
-                    User selectedCoordinator = findUserByName(db.getString());  // Fetch user object
+                    User selectedCoordinator = findUserByName(db.getString());
                     Event selectedEvent = row.getItem();
 
-                    if (selectedCoordinator != null && selectedEvent != null) {
-                        selectedEvent.addCoordinator(selectedCoordinator);
+                        // Ensure the coordinator isn't already assigned
+                        if (!selectedEvent.getCoordinators().contains(selectedCoordinator)) {
+                            selectedEvent.addCoordinator(selectedCoordinator);
 
-                        try {
-                            eventModel.updateEvent(selectedEvent); // Update DB
-                            refreshEvents();  // Refresh event list after update
-                        } catch (Exception e) {
-                            displayError(e);
+                            try {
+                                // Update the database for event assignment
+                                eventModel.updateEvent(selectedEvent);
+                                // Increment amountOfEvents only if not already counted
+                                int previousCount = selectedCoordinator.getAmountOfEvents();
+                                selectedCoordinator.setAmountOfEvents(previousCount);
+                                userModel.updateCoordinator(selectedCoordinator);
+                                refreshEvents(); // Refresh UI
+                            } catch (Exception e) {
+                                displayError(e);
+                            }
+                            success = true;
                         }
-
-                        success = true;
-                    }
                 }
+
                 event.setDropCompleted(success);
                 row.setStyle("");
                 event.consume();
