@@ -70,6 +70,7 @@ public class EventCoordinatorController implements Initializable {
     private TicketModel ticketModel;
 
 
+
     public EventCoordinatorController() throws Exception {
         eventModel = new EventModel();
         eventInfoController = new EventInfoController();

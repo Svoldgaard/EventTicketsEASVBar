@@ -42,10 +42,13 @@ public class OverviewController implements Initializable {
 
     private Stage infoStage;
     private EventInfoController eventInfoController;
+    private EventModel eventModel;
 
 
     public OverviewController() throws Exception {
        overviewModel = new OverViewModel();
+       eventModel = new EventModel();
+       imageContainer = new TilePane();
 
     }
 
@@ -100,12 +103,13 @@ public class OverviewController implements Initializable {
         return vBox;
     }
 
-    private void populateEvents() throws Exception {
+    public void populateEvents() throws Exception {
         imageContainer.getChildren().clear();
 
         for(Event event : overviewModel.getEventsToBeViewed()){
             VBox vbox = createVBox(event);
             imageContainer.getChildren().add(vbox);
+
         }
     }
 

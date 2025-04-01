@@ -57,6 +57,7 @@ public class EventModel {
     public void refreshEvents() throws Exception {
         tblEvent.clear();
         tblEvent.addAll(eventManager.getAllEvents());
+
     }
 
 

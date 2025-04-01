@@ -79,6 +79,7 @@ public class AddEditEventController {
     private Event event;
     private EventModel eventModel;
     private UserModel userModel;
+    private OverviewController overviewController;
 
     private boolean isEditMode = false;
     private Event eventToEdit;
@@ -86,6 +87,7 @@ public class AddEditEventController {
     public AddEditEventController() throws Exception {
         eventModel = new EventModel();
         userModel = new UserModel();
+        overviewController = new OverviewController();
     }
 
     @FXML
@@ -205,6 +207,7 @@ public class AddEditEventController {
                eventModel.updateEvent(eventToEdit);
 
                eventToEdit.setCoordinators(selectedCoordinator);
+               overviewController.populateEvents();
 
 
 
@@ -214,6 +217,7 @@ public class AddEditEventController {
                 newEvent.setCoordinators(selectedCoordinator);
                 eventModel.addEvent(newEvent);
                 eventModel.refreshEvents();
+                //overviewController.populateEvents();
             }
 
                 if (stage != null) {
