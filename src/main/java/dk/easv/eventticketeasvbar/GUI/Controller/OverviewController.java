@@ -36,7 +36,7 @@ public class OverviewController implements Initializable {
     private MFXButton btnLogin;
 
     @FXML
-    private HBox imageContainer;
+    private TilePane imageContainer;
 
     private OverViewModel overviewModel;
 
