@@ -3,19 +3,15 @@ package dk.easv.eventticketeasvbar.GUI.Controller;
 import dk.easv.eventticketeasvbar.BE.Event;
 import dk.easv.eventticketeasvbar.BE.User;
 import dk.easv.eventticketeasvbar.GUI.Model.EventModel;
+import dk.easv.eventticketeasvbar.GUI.Model.OverViewModel;
 import dk.easv.eventticketeasvbar.GUI.Model.UserModel;
 import dk.easv.eventticketeasvbar.Main;
 import io.github.palexdev.materialfx.controls.MFXButton;
 // Java Imports
 import io.github.palexdev.materialfx.controls.MFXCheckListView;
-import io.github.palexdev.materialfx.controls.MFXCheckTreeView;
-import io.github.palexdev.materialfx.controls.MFXComboBox;
-import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -79,7 +75,6 @@ public class AddEditEventController {
     private Event event;
     private EventModel eventModel;
     private UserModel userModel;
-    private OverviewController overviewController;
 
     private boolean isEditMode = false;
     private Event eventToEdit;
@@ -87,14 +82,16 @@ public class AddEditEventController {
     public AddEditEventController() throws Exception {
         eventModel = new EventModel();
         userModel = new UserModel();
-        overviewController = new OverviewController();
     }
+
 
     @FXML
     public void initialize() throws Exception {
         userModel.loadCoordinators();
         pickCoordinator.setItems(userModel.getCoordinators());
     }
+
+
 
     @FXML
     public void btnCancel(ActionEvent actionEvent) throws IOException {
@@ -207,7 +204,8 @@ public class AddEditEventController {
                eventModel.updateEvent(eventToEdit);
 
                eventToEdit.setCoordinators(selectedCoordinator);
-               overviewController.populateEvents();
+                Main.getOverviewController().populateEvents();
+
 
 
 
@@ -216,8 +214,9 @@ public class AddEditEventController {
                 Event newEvent = new Event(eventName, location, date, time, duration, price, imagePath, description);
                 newEvent.setCoordinators(selectedCoordinator);
                 eventModel.addEvent(newEvent);
+                Main.getOverviewController().populateEvents();
                 eventModel.refreshEvents();
-                //overviewController.populateEvents();
+
             }
 
                 if (stage != null) {

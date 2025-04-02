@@ -284,6 +284,8 @@ public class EventCoordinatorController implements Initializable {
         //reference to cancel button
         addEditEventController = fxmlLoader.getController();
         addEditEventController.setEventModel(eventModel);
+
+
         addEditEventController.populateComboBox();
         addEditEventController.setStage(stage);
         // Make the new stage modal, blocking interaction with the previous window

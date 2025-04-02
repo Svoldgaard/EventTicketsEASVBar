@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -24,6 +25,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Collection;
 import java.util.ResourceBundle;
 
 public class OverviewController implements Initializable {
@@ -46,7 +48,7 @@ public class OverviewController implements Initializable {
 
 
     public OverviewController() throws Exception {
-       overviewModel = new OverViewModel();
+       this.overviewModel = new OverViewModel();
        eventModel = new EventModel();
        imageContainer = new TilePane();
 
@@ -65,6 +67,7 @@ public class OverviewController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         try{
+            Main.setOverviewController(this);
             overviewModel = new OverViewModel();
             populateEvents();
         } catch (Exception e) {
@@ -73,6 +76,8 @@ public class OverviewController implements Initializable {
 
 
     }
+
+
 
     private VBox createVBox(Event event) {
         ImageView imageView = new ImageView();
@@ -104,6 +109,7 @@ public class OverviewController implements Initializable {
     }
 
     public void populateEvents() throws Exception {
+        overviewModel.refreshEvents();
         imageContainer.getChildren().clear();
 
         for(Event event : overviewModel.getEventsToBeViewed()){
@@ -112,8 +118,6 @@ public class OverviewController implements Initializable {
 
         }
     }
-
-
 
 
 

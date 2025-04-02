@@ -28,4 +28,10 @@ public class OverViewModel {
                eventsToBeViewed.addAll(searchResults);
            }
 
+    public void refreshEvents() throws Exception {
+        eventsToBeViewed.clear();
+        eventsToBeViewed.addAll(eventManager.getAllEvents());
+    }
+
+
 }
