@@ -179,6 +179,11 @@ public class AddEditEventController {
             File photoDir = new File(userEventsDirectory);
             if (!photoDir.exists()) photoDir.mkdirs();
 
+            if(isEditMode && eventToEdit != null) {
+                File oldImage = new File(eventToEdit.getImagePath());
+                if(oldImage.exists()) oldImage.delete();
+            }
+
             File destinationFile = new File(photoDir, eventName + "_" + selectedImage.getName());
             Files.copy(selectedImage.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
             imagePath = destinationFile.getPath();
