@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="542.0" prefWidth="1116.0" stylesheets="@/dk.easv/eventticketeasvbar/CSS/demo2.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.eventticketeasvbar.GUI.Controller.AdminController">
+<AnchorPane prefHeight="542.0" prefWidth="1116.0" stylesheets="@/dk.easv/eventticketeasvbar/CSS/demo2.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.eventticketeasvbar.GUI.Controller.AdminController">
     <VBox minWidth="-Infinity" prefWidth="1116.0">
         <HBox prefHeight="38.0" prefWidth="1116.0" styleClass="redEdge">
          <children>
@@ -17,7 +17,7 @@
                <children>
                      <MFXButton layoutX="1031.0" layoutY="7.0" onAction="#btnLogoutAdmin" styleClass="whiteButton" text="Logout" />
                      <Label fx:id="lblUsername" layoutX="949.0" layoutY="11.0" prefHeight="18.0" prefWidth="79.0" styleClass="whiteLabel" text="NAME INPUT" />
-                     <Label layoutX="911.0" layoutY="10.0" styleClass="whiteLabel" text="Name:" />
+                     <Label layoutX="913.0" layoutY="12.0" styleClass="whiteLabel" text="Name:" />
                </children>
             </AnchorPane>
          </children></HBox>
