@@ -191,17 +191,7 @@ public class EventCoordinatorController implements Initializable {
             }
         });
 
-        MenuItem parking = new MenuItem("Parking");
-        parking.setOnAction((ActionEvent event) -> {
-            Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
-            if(selectedEvent != null) {
-                try{
-                    parkingInfo();
-                } catch (Exception e) {
-                    displayError(e);
-                }
-            }
-        });
+
 
 
         // menu for tickets
@@ -246,7 +236,7 @@ public class EventCoordinatorController implements Initializable {
         });
 
         // add submenu item for the extra info
-        moreInfo.getItems().addAll(eventInfoItem,parking);
+        moreInfo.getItems().addAll(eventInfoItem);
 
         // add submenu item for the ticket menu
         ticket.getItems().addAll(eventTicket, discountTicket, vipTicket);
@@ -459,35 +449,6 @@ public class EventCoordinatorController implements Initializable {
         stage.showAndWait();
     }
 
-    private void parkingInfo() throws IOException {
-        Event selectedEvent = tblEvent.getSelectionModel().getSelectedItem();
-
-        if (selectedEvent == null) {
-            Alert alert = new Alert(Alert.AlertType.WARNING, "Please select an event first.", ButtonType.OK);
-            alert.showAndWait();
-            return;
-        }
-
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dk.easv/eventticketeasvbar/FXML/EventCoordinator/Parking.fxml"));
-        Parent root = fxmlLoader.load();
-        ParkingController parkingController = fxmlLoader.getController();
-
-        // Fetch parking info related to the event
-        /*Parking parking = parkingModel.getParkingForEvent(selectedEvent.getId());
-        if (parking != null) {
-            parkingController.setParkingInfo(parking);
-        } else {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "No parking info available for this event.", ButtonType.OK);
-            alert.showAndWait();
-        }*/
-
-        Stage stage = new Stage();
-        stage.getIcons().add(new Image("/dk.easv/eventticketeasvbar/Icon/Skærmbillede 2025-03-27 142743.png"));
-        stage.setTitle("Parking Info");
-        stage.setScene(new Scene(root, 600, 500));
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.showAndWait();
-    }
 
     private void setButtonIcon(Button button, String iconPath) {
        URL iconUrl = getClass().getResource(iconPath);
