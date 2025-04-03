@@ -94,12 +94,19 @@ public class EventCoordinatorController implements Initializable {
 
         // Set up TableView columns
         eventColumn.setCellValueFactory(new PropertyValueFactory<>("event"));
+        eventColumn.prefWidthProperty().bind(tblEvent.widthProperty().multiply(0.3));
         locationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
+        locationColumn.prefWidthProperty().bind(tblEvent.widthProperty().multiply(0.25));
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
+        dateColumn.prefWidthProperty().bind(tblEvent.widthProperty().multiply(0.2));
         timeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
+        timeColumn.prefWidthProperty().bind(tblEvent.widthProperty().multiply(0.1));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
+        priceColumn.prefWidthProperty().bind(tblEvent.widthProperty().multiply(0.2));
         durationColumn.setCellValueFactory(new PropertyValueFactory<>("duration"));
+        durationColumn.prefWidthProperty().bind(tblEvent.widthProperty().multiply(0.1));
         coordinatorColumn.setCellValueFactory(new PropertyValueFactory<>("coordinators"));
+        coordinatorColumn.prefWidthProperty().bind(tblEvent.widthProperty().multiply(0.3));
 
         // Custom cell factory to add currency symbol to the price column
         priceColumn.setCellFactory(column -> new TableCell<Event, Float>() {

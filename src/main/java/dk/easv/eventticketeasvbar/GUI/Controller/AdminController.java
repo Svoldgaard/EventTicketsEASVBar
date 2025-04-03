@@ -102,7 +102,9 @@ public class AdminController implements Initializable {
         }
         colPhoto.setCellValueFactory(new PropertyValueFactory<>("photo"));
         colFName.setCellValueFactory(new PropertyValueFactory<>("firstname"));
+        colFName.prefWidthProperty().bind(tblCoordinator.widthProperty().multiply(0.2));
         colLName.setCellValueFactory(new PropertyValueFactory<>("lastname"));
+        colLName.prefWidthProperty().bind(tblCoordinator.widthProperty().multiply(0.2));
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         colEmail.prefWidthProperty().bind(tblCoordinator.widthProperty().multiply(0.2));
         colPhoneNumber.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
@@ -139,9 +141,13 @@ public class AdminController implements Initializable {
         }
 
         colEvent.setCellValueFactory(new PropertyValueFactory<>("event"));
+        colEvent.prefWidthProperty().bind(tblEvent.widthProperty().multiply(0.35));
         colLocation.setCellValueFactory(new PropertyValueFactory<>("location"));
+        colLocation.prefWidthProperty().bind(tblEvent.widthProperty().multiply(0.3));
         colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+        colDate.prefWidthProperty().bind(tblEvent.widthProperty().multiply(0.2));
         colTime.setCellValueFactory(new PropertyValueFactory<>("time"));
+        colTime.prefWidthProperty().bind(tblEvent.widthProperty().multiply(0.1));
         colCoordinator.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getCoordinatorsAsString()));
 
