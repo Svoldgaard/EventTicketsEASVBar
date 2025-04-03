@@ -96,7 +96,7 @@ public class DiscountTicketController implements Initializable {
             table.addCell(textCell);
 
             // Add QR Code Image to the right side
-            String qrCodePath = "/Users/majkensvoldgaard/Desktop/EventTicketEASVBar/src/main/resources/dk.easv/eventticketeasvbar/QRCode/ticketQRCode.png";
+            String qrCodePath = "/dk.easv/eventticketeasvbar/QRCode/ticketQRCode.png";
             File qrCodeFile = new File(qrCodePath);
             PdfPCell qrCell = new PdfPCell();
             if (qrCodeFile.exists()) {
