@@ -50,10 +50,7 @@ public class UserModel {
 
     }
 
-    public void refreshUsers() throws Exception {
-        tblCoordinator.clear();
-        tblCoordinator.addAll(userManager.getAllUsers());
-    }
+
 
 
     public void removeCoordinator(User user) throws Exception {
