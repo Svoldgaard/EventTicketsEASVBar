@@ -29,6 +29,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 // Java import
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -118,7 +119,7 @@ public class AdminController implements Initializable {
                 } else {
                     try {
                         // Forvent at imagePath er en sti til et billede i resources
-                        Image image = new Image(getClass().getResourceAsStream("/" + photo), 50, 50, true, true);
+                        Image image = new Image(new File(photo).toURI().toString(), 50, 50, true, true);
                         imageView.setImage(image);
                         setGraphic(imageView);
                     } catch (Exception e) {
@@ -317,7 +318,7 @@ public class AdminController implements Initializable {
         createUserController.setStage(stage); // Set the stage for closing
 
         stage.showAndWait();
-        tblCoordinator.refresh(); // Refresh table after creation
+        tblCoordinator.refresh(); // Refresh table after editing
         userModel.loadCoordinators();
         System.out.println("Coordinator created and table refreshed");
     }

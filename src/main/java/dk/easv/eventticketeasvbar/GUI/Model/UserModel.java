@@ -42,6 +42,11 @@ public class UserModel {
         //adminManager.updateUser(user);
     }
 
+    public void refreshUsers() throws Exception {
+        tblCoordinator.clear();
+        tblCoordinator.addAll(userManager.getAllUsers());
+    }
+
 
     public void removeCoordinator(User user) throws Exception {
         userManager.deleteUser(user);
