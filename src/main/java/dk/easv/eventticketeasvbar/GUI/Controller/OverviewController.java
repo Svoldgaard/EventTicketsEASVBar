@@ -81,7 +81,7 @@ public class OverviewController implements Initializable {
 
     private VBox createVBox(Event event) {
         ImageView imageView = new ImageView();
-        imageView.setFitHeight(200);
+        imageView.setFitHeight(150);
         imageView.setFitWidth(150);
 
         if(event.getImagePath() != null && !event.getImagePath().isEmpty()) {
@@ -152,6 +152,7 @@ public class OverviewController implements Initializable {
         infoStage = new Stage();
         infoStage.setTitle("Event Information");
         infoStage.setScene(scene);
+        infoStage.getIcons().add(new Image("/dk.easv/eventticketeasvbar/Icon/Skærmbillede 2025-03-27 142743.png"));
 
         eventInfoController = fxmlLoader.getController();
         eventInfoController.setInfoStage(infoStage);

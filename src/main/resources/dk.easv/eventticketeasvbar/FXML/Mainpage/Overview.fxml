@@ -3,7 +3,6 @@
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -11,8 +10,9 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@/dk.easv/eventticketeasvbar/CSS/demo2.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.eventticketeasvbar.GUI.Controller.OverviewController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@/dk.easv/eventticketeasvbar/CSS/demo2.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.eventticketeasvbar.GUI.Controller.OverviewController">
    <top>
       <StackPane>
          <HBox styleClass="redEdge" />
@@ -33,8 +33,10 @@
    <center>
       <AnchorPane prefHeight="355.0" prefWidth="595.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="23.0" layoutY="17.0" text="Popular Events" />
-            <ChoiceBox fx:id="DropMenu" layoutX="431.0" layoutY="13.0" prefWidth="150.0" />
+            <Label layoutX="215.0" layoutY="14.0" text="Popular Events">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font></Label>
             <MFXScrollPane layoutX="15.0" layoutY="61.0" prefHeight="278.0" prefWidth="569.0">
                <content>
                   <TilePane fx:id="imageContainer" alignment="CENTER" hgap="20.0" prefHeight="278.0" prefWidth="555.0" vgap="15.0" />

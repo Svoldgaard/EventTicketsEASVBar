@@ -29,10 +29,6 @@ public class EventModel {
         tblEvent.add(newEvent);
     }
 
-    public void createdEvent(Event event) throws Exception {
-        eventManager.saveEvent(event);
-        tblEvent.remove(event);
-    }
 
     public void deleteEvent(Event event) throws Exception {
         eventManager.deleteEvent(event);

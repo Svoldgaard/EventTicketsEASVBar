@@ -10,14 +10,14 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="566.0" prefWidth="689.0" stylesheets="@/dk.easv/eventticketeasvbar/CSS/demo2.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.eventticketeasvbar.GUI.Controller.EventCoordinatorController">
+<AnchorPane prefHeight="513.0" prefWidth="700.0" stylesheets="@/dk.easv/eventticketeasvbar/CSS/demo2.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.eventticketeasvbar.GUI.Controller.EventCoordinatorController">
    <VBox minWidth="-Infinity" prefHeight="85.0" prefWidth="700.0">
       <children>
          <HBox minWidth="-Infinity" prefHeight="43.0" prefWidth="700.0" styleClass="redEdge">
             <children>
                 <Label styleClass="whiteLabel" text="Name:">
                   <HBox.margin>
-                     <Insets left="520.0" top="10.0" />
+                     <Insets left="10.0" top="10.0" />
                   </HBox.margin>
                </Label>
                 <Label fx:id="lblUsername" styleClass="whiteLabel" text="Name??">
@@ -27,14 +27,14 @@
                </Label>
                 <MFXButton onAction="#handleLogoutCoordinator" prefHeight="32.0" prefWidth="72.0" styleClass="whiteButton" text="Logout">
                   <HBox.margin>
-                     <Insets top="5.0" />
+                     <Insets left="513.0" top="4.0" />
                   </HBox.margin>
                </MFXButton>
             </children></HBox>
          <HBox prefHeight="30.0" prefWidth="700.0" />
       </children>
    </VBox>
-    <TableView fx:id="tblEvent" layoutX="32.0" layoutY="103.0" prefHeight="360.0" prefWidth="531.0">
+    <TableView fx:id="tblEvent" layoutX="32.0" layoutY="103.0" prefHeight="360.0" prefWidth="636.0">
       <columns>
           <TableColumn fx:id="eventColumn" prefWidth="75.0" text="Event" />
           <TableColumn fx:id="locationColumn" prefWidth="75.0" text="Location" />
@@ -47,5 +47,5 @@
     </TableView>
 
                                            <TextField fx:id="txtSearch" layoutX="32.0" layoutY="64.0" promptText="Search:" />
-   <MFXButton styleClass="redbutton" fx:id="btnCreate" layoutX="576.0" layoutY="103.0" onAction="#btnCreateEvent" text="." />
+   <MFXButton fx:id="btnCreate" layoutX="32.0" layoutY="473.0" onAction="#btnCreateEvent" styleClass="redbutton" text="." />
 </AnchorPane>
