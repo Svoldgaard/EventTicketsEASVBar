@@ -51,6 +51,8 @@ public class UserModel {
     }
 
 
+
+
     public void removeCoordinator(User user) throws Exception {
         userManager.deleteUser(user);
         tblCoordinator.remove(user);

@@ -55,6 +55,7 @@ public class CreateUserController {
     private MediaView MediaPictureEmployee;
     @FXML
     private ImageView imageEmployee;
+
     private String phoneNumber;
 
 
@@ -89,11 +90,8 @@ public class CreateUserController {
     }
 
     @FXML
-    private void btnSave(ActionEvent actionEvent) {
+    private void btnSave(ActionEvent actionEvent) throws IOException {
 
-        if (selectedImage != null) {
-            imagePath = "Photos/" + selectedImage.getName();
-        }
 
         String firstName = txtFirstName.getText().trim();
         String lastName = txtLastName.getText().trim();
@@ -118,13 +116,21 @@ public class CreateUserController {
 
         phoneNumber = phoneNumberStr;
 
-        /*int phoneNumber;
-        try {
-            phoneNumber = Integer.parseInt(phoneNumberStr);
-        } catch (NumberFormatException e) {
-            showErrorAlert("Invalid Input", "Phone number must be a number.");
-            return;
-        }*/
+
+        if (selectedImage != null) {
+            String usersPhotoDirectory = "src/main/resources/UserPhotos";
+            File photoDirectory = new File(usersPhotoDirectory);
+            if (!photoDirectory.exists()) photoDirectory.mkdir();
+
+            if(isEditMode && editableCoordinator != null){
+                File oldImage = new File(editableCoordinator.getPhoto());
+                if (oldImage.exists()) oldImage.delete();
+            }
+
+            File destinationFile = new File(photoDirectory,  txtFirstName + "_" + selectedImage.getName());
+            Files.copy(selectedImage.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            imagePath = destinationFile.getPath();
+        }
 
 
         if (isEditMode) {
@@ -134,7 +140,6 @@ public class CreateUserController {
             editableCoordinator.setLastname(lastName);
             editableCoordinator.setEmail(email);
             editableCoordinator.setPhoneNumber(phoneNumber);
-
 
             try {
                 adminModel.updateCoordinator(editableCoordinator);
@@ -186,26 +191,9 @@ public class CreateUserController {
 
         if(file != null) {
             selectedImage = file;
-            String userEventsDirectory = "src/main/resources/Photos";
-            File photoDir = new File(userEventsDirectory);
-            if(!photoDir.exists()) {
-                photoDir.mkdir();
+            imageEmployee.setImage(new Image(file.toURI().toString()));
+
             }
-
-            File destinationFile = new File(photoDir, file.getName());
-            try {
-                Files.copy(file.toPath(),destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-                imagePath = "Photos/" + file.getName();
-
-
-                imageEmployee.setImage(new Image(destinationFile.toURI().toString()));
-            }
-            catch(Exception ex) {
-                ex.printStackTrace();
-            }
-
-        }
-        
     }
 
     private void showErrorAlert(String title, String message) {

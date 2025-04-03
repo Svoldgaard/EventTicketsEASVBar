@@ -1,5 +1,7 @@
 package dk.easv.eventticketeasvbar.BE;
 
+import javafx.scene.image.Image;
+
 public class User {
     private int id;
     private String photo;
@@ -10,6 +12,7 @@ public class User {
     private int amountOfEvents;
     private String userType;
     private int userTypeID;
+    private Image image;
 
     // Constructor for btnSave in CreateUserController
     public User(String firstname, String lastname, String email, String phoneNumber, int amountOfEvents, String imagePath) {
@@ -22,14 +25,14 @@ public class User {
     }
 
     // Used in UserDAO_DB in createUser
-    public User(int id, String photo, String firstname, String lastname, String email, String phoneNumber, int amountOfEvents, int i) {
+    public User(int id, String firstname, String lastname, String email, String phoneNumber, int amountOfEvents,  String imagePath, int i) {
         this.id = id;
-        this.photo = photo;
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.amountOfEvents = amountOfEvents;
+        this.photo = imagePath;
         this.userTypeID = i;
     }
 
@@ -39,14 +42,14 @@ public class User {
     }
 
     // Used in UserDAO_DB in getAllUsers
-    public User(int id, String photo, String firstname, String lastname, String email, String phoneNumber, int amountOfEvents, String userType) {
+    public User(int id, String firstname, String lastname, String email, String phoneNumber, int amountOfEvents,  String imagePath, String userType) {
         this.id = id;
-        this.photo = photo;
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.amountOfEvents = amountOfEvents;
+        this.photo = imagePath;
         this.userType = userType;
 
     }

@@ -26,18 +26,6 @@ public class Event {
     private String imagePath;
 
 
-    public Event(int id, String event, String address, int postalCode, String city, LocalDate date, Float time, Float duration, Float price, List<User> coordinators) {
-        this.id = id;
-        this.event = event;
-        this.address = address;
-        this.postalCode = postalCode;
-        this.city = city;
-        this.date = date;
-        this.time = time;
-        this.duration = duration;
-        this.price = price;
-        this.coordinators = new ArrayList<>();
-    }
 
     public Event(Image image, String event, String description) {
         this.image = image;
@@ -45,15 +33,6 @@ public class Event {
         this.description = description;
     }
 
-    public Event(String event, String location, LocalDate date, Float time, Float duration, Float price, List<User> coordinators) {
-        this.event = event;
-        this.location = location;
-        this.date = date;
-        this.time = time;
-        this.duration = duration;
-        this.price = price;
-        this.coordinators = new ArrayList<>();
-    }
 
     //Constructor for making events
     //What the hell here is so many of them :=)
@@ -69,45 +48,7 @@ public class Event {
         this.description = description;
     }
 
-    public Event(String eventName, String address, int postalCode, String city, LocalDate date, float time,
-                 float duration, float price) {
-        this.event = eventName;
-        this.address = address;
-        this.postalCode = postalCode;
-        this.city = city;
-        this.date = date;
-        this.time = time;
-        this.duration = duration;
-        this.price = price;
-    }
 
-    public Event(String eventName, String location, String address, int postalCode, String city, LocalDate date, float time, float duration, float price) {
-        this.event = eventName;
-        this.location = location;
-        this.address = address;
-        this.postalCode = postalCode;
-        this.city = city;
-        this.date = date;
-        this.time = time;
-        this.duration = duration;
-        this.price = price;
-        this.coordinators = new ArrayList<>();
-    }
-
-    public Event(int id, String eventName, String location, String address, int postalCode, String city, LocalDate date, float time, float duration, float price, List<User> coordinators) {
-        this.id = id;
-        this.event = eventName;
-        this.location = location;
-        this.address = address;
-        this.postalCode = postalCode;
-        this.city = city;
-        this.date = date;
-        this.time = time;
-        this.duration = duration;
-        this.price = price;
-        this.coordinators = new ArrayList<>();
-
-    }
 
     //Constructor for retrieving data
     public Event(int id, String eventName, String location, LocalDate date, float time, float duration, float price, List<User> coordinators, String imagePath, String description) {
