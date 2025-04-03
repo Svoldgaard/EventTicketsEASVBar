@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="424db850-1039-4886-89b3-66312f48d918" name="Changes" comment="Tickets works">
+    <list default="true" id="424db850-1039-4886-89b3-66312f48d918" name="Changes" comment="delete parking info">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/Tickets/DiscountTicketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/Tickets/DiscountTicketController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -213,6 +213,7 @@
       <workItem from="1743362595412" duration="7202000" />
       <workItem from="1743406407060" duration="22541000" />
       <workItem from="1743495944593" duration="3469000" />
+      <workItem from="1743677958479" duration="1166000" />
     </task>
     <task id="LOCAL-00012" summary="Added PasswordField + minor changes">
       <option name="closed" value="true" />

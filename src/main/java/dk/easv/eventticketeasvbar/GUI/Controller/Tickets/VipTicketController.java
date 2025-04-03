@@ -1,5 +1,8 @@
 package dk.easv.eventticketeasvbar.GUI.Controller.Tickets;
 
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Rectangle;
 import dk.easv.eventticketeasvbar.BE.Event;
 import dk.easv.eventticketeasvbar.GUI.Model.TicketModel;
 import com.itextpdf.text.*;
@@ -13,6 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.net.URL;
@@ -113,6 +117,19 @@ public class VipTicketController implements Initializable {
 
             // Update ticket with PDF path
             ticketModel.updateTicketPDFPath(qrText, filePath);
+
+            // Open the PDF file automatically
+            assert filePath != null;
+            File pdfFile = new File(filePath);
+            if (pdfFile.exists()) {
+                if (Desktop.isDesktopSupported()) {
+                    Desktop.getDesktop().open(pdfFile);
+                } else {
+                    System.out.println("Desktop is not supported. Cannot open the file.");
+                }
+            } else {
+                System.err.println("PDF file not found!");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

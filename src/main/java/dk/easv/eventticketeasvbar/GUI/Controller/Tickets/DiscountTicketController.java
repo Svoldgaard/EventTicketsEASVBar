@@ -1,6 +1,9 @@
 package dk.easv.eventticketeasvbar.GUI.Controller.Tickets;
 // project import
 import com.itextpdf.text.*;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfWriter;
 import dk.easv.eventticketeasvbar.BE.Event;
 
@@ -14,8 +17,10 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 // Java imports
+import java.awt.*;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -55,7 +60,8 @@ public class DiscountTicketController implements Initializable {
     }
 
     @FXML
-    private void btnPDF(ActionEvent actionEvent) {
+    private void btnPDF(ActionEvent actionEvent) throws IOException {
+        String filePath = null;
         try {
             // Get values from UI
             String barName = lblBarName.getText();
@@ -75,12 +81,13 @@ public class DiscountTicketController implements Initializable {
             }
 
             String fileName = "Discount_Ticket_" + barName.replace(" ", "_") + ".pdf";
-            String filePath = folderPath + "/" + fileName;
+            filePath = folderPath + "/" + fileName;
 
             // Create PDF matching the FXML dimensions
             Document document = new Document(new Rectangle(319, 206));
             PdfWriter.getInstance(document, new FileOutputStream(filePath));
             document.open();
+
 
             // Create a table layout with two columns
             PdfPTable table = new PdfPTable(2);
@@ -124,6 +131,19 @@ public class DiscountTicketController implements Initializable {
 
             // **3. Update ticket with PDF path in Database**
             ticketModel.updateTicketPDFPath(qrCode, filePath);
+
+            // Open the PDF file automatically
+            assert filePath != null;
+            File pdfFile = new File(filePath);
+            if (pdfFile.exists()) {
+                if (Desktop.isDesktopSupported()) {
+                    Desktop.getDesktop().open(pdfFile);
+                } else {
+                    System.out.println("Desktop is not supported. Cannot open the file.");
+                }
+            } else {
+                System.err.println("PDF file not found!");
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
