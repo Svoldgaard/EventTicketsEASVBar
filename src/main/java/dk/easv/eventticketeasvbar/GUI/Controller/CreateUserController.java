@@ -147,6 +147,7 @@ public class CreateUserController {
             User newCoordinator = new User(firstName, lastName, email, phoneNumber, 0, imagePath);
             try {
                 adminModel.addCoordinator(newCoordinator);
+                adminModel.refreshUsers();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -155,6 +156,9 @@ public class CreateUserController {
         if (stage != null) {
             stage.close();
         }
+
+
+
     }
 
     private boolean isValidPhoneNumber(String phoneNumberStr) {
