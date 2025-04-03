@@ -35,11 +35,19 @@ public class UserModel {
         User updatedCoordinator = userManager.updateUser(user);
 
         int index = tblCoordinator.indexOf(user);
-        if (index != -1) {
+        if (index != 0) {
             tblCoordinator.set(index, updatedCoordinator);
         }
 
-        //adminManager.updateUser(user);
+        userManager.updateUser(user);
+        loadCoordinators();
+
+    }
+
+    public void refreshUsers() throws Exception {
+        tblCoordinator.clear();
+        tblCoordinator.addAll(userManager.getAllUsers());
+
     }
 
     public void refreshUsers() throws Exception {

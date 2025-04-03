@@ -161,6 +161,9 @@ public class CreateUserController {
         if (stage != null) {
             stage.close();
         }
+
+
+
     }
 
     private boolean isValidPhoneNumber(String phoneNumberStr) {

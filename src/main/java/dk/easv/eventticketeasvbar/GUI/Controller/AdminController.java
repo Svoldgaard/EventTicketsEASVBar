@@ -91,9 +91,9 @@ public class AdminController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+
         setButtonIcon(btnCreateUser, "/dk.easv/eventticketeasvbar/Icon/—Pngtree—edit icon_4479680.png");
-
-
 
         try {
             userModel = new UserModel();
@@ -103,8 +103,11 @@ public class AdminController implements Initializable {
         }
         colPhoto.setCellValueFactory(new PropertyValueFactory<>("photo"));
         colFName.setCellValueFactory(new PropertyValueFactory<>("firstname"));
+        colFName.prefWidthProperty().bind(tblCoordinator.widthProperty().multiply(0.2));
         colLName.setCellValueFactory(new PropertyValueFactory<>("lastname"));
+        colLName.prefWidthProperty().bind(tblCoordinator.widthProperty().multiply(0.2));
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        colEmail.prefWidthProperty().bind(tblCoordinator.widthProperty().multiply(0.2));
         colPhoneNumber.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
         colAmountOfEvents.setCellValueFactory(new PropertyValueFactory<>("amountOfEvents"));
 
@@ -131,6 +134,7 @@ public class AdminController implements Initializable {
 
         tblCoordinator.setItems(userModel.getCoordinators());
         tblCoordinator.setStyle("-fx-alternative-row-fill-visible: #009FDA");
+
         try {
             userModel.loadCoordinators();
         } catch (Exception e) {
@@ -138,9 +142,13 @@ public class AdminController implements Initializable {
         }
 
         colEvent.setCellValueFactory(new PropertyValueFactory<>("event"));
+        colEvent.prefWidthProperty().bind(tblEvent.widthProperty().multiply(0.35));
         colLocation.setCellValueFactory(new PropertyValueFactory<>("location"));
+        colLocation.prefWidthProperty().bind(tblEvent.widthProperty().multiply(0.3));
         colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+        colDate.prefWidthProperty().bind(tblEvent.widthProperty().multiply(0.2));
         colTime.setCellValueFactory(new PropertyValueFactory<>("time"));
+        colTime.prefWidthProperty().bind(tblEvent.widthProperty().multiply(0.1));
         colCoordinator.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getCoordinatorsAsString()));
 
@@ -164,6 +172,7 @@ public class AdminController implements Initializable {
 
         tblCoordinator.setItems(userModel.getCoordinators());
         tblEvent.setItems(eventModel.getTblEvent());
+
 
 
         setupDragAndDrop();
@@ -542,7 +551,7 @@ public class AdminController implements Initializable {
         }
     }
 
-
+    
 
     public void setUsername(String username) {
         lblUsername.setText(username);
