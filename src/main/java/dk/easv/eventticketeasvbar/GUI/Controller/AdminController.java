@@ -90,9 +90,9 @@ public class AdminController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+
         setButtonIcon(btnCreateUser, "/dk.easv/eventticketeasvbar/Icon/—Pngtree—edit icon_4479680.png");
-
-
 
         try {
             userModel = new UserModel();
@@ -104,6 +104,7 @@ public class AdminController implements Initializable {
         colFName.setCellValueFactory(new PropertyValueFactory<>("firstname"));
         colLName.setCellValueFactory(new PropertyValueFactory<>("lastname"));
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        colEmail.prefWidthProperty().bind(tblCoordinator.widthProperty().multiply(0.2));
         colPhoneNumber.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
         colAmountOfEvents.setCellValueFactory(new PropertyValueFactory<>("amountOfEvents"));
 
@@ -130,6 +131,7 @@ public class AdminController implements Initializable {
 
         tblCoordinator.setItems(userModel.getCoordinators());
         tblCoordinator.setStyle("-fx-alternative-row-fill-visible: #009FDA");
+
         try {
             userModel.loadCoordinators();
         } catch (Exception e) {
@@ -163,6 +165,7 @@ public class AdminController implements Initializable {
 
         tblCoordinator.setItems(userModel.getCoordinators());
         tblEvent.setItems(eventModel.getTblEvent());
+
 
 
         setupDragAndDrop();
@@ -541,7 +544,7 @@ public class AdminController implements Initializable {
         }
     }
 
-
+    
 
     public void setUsername(String username) {
         lblUsername.setText(username);
