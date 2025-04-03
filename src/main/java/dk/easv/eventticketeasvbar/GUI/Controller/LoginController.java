@@ -16,6 +16,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -33,8 +34,15 @@ public class LoginController {
     private MFXPasswordField txtPassword;
     @FXML
     private Label lblStatus;
+    @FXML
+    private ImageView logoImageView;
 
     private final LoginModel loginModel;
+
+    @FXML
+    public void initialize() {
+        logoImageView.setImage(new Image(getClass().getResourceAsStream("/Photos/logo.png")));
+    }
 
     public LoginController() throws IOException {
         this.loginModel = new LoginModel();
