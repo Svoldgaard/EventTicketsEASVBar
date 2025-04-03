@@ -89,7 +89,7 @@ public class EventTicketController implements Initializable {
             table.addCell(textCell);
 
             // Right column: QR Code
-            String qrCodePath = "/dk.easv/eventticketeasvbar/QRCode/ticketQRCode.png";
+            String qrCodePath = "src/main/resources/dk.easv/eventticketeasvbar/QRCode/ticketQRCode.png";
             File qrCodeFile = new File(qrCodePath);
             PdfPCell qrCell = new PdfPCell();
             if (qrCodeFile.exists()) {
