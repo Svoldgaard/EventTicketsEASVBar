@@ -242,7 +242,7 @@ public class EventCoordinatorController implements Initializable {
         ticket.getItems().addAll(eventTicket, discountTicket, vipTicket);
 
         // add the menu option to the context menu
-        contextMenu.getItems().addAll(editItem,deleteItem, ticket,moreInfo);
+        contextMenu.getItems().addAll(editItem,deleteItem, ticket,eventInfoItem);
 
         // attaches the context menu to the tableView
         tblEvent.setContextMenu(contextMenu);
@@ -444,7 +444,7 @@ public class EventCoordinatorController implements Initializable {
         Stage stage = new Stage();
         stage.getIcons().add(new Image("/dk.easv/eventticketeasvbar/Icon/Skærmbillede 2025-03-27 142743.png"));
         stage.setTitle("Event Info");
-        stage.setScene(new Scene(root, 600, 500));
+        stage.setScene(new Scene(root, 582, 335));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
     }
