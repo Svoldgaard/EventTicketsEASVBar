@@ -4,6 +4,7 @@ import dk.easv.eventticketeasvbar.BE.Event;
 // Java Imports
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -26,10 +27,8 @@ public class EventInfoController {
         this.infoStage = infoStage;
     }
 
-    public void handleClose(ActionEvent event) {
-        if(infoStage!=null){
-            infoStage.close();
-        }
+    public void handleClose(ActionEvent actionEvent) {
+        ((Stage) (((Button) actionEvent.getSource()).getScene().getWindow())).close();
     }
 
 

@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="424db850-1039-4886-89b3-66312f48d918" name="Changes" comment="delete parking info">
+    <list default="true" id="424db850-1039-4886-89b3-66312f48d918" name="Changes" comment="now the pdf also open in the app after it has been created and saved in the folder">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/Tickets/DiscountTicketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dk/easv/eventticketeasvbar/GUI/Controller/Tickets/DiscountTicketController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -213,15 +212,8 @@
       <workItem from="1743362595412" duration="7202000" />
       <workItem from="1743406407060" duration="22541000" />
       <workItem from="1743495944593" duration="3469000" />
-      <workItem from="1743677958479" duration="1166000" />
-    </task>
-    <task id="LOCAL-00012" summary="Added PasswordField + minor changes">
-      <option name="closed" value="true" />
-      <created>1739788424673</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1739788424673</updated>
+      <workItem from="1743677958479" duration="2188000" />
+      <workItem from="1743754384928" duration="769000" />
     </task>
     <task id="LOCAL-00013" summary="Photo's">
       <option name="closed" value="true" />
@@ -607,7 +599,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743490796557</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="now the pdf also open in the app after it has been created and saved in the folder">
+      <option name="closed" value="true" />
+      <created>1743680071585</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1743680071585</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -628,7 +628,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="Drag and drop kinda working with save have to check database to be sure" />
     <MESSAGE value="remove, add, edit event coordinator maybe works" />
     <MESSAGE value="small change" />
     <MESSAGE value="Refactor" />
@@ -653,7 +652,8 @@
     <MESSAGE value="type" />
     <MESSAGE value="main fxml change so it works" />
     <MESSAGE value="Tickets works" />
-    <option name="LAST_COMMIT_MESSAGE" value="Tickets works" />
+    <MESSAGE value="now the pdf also open in the app after it has been created and saved in the folder" />
+    <option name="LAST_COMMIT_MESSAGE" value="now the pdf also open in the app after it has been created and saved in the folder" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
