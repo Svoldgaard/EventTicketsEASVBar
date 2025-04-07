@@ -2,6 +2,8 @@ package dk.easv.eventticketeasvbar.BE;
 
 import javafx.scene.image.Image;
 
+import java.util.Objects;
+
 public class User {
     private int id;
     private String photo;
@@ -121,6 +123,19 @@ public class User {
 
     public void setAmountOfEvents(int amountOfEvents) {
         this.amountOfEvents = amountOfEvents;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        User user = (User) obj;
+        return id == user.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
     }
 
     @Override

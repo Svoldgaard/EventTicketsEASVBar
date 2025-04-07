@@ -11,7 +11,7 @@ import java.util.List;
 
 public class UserDAO_DB implements IAdmin {
 
-    private DBConnection dbConnection;
+    public DBConnection dbConnection;
 
     public UserDAO_DB() throws IOException {
         this.dbConnection = new DBConnection();
@@ -21,8 +21,8 @@ public class UserDAO_DB implements IAdmin {
     public List<User> getAllUsers() throws Exception {
         List<User> users = new ArrayList<>();
         String sql = "Select u.id,  u.firstName, u.lastName, u.email, u.phoneNumber, u.amountOfEvents, u.photo, u.userTypeID, t.userType " +
-                     "from [User] u " +
-                     "JOIN userType t on u.userTypeID = t.id";
+                "from [User] u " +
+                "JOIN userType t on u.userTypeID = t.id";
 
         try (Connection conn = dbConnection.getConnection();
              Statement stmt = conn.createStatement();
@@ -74,7 +74,6 @@ public class UserDAO_DB implements IAdmin {
             try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
                     int id = generatedKeys.getInt(1);
-
                     return new User(
                             id,
                             user.getFirstname(),
@@ -99,41 +98,30 @@ public class UserDAO_DB implements IAdmin {
 
     @Override
     public User updateUser(User user) throws Exception {
-        String sql = "UPDATE [User] SET  firstName = ?, lastName = ?, email = ?, phoneNumber = ?, amountOfEvents = ?, photo = ? " +
+        String updateUserSql = "UPDATE [User] SET  firstName = ?, lastName = ?, email = ?, phoneNumber = ?, amountOfEvents = ?, photo = ? " +
                 " WHERE id = ?";
 
 
-
         try (Connection conn = dbConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+             PreparedStatement updateUserStmt = conn.prepareStatement(updateUserSql)) {
 
-            // Fetch current amountOfEvents
-            /*int currentEvents = getCurrentAmountOfEvents(user.getEmail(), conn);
+            updateUserStmt.setString(1, user.getFirstname());
+            updateUserStmt.setString(2, user.getLastname());
+            updateUserStmt.setString(3, user.getEmail());
+            updateUserStmt.setString(4, user.getPhoneNumber());
+            updateUserStmt.setInt(5, user.getAmountOfEvents());
+            updateUserStmt.setString(6, user.getPhoto());
+            updateUserStmt.setInt(7, user.getId());
 
-            // Prevent unnecessary updates
-            if (currentEvents == user.getAmountOfEvents()) {
-                return user; // No update needed
-            }*/
-
-
-            stmt.setString(1, user.getFirstname());
-            stmt.setString(2, user.getLastname());
-            stmt.setString(3, user.getEmail());
-            stmt.setString(4, user.getPhoneNumber());
-            stmt.setInt(5, user.getAmountOfEvents());
-            stmt.setString(6, user.getPhoto());
-            stmt.setInt(7, user.getId());
-
-            System.out.println("Debug id: " + user.getId());
-            int affectedRows = stmt.executeUpdate();
+            int affectedRows = updateUserStmt.executeUpdate();
             if (affectedRows == 0) {
-                throw new SQLException("Updating event coordinator failed, no rows affected.");
+                throw new SQLException("Updating user failed, no rows affected.");
             }
 
             return user;
         } catch (SQLException ex) {
             ex.printStackTrace();
-            throw new Exception("Error updating event coordinator in database.");
+            throw new Exception("Error updating user in database.");
         }
     }
 
@@ -164,14 +152,19 @@ public class UserDAO_DB implements IAdmin {
 
             stmt.setInt(1, user.getId());
 
-
             int affectedRows = stmt.executeUpdate();
             if (affectedRows == 0) {
                 throw new SQLException("Deleting event coordinator failed, no rows affected.");
+
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
             throw new Exception("Error deleting event coordinator from database.");
         }
+
+        }
     }
-}
+
+
+
+

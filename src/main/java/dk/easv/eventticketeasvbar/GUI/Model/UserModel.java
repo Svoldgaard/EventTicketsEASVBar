@@ -35,10 +35,14 @@ public class UserModel {
         User updatedCoordinator = userManager.updateUser(user);
 
         int index = tblCoordinator.indexOf(user);
-        if (index != 0) {
-            tblCoordinator.set(index, updatedCoordinator);
-        }
 
+        if (index != -1) {
+            tblCoordinator.set(index, updatedCoordinator);
+
+        } else {
+            tblCoordinator.add(updatedCoordinator);
+
+        }
         userManager.updateUser(user);
         loadCoordinators();
 
